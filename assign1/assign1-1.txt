@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+void type();
+
+int main() {
+    type();
+}
+
+void type()
+{
+    int a,b,c;
+    printf("give me sides of triangle");
+    scanf("%d,%d,%d",&a,&b,&c );
+    if(a==b && b==c && c==a)
+    {
+        printf("this is equillatral traiangle");
+    }
+    else if(a==b && a!=c && b!=c)
+    {
+        printf("this is isosceles traiangle");
+    }
+    else
+    {
+        printf("this is scalene traiangle");
+    }
+}

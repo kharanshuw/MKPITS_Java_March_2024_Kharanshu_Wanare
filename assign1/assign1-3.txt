@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+void netsalary();
+
+int main() {
+    netsalary();
+}
+void netsalary()
+{
+    int basicsalary,allowances,deduction,netsal;
+    printf("enter basic salary");
+    scanf("%d",&basicsalary);
+    printf("enter allowances");
+    scanf("%d",&allowances);
+    printf("enter deduction");
+    scanf("%d",&deduction);
+    if(allowances>0 && deduction==0 )
+    {
+        netsal=basicsalary+allowances;
+    }
+  else if(allowances>0 && deduction>0 )
+    {
+        netsal=basicsalary+allowances-deduction;
+    }
+    
+     else if(allowances==0 && deduction>0 )
+    {
+        netsal=basicsalary-deduction;
+    }
+    
+    else
+    {
+        netsal=basicsalary;
+    }
+    
+    printf("netsalary is %d",netsal);
+    
+    
+}
