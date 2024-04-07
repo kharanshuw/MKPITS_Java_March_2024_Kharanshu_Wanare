@@ -51,8 +51,7 @@ void insert_at_begining()
 {
     struct mynode *next;
     int data;
-    printf("enter no ");
-    scanf("%d", &data);
+
     next = (struct mynode *)malloc(sizeof(struct mynode *));
     if (next == NULL)
     {
@@ -60,6 +59,8 @@ void insert_at_begining()
     }
     else
     {
+        printf("enter no ");
+        scanf("%d", &data);
         next->data = data;
         next->next = head;
         head = next;
