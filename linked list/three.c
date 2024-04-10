@@ -11,7 +11,11 @@ void insert_at_begining();
 
 void display();
 
+void search();
+
 void insert_at_end();
+
+void insertatrandon();
 int main()
 {
     int choice = 0;
@@ -21,7 +25,9 @@ int main()
         printf("\nenter choice \n 1.insert node at begining");
         printf("\n2.display");
         printf("\n3.exit ");
-        printf("\n4.insert_at_end\n");
+        printf("\n4.insert_at_end");
+        printf("\n5.search");
+        printf("\n6.add at given position");
 
         scanf("%d", &choice);
         switch (choice)
@@ -38,8 +44,14 @@ int main()
         case 4:
             insert_at_end();
             break;
+        case 5:
+            search();
+            break;
+        case 6:
+            insertatrandon();
+            break;
         default:
-            printf("\nwrong choice\n");
+
             break;
         }
     }
@@ -118,4 +130,75 @@ void display()
             next = next->next;
         }
     }
+}
+
+void search()
+{
+    int no = 0;
+    struct mynode *temp;
+    temp = head;
+    int count = 1;
+    if (head == NULL)
+    {
+        printf("linked list is empty");
+    }
+    else
+    {
+        printf("enter no");
+        scanf("%d", &no);
+        while (temp != NULL)
+        {
+            if (temp->data == no)
+            {
+                printf("no found at location %d", count);
+                return;
+            }
+
+            count++;
+            temp = temp->next;
+        }
+    }
+}
+
+void insertatrandon()
+{
+    struct mynode *ptr, *current;
+    int data;
+    int position=-1;
+    int count=1;
+    printf("enter position");
+    scanf("%d",&position);
+    if (head==NULL)
+    {
+        printf("linked list is empty");
+    }
+    else if (position < 1) {
+        printf("Invalid position: Position cannot be less than 1.\n");
+        return;
+    }
+     ptr=(struct mynode*)malloc(sizeof(struct mynode *));
+     printf("enter data");
+     scanf("%d",&data);
+     ptr->data=data;
+     if (position==1)
+     {
+        ptr->next=head;
+        head=ptr;
+        return;
+     }
+     current=head;
+    while (current !=NULL && count<position-1)
+    {
+        count++;
+        current=current->next;
+    }
+
+    if (current==NULL)
+    {
+         printf("Invalid position: Position exceeds list length.\n");
+        return;
+    }
+
+    ptr->next=current->next;
+    current->next=ptr;    
 }

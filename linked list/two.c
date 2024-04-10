@@ -207,7 +207,7 @@ void random_delete()
 void search()
 {
     struct node *ptr;
-    int item, i = 0, flag;
+    int item, i = 1, flag;
     ptr = head;
     if (ptr == NULL)
     {
@@ -221,7 +221,6 @@ void search()
         {
             if (ptr->data == item)
             {
-                printf("item found at location %d ", i + 1);
                 flag = 0;
             }
             else
@@ -234,6 +233,10 @@ void search()
         if (flag == 1)
         {
             printf("Item not found\n");
+        }
+        else
+        {
+            printf("item found at location %d ", i);
         }
     }
 }
