@@ -22,8 +22,6 @@ public class Calculator {
 
 import java.util.Scanner;
 
-import javax.xml.crypto.Data;
-
 import methods.*;
 
 public class Main {
