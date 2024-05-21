@@ -1,6 +1,6 @@
 package inventoryManagementSystem;
 
-public class Product {
+public class Product implements Comparable<Product> {
 	private int productid;
 	private String nameString;
 	private int quantity;
@@ -45,6 +45,19 @@ public class Product {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	@Override
+	public int compareTo(Product o) {
+		if (this.price==o.getPrice()) {
+			return 0;
+		}
+		else if (this.price>o.getPrice()) {
+			return 1;
+		}
+		else {
+			return -1;
+		}
+	}
+	
 	
 	
 }

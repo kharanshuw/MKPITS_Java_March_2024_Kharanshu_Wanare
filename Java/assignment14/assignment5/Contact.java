@@ -1,6 +1,7 @@
 package contactListApplication;
 
-public class Contact {
+public class Contact implements Comparable<Contact> {
+
 	long contactid;
 	String nameString;
 	long phoneno;
@@ -56,6 +57,13 @@ public class Contact {
 		return "Contact [contactid=" + contactid + ", nameString=" + nameString + ", phoneno=" + phoneno
 				+ ", emailString=" + emailString + "]";
 	}
+
+	@Override
+	public int compareTo(Contact o) {
+	return	this.nameString.compareTo(o.getNameString());
+		
+	}
+	
 	
 	
 }

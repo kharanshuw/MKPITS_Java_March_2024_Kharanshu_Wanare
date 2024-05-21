@@ -1,6 +1,7 @@
 package inventoryManagementSystem;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class InventoryManagementSystem {
@@ -37,5 +38,10 @@ public class InventoryManagementSystem {
 			Product product = (Product) iterator.next();
 			System.out.println("product details"+product);
 		}
+	}
+	
+	public void displaybysort() {
+		Collections.sort(arrayLisnewArrayList);
+		System.out.println(arrayLisnewArrayList);
 	}
 }
