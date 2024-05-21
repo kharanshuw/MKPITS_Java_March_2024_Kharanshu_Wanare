@@ -1,4 +1,4 @@
-package studentManagementSystem;
+package assignment14.assignment1;
 
 public class Main {
 	public static void main(String[] args) {

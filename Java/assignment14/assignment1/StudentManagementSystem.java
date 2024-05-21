@@ -1,6 +1,7 @@
-package studentManagementSystem;
+package assignment14.assignment1;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -41,6 +42,10 @@ public class StudentManagementSystem {
 			System.out.println("student detail "+student.toString());
 			
 		}
+	}
+	
+	public void sortcollection() {
+		Collections.sort(arrayList);
 	}
 	
 }

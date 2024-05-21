@@ -1,3 +1,10 @@
+package assignment14.assignment3;
+
+import java.util.List;
+import java.util.ListIterator;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 class Library {
     List<Book> books;
 
@@ -29,14 +36,28 @@ class Library {
         }
         return null;
     }
-
-   prublic List<Book> getBooksPublishedAfter(int year) {
-        List<Book> result = new ArrayList<>();
-        for (Book book : books) {
-            if (book.yearPublished > year) {
-                result.add(book);
-            }
-        }
-        return result;
-    }
+    
+    public void display(int year) {
+		ListIterator<Book> bkIterator=books.listIterator();
+		while (bkIterator.hasNext()) {
+			Book book = (Book) bkIterator.next();
+			if (book.yearPublished>year) {
+				System.out.println("book details"+book);
+			}
+		}
+	}
+    
+    public void displaysortedorder() {
+		Collections.sort(books);
+		ListIterator<Book> bkIterator=books.listIterator();
+		while (bkIterator.hasNext()) {
+			Book book = (Book) bkIterator.next();
+			
+				System.out.println("book details"+book);
+			
+		}
+	}
+    
+    
+   
 }

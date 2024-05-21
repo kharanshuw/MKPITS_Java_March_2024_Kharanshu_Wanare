@@ -1,6 +1,6 @@
-package studentManagementSystem;
+package assignment14.assignment1;
 
-public class Student {
+public class Student implements Comparable<Student> {
 	private int id;
 	private String name;
 	private String grades;
@@ -44,6 +44,12 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", name=" + name + ", grades=" + grades + "]";
+	}
+
+	@Override
+	public int compareTo(Student o) {
+		return this.grades.compareTo(o.getGrades());
+		
 	}
 	
 	

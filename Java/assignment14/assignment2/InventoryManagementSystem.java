@@ -1,4 +1,4 @@
-package inventoryManagementSystem;
+package assignment14.assignment2;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package inventoryManagementSystem;
+package assignment14.assignment2;
 
 public class Product implements Comparable<Product> {
 	private int productid;
