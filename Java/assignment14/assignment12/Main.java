@@ -1,15 +1,21 @@
-package assignment14;
+package assignment14.assignment12;
 
 public class Main {
-	public static void main(String[] args) {
-		UniqueEmailCollector uniqueEmailCollector=new UniqueEmailCollector();
-		uniqueEmailCollector.add(new Product("1"));
-		uniqueEmailCollector.add(new Product("2"));
-		uniqueEmailCollector.add(new Product("3"));
-		uniqueEmailCollector.add(new Product("4"));
-		uniqueEmailCollector.display();
-		uniqueEmailCollector.search("1");
-		uniqueEmailCollector.remove("2");
-		uniqueEmailCollector.display();
-	}
+public static void main(String[] args) {
+	Product product=new Product("a");
+	Product product2=new Product("b");
+	Product product3= new Product("c");
+	Product product4=new Product("d");
+	Product product5=new Product("d");
+	ProductIdentifierManager productIdentifierManager=new ProductIdentifierManager();
+	productIdentifierManager.add(product4);
+	productIdentifierManager.add(product3);
+	productIdentifierManager.add(product2);
+	productIdentifierManager.add(product);
+	productIdentifierManager.add(product5);
+	
+	productIdentifierManager.display();
+	productIdentifierManager.remove("c");
+	productIdentifierManager.check("c");
+}
 }

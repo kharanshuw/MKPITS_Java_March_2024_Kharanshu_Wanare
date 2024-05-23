@@ -1,30 +1,25 @@
-package assignment14;
+package assignment14.assignment12;
 
 public class Product {
-	String idString;
+String productidString;
 
-	public Product() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+public Product(String productidString) {
+	super();
+	this.productidString = productidString;
+}
 
-	public Product(String idString) {
-		super();
-		this.idString = idString;
-	}
+@Override
+public String toString() {
+	return "Product [productidString=" + productidString + "]";
+}
 
-	@Override
-	public String toString() {
-		return "Product [idString=" + idString + "]";
-	}
+public String getProductidString() {
+	return productidString;
+}
 
-	public String getIdString() {
-		return idString;
-	}
+public void setProductidString(String productidString) {
+	this.productidString = productidString;
+}
 
-	public void setIdString(String idString) {
-		this.idString = idString;
-	}
-	
-	
+
 }
