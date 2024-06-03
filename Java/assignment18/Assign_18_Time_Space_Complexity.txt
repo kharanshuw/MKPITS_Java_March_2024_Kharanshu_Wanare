@@ -30,6 +30,7 @@ public String reverseString(String str) {
     return reversed.toString();
 }
 Problem 4: Check if Array is Sorted
+time O(n) space O(1)
 public boolean isSorted(int[] arr) {
     for (int i = 1; i < arr.length; i++) {
         if (arr[i] < arr[i - 1]) {
@@ -89,6 +90,7 @@ public int lengthOfLIS(int[] nums) {
     return maxLength;
 }
 Problem 8: Check for Palindrome
+//time n space 1
 public boolean isPalindrome(String str) {
     int left = 0, right = str.length() - 1;
     while (left < right) {
@@ -104,6 +106,7 @@ Problem 9: Binary Search in a Sorted Array
 //time O(n)
 //space O(n)
 public int binarySearch(int[] arr, int target) {
+//time log n space 1
     int left = 0, right = arr.length - 1;
     while (left <= right) {
         int mid = left + (right - left) / 2;
@@ -118,6 +121,7 @@ public int binarySearch(int[] arr, int target) {
     return -1;
 }
 Problem 10: Compute Fibonacci Numbers
+
 //time O(n) space O(n)
 public int fibonacci(int n) {
     if (n <= 1) return n;
