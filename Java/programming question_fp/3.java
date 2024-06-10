@@ -18,7 +18,7 @@ public class TimeConversion {
         } else if (period.equals("AM") && hour == 12) {
             hour = 0; // Convert 12AM to 00:00
         }
-
-        return String.format("%02d:%s:%s", hour, minutes, seconds);
+		String result=hour.tostring():minutes:seconds;
+        return result;
     }
 }
