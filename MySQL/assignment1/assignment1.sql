@@ -203,12 +203,23 @@ select * from film where replacement_cost between '15' and '25' order by title;
 */
 select * from customer where rental in(select date from film where date='');
 
-SELECT customer.customer_id, customer.first_name, customer.last_name, MAX(rental.rental_date) AS last_rental_date
-FROM rental
-JOIN customer ON rental.customer_id = customer.customer_id
-WHERE rental.customer_id IN (SELECT customer.customer_id FROM customer WHERE customer.active = 1)
+SELECT 
+    customer.customer_id,
+    customer.first_name,
+    customer.last_name,
+    MAX(rental.rental_date) AS last_rental_date
+FROM
+    rental
+        JOIN
+    customer ON rental.customer_id = customer.customer_id
+WHERE
+    rental.customer_id IN (SELECT 
+            customer.customer_id
+        FROM
+            customer
+        WHERE
+            customer.active = 1)
 GROUP BY rental.customer_id;
-
 
 /* 27. *List all films with a rental rate of 4.99, 3.99, or 2.99:*
 */
