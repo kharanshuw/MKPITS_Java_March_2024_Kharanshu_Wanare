@@ -32,10 +32,41 @@ select locate("GREAT",description) from film limit 1;
 /*Reverse the first name of each customer*/
 select Reverse(first_name) from customer
 
-/*Round the rental rate of each film to 2 decimal places*/
+/*11 Round the rental rate of each film to 2 decimal places*/
 rental_rate
 select Round(rental_rate,1) from film
 
-/*Calculate the square root of the replacement cost of each film*/
+/*12 Calculate the square root of the replacement cost of each film*/
 replacement_cost
 select SQRT(replacement_cost) from film
+
+/*13 Find the absolute value of the difference between rental duration and length for each film.*/
+rental_duration
+length
+select cast(abs(rental_duration-length) )from film 
+
+/*14 Raise the rental rate of each film to the power of 3. */
+select pow(rental_rate,3) from film
+
+/*15 Get the ceiling value of the replacement cost of each film.*/
+select ceil(replacement_cost) from film
+
+/*16  Get the floor value of the replacement cost of each film.*/
+select floor(replacement_cost) from film
+
+/*17 Calculate the modulus (remainder) of the rental duration divided by 3 for each film */
+select mod(rental_duration,3) from film;
+
+/*18 Get the highest rental rate of all films*/
+rental_rate
+select max(rental_rate)  from film;
+
+/* 19 Get the lowest replacement cost of all films*/
+select min(replacement_cost) from film;
+
+/*20 Get the lowest replacement cost of all films  */
+SELECT 
+    AVG(length)
+FROM
+    film
+
