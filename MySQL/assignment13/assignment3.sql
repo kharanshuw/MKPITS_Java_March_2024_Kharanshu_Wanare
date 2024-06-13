@@ -43,7 +43,8 @@ select SQRT(replacement_cost) from film
 /*13 Find the absolute value of the difference between rental duration and length for each film.*/
 rental_duration
 length
-select cast(abs(rental_duration-length) )from film 
+select (abs(length-rental_duration
+) )from film 
 
 /*14 Raise the rental rate of each film to the power of 3. */
 select pow(rental_rate,3) from film
@@ -69,4 +70,80 @@ SELECT
     AVG(length)
 FROM
     film
+
+/*21 Extract the year from the rental date for each rental*/
+select year(rental_date) from rental
+
+/* 22. **Find the day of the week for each rental date.**
+ */
+select weekday(rental_date) from rental
+
+/* 23. **Calculate the age of each customer based on their create_date.**
+*/
+SELECT 
+    FLOOR(DATEDIFF(CURDATE(), DATE(create_date)) / 365)
+FROM
+    customer
+/**/
+
+/*24. **Add 7 days to the rental date to get the return due date for each rental.**
+*/
+select date_add(rental_date+interval 7 day) from rental
+
+/*25  Get the month name from the rental date for each rental*/
+
+select monthname(rental_date) from rental
+
+/*26. **Extract the hour from the last update timestamp of each film.**
+*/
+last_update
+
+select hour(last_update) from film
+
+/*27.Calculate the difference in days between the return date and rental date for each rental.*/
+
+select datediff(return_date,rental_date) from rental	
+
+/*28. **Find the first day of the month for each rental date.**
+*/
+SELECT rental_date, DATE_FORMAT(rental_date, '%Y-%m-01') AS first_day_of_month
+FROM rental;
+
+/*29 **Format the rental date as 'DD-MM-YYYY' for each rental.** */
+
+select date_format(rental_date,'%D-%M-%Y') from rental
+
+/*30. **Extract the quarter from the rental date for each rental.**
+*/
+select quarter(rental_date) from rental;
+
+/*31*  **Find the ASCII value of the first character of each film title.**
+/
+select ascii (substring(title,1,1))  from film
+
+/*
+32. **Return the binary representation of the film_id for each film.**
+*/
+select bin(film_id) from film
+
+/*33. **Convert the rental duration of each film to a hexadecimal value.**
+*/
+select hex(rental_duration) from film
+
+/*34 Find all films with a replacement cost that is a power of 2.*/
+SELECT title, replacement_cost
+FROM film
+WHERE (replacement_cost & (replacement_cost - 1)) = 0
+AND replacement_cost > 0;
+
+/*35 Check if the length of the film title is even or odd */
+
+SELECT title,if((length)%2=0,even,odd)
+FROM film;
+
+/*36. **Find all films with a rental rate greater than 3 and categorize them as 'High' or 'Low'.**
+*/
+
+
+
 
