@@ -169,3 +169,29 @@ WHERE f.title="Alien Center"
 | ANDY       | ALIEN CENTER |
 +------------+--------------+
 22 rows in set (0.00 sec)
+
+/*9.Display the first name, last name, and email of customers who have rented the 
+film titled "Flight Lies"*/
+SELECT c.first_name ,c.last_name,c.email
+FROM customer c
+JOIN rental r
+on r.customer_id=c.customer_id
+JOIN inventory i
+on i.inventory_id=r.inventory_id
+JOIN film f
+on f.film_id=i.film_id
+WHERE f.title='Flight Lies';
+
+/*10 Retrieve the rental date and rental duration for each rental made by customer 
+"Linda Williams".*/
+SELECT * FROM customer
+
+SELECT r.rental_date,f.rental_duration,c.first_name
+FROM customer c
+JOIN rental r
+on r.customer_id=c.customer_id
+JOIN inventory i
+on i.inventory_id=r.inventory_id
+JOIN film f
+on f.film_id=i.film_id
+WHERE c.first_name='Linda' AND c.last_name='Williams';
