@@ -186,7 +186,7 @@ WHERE f.title='Flight Lies';
 "Linda Williams".*/
 SELECT * FROM customer
 
-SELECT r.rental_date,f.rental_duration,c.first_name
+SELECT r.rental_date,f.rental_duration,c.first_name,c.last_name
 FROM customer c
 JOIN rental r
 on r.customer_id=c.customer_id
@@ -195,3 +195,114 @@ on i.inventory_id=r.inventory_id
 JOIN film f
 on f.film_id=i.film_id
 WHERE c.first_name='Linda' AND c.last_name='Williams';
+
+
+/*11 List the film titles and rental dates for all rentals made by customer "Mary 
+Johnson"*/
+
+SELECT f.title,r.rental_date,c.first_name
+FROM customer c
+JOIN rental r
+on r.customer_id=c.customer_id
+JOIN inventory i
+on i.inventory_id=r.inventory_id
+JOIN film f
+on f.film_id=i.film_id
+WHERE c.first_name='Mary' AND c.last_name='Johnson';
+
+/*12.Display the film titles rented by the customer with customer_id 300.*/
+
+SELECT f.title,c.first_name, c.customer_id
+FROM customer c
+JOIN rental r
+on r.customer_id=c.customer_id
+JOIN inventory i
+on i.inventory_id=r.inventory_id
+JOIN film f
+on f.film_id=i.film_id
+WHERE c.customer_id=300;
+
+/*13.Get the names of all customers who have rented more than 5 films*/
+SELECT c.first_name,c.last_name
+FROM customer c
+JOIN rental r
+on r.customer_id=c.customer_id
+GROUP by c.customer_id
+HAVING COUNT(r.rental_id)>5;
+******************************************
+/*14.List the film titles and rental dates for all rentals made by the customer with 
+customer_id 400.*/
+SELECT f.title,r.rental_date,c.first_name
+FROM customer c
+JOIN rental r
+on r.customer_id=c.customer_id
+JOIN inventory i
+on i.inventory_id=r.inventory_id
+JOIN film f
+on f.film_id=i.film_id
+WHERE c.customer_id=400;
+
+
+/*15.Retrieve the rental date and return date for each rental made by customer 
+"Richard Davis".
+*/
+
+SELECT r.rental_date,c.first_name,r.return_date
+FROM customer c
+JOIN rental r
+on r.customer_id=c.customer_id
+WHERE c.first_name='Richard' and c.last_name='Davis';
+
+/*16.Display the first name, last name, and email of customers who have rented the 
+film titled "Dinosaur Secretary*/
+
+SELECT c.first_name,c.last_name,c.email,f.title
+FROM customer c
+JOIN rental r
+on r.customer_id=c.customer_id
+JOIN inventory i
+on i.inventory_id=r.inventory_id
+JOIN film f
+on f.film_id=i.film_id
+WHERE f.title='Dinosaur Secretary';
+
+/*17.List the names of customers who have rented the film titled "Silence Kane".*/
+
+SELECT c.first_name,c.last_name,f.title
+FROM customer c
+JOIN rental r
+on r.customer_id=c.customer_id
+JOIN inventory i
+on i.inventory_id=r.inventory_id
+JOIN film f
+on f.film_id=i.film_id
+WHERE f.title='Silence Kane';
+
+/*18.Get the film titles and rental dates for all rentals made on August 10, 2005.*/
+
+SELECT r.rental_date,f.title
+FROM  rental r
+JOIN inventory i
+on i.inventory_id=r.inventory_id
+JOIN film f
+on f.film_id=i.film_id
+WHERE date(r.rental_date)='2005-08-10';
+
+/*19.Retrieve the film titles rented by the customer with customer_id 500.*/
+SELECT c.first_name,c.last_name,f.title
+FROM customer c
+JOIN rental r
+on r.customer_id=c.customer_id
+JOIN inventory i
+on i.inventory_id=r.inventory_id
+JOIN film f
+on f.film_id=i.film_id
+WHERE c.customer_id=500;
+
+/*20. Display the rental date and rental duration for each rental made by customer 
+"Karen Smith"*/
+SELECT r.rental_date,DATEDIFF(r.rental_date,r.return_date) as rental_duration
+FROM customer c
+JOIN rental r
+on r.customer_id=c.customer_id
+WHERE c.first_name='Karen' and c.last_name='Smith';
