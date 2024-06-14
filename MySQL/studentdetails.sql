@@ -13,10 +13,8 @@ INSERT INTO studentdetails VALUES
 ('1005', 'Rohan', 'Kandivali', 'Mumbai'),
 ('1006', 'Aditi', 'Koramangala', 'Bangalore'),
 ('1010', 'Your Name', 'Your Address', 'Your City'); 
-
-just like above add 10 new RECORD by using same syntex like given
 *************
-create table studentrecord(
+create table student_marks (
 markdetails INTEGER,
 rollno INTEGER,
 phy INTEGER,
@@ -24,31 +22,18 @@ chemistry INTEGER,
 marks INTEGER
 );
 
-SELECT * FROM studentrecord
-
-insert into studentrecord VALUES(250,1001,40,50,60);
-INSERT INTO studentrecord VALUES
-(251, 1002, 55, 60, 70),  -- New student with different marks
-(252, 1003, 75, 80, 90); 
-INSERT INTO studentdetails VALUES
-(260, 1011, 65, 70, 80),
-(261, 1012, 80, 85, 90),
-(262, 1013, 78, 82, 95),
-(263, 1014, 50, 65, 72),
-(264, 1015, 90, 95, 100),
-(265, 1016, 42, 58, 69),
-(266, 1017, 75, 88, 92),
-(267, 1018, 60, 73, 84),
-(268, 1019, 85, 92, 98),
-(269, 1020, 38, 51, 66);
+INSERT INTO student_marks (markdetails, rollno, phy, chemistry, marks)
+VALUES (1, 101, 75, 68, 143),
+       (2, 102, 80, 72, 152),
+       (3, 103, 90, 85, 175),
+       (4, 104, 85, 79, 164),
+       (5, 105, 78, 82, 160),
+       -- Duplicate record with rollno 102
+       (4, 102, 83, 75, 158), 
+       (6, 106, 82, 88, 170),
+       (7, 107, 95, 92, 187),
+       (8, 108, 70, 75, 145),
+       -- Duplicate record with markdetails 2
+       (2, 109, 85, 78, 163);
 
 
-
-database shop mangagement
-
-tables Name
-1 product
-2 customer
-3 suppliar
-4 sales 
-5 purchase

@@ -306,3 +306,117 @@ FROM customer c
 JOIN rental r
 on r.customer_id=c.customer_id
 WHERE c.first_name='Karen' and c.last_name='Smith';
+
+
+/*21.List the film titles and rental dates for all rentals made by customer "Steven
+Taylor*/
+select f.title,r.rental_date
+from rental r
+join customer c
+on c.customer_id=r.customer_id
+join inventory i
+on i.inventory_id=r.inventory_id
+join film f
+on f.film_Id=i.film_id
+where c.first_name='Steven' and c.last_name='Taylor'
+
+/*22.Display the names of customers who have rented the film titled "Ocean Luke*/
+select c.first_name,c.last_name
+from rental r
+join customer c
+on c.customer_id=r.customer_id
+join inventory i
+on i.inventory_id=r.inventory_id
+join film f
+on f.film_Id=i.film_id
+where f.title="Ocean Luke";
+
+/*23.Get the first name, last name, and email of customers who have rented more 
+than 10 films*/
+select c.first_name,c.last_name,c.email
+from rental r
+join customer c
+on c.customer_id=r.customer_id
+group by c.customer_id 
+having count(r.rental_id)>10
+
+/*24.Retrieve the film titles and rental dates for all rentals made by the customer 
+with customer_id 600*/
+SELECT f.title, r.rental_date
+FROM rental r
+INNER JOIN inventory i ON r.inventory_id = i.inventory_id
+INNER JOIN film f ON i.film_id = f.film_id
+WHERE r.customer_id = 600;
+
+/*25..List the rental date and return date for all rentals made by customer "Susan 
+Johnson*/
+
+select r.rental_date,r.return_date
+from rental r
+join customer c
+on c.customer_id=r.customer_id
+where c.first_name='susan' and c.last_name='johnson' 
+
+/*26.Display the film titles rented by the customer with customer_id 700*/
+SELECT f.title, r.rental_date
+FROM rental r
+INNER JOIN inventory i ON r.inventory_id = i.inventory_id
+INNER JOIN film f ON i.film_id = f.film_id
+WHERE r.customer_id = 700;
+
+
+/*27.Get the names of customers who have rented the film titled "Murder 
+Antitrust*/
+select c.first_name,c.last_name
+from rental r
+join customer c
+on c.customer_id=r.customer_id
+join inventory i
+on i.inventory_id=r.inventory_id
+join film f
+on f.film_Id=i.film_id
+where f.title="Murder Antitrust";
+
+/*28.Retrieve the rental date and rental duration for each rental made by customer 
+"Joseph Brown".*/
+select r.rental_date,f.rental_duration,c.first_name,c.last_name
+from rental r
+join customer c
+on c.customer_id=r.customer_id
+join inventory i
+on i.inventory_id=r.inventory_id
+join film f
+on f.film_Id=i.film_id
+where c.first_name='joseph' and c.last_name='brown'
+
+/*29.List the film titles and rental dates for all rentals made by customer "Michael 
+Davis*/
+
+select r.rental_date,f.rental_duration,c.first_name,c.last_name
+from rental r
+join customer c
+on c.customer_id=r.customer_id
+join inventory i
+on i.inventory_id=r.inventory_id
+join film f
+on f.film_Id=i.film_id
+where c.first_name='michael' and c.last_name='davis';
+
+/*30.30.Display the first name, last name, and email of customers who have rented the 
+film titled "Squad Fisherman".*/
+
+select c.first_name,c.last_name,c.email
+from rental r
+join customer c
+on c.customer_id=r.customer_id
+join inventory i
+on i.inventory_id=r.inventory_id
+join film f
+on f.film_Id=i.film_id
+where f.title="Squad Fisherman";
+
+/*31.Get the film titles and rental dates for all rentals made on July 25, 2005.
+*/
+
+
+
