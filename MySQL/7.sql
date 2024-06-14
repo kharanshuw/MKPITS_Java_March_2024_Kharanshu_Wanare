@@ -67,6 +67,23 @@ FROM film f
 LEFT JOIN rental r ON f.film_id = r.inventory_id
 GROUP BY f.title;
 
-/*9.Retrieve the total revenue generated for each city.
+/*9.write a query in mysql for Retrieve the total revenue generated for each city. in sakila database of mysql
 */ 
+SELECT sum(p.amount) ,c.city_id
+from city c
+join address a
+on c.city_id=a.city_id
+join staff s
+on s.address_id=a.address_id
+join payment p
+on p.staff_id=s.staff_id
+group by c.city_id;
 
+/*10.Calculate the count of rentals for each film language.
+*/
+SELECT l.name AS language, COUNT(r.rental_id) AS rental_count
+FROM language l
+JOIN film f ON l.language_id = f.language_id
+JOIN inventory i ON f.film_id = i.film_id
+JOIN rental r ON i.inventory_id = r.inventory_id
+GROUP BY l.language_id, l.name;
