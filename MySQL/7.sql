@@ -81,7 +81,7 @@ group by c.city_id;
 
 /*10.Calculate the count of rentals for each film language.
 */
-SELECT l.name AS language, COUNT(r.rental_id) AS rental_count
+SELECT l.name, COUNT(r.rental_id) 
 FROM language l
 JOIN film f ON l.language_id = f.language_id
 JOIN inventory i ON f.film_id = i.film_id
