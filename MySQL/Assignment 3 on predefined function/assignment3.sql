@@ -143,7 +143,37 @@ FROM film;
 
 /*36. **Find all films with a rental rate greater than 3 and categorize them as 'High' or 'Low'.**
 */
+SELECT 
+    f.film_id,
+    f.title,
+    f.rental_rate,
+    CASE
+        WHEN f.rental_rate > 3 THEN 'High'
+        ELSE 'Low'
+    END AS rental_category
+FROM
+    film f;
+
+SELECT 
+    f.film_id,
+    f.title,
+    f.rental_rate,
+    IF(f.rental_rate > 3, 'High', 'Low') AS rental_category
+FROM
+    film f;
+	
+/*37.Return the IP address equivalent of the film_id for the first 10 films.*/
 
 
 
+/*38.Select the 3rd character of each film title*/
+SELECT 
+    f.title, SUBSTR(f.title, 3, 1) AS substring_of_title
+FROM
+    film f;
+	
+/*39.Return the Unicode code point of the first character of each actor's first name*/
+Select f.title LPAD(CONCAT(cast(bit_or(f.rental_rate>>7,f.rental_rate & 1) as CHAR)),8,'0')as rental_rate_binary
+from film f;
 
+Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(CONCAT(cast(bit_or(f.rental_rate>>7,f.rental_rate & 1) as CHAR)),8,'0') as rent' at line 1
