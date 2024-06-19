@@ -9,6 +9,14 @@ CREATE TABLE Account (
     Balance DECIMAL(10, 2)
 );
 
+ALTER TABLE Account
+ALTER City set DEFAULT 'nagpur'
+
+ALTER TABLE Account
+ADD CONSTRAINT ch_bal CHECK(Balance>=0); 
+
+
+
 CREATE TABLE Transactions (
     Transaction_ID INT PRIMARY KEY AUTO_INCREMENT,
     Account_No INT,
@@ -17,6 +25,19 @@ CREATE TABLE Transactions (
     Date DATE,
     FOREIGN KEY (Account_No) REFERENCES Account(Account_No)
 );
+
+ALTER TABLE transactions
+AUTO_INCREMENT=100;
+
+ALTER TABLE transactions 
+ADD CONSTRAINT ch_amount CHECK(Amount>0);
+
+ALTER TABLE transactions
+ADD CONSTRAINT ch_type Check (Transaction_Type in ('Deposit', 'Withdrawal'))
+
+ALTER TABLE transactions
+ALTER date set DEFAULT CURRENT_DATE();
+
 
 INSERT INTO Account (Account_No, Name, Address, City, Balance)
 VALUES
@@ -42,8 +63,9 @@ WHERE City = 'New York';
 
 
 /*2.Find the total balance of all accounts. */
-SELECT SUM(Balance) AS Total_Balance
-FROM Account;
+SELECT Account_No,SUM(Balance) AS Total_Balance
+FROM Account
+GROUP by Account_No;
 
 /*3.List all transactions of account number ’12345’ sorted by date in descending 
 order*/
