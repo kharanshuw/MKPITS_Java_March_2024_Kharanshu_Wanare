@@ -7,20 +7,19 @@ CREATE TABLE sd (
     PRIMARY KEY (rollno),
     UNIQUE (name)
 );
+INSERT INTO sd (rollno, name, address, city) VALUES ('3001', 'Michael Jordan', '23 Air Jordan Blvd', 'Chicago');
+INSERT INTO sd (rollno, name, address, city) VALUES ('4004', 'Marie Curie', '11 Rue Pierre Curie', 'Paris');
+INSERT INTO sd (rollno, name, address, city) VALUES ('5005', 'Leonardo da Vinci', '1 Via Niccolò Machiavelli', 'Florence');
+INSERT INTO sd (rollno, name, address, city) VALUES ('6006', 'Stephen Hawking', 'Gonville & Caius College, Cambridge', 'Cambridge');
+INSERT INTO sd (rollno, name, address, city) VALUES ('7007', 'Malala Yousafzai', 'Birmingham, United Kingdom', 'Birmingham');
+INSERT INTO sd (rollno, name, address, city) VALUES ('8008', 'Wolfgan Mozart', 'Getreidegasse 9, Salzburg', 'Salzburg');
+INSERT INTO sd (rollno, name, address, city) VALUES ('9009', 'Nelson Mandela', 'Robben Island, South Africa', 'Cape Town');  -- Robben Island is near Cape Town
+INSERT INTO sd (rollno, name, address, city) VALUES ('1010', 'Albert Einstein', 'Bern, Switzerland', 'Bern');
+INSERT INTO sd (rollno, name, address, city) VALUES ('1111', 'Amelia Earhart', 'Atchison, Kansas', 'Atchison');
+INSERT INTO sd (rollno, name, address, city) VALUES ('1212', 'Frida Kahlo', 'Mexico City, Mexico', 'Mexico City');
 
--- Insert 10 records into the "sd" table
-INSERT INTO sd (rollno, name, address)
-VALUES
-    ('001', 'John Smith', '123 Main St'),
-    ('002', 'Jane Doe', '456 Elm St'),
-    ('003', 'Michael Johnson', '789 Oak St'),
-    ('004', 'Emily Brown', '222 Pine St'),
-    ('005', 'Robert Johnson', '555 Maple St'),
-    ('006', 'Sophia Anderson', '987 Birch St'),
-    ('007', 'David Lee', '666 Walnut St'),
-    ('008', 'Olivia Wilson', '333 Elm St'),
-    ('009', 'Benjamin Parker', '111 Oak St'),
-    ('010', 'Isabella Martinez', '777 Pine St');
+
+
 
 CREATE TABLE md (
     rollno CHAR(10),
@@ -34,16 +33,17 @@ CREATE TABLE md (
 -- Insert 10 records into the "md" table
 INSERT INTO md (rollno, physics, chemistry, maths)
 VALUES
-    ('001', 85, 90, 95),
-    ('002', 78, 82, 88),
-    ('003', 65, 75, 70),
-    ('004', 90, 85, 92),
-    ('005', 80, 78, 84),
-    ('006', 72, 68, 75),
-    ('007', 92, 90, 88),
-    ('008', 88, 80, 85),
-    ('009', 75, 70, 65),
-    ('010', 82, 85, 80);
+    (1, 85, 90, 95),
+    (2, 78, 82, 88),
+    (3, 65, 75, 70),
+    (4, 90, 85, 92),
+    (5, 80, 78, 84),
+    (6, 72, 68, 75),
+    (7, 92, 90, 88),
+    (8, 88, 80, 85),
+    (9, 75, 70, 65),
+    (10, 82, 85, 80);
+
 
 
 
