@@ -1,93 +1,45 @@
-/*Create following Tables insert data
-Customer - Customer_Id, Name, Address, City
-Supplier - Supplier_Id, Name, Address, City
-ProductMaster - Product_Id, Name, Price, QOH
-Sale - Sale_Id, Product_id, Customer_id, Quantity, Date
-Purchase - Purchase_Id, Product_id, Customer_id, Quantity, Date*/
 
-Create DATABASE SalesDatabase
+CREATE SCHEMA newshop;
+use newshop;
+create table Customer(customer_Id int not null,name varchar(20),address varchar(30),city varchar(10),primary key(customer_id));
+create table Supplier(supplier_Id varchar(10) not null,name varchar(20),address varchar(30),city varchar(10));
+create table ProductMaster(product_Id varchar(10) not null,name varchar(20),price int,qty_on_hand int);
+create table Sale(sale_Id varchar(10) not null,product_Id varchar(10) not null,customer_Id int not null,quantity int,sale_date datetime);
+create table Purchase(purchase_Id varchar(10),product_Id varchar(10),customer_Id int,quantity int,purchase_date datetime);
+show tables;
 
-use SalesDatabase
+insert into productmaster values('p001','nirma',20.0,100);
+insert into productmaster values('p002','lux',35.0,50);
+insert into productmaster values('p003','sweet cake',20.0,100);
+insert into productmaster values('p004','parle biscuit',10.0,150);
+insert into productmaster values('p005','cadbury',20.0,200);
+insert into productmaster values('p006','pepsi',25.0,80);
 
--- Create the Customer table
-CREATE TABLE Customer (
-    Customer_Id INT PRIMARY KEY,
-    Name VARCHAR(50),
-    Address VARCHAR(100),
-    City VARCHAR(50)
-);
+insert into supplier values('S001','abc supplier','new ca road','los angels');
+insert into supplier values('S002','la wholesale','sunset blvd','los angels');
 
--- Create the Supplier table
-CREATE TABLE Supplier (
-    Supplier_Id INT PRIMARY KEY,
-    Name VARCHAR(50),
-    Address VARCHAR(100),
-    City VARCHAR(50)
-);
+insert into sale values('sa001','p001',1,30,curdate());
+insert into sale values('sa002','p002',2,20,curdate());
+insert into sale values('sa003','p003',3,10,curdate());
+insert into sale values('sa004','p004',4,5,curdate());
+insert into sale values('sa005','p004',4,10,curdate());
+select * from sale;
 
--- Create the ProductMaster table
-CREATE TABLE ProductMaster (
-    Product_Id INT PRIMARY KEY,
-    Name VARCHAR(100),
-    Price DECIMAL(10, 2),
-    QOH INT
-);
+insert into purchase values('1001','p001',1,30,curdate());
+insert into purchase values('1002','p002',2,20,curdate());
+insert into purchase values('1003','p003',3,10,curdate());
+insert into purchase values('1004','p004',4,10,curdate());
+insert into purchase values('1005','p004',4,5,curdate());
+select * from purchase
 
--- Create the Sale table
-CREATE TABLE Sale (
-    Sale_Id INT PRIMARY KEY,
-    Product_Id INT,
-    Customer_Id INT,
-    Quantity INT,
-    Date DATE,
-    FOREIGN KEY (Product_Id) REFERENCES ProductMaster(Product_Id),
-    FOREIGN KEY (Customer_Id) REFERENCES Customer(Customer_Id)
-);
 
--- Create the Purchase table
-CREATE TABLE Purchase (
-    Purchase_Id INT PRIMARY KEY,
-    Product_Id INT,
-    Supplier_Id INT,
-    Quantity INT,
-    Date DATE,
-    FOREIGN KEY (Product_Id) REFERENCES ProductMaster(Product_Id),
-    FOREIGN KEY (Supplier_Id) REFERENCES Supplier(Supplier_Id)
-);
 
--- Insert data into Customer table
-INSERT INTO Customer (Customer_Id, Name, Address, City)
-VALUES
-    (1, 'John Doe', '123 Main St', 'New York'),
-    (2, 'Jane Smith', '456 Elm St', 'Los Angeles'),
-    (3, 'Michael Johnson', '789 Oak St', 'Chicago');
 
--- Insert data into Supplier table
-INSERT INTO Supplier (Supplier_Id, Name, Address, City)
-VALUES
-    (1, 'ABC Suppliers', '555 Supplier St', 'Houston'),
-    (2, 'XYZ Distributors', '987 Distributor Ave', 'Miami');
 
--- Insert data into ProductMaster table
-INSERT INTO ProductMaster (Product_Id, Name, Price, QOH)
-VALUES
-    (1, 'Product A', 25.99, 50),
-    (2, 'Product B', 15.75, 30),
-    (3, 'Product C', 10.50, 20);
 
--- Insert data into Sale table
-INSERT INTO Sale (Sale_Id, Product_Id, Customer_Id, Quantity, Date)
-VALUES
-    (1, 1, 1, 2, '2023-06-16'),
-    (2, 2, 2, 1, '2023-06-15'),
-    (3, 3, 3, 3, '2023-06-14');
 
--- Insert data into Purchase table
-INSERT INTO Purchase (Purchase_Id, Product_Id, Supplier_Id, Quantity, Date)
-VALUES
-    (1, 1, 1, 10, '2023-06-13'),
-    (2, 2, 2, 5, '2023-06-12'),
-    (3, 3, 1, 20, '2023-06-11');
+
+
 
 /*1.Retrieve the names and addresses of all suppliers in 'Los Angeles'.*/
 SELECT s.Name,s.Address
