@@ -2,7 +2,20 @@
 1. **Calculate Late Fees for a Rental**:
    Write a function that accepts a rental ID and calculates the total late fees incurred for that rental. The function should return the total late fee amount based on the difference between the return date and the due date.
 */
-
+DELIMITER //
+CREATE FUNCTION Get_Film_Rating_by_Title(var1 number(22))
+   RETURNS number(5,2)
+   DETERMINISTIC
+   BEGIN
+      declare total_amount number(5,2);
+      select p.rental_id,sum(amount) into total_amount from rental r 
+	  join payment p 
+	  on p.rental_id=r.rental_id 
+	  where p.rental_id=var1
+	  GROUP by p.rental_id; 
+	  return total_amount;
+   END//
+DELIMITER ;
 
 
 /*

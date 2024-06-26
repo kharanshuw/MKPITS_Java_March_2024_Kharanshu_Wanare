@@ -3,6 +3,21 @@
    - **Problem Statement**: Whenever a new rental is created, check the inventory quantity for the rented film. If the quantity falls below a certain threshold (e.g., 5 copies), log a warning message in a `low_stock_alerts` table.
 */
 
+DELIMITER $$
+CREATE TRIGGER rental_insert_trigger AFTER INSERT ON rentals FOR EACH ROW
+BEGIN
+  DECLARE film_id INT;
+  DECLARE film_quantity INT;
+
+  SET film_id = NEW.film_id;
+
+  SELECT quantity INTO film_quantity FROM inventory WHERE film_id = old.film_id;
+
+  IF film_quantity < 5 THEN
+    INSERT INTO low_stock_alerts (film_id, alerttimestamp) VALUES (film_id, NOW());
+  END IF;
+END $$
+DELIMITER ;
 
 
 /*
@@ -36,8 +51,12 @@ DELIMITER ;
    - **Problem Statement**: Automatically update the `last_update` timestamp column in the `film` table whenever a film's details are modified.
    - **Trigger Description**: Create a `BEFORE UPDATE` trigger on the `film` table that sets the `last_update` column to the current timestamp.
 */
-
-
+DELIMITER $$
+CREATE TRIGGER film_update_trigger BEFORE UPDATE ON film FOR EACH ROW
+BEGIN
+  SET NEW.last_update = NOW(); 
+END $$
+DELIMITER ;
 /*
 4. **Log Film Deletion**:
    - **Problem Statement**: Log details of any film deletions into a `deleted_films_log` table for auditing purposes.
@@ -73,3 +92,16 @@ where film_id=1;
    - **Problem Statement**: Ensure that the `return_date` in the `rental` table is always after the `rental_date`.
    - **Trigger Description**: Create a `BEFORE INSERT` or `BEFORE UPDATE` trigger on the `rental` table that checks if the `return_date` is after the `rental_date`. If not, raise an error to prevent the insert or update.
 */
+
+DELIMITER $$
+CREATE TRIGGER rental_date_validation_trigger BEFORE INSERT OR UPDATE ON rental FOR EACH ROW
+BEGIN
+  DECLARE is_valid_date BOOLEAN DEFAULT FALSE;
+
+  SET is_valid_date = NEW.return_date > NEW.rental_date;  
+
+  IF NOT is_valid_date THEN  
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Return date must be after rental date.';
+  END IF;
+END $$
+DELIMITER ;
