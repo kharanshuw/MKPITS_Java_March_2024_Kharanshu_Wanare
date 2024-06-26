@@ -108,6 +108,75 @@ DELIMITER ;
 
 call fetch_rental();
 
+/*
+Problem Statement 4: Retrieve Film Information by Category
+Create a cursor to retrieve film details for a specific film category from the Sakila database.
+*/
+
+DELIMITER $$
+CREATE PROCEDURE fetch_Film_information(in c_name VARCHAR(25))
+BEGIN
+    DECLARE myfilm_id INTEGER;
+    DECLARE mytitle VARCHAR(255);
+	Declare i INTEGER DEFAULT 0;
+
+    DECLARE film_cur CURSOR FOR 
+	SELECT 
+    f.film_id, f.title
+FROM
+    Film f
+        JOIN
+    film_category fc ON fc.film_id = f.film_id
+        JOIN
+    category c ON c.category_id = fc.category_id
+WHERE
+    c.name = c_name;
+
+    OPEN film_cur;
+	   
+	
+	WHILE i<10 DO
+        
+        FETCH film_cur INTO myfilm_id,mytitle;
+		set i = i+1;
+		SELECT myfilm_id,mytitle;
+    END WHILE;
+	
+    CLOSE film_cur;
+END$$
+
+DELIMITER ;
 
 
+call fetch_Film_information('Action');
 
+DROP PROCEDURE fetch_Film_information;
+
+/*
+Problem Statement 5: Calculate Average Film Rental Duration
+Create a cursor to calculate the average rental duration for all films in the Sakila database.
+*/
+
+DELIMITER $$
+
+CREATE PROCEDURE fetch_Average_Film_Rental()
+BEGIN
+    DECLARE myavg INTEGER;
+
+    DECLARE avg_cur CURSOR FOR 
+	SELECT AVG(rental_duration)
+from Film;
+    OPEN avg_cur;
+	
+        FETCH avg_cur INTO myavg;
+		SELECT myavg;
+	
+    CLOSE avg_cur;
+END$$
+
+DELIMITER ;
+
+
+call fetch_Average_Film_Rental()
+
+DROP PROCEDURE fetch_Average_Film_Rental
