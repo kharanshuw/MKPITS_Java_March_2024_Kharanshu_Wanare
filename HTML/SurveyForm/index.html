@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survay Form</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>Survey Form</h1>
+    <form action="" id="form">
+        <div class="form-control">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Enter Your Name"/>
+        </div>
+        <div class="form-control">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email"/>
+        </div>
+        <div class="form-control">
+            <label for="age">Age</label>
+            <input type="age" id="age" placeholder="Enter your Age"/>
+        </div>
+
+        <div class="form-control">
+            <label for="role"> which option describe you ? </label>
+            <select name="role" id="role">
+                <option value="professional">professional</option>
+                <option value="intern">Intern  </option>
+                <option value="Student">Student</option>
+            </select>
+        </div>
+
+        <div class="form-control">
+            <label > 
+                Which Technology Would You recommend to Student
+            </label>
+            <label for="recommend-1">
+                <input type="radio" id="recommend-1" name="recommend">Java
+            </label>
+            <label for="recommend-2">
+                <input type="radio" id="recommend-2" name="recommend">C++
+            </label>
+            <label for="recommend-3">
+                <input type="radio" id="recommend-3" name="recommend">Python
+            </label>
+        </div>
+        <div class="form-control">
+            <label for="">Known Framework    <small>(Check all that apply)</small> </label>
+            <label for="inp-1">
+                <input type="checkbox" id="inp-1"/>Spring
+            </label>
+            <label for="inp-2">
+                <input type="checkbox" id="inp-2"/>Springboot
+            </label>
+            <label for="inp-3">
+                <input type="checkbox" id="inp-3" />React
+            </label>
+
+            <label for="inp-4">
+                <input type="checkbox" id="inp-4" />Angular
+            </label>
+            <label for="inp-5">
+                <input type="checkbox" id="inp-5" />Django
+            </label>
+
+        </div>
+        <div class="form-control">
+            <label for="comment">enter any comment </label>
+            <textarea name="comment" id="comment" placeholder="Enter ant comment if any"></textarea>
+        </div>
+        <button type="submit" value="submit">
+            Submit
+        </button>
+    </form>
+</body>
+</html>
