@@ -1,0 +1,30 @@
+*{
+    box-sizing: border-box;
+}
+
+.container{
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    /* flex-direction: column-reverse; */
+    height: 400px;
+    flex-wrap: wrap;
+    /* flex-wrap: wrap-reverse; */
+    gap: 10px;
+    /* row-gap: 15px;
+    column-gap: 25px; */
+    /* justify-content: space-around; */
+    /* justify-content: space-between; */
+    /* justify-content: space-evenly; */
+    /* justify-content: flex-end; */
+    /* justify-content: flex-start; */
+    justify-content: center;
+    /* align-items: flex-end; */
+    /* align-items: flex-start; */
+    align-items: center;
+}
+
+.div{
+    border: 1px solid red;
+       
+}
