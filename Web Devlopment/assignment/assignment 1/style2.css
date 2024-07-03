@@ -1,0 +1,17 @@
+body
+{
+    box-sizing: border-box;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+div
+{
+    border: 1px solid black;
+    width: 200px;
+    height: 200px;
+    background-color: red;
+}
