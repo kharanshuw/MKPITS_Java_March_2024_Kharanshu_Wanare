@@ -235,6 +235,7 @@ transition: width 0.3s;
 }
 
 /* Add blur header */
+<<<<<<< HEAD
 .blur-header::after{
   content: '';
   position: absolute;
@@ -247,6 +248,9 @@ transition: width 0.3s;
   left: 0;
   z-index: -1;
 }
+=======
+
+>>>>>>> 0fd26a742660bd40650444f1087f86e952f78bf4
 
 /* Active link */
 
@@ -310,6 +314,7 @@ transition: width 0.3s;
   font-weight: var(--font-semi-bold);
 }
 
+<<<<<<< HEAD
 .home__scroll-box i {
   animation: scroll-down 3s infinite;
 }
@@ -577,6 +582,33 @@ transition: transform 0.4s;
   font-weight: var(--font-semi-bold);
   color: var(--title-color);
 }
+=======
+/* Animate scroll icon */
+
+
+/*=============== BUTTON ===============*/
+
+
+/*=============== WORKS ===============*/
+
+
+/*=============== INFO ===============*/
+
+
+/* ABOUT */
+
+
+/* EXPERIENCE */
+
+
+/* SKILLS */
+
+
+/*=============== SERVICES ===============*/
+
+
+/*=============== CONTACT ===============*/
+>>>>>>> 0fd26a742660bd40650444f1087f86e952f78bf4
 
 
 /*=============== FOOTER ===============*/

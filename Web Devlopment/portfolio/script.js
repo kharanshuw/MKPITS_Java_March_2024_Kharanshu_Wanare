@@ -30,6 +30,7 @@ function mynavlink(n){
     n.addEventListener('click',linkaction);
 }
 
+<<<<<<< HEAD
 
 
 /*=============== ADD BLUR HEADER ===============*/
@@ -62,6 +63,14 @@ const sendemail=(e)=>{
 // serviceID - templateID - #form - publicKey
 
 contactform.addEventListener('submit',sendemail);
+=======
+/*=============== ADD BLUR HEADER ===============*/
+
+
+/*=============== EMAIL JS ===============*/
+
+
+>>>>>>> 0fd26a742660bd40650444f1087f86e952f78bf4
 /*=============== SHOW SCROLL UP ===============*/ 
 
 
