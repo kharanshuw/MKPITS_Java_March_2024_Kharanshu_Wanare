@@ -30,7 +30,6 @@ function mynavlink(n){
     n.addEventListener('click',linkaction);
 }
 
-<<<<<<< HEAD
 
 
 /*=============== ADD BLUR HEADER ===============*/
@@ -45,36 +44,60 @@ window.addEventListener('scroll ',blurheader);
 
 
 /*=============== EMAIL JS ===============*/
-const contactform=document.getElementById('contact-form');
-let contactmessage=document.getElementById('contact-message');
-const sendemail=(e)=>{
-    e.preventDefault();
-    emailjs.sendForm('service_bl40bjt','template_ui58e9f','#contact-form','d2mympAFExgYqhRhJ')
-.then(()={
-    //show sent message
-    contactmessage.textContent ='Message sent successfully ';
-    setTimeout(() => {
-        contactmessage.textContent=''
-    }, 5000)
 
-    contactform.reset();
-})
-}
 // serviceID - templateID - #form - publicKey
 
-contactform.addEventListener('submit',sendemail);
-=======
-/*=============== ADD BLUR HEADER ===============*/
 
-
-/*=============== EMAIL JS ===============*/
-
-
->>>>>>> 0fd26a742660bd40650444f1087f86e952f78bf4
-/*=============== SHOW SCROLL UP ===============*/ 
-
-
+/*=============== SHOW SCROLL UP ===============*/
+function scrollUp() {
+    const scrollUpButton = document.getElementById('scroll-up'); // Get reference to scroll-up button
+  
+    // Check if scroll position is greater than or equal to 350 pixels
+    if (window.scrollY >= 350) {
+      scrollUpButton.classList.add('show-scroll'); // Add 'show-scroll' class for visibility
+    } else {
+      scrollUpButton.classList.remove('show-scroll'); // Remove 'show-scroll' class for hiding
+    }
+  }
+  
+  // Add event listener for 'scroll' event on window object
+  window.addEventListener('scroll', scrollUp);
+  
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
+// Select all sections with an ID attribute
+const sections = document.querySelectorAll('section[id]');
 
+// Function to handle highlighting active section on scroll
+const updateActiveSection = () => {
+  // Get current vertical scroll position
+  const scrollPosition = window.scrollY;
+
+  sections.forEach(section => {
+    const sectionHeight = section.offsetHeight;
+    const sectionTop = section.offsetTop - getNavigationHeight(); // Account for navigation height
+
+    // Get the corresponding navigation link for this section
+    const sectionLink = document.querySelector('.nav__menu a[href*="' + section.id + '"]');
+
+    // Check if the section is currently in view
+    if (scrollPosition >= sectionTop && scrollPosition <= sectionTop + sectionHeight) {
+      sectionLink.classList.add('active-link'); // Add active class to navigation link
+    } else {
+      sectionLink.classList.remove('active-link'); // Remove active class
+    }
+  });
+};
+
+// Function to get navigation height (assuming it's constant)
+function getNavigationHeight() {
+  // Replace with your logic to calculate or retrieve navigation height
+  return 58; // Placeholder value, adjust as needed
+}
+
+// Attach event listener to window scroll event
+window.addEventListener('scroll', updateActiveSection);
+
+// Call updateActiveSection initially to handle potential initial scroll position
+updateActiveSection();
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
