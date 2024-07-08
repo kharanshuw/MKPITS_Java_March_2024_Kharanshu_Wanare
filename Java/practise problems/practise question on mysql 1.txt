@@ -1,0 +1,143 @@
+Sure! Here are 100 practice questions for the Sakila database in MySQL, covering a range of topics including basic queries, joins, aggregate functions, subqueries, and predefined functions.
+
+### Basic Queries
+1. Retrieve the first and last names of all customers.
+2. Find the titles of all films.
+3. List the names of all actors.
+4. Get the email addresses of all customers.
+5. Display the titles of all films with a rental duration of 7 days.
+
+### Filtering Data
+6. List all films with a rating of 'PG-13'.
+7. Find all customers who live in California.
+8. Retrieve all films released in 2006.
+9. Get all customers whose first name is 'Mary'.
+10. Find all films with a replacement cost greater than $20.
+
+### Aggregate Functions
+11. Count the total number of customers.
+12. Find the average rental rate of all films.
+13. Calculate the total amount paid by each customer.
+14. Determine the highest rental rate of any film.
+15. Get the average length of all films.
+
+### Joins
+16. List the full names of customers and the titles of the films they have rented.
+17. Display the store names and addresses.
+18. Retrieve the film titles and their corresponding category names.
+19. Find the first and last names of customers and their rental dates.
+20. List the staff names and the titles of films they have rented out.
+
+### Subqueries
+21. Find all customers who have rented 'ACADEMY DINOSAUR'.
+22. List the films that have never been rented.
+23. Retrieve the titles of films rented by customers who live in California.
+24. Get the names of customers who have rented more than 5 films.
+25. Find all films that have been rented by the customer 'John Smith'.
+
+### Group By and Having
+26. Group films by rating and count the number of films in each rating category.
+27. Group customers by city and count the number of customers in each city.
+28. List the total number of rentals made by each customer.
+29. Group films by rental duration and get the average replacement cost for each group.
+30. Find the total payments made by customers who have rented more than 10 films.
+
+### Date Functions
+31. Retrieve all rentals made in the month of June 2005.
+32. Find the rental duration for each rental.
+33. List the customers who rented films in the last month.
+34. Get the titles of films released in the last year.
+35. Find the number of rentals made each day.
+
+### String Functions
+36. Concatenate the first and last names of all customers.
+37. Convert the titles of all films to uppercase.
+38. Find customers whose first name starts with 'A'.
+39. Display the last three characters of each film title.
+40. Replace spaces with hyphens in all film titles.
+
+### Conditional Logic
+41. List all films with a replacement cost less than $10 as 'Low Cost', between $10 and $20 as 'Medium Cost', and greater than $20 as 'High Cost'.
+42. Display customers with rental counts. If the rental count is greater than 20, label them as 'Frequent Renters'.
+43. Retrieve the titles of films and categorize them as 'Short', 'Medium', or 'Long' based on their length.
+44. Find the total payments made by each customer and categorize them as 'Low', 'Medium', or 'High' spenders.
+45. List the films and their rental rates, and categorize rental rates as 'Cheap', 'Average', or 'Expensive'.
+
+### Advanced Joins
+46. Retrieve the titles of films and the full names of customers who have rented them, using an INNER JOIN.
+47. List the names of all staff members and the titles of films rented out by them, using a LEFT JOIN.
+48. Find all films and their categories, even if the film is not categorized, using a RIGHT JOIN.
+49. Get a list of all cities and the customers living in each city, including cities with no customers, using a FULL OUTER JOIN.
+50. Retrieve the rental dates and return dates for each rental, along with the customer names, using a SELF JOIN.
+
+### Window Functions
+51. List all films and their rental rates, along with the average rental rate of all films.
+52. Find the cumulative amount paid by each customer over time.
+53. Retrieve the titles of films along with the rank of their rental rates within their categories.
+54. List the customers and their total payments, along with the running total of payments for each customer.
+55. Get the top 3 most rented films for each customer.
+
+### Recursive Queries
+56. Find all employees and their managers.
+57. Retrieve the category hierarchy for each film category.
+58. List all customers and their referred customers.
+59. Get the chain of rentals for each film (e.g., if a film was rented by multiple customers consecutively).
+60. Find all staff members and their supervisors in a hierarchical format.
+
+### Indexing and Performance
+61. Create an index on the `last_name` column of the `customer` table.
+62. Analyze the performance of a query before and after adding an index on the `rental_date` column of the `rental` table.
+63. List all indexed columns in the `film` table.
+64. Create a composite index on the `first_name` and `last_name` columns of the `customer` table.
+65. Explain how the query optimizer uses indexes in the `rental` table.
+
+### Transactions and Concurrency
+66. Begin a transaction to rent a film, update the inventory, and record the payment.
+67. Roll back a transaction that updates the rental status of a film.
+68. Demonstrate the use of `SAVEPOINT` in a transaction.
+69. Show the effect of isolation levels on a transaction involving multiple film rentals.
+70. Implement a transaction that handles renting multiple films to a customer.
+
+### Stored Procedures and Functions
+71. Write a stored procedure to add a new customer.
+72. Create a function to calculate the total amount paid by a customer.
+73. Develop a stored procedure to update the rental rate of a film.
+74. Write a function to determine the number of films rented by a customer.
+75. Create a stored procedure to generate a report of all rentals for a given month.
+
+### Triggers
+76. Create a trigger to update the inventory count when a rental is made.
+77. Write a trigger to log changes to the `film` table.
+78. Develop a trigger to prevent deleting a customer who has active rentals.
+79. Create a trigger to automatically update the last update date of a film when its details are modified.
+80. Write a trigger to enforce a maximum rental limit per customer.
+
+### Views
+81. Create a view that lists all customers with their full names and email addresses.
+82. Develop a view that shows the total number of rentals for each film.
+83. Write a view to list the rental history of each customer.
+84. Create a view that displays the average rental rate of films by category.
+85. Develop a view to list the top 10 most rented films.
+
+### Pivoting Data
+86. Pivot the rental data to show the number of rentals per month.
+87. Create a pivot table that lists the total payments made by each customer per year.
+88. Pivot the data to display the number of films rented per category by month.
+89. Write a query to pivot the rental data to show the number of rentals per film per store.
+90. Create a pivot table that shows the total rental duration per film per customer.
+
+### Analytical Queries
+91. Calculate the moving average of rental rates over the last 3 months.
+92. Find the percentage contribution of each film to the total rentals.
+93. List the customers with their rental counts and rank them based on the number of rentals.
+94. Calculate the year-over-year growth in the number of rentals.
+95. Determine the correlation between rental duration and rental rates.
+
+### Data Import/Export
+96. Write a query to export the list of customers to a CSV file.
+97. Develop a script to import a list of new films from a CSV file.
+98. Create a backup of the `rental` table.
+99. Restore the `rental` table from a backup.
+100. Write a query to export the rental data to a JSON file.
+
+These questions cover a broad range of SQL topics and should provide a comprehensive set of exercises for practicing SQL using the Sakila database.

@@ -1,0 +1,143 @@
+Here are 100 Java programming practice questions focused on the Collection API, covering various topics including Lists, Sets, Maps, Queues, and more.
+
+### Lists
+1. Create an `ArrayList` and add 5 different integer values. Print the list.
+2. Write a method to remove all occurrences of a specific value from an `ArrayList`.
+3. Create a `LinkedList` of strings and add 5 different names. Print the list in reverse order.
+4. Write a method to find the maximum value in an `ArrayList` of integers.
+5. Create a `List` of strings and sort it alphabetically.
+
+### Sets
+6. Create a `HashSet` of integers and add 10 random integers to it. Print the set.
+7. Write a method to remove duplicates from an `ArrayList` using a `Set`.
+8. Create a `TreeSet` of strings and add 5 different names. Print the set.
+9. Write a method to find the union of two sets.
+10. Create a `LinkedHashSet` and demonstrate that it maintains insertion order.
+
+### Maps
+11. Create a `HashMap` to store the names and ages of 5 people. Print the map.
+12. Write a method to find the most frequently occurring value in a `HashMap`.
+13. Create a `TreeMap` of students' names and their scores. Print the map in descending order of names.
+14. Write a method to merge two `HashMap`s.
+15. Create a `LinkedHashMap` to store countries and their capitals. Iterate and print the map.
+
+### Queues
+16. Create a `PriorityQueue` of integers and add 5 different values. Print the head of the queue.
+17. Write a method to simulate a simple task scheduling system using a `PriorityQueue`.
+18. Create a `LinkedList` and use it as a queue to add and remove elements. Print the queue after each operation.
+19. Write a method to reverse the order of elements in a queue.
+20. Create a `Deque` and demonstrate the use of methods `addFirst` and `addLast`.
+
+### Stacks
+21. Create a `Stack` of integers and add 5 values to it. Print the stack.
+22. Write a method to reverse a string using a `Stack`.
+23. Create a `Stack` and use it to check if a string has balanced parentheses.
+24. Write a method to sort a stack of integers.
+25. Create a `Stack` and implement a method to get the minimum element in the stack.
+
+### Iterators
+26. Create an `ArrayList` and iterate over it using an `Iterator`.
+27. Write a method to remove elements from a list while iterating using an `Iterator`.
+28. Create a `HashSet` and iterate over it using an enhanced for loop.
+29. Write a method to find an element in a `TreeSet` using an `Iterator`.
+30. Create a `LinkedHashMap` and iterate over the entries using an `Iterator`.
+
+### Streams
+31. Create a list of integers and use a stream to find the sum of all elements.
+32. Write a method to filter out even numbers from a list using a stream.
+33. Create a list of strings and use a stream to convert each string to uppercase.
+34. Write a method to find the maximum value in a list using a stream.
+35. Create a list of integers and use a stream to sort them in descending order.
+
+### Comparators
+36. Create a list of custom objects and sort them using a `Comparator`.
+37. Write a method to sort a list of strings by their length using a `Comparator`.
+38. Create a `TreeSet` of custom objects using a `Comparator`.
+39. Write a method to sort a `HashMap` by its keys using a `Comparator`.
+40. Create a list of integers and sort them in reverse order using a `Comparator`.
+
+### Custom Collections
+41. Create a custom collection class that extends `ArrayList`.
+42. Write a method to implement a custom collection class with a fixed size.
+43. Create a custom collection class that extends `HashSet`.
+44. Write a method to implement a custom collection class with unique elements.
+45. Create a custom collection class that extends `TreeMap`.
+
+### Functional Interfaces
+46. Create a list of integers and use `Predicate` to filter out negative numbers.
+47. Write a method to use `Function` to convert a list of integers to their squares.
+48. Create a list of strings and use `Consumer` to print each string.
+49. Write a method to use `Supplier` to generate a list of random numbers.
+50. Create a list of integers and use `BinaryOperator` to find their sum.
+
+### Advanced Collections
+51. Create a `ConcurrentHashMap` and demonstrate its use in a multithreaded environment.
+52. Write a method to demonstrate the use of a `BlockingQueue`.
+53. Create a `CopyOnWriteArrayList` and demonstrate its use in a multithreaded environment.
+54. Write a method to demonstrate the use of a `ConcurrentSkipListSet`.
+55. Create a `PriorityBlockingQueue` and add elements to it.
+
+### Collection Utilities
+56. Create a list of integers and shuffle it using `Collections.shuffle()`.
+57. Write a method to find the maximum and minimum values in a list using `Collections`.
+58. Create a list of strings and fill it with a single value using `Collections.fill()`.
+59. Write a method to copy elements from one list to another using `Collections.copy()`.
+60. Create a list of integers and rotate it using `Collections.rotate()`.
+
+### Generics
+61. Create a generic class that can hold any type of collection.
+62. Write a method to create a generic method to find the maximum element in a collection.
+63. Create a generic class that extends `ArrayList` and adds type-specific methods.
+64. Write a method to create a generic method to filter elements in a collection.
+65. Create a generic class that implements `Comparator`.
+
+### Sorting and Searching
+66. Create a list of integers and sort it using `Collections.sort()`.
+67. Write a method to perform binary search on a sorted list using `Collections.binarySearch()`.
+68. Create a list of custom objects and sort them using a `Comparator`.
+69. Write a method to sort a map by its values.
+70. Create a list of integers and find the index of an element using `Collections.indexOfSubList()`.
+
+### Multi-threading with Collections
+71. Create a `Thread` that adds elements to a `ConcurrentHashMap`.
+72. Write a method to demonstrate the use of `CopyOnWriteArrayList` in a multithreaded environment.
+73. Create a `BlockingQueue` and demonstrate its use in a producer-consumer scenario.
+74. Write a method to demonstrate the use of `ConcurrentLinkedQueue` in a multithreaded environment.
+75. Create a `ConcurrentSkipListMap` and demonstrate its use.
+
+### Custom Implementations
+76. Implement a custom `ArrayList`.
+77. Implement a custom `HashSet`.
+78. Implement a custom `LinkedList`.
+79. Implement a custom `HashMap`.
+80. Implement a custom `TreeSet`.
+
+### Collection Framework Utilities
+81. Create a list and sort it using `Collections.sort()`.
+82. Write a method to find the frequency of an element in a list using `Collections.frequency()`.
+83. Create a list of integers and reverse it using `Collections.reverse()`.
+84. Write a method to find the disjoint elements of two collections using `Collections.disjoint()`.
+85. Create a list and make it unmodifiable using `Collections.unmodifiableList()`.
+
+### Maps and Advanced Usage
+86. Create a `WeakHashMap` and demonstrate its behavior with garbage collection.
+87. Write a method to demonstrate the use of `IdentityHashMap`.
+88. Create a `NavigableMap` and demonstrate its navigation methods.
+89. Write a method to demonstrate the use of `EnumMap`.
+90. Create a `Properties` object and demonstrate loading and storing properties.
+
+### Collections and Lambdas
+91. Create a list of integers and use a lambda expression to filter even numbers.
+92. Write a method to sort a list of strings by length using a lambda expression.
+93. Create a list of custom objects and use a lambda expression to filter based on a condition.
+94. Write a method to find the sum of a list of integers using a lambda expression.
+95. Create a `Map` and use a lambda expression to transform its values.
+
+### Miscellaneous
+96. Create a `List` of random numbers and find the second largest number.
+97. Write a method to count the occurrences of each character in a string using a `Map`.
+98. Create a `Set` of integers and find the subset that is greater than a specific value.
+99. Write a method to merge two lists into a single list without duplicates.
+100. Create a `Map` and find the key with the maximum value.
+
+These questions cover a wide range of topics within the Java Collection API, providing a comprehensive set of exercises for practice.
