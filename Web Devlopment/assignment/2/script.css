@@ -1,0 +1,97 @@
+/* Basic styles */
+body {
+    font-family: sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+.brand-logo {
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-links a:hover {
+    color: #ddd;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: none; /* Hide navigation links on small screens */
+    }
+}
+
+/* Hamburger menu styles */
+.menu-toggle {
+    display: none; /* Hide menu toggle on large screens */
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-icon {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin-bottom: 5px;
+}
+
+.menu-icon:after,
+.menu-icon:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    margin-bottom: 5px;
+}
+
+/* Show/hide navigation links on menu toggle click */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: block; /* Show navigation links on small screens */
+        position: absolute;
+        top: 100%; /* Position links below the navbar */
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        padding: 10px 20px;
+    }
+
+    .nav-links li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .navbar.active .nav-links {
+        display: block; /* Show links when menu is active */
+    }
+}
