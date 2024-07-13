@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Game</title>
+    <style>
+        body {
+            background-color: #222222;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .game-container {
+            width: 800px;
+            height: 600px;
+            background-color: #333333;
+            position: relative;
+        }
+
+        .game-title {
+            color: #ffffff;
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        .game-character {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #ff0000;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1 class="game-title">My Game</h1>
+        <div class="game-character"></div>
+    </div>
+</body>
+</html>
