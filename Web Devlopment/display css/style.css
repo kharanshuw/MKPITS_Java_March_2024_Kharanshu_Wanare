@@ -1,0 +1,17 @@
+div
+{
+    background-color: rgb(18, 43, 167);
+    width: 100px;
+    height: 100px;
+    position: relative;
+    right: 0px;
+}
+
+span
+{
+    background-color: rgb(255, 0, 0);
+    width: 100px;
+    height: 100px;
+    position: relative;
+    right: 0px;
+}
