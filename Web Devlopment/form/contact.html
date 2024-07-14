@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <link rel="stylesheet" href="../css/one.css">
+</head>
+<body>
+
+  <h1 style="color: black; background-color: aquamarine; font-size: 30px;">Contact Form</h1>
+<p>fill this form</p>
+  <form action="" method="post" target="_blank"> 
+    <div>
+      <label for="name">Your Name (First Last):</label>
+      <input type="text" id="name" name="name" class="firstname" required>
+    </div>
+    <div>
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" name="email" class="myemail" required>
+    </div>
+    <div>
+      <label for="phone">Phone (Optional):</label>
+      <input type="text" id="phone" name="phone">
+    </div>
+    <br>
+
+    <div>
+        <input type="file" >
+    </div>
+    <div>
+      <label for="message">Message Subject:</label>
+      <select id="message" name="message">
+        <option value="other">Other</option>
+        <option value="question">Question</option>
+        <option value="feedback">Feedback</option>
+      </select>
+    </div>
+    <div>
+      <label for="message">Message:</label>
+      <textarea id="message"  required></textarea>
+    </div>
+    <div >
+      <label><input type="checkbox" required> I'm not a robot</label>
+    </div>
+    <!-- <div>
+      <button type="submit" >SUBMIT FORM</button>
+    </div> -->
+
+    <label for="browser">which browser do you use</label>
+    <input type="text" list="browsers" id="browser">
+    <datalist  id="browsers">
+        <option value="opera">opera</option>
+        <option value="mozila">mozila</option>
+        <option value="chrome">chrome</option>
+    </datalist>
+
+    <div>
+        <button formaction="./contact.html">mybutton</button>
+    </div>
+    <div>
+        <button type="submit" formenctype="multipart/form-data">mybutton2</button>
+    </div>
+    <div>
+        <button type="submit" formmethod="post"> mybutton3 </button>
+    </div>
+  </form>
+
+  <p class="mypara">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, facilis! Non impedit voluptatum totam, perspiciatis necessitatibus voluptate sit temporibus nam. Rerum, expedita. Est adipisci aliquid suscipit, omnis fugiat vel maxime minus molestias perspiciatis alias tempora praesentium inventore rerum aperiam voluptatum. Deserunt tempore tenetur modi quam, ut eligendi id atque impedit.
+  </p>
+
+  <div id="mydiv">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta quam deserunt ea itaque recusandae amet minus accusamus ipsam quisquam? Ut suscipit, error, dolorem laborum necessitatibus odio soluta molestias illo fugiat corporis animi, exercitationem natus deserunt iusto. Quasi totam voluptas hic repudiandae pariatur non sed. Vel cupiditate ullam asperiores. Natus, pariatur.
+  </div>
+</body>
+</html>
