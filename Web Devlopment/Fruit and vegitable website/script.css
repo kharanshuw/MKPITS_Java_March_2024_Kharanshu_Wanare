@@ -1,0 +1,26 @@
+*{
+    font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  scroll-padding-top:2 rem ;
+}
+:root{
+  --green-color:#5AF34F;
+  --light-green-color:#90EE90;
+  --orange-color:#FFBF00;
+  --light-orange-color:#FFA500;
+  --text-color:black;
+  --bg-color:white;
+}
+
+img{
+  width: 100%;
+}
+body{
+  color: var(--text-color);
+}
