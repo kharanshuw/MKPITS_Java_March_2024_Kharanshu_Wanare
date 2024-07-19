@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Water Gun</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #result {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Snake Water Gun</h1>
+    <button id="snake">Snake</button>
+    <button id="water">Water</button>
+    <button id="gun">Gun</button>
+    <p id="result"></p>
+
+    <script>
+        const buttons = document.querySelectorAll('button');
+        const resultDiv = document.getElementById('result');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', playGame);
+        });
+
+        function playGame() {
+            const userChoice = this.id; // Get the clicked button's ID (snake, water, or gun)
+            const computerChoice = getComputerChoice();
+
+            const outcome = determineWinner(userChoice, computerChoice);
+            displayResult(outcome, userChoice, computerChoice);
+        }
+
+        function getComputerChoice() {
+            const choices = ['snake', 'water', 'gun'];
+            const randomIndex = Math.floor(Math.random() * choices.length);
+            return choices[randomIndex];
+        }
+
+        function determineWinner(userChoice, computerChoice) {
+            if (userChoice === computerChoice) {
+                return 'Tie';
+            }
+
+            // Win scenarios for user
+            if (userChoice === 'snake' && computerChoice === 'water') {
+                return 'You Win! Snake drinks Water.';
+            } else if (userChoice === 'water' && computerChoice === 'gun') {
+                return 'You Win! Water drowns Gun.';
+            } else if (userChoice === 'gun' && computerChoice === 'snake') {
+                return 'You Win! Gun shoots Snake.';
+            }
+
+            // Loss scenario for user (other cases)
+            return 'You Lose! ' + computerChoice + ' beats ' + userChoice + '.';
+        }
+
+        function displayResult(outcome, userChoice, computerChoice) {
+            resultDiv.textContent = `Result: ${outcome}. You chose ${userChoice}, computer chose ${computerChoice}.`;
+        }
+    </script>
+</body>
+</html>
