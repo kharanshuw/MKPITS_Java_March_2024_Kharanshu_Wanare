@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <h1>Registration Form</h1>
+    <form action="#"   id="myform"  onsubmit="return validateform(event)">
+<p>
+    <label for="name">Name</label>
+    <input type="text" id="myname" name="Name" placeholder="enter your name here"/>
+    <span id="name-error" class="error-message"></span>
+</p>
+
+<p>
+    <label for="address" >address:</label>
+    <input type="text" id="address" name="Address"
+    placeholder="Enter your address"/>
+    <span id="address-error" class="error-message"></span>
+</p>
+
+<p>
+    <label for="contactno" >Contact no :</label>
+    <input type="number" id="contact" name="contact"
+    placeholder="Enter your mobile no "/>
+    <span id="mobile-error " class="mobileerror"></span>
+</p>
+
+<p>
+    <label for="email">e-mail address</label>
+    <input type="text" id="email" name="Email"
+    placeholder=" enter email"/>
+    <span id="email-error" class="error-message"></span>
+</p>
+<p>
+    <label for="password">password</label>
+    <input type="password" id="password" name="password" placeholder="enter password"/>
+    <span id="password-error" class="error-message"></span>
+</p>
+
+<p>
+    <label for="password">Confirm password</label>
+    <input type="password" id="password2" name="password2" placeholder="confirm password"/>
+    <span id="password-error2" class="error-message2"></span>
+</p>
+
+<p>
+    <button type="submit">Submit form </button>
+</p>
+    </form>
+
+    <script src="./script2.js"></script>
+</body>
+</html>
