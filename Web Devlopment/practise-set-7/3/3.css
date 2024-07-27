@@ -1,0 +1,21 @@
+.color-box {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    margin: 10px;
+    float: left; /* Optional: Arrange them horizontally */
+    cursor: pointer; /* Change cursor to indicate clickability */
+  }
+  
+  #div1 {
+    background-color: blue; /* Initial color for div1 */
+  }
+  
+  #div2 {
+    background-color: green; /* Initial color for div2 */
+  }
+  
+  #div3 {
+    background-color: yellow; /* Initial color for div3 */
+  }
+  
