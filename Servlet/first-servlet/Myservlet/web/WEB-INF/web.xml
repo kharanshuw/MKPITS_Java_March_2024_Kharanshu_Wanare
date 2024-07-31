@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    <servlet>
+        <servlet-name>Myservlet</servlet-name>
+        <servlet-class>Myservlet.Myservlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Myservlet</servlet-name>
+        <url-pattern>/Myservlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ConnectingDatabase</servlet-name>
+        <servlet-class>Myservlet.ConnectingDatabase</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConnectingDatabase</servlet-name>
+        <url-pattern>/ConnectingDatabase</url-pattern>
+    </servlet-mapping>
+    
+</web-app>
