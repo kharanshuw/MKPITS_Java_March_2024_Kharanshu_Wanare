@@ -7,13 +7,13 @@ let cityhide = document.querySelector('.city-hide');
 
 
 search.addEventListener('click', () => {
-  const apikey = '';
+  //please add key in url
   let city = document.querySelector('.search-box input').value;
 
   if (city == '')
     return;
 
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apikey}`;
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=`;
 
   fetch(url)
     .then((response) => {
@@ -104,13 +104,56 @@ search.addEventListener('click', () => {
 
           wind.innerHTML = `${parseInt(res.wind.speed)}Km/h`;
 
-          let infoweather=document.querySelector('.info-weather');
-          let infohumidity=document.querySelector('.info-humidity');
-          let infowind=document.querySelector('.info-wind');
+          let infoweather = document.querySelector('.info-weather');
+          let infohumidity = document.querySelector('.info-humidity');
+          let infowind = document.querySelector('.info-wind');
 
-          let elcloneinfoweather=infoweather.cloneNode(true);
-          let elcloneinfohumidity=infohumidity.cloneNode(true);
-          let elcloneinfowind=infowind.cloneNode(true);
+          let elcloneinfoweather = infoweather.cloneNode(true);
+          let elcloneinfohumidity = infohumidity.cloneNode(true);
+          let elcloneinfowind = infowind.cloneNode(true);
+
+          elcloneinfoweather.id = 'clone-info-weather';
+          elcloneinfoweather.classList.add('active-clone');
+
+          elcloneinfohumidity.id = 'clone-info-humidity';
+          elcloneinfohumidity.classList.add('active-clone');
+
+          elcloneinfowind.id = 'clone-info-wind';
+          elcloneinfowind.classList.add('active-clone');
+
+          setTimeout(() => {
+            infoweather.insertAdjacentElement("afterend", elcloneinfoweather);
+            infohumidity.insertAdjacentElement("afterend", elcloneinfohumidity);
+            infowind.insertAdjacentElement("afterend", elcloneinfowind);
+
+          }, 2200);
+
+          let cloneinfoweather = document.querySelectorAll('.info-weather.active-clone');
+
+          let totalcloneinfoweather = cloneinfoweather.length;
+
+          let cloneinfoweatherfirst = cloneinfoweather[0];
+
+          let cloneinfohumidity = document.querySelectorAll('.info-humidity.active-clone');
+
+          let cloneinfohumidityfirst = cloneinfohumidity[0];
+
+          let cloneinfowind = document.querySelectorAll('.info-wind.active-clone');
+
+          let cloneinfowindfirst = cloneinfowind[0];
+
+          if(totalcloneinfoweather>0){
+            cloneinfoweatherfirst.classList.remove('active-clone');
+            cloneinfohumidityfirst.classList.remove('active-clone');
+            cloneinfowindfirst.classList.remove('active-clone');
+            
+            setTimeout(() => {
+              cloneinfoweatherfirst.remove();
+              cloneinfohumidityfirst.remove();
+              cloneinfowindfirst.remove();
+            }, 2200);
+          }
+
         }
 
 
