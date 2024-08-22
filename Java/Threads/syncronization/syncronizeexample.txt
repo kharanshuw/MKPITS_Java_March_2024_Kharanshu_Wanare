@@ -1,0 +1,93 @@
+java program which contain three class company consumer product and use syncronization concept and produce only if it is not full and consume only if it is not empty.
+
+public class Company {
+	int n=0;
+	boolean flag=false;
+	//f true =consumer run 
+//	f false= producer run
+	public synchronized void producerItem(int n) {
+		
+		if (flag==true) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+			System.out.println(e);
+			}
+		}
+		this.n=n;
+		System.out.println("produce :"+n);
+		flag=true;
+		notify();
+		
+	}
+	public synchronized void consumeItem() {
+		
+		if (flag==false) {
+			try {
+				wait(); //wait throws exception
+			} catch (InterruptedException e) {
+				System.out.println(e);
+			}
+		}
+		System.out.println("consumer :"+n);
+		flag=false;
+		notify();
+	}
+}
+
+
+public class Consumer extends Thread{
+	Company company;
+ 	public Consumer(Company company)
+	{
+		this.company=company;
+	}
+ 	
+ 	@Override
+ 	public void run() {
+ 		while (true) {
+			company.consumeItem();
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				
+				System.out.println(e);
+			}
+		}
+ 	}
+}
+
+public class Producer extends Thread{
+	Company company;
+	
+	Producer(Company company)
+	{
+		this.company=company;
+	}
+	
+	@Override
+	public void run() {
+		int i=1;
+		while (true) 
+		{
+			company.producerItem(i);
+		try {
+			Thread.sleep(1000);
+		}
+		catch (InterruptedException e) {
+			System.out.println(e);
+		}
+			i++;
+		}
+	}
+}
+
+public class Demo {
+	public static void main(String[] args) {
+		Company company = new Company();
+		Producer producer=new Producer(company);
+		Consumer consumer = new Consumer(company);
+		producer.start();
+		consumer.start();
+	}
+}

@@ -1,0 +1,33 @@
+package syncronizationexample;
+//write a program in which main thread will wait till execution of our thread ;
+public class YourThread extends Thread {
+	int sum=0;
+	@Override
+	public void run() {
+		for (int i = 0; i <51; i++) {
+			sum=sum+i;
+		}
+	}{
+	synchronized(this) {
+		this.notify();
+	}
+	}
+}
+
+public class Demo extends Object {
+	public static void main(String[] args) {
+		YourThread yourThread = new YourThread();
+		yourThread.start();
+		
+		synchronized (yourThread) {
+			try {
+				yourThread.wait();
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+		
+		System.out.println("sum is "+yourThread.sum);
+		
+	}
+}
