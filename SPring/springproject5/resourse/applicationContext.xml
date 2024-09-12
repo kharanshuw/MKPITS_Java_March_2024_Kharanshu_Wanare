@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+	<bean id="s1" class="springproject5.Student">
+	<constructor-arg index="0" value="pratik" ></constructor-arg>
+	<constructor-arg index="1" value="nagpur"></constructor-arg>
+	<constructor-arg index="2" ref="add1"></constructor-arg>
+	<constructor-arg index="3">
+	<list>
+	<value>a</value>
+	<value>b</value>
+	<value>c</value>
+	</list>
+	</constructor-arg>
+	
+	<constructor-arg index="4">
+	
+	<map>
+	
+	<entry key="10" value="79"></entry>
+	<entry key="12" value="69"></entry>
+	<entry key="engineering" value="78"></entry>
+	</map>
+	
+	</constructor-arg>
+	</bean>
+	
+	<bean id="add1" class="springproject5.Address">
+	<constructor-arg index="0" value="maharashtra"></constructor-arg>
+	</bean>
+</beans>
