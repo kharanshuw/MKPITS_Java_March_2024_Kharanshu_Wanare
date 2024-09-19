@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="D:/java/spring dependency/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="D:/java/spring dependency/spring-aop-6.1.11.jar"/>
+	<classpathentry kind="lib" path="D:/java/spring dependency/spring-beans-6.1.6.jar"/>
+	<classpathentry kind="lib" path="D:/java/spring dependency/spring-context-6.1.11.jar"/>
+	<classpathentry kind="lib" path="D:/java/spring dependency/spring-core-6.1.6.jar"/>
+	<classpathentry kind="lib" path="D:/java/spring dependency/spring-expression-6.1.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

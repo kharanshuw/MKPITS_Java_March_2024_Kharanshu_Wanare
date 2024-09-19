@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+	
+	<bean id="address" class="springproject8.Address">
+	<constructor-arg value="maharashtra"></constructor-arg>  
+	</bean>
+	
+	
+	<bean id="address2" class="springproject8.Address">
+	<constructor-arg value="maharashtra"></constructor-arg>  
+	</bean>
+	
+	<bean id="s" class="springproject8.Student" autowire="constructor" >
+		<property name="nameString" value="pratik"></property>
+		<property name="cityString" value="nagpur"></property>
+	</bean>
+	
+	
+	
+	
+	
+</beans>
