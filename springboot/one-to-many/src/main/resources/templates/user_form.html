@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Create or Edit User</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<h1>Create or Edit User</h1>
+
+<form th:action="@{/users/save}" th:object="${user}" method="post">
+  <input type="hidden" th:field="*{id}" />
+
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" id="username" th:field="*{username}" required />
+  </div>
+
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" th:field="*{password}" required />
+  </div>
+
+  <h3>User Details</h3>
+
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{userDetails.name}" required />
+  </div>
+
+  <div>
+    <label for="address">Address:</label>
+    <input type="text" id="address" th:field="*{userDetails.address}" required />
+  </div>
+
+  <div>
+    <label for="phoneNo">Phone No:</label>
+    <input type="text" id="phoneNo" th:field="*{userDetails.phoneNo}" required />
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" th:field="*{userDetails.email}" required />
+  </div>
+
+  <div>
+    <button type="submit">Save</button>
+    <a href="/users/list">Cancel</a>
+  </div>
+</form>
+</body>
+</html>
