@@ -66,4 +66,18 @@ public class UserController {
 		return "error/access-denied.html";
 	}
 
+	
+	public String userprofile() {
+		logger.info("userprofile method from usercontroller class called ");
+
+		 String emailString = userService.getLoggedInUserDetails();
+
+		 logger.info("the user logged in is :" + emailString);
+		 
+		 System.out.println("the user logged in is :" + emailString);
+
+		 
+
+		 return null;
+	}
 }

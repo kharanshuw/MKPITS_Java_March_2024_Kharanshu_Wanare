@@ -98,4 +98,14 @@ public class UserServiceImpl implements UserService {
 		return requestDto;
 	}
 
+	@Override
+	public User getuserdetails() {
+		
+		
+		
+		
+		
+		return null;
+	}
+
 }

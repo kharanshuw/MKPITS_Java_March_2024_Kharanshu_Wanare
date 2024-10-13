@@ -378,41 +378,12 @@
             margin-left: 260px;
         }
 
-        .account-summary,
-        .quick-actions {
-            background-color: var(--light-text-color);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .account-summary h2,
-        .quick-actions h2 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
+      
 
         .balance .amount {
             font-size: 24px;
             color: var(--secondary-color);
             font-weight: bold;
-        }
-
-        .quick-actions button {
-            background-color: var(--secondary-color);
-            color: var(--light-text-color);
-            border: none;
-            padding: 10px 15px;
-            margin-right: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-
-        .quick-actions button:hover {
-            background-color: var(--accent-color);
         }
 
         footer {
@@ -595,6 +566,38 @@ em.planet.right {
 
     </style>
 
+
+
+<!-- user profile -->
+<style>
+    .dashboard-content {
+        padding: 20px;
+        margin-left: 260px;
+    }
+
+    .account-summary {
+        background-color: #f5f5f5;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .account-summary h2 {
+        font-size: 24px;
+        margin-top: 0;
+    }
+
+    .account-summary p {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .account-summary strong {
+        font-weight: bold;
+    }
+
+</style>
+
     <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
 
 </head>
@@ -641,7 +644,7 @@ em.planet.right {
                             <input type="submit" value="Logout">
                         </form>
                     </li>
-                    <li><a href="#" th:href="@{/userprofile}>Profile</a></li>
+                    <li><a href="#">Profile</a></li>
                 </ul>
 
 
@@ -718,21 +721,39 @@ em.planet.right {
 
     <main class="dashboard-content">
         <section class="account-summary">
-            <h2>Account Summary</h2>
-            <div class="balance">
-                <h3>Current Balance</h3>
-                <p class="amount">$10,000.00</p>
-            </div>
-            <div class="recent-transactions">
-                <h3>Recent Transactions</h3>
-                <!-- Add a list or table of recent transactions here -->
-            </div>
-        </section>
-        <section class="quick-actions">
-            <h2>Quick Actions</h2>
-            <button>Transfer Money</button>
-            <button>Pay Bills</button>
-            <button>View Statements</button>
+            <h2>Profile Information</h2>
+            <p>user id:
+                <strong th:text="${user.getid()}">1</strong>
+            </p>
+            <p>user email:
+                <strong th:text="${user.getEmail()}">pratik@gmail.com</strong>
+            </p>
+            <p>user name:
+                <strong th:text="${user.getfirstname()}">pratik</strong>
+            </p>
+            <p>
+                user last name:
+                <strong th:text="${user.getlastname()}">wanare</strong>
+
+            </p>
+
+            <p>
+                user gender:
+                <strong th:text="${user.getgender()}">male</strong>
+            </p>
+
+            <p>
+                user role:
+                <strong th:text="${user.getrole()}">admin</strong>
+            </p>
+
+            <p>
+
+                user created at:
+                <strong th:text="${#dates.format(user.getcreatedat(), 'dd-MMM-yyyy')}">28-Oct-2022</strong>
+
+            </p>
+
         </section>
     </main>
 
