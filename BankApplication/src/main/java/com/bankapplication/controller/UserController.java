@@ -1,13 +1,13 @@
 package com.bankapplication.controller;
 
+import com.bankapplication.dto.ResponseDto;
+
+import com.bankapplication.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import com.bankapplication.userInformation.*;
 
 import org.slf4j.*;
 
@@ -18,12 +18,10 @@ public class UserController {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-	private final UserService userService;
+	private UserServiceImpl userService;
 
 	@Autowired
-	public UserController(UserService userService) {
-		super();
-		logger.info("user controller constructor called successfully");
+	public UserController(UserServiceImpl userService) {
 		this.userService = userService;
 	}
 
@@ -32,13 +30,13 @@ public class UserController {
 
 		logger.info("homepage2 method from usercontroller class called ");
 
-		 String emailString = userService.getLoggedInUserDetails();
+		String emailString = userService.getLoggedInUserEmail();
 
-		 logger.info("the user logged in is :" + emailString);
+		logger.info("the user logged in is :" + emailString);
 
 		System.out.println("the user logged in is :" + emailString);
 
-		 model.addAttribute("email", emailString);
+		model.addAttribute("email", emailString);
 
 		if (httpServletRequest.isUserInRole("USER")) {
 
@@ -66,18 +64,23 @@ public class UserController {
 		return "error/access-denied.html";
 	}
 
-	
-	public String userprofile() {
+	@GetMapping("/userprofile")
+	public String userprofile(Model model) {
 		logger.info("userprofile method from usercontroller class called ");
 
-		 String emailString = userService.getLoggedInUserDetails();
+		String emailString = userService.getLoggedInUserEmail();
 
-		 logger.info("the user logged in is :" + emailString);
-		 
-		 System.out.println("the user logged in is :" + emailString);
+		logger.info("the user logged in is :" + emailString);
 
-		 
+		System.out.println("the user logged in is :" + emailString);
 
-		 return null;
+		ResponseDto user = userService.getLoggedInUserDetails(emailString);
+
+		if (user == null) {
+			return null;
+		} else {
+			model.addAttribute("user", user);
+			return "home/userhome/userprofiledetails.html";
+		}
 	}
 }

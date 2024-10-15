@@ -1,98 +1,98 @@
 package com.bankapplication.dto;
 
-import java.util.ArrayList;
 
 public class LoggesInUserDetails {
 
-	private int id;
-	private String email;
-	private String fname;
-	private String lname;
-	private String gender;
-	private String phoneno;
-	private ArrayList<String> roleNames = new ArrayList<>();
+    private int id;
+    private String email;
+    private String fname;
+    private String lname;
+    private String gender;
+    private String phoneno;
+ private   String rolename ;
 
-	public LoggesInUserDetails(int id, String email, String fname, String lname, String gender, String phoneno,
-			ArrayList<String> roleNames) {
-		super();
-		this.id = id;
-		this.email = email;
-		this.fname = fname;
-		this.lname = lname;
-		this.gender = gender;
-		this.phoneno = phoneno;
-		this.roleNames = roleNames;
-	}
+    public LoggesInUserDetails(int id, String email, String fname, String lname, String gender, String phoneno, String rolename) {
+        this.id = id;
+        this.email = email;
+        this.fname = fname;
+        this.lname = lname;
+        this.gender = gender;
+        this.phoneno = phoneno;
+        this.rolename = rolename;
+    }
 
-	@Override
-	public String toString() {
-		return "LoggesInUserDetails [id=" + id + ", email=" + email + ", fname=" + fname + ", lname=" + lname
-				+ ", gender=" + gender + ", phoneno=" + phoneno + ", roleNames=" + roleNames + "]";
-	}
+    @Override
+    public String toString() {
+        return "LoggesInUserDetails{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", fname='" + fname + '\'' +
+                ", lname='" + lname + '\'' +
+                ", gender='" + gender + '\'' +
+                ", phoneno='" + phoneno + '\'' +
+                ", rolename =" + rolename +
+                '}';
+    }
 
-	public LoggesInUserDetails() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    public LoggesInUserDetails() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getFname() {
-		return fname;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setFname(String fname) {
-		this.fname = fname;
-	}
+    public String getFname() {
+        return fname;
+    }
 
-	public String getLname() {
-		return lname;
-	}
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
 
-	public void setLname(String lname) {
-		this.lname = lname;
-	}
+    public String getLname() {
+        return lname;
+    }
 
-	public String getGender() {
-		return gender;
-	}
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+    public String getGender() {
+        return gender;
+    }
 
-	public String getPhoneno() {
-		return phoneno;
-	}
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
-	public void setPhoneno(String phoneno) {
-		this.phoneno = phoneno;
-	}
+    public String getPhoneno() {
+        return phoneno;
+    }
 
-	public ArrayList<String> getRoleNames() {
-		return roleNames;
-	}
+    public void setPhoneno(String phoneno) {
+        this.phoneno = phoneno;
+    }
 
-	public void setRoleNames(ArrayList<String> roleNames) {
-		this.roleNames = roleNames;
-	}
+    public String getRolename() {
+        return rolename;
+    }
 
-	public void addRole(String roleName) {
-		this.roleNames.add(roleName);
-	}
-
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
+    }
 }

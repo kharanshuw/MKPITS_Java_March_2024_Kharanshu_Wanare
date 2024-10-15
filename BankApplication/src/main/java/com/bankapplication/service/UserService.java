@@ -1,6 +1,7 @@
 package com.bankapplication.service;
 
 import com.bankapplication.dto.RequestDto;
+import com.bankapplication.dto.ResponseDto;
 import com.bankapplication.model.User;
 
 
@@ -8,5 +9,11 @@ public interface UserService {
     public RequestDto createuser(RequestDto requestDto);
     
     
-    public User getuserdetails();
+//    public User getLoggedInUserDetails(String email);
+
+
+    public String getLoggedInUserEmail();
+    
+    
+    public ResponseDto getLoggedInUserDetails(String email);
 }

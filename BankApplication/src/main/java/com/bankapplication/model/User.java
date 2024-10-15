@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +23,7 @@ public class User {
     @Size(min = 8, max = 128, message = "password length must be between 0 to 128")
     @NotEmpty(message = "password should not be empty")
     @Pattern(regexp = "\\{noop\\}(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&]).{8,128}$",
-    message = "Password must meet requirements (8-128 chars, uppercase, lowercase, digit, special char)")
+            message = "Password must meet requirements (8-128 chars, uppercase, lowercase, digit, special char)")
     private String password;
 
     @Column(name = "email", unique = true)
@@ -43,8 +44,6 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> role;
-
-
 
 
     public int getId() {
@@ -85,6 +84,7 @@ public class User {
     }
 
 
+    //user will be stored in set so no redundent roles will be assined
     public Set<Role> getRole() {
         return role;
     }
@@ -93,6 +93,9 @@ public class User {
         this.role = role;
     }
 
+
+    //to string method
+
     @Override
     public String toString() {
         return "User [id=" + id + ", password=" + password + ", email=" + email + ", isActive=" + isActive
@@ -100,6 +103,7 @@ public class User {
     }
 
 
+    //parametarized constructor
     public User(int id,
                 @Size(min = 8, max = 128, message = "password length must be between 0 to 128") @NotEmpty(message = "password should not be empty") @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,128}$", message = "Password must meet requirements (8-128 chars, uppercase, lowercase, digit, special char)") String password,
                 @NotEmpty(message = "email should not be empty") @NotNull(message = "email should not be empty") String email,
@@ -119,4 +123,19 @@ public class User {
     }
 
 
+    //this method is used to add new role for user
+    public void addrole(Role roleobj) {
+        //if paramerter roleobj is not null then only this if will get executed
+        //this roleobj show role object to add in user
+        if (roleobj != null) {
+
+            //if  this.role is null then initialize with hashset
+            if (this.role == null) {
+                this.role = new HashSet<>();
+            }
+
+            //add role object in this.role
+            this.role.add(roleobj);
+        }
+    }
 }
