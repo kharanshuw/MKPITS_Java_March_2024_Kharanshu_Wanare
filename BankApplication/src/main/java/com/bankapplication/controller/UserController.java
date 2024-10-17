@@ -1,10 +1,11 @@
 package com.bankapplication.controller;
 
 import com.bankapplication.dto.ResponseDto;
-
+import com.bankapplication.getapplicationcontext.UserServiceAppContext;
 import com.bankapplication.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,71 +17,93 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 public class UserController {
 
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-	private UserServiceImpl userService;
+    private UserServiceImpl userService;
 
-	@Autowired
-	public UserController(UserServiceImpl userService) {
-		this.userService = userService;
-	}
+    private UserServiceAppContext userServiceAppContext;
 
-	@GetMapping("/home2")
-	public String homepage2(Model model, HttpServletRequest httpServletRequest) {
+    @Autowired
+    public UserController(UserServiceImpl userService, UserServiceAppContext userServiceAppContext) {
+        this.userService = userService;
+        this.userServiceAppContext = userServiceAppContext;
+    }
 
-		logger.info("homepage2 method from usercontroller class called ");
+    @GetMapping("/home2")
+    public String homepage2(Model model, HttpServletRequest httpServletRequest) {
 
-		String emailString = userService.getLoggedInUserEmail();
+        logger.info("homepage2 method from usercontroller class called ");
 
-		logger.info("the user logged in is :" + emailString);
+        String emailString = userServiceAppContext.getLoggedInUserEmail();
 
-		System.out.println("the user logged in is :" + emailString);
+        logger.info("the user logged in is :" + emailString);
 
-		model.addAttribute("email", emailString);
+        System.out.println("the user logged in is :" + emailString);
 
-		if (httpServletRequest.isUserInRole("USER")) {
+        model.addAttribute("email", emailString);
 
-			logger.info("User home page called after successful login inside UserController");
+        if (httpServletRequest.isUserInRole("USER") &&   httpServletRequest.isUserInRole("ADMIN") ) {
 
-			return "home/userhome/userhome";
+            logger.info("multi profile home page called after successful login inside UserController");
 
-		} else if (httpServletRequest.isUserInRole("ADMIN")) {
+            return "home/adminhome/multiple-user";
 
-			logger.info("Admin home page called after successful login inside UserController");
-			return "home/adminhome/home2";
+        } else if (httpServletRequest.isUserInRole("ADMIN")) {
 
-		}
+            logger.info("Admin home page called after successful login inside UserController");
+            return "home/adminhome/adminhome";
 
-		else {
+        } else if (httpServletRequest.isUserInRole("USER")) {
 
-			logger.error("User role not identified, redirecting to error page");
-			return "error/error";
-		}
 
-	}
+            logger.info("User home page called after successful login inside UserController");
 
-	@GetMapping("/access-denied")
-	public String accessdenied() {
-		return "error/access-denied.html";
-	}
+            return "home/userhome/userhome";
 
-	@GetMapping("/userprofile")
-	public String userprofile(Model model) {
-		logger.info("userprofile method from usercontroller class called ");
+        } else {
 
-		String emailString = userService.getLoggedInUserEmail();
+            logger.error("User role not identified, redirecting to error page");
+            return "error/error";
+        }
 
-		logger.info("the user logged in is :" + emailString);
+    }
 
-		System.out.println("the user logged in is :" + emailString);
+    @GetMapping("/access-denied")
+    public String accessdenied() {
+        return "error/access-denied.html";
+    }
 
-		ResponseDto user = userService.getLoggedInUserDetails(emailString);
 
-		if (user == null) {
-			return null;
-		} else {
-			model.addAttribute("user", user);
-			return "home/userhome/userprofiledetails.html";
-		}
-	}
+
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @GetMapping("/user/profile")
+    public String userprofile(Model model, HttpServletRequest request) {
+        logger.info("userprofile method from usercontroller class called ");
+
+        String emailString = userServiceAppContext.getLoggedInUserEmail();
+
+        logger.info("the user logged in is :" + emailString);
+
+        System.out.println("the user logged in is :" + emailString);
+
+        ResponseDto user = userService.getLoggedInUserDetails(emailString);
+
+        if (user == null) {
+            return "error/error";
+        } else {
+              if (request.isUserInRole("USER")) {
+                // Handle user profile
+                logger.info("user provile invoked");
+                model.addAttribute("user", user);
+                return "home/userhome/userprofiledetails.html";
+            } else {
+                // Redirect to error page if no valid role is found
+                logger.error("error occured while handling userprofile request");
+                return "error/error";
+            }
+        }
+    }
+
+
+
 }

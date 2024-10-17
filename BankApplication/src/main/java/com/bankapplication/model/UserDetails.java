@@ -29,7 +29,7 @@ public class UserDetails {
 	@Size(min = 2, max = 50, message = "Last name must be between 2 to 50 characters")
 	private String lname;
 
-	@Column(name = "phoneno")
+	@Column(name = "phoneno",unique = true)
 	@NotEmpty(message = "Phone number cannot be empty")
 	@Pattern(regexp = "^\\d{10}$", message = "Phone number must be 10 digits")
 	private String phoneno;

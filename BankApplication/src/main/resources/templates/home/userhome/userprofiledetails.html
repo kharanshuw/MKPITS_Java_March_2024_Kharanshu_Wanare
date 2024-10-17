@@ -232,22 +232,6 @@
 
 		/* responsive design */
 
-		@media (max-width:992px) {
-
-			.navbar .links,
-			.navbar .action-btn {
-				display: none;
-			}
-
-
-			.navbar .toggle-btn {
-				display: block;
-			}
-
-			.dropdown-menu {
-				display: block;
-			}
-		}
 
 
 		.icon {
@@ -350,24 +334,7 @@
 			transition: all 0.5s ease;
 		}
 
-		/* 
-        #check:checked~.sidebar {
-            left: 0;
-        }
-
-
-        #check:checked~label #btn {
-            left: 250px;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        #check:checked~label #cancel {
-            left: 195px;
-
-
-        } */
-
+		
 		.sidebar.open {
 			left: 0;
 		}
@@ -432,17 +399,7 @@
   }
 }
 
-@media (max-width: 768px) {
-  h1 {
-    transform: scale(0.3);
-  }
-}
 
-@media (max-width: 480px) {
-  h1 {
-    transform: scale(0.2);
-  }
-}
 
 .navbar .logo .logo-heading::before {
   content: "";
@@ -643,7 +600,7 @@ em.planet.right {
 							<input type="submit" value="Logout">
 						</form>
 					</li>
-					<li><a href="#">Profile</a></li>
+					<li><a th:href="@{/user/profile}">Profile</a></li>
 				</ul>
 
 
@@ -754,7 +711,7 @@ em.planet.right {
 			<p>
 			<h1>List of roles</h1>
 			<ul>
-				<li th:each="u : ${user.getRoles()}" th:text="${u}"></li>
+				<li th:each="u : ${user.getrolestring()}" th:text="${u}"></li>
 			</ul>
 			</p>
 

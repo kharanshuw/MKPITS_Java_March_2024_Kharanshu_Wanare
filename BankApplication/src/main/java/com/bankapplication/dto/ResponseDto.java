@@ -1,5 +1,6 @@
 package com.bankapplication.dto;
 
+
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -50,16 +51,54 @@ public class ResponseDto {
 	public void setPhoneno(String phoneno) {
 		this.phoneno = phoneno;
 	}
+	
+	
+	
+	
 	public Set<Role> getRoles() {
 		return roles;
 	}
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
-    
-    
-    
+	
+	
+	@Override
+	public String toString() {
+		return "ResponseDto [id=" + id + ", email=" + email + ", fname=" + fname + ", lname=" + lname + ", gender="
+				+ gender + ", phoneno=" + phoneno + ", rolenameString=" + roles + "]";
+	}
+	public ResponseDto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public ResponseDto(int id, String email, String fname, String lname, String gender, String phoneno,
+			Set<Role> roles) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.fname = fname;
+		this.lname = lname;
+		this.gender = gender;
+		this.phoneno = phoneno;
+		this.roles = roles;
+	}
+	
+	
 
-
+	
+	public ArrayList getrolestring()
+	{
+		System.out.println("getrolestring from responsedto called succesfully");
+		ArrayList<String> arrayList = new ArrayList<>();
+		for (Role r : roles){
+			System.out.println(r);
+			arrayList.add(r.getRolename());
+		}
+		return arrayList;
+	}
+	
+    
+   
     
 }

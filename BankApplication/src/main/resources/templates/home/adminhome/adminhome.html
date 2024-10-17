@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>user Dashboard</title>
+    <title>Admin Dashboard</title>
 
     <style>
         :root {
@@ -672,11 +672,11 @@ em.planet.right {
                     <li><a href="#" th:href="@{/}">home</a></li>
                     <li><a href="#" th:href="@{/login}">Login</a></li>
                     <li>
-                        <form action="#" th:action="@{/logout}" method="post">
+                        <form  th:action="@{/logout}" method="post">
                             <input type="submit" value="Logout">
                         </form>
                     </li>
-                    <li><a  th:href="@{/user/profile}">Profile</a></li>
+                    <li><a  th:href="@{/admin/profile}">Profile</a></li>
                 </ul>
 
 
@@ -731,7 +731,7 @@ em.planet.right {
             <ul>
                 <li><a href="#" th:href="@{/}">Home</a></li>
 
-                <li><a href="#">shortcuts</a></li>
+                <li><a href="#">ALL ACCOUNT</a></li>
 
                 <li><a href="#">Account Overview </a></li>
 
@@ -781,7 +781,7 @@ em.planet.right {
     <!-- footer start -->
 
     <footer>
-        <p>&copy; 2023 Your Bank Name. All rights reserved.</p>
+        <p>&copy; 2023 SphereBank. All rights reserved.</p>
         <nav>
             <a href="#">Privacy Policy</a> |
             <a href="#">Terms of Service</a> |

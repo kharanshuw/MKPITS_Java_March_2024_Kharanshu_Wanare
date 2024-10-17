@@ -1,24 +1,25 @@
 package com.bankapplication.service;
 
-import com.bankapplication.controller.UserController;
-import com.bankapplication.dto.LoggesInUserDetails;
-import com.bankapplication.model.Role;
-import com.bankapplication.model.User;
-import com.bankapplication.model.UserDetails;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+import org.slf4j.*;
+import org.springframework.beans.factory.annotation.*;
+
 import org.springframework.stereotype.Service;
 
-import com.bankapplication.dto.RequestDto;
-import com.bankapplication.dto.ResponseDto;
-import com.bankapplication.repository.RoleRepository;
-import com.bankapplication.repository.UserDetailsRepository;
-import com.bankapplication.repository.UserRepository;
+import com.bankapplication.repository.*;
 
+import com.bankapplication.model.UserDetails;
 
+import com.bankapplication.controller.UserController;
+
+import com.bankapplication.dto.*;
+
+import com.bankapplication.model.*;
 
 // This class is a Spring Service that implements user-related operations
 
@@ -138,12 +139,12 @@ public class UserServiceImpl implements UserService {
 
 	// Method to get user details who is logged in
 	public ResponseDto getLoggedInUserDetails(String email) {
-		
-	    // Log received email
 
-		logger.info("Email received at getuserdetail method: {}", email);
+		// Log received email
 
-	    // Find logged in user details by email
+		logger.info("Email received at getLoggedInUserDetails  method of UserServiceImpl class  : {}", email);
+
+		// Find logged in user details by email
 
 		LoggesInUserDetails loggesInUserDetails = userRepository.findUserRoleDetailsByEmail(email);
 		if (loggesInUserDetails == null) {
@@ -151,63 +152,84 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 
-	    // Log found user details
+		// Log found user details
 
 		logger.info("Found user: {}", loggesInUserDetails);
-		
-	    // Find user by ID
+
+		// Find user by ID
 
 		User user = userRepository.findById(loggesInUserDetails.getId()).orElse(null);
 
 		if (user == null) {
-			
-	        // Log if user is not found
 
-			System.out.println("user not found in getLoggedInUserDetails method");
+			// Log if user is not found
+
 			logger.error("user not found in getLoggedInUserDetails method");
 			return null;
 		} else {
-			
-		    // Log if user is found
+			// Log if user is found
 
-			System.out.println("user found in getLoggedInUserDetails method");
 			logger.info("user found in getLoggedInUserDetails method");
 
-		    // Create and return ResponseDto with user details
+			// Create and return ResponseDto with user details
 
 			ResponseDto responseDto = createResponseDto(user);
 
 			return responseDto;
-
 		}
+
 	}
 
 	// Helper method to create ResponseDto from User entity
 
 	private ResponseDto createResponseDto(User user) {
 		ResponseDto responseDto = new ResponseDto();
+
 		responseDto.setId(user.getId());
+
 		responseDto.setEmail(user.getEmail());
+
 		responseDto.setFname(user.getUserDetails().getFname());
-		responseDto.setGender(user.getUserDetails().getGender());
+
 		responseDto.setLname(user.getUserDetails().getLname());
+
+		responseDto.setGender(user.getUserDetails().getGender());
+
 		responseDto.setPhoneno(user.getUserDetails().getPhoneno());
+
 		responseDto.setRoles(user.getRole());
+
 		return responseDto;
 	}
 
 	@Override
-	public String getLoggedInUserEmail() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (authentication != null && authentication.isAuthenticated()) {
-			Object principal = authentication.getPrincipal();
-			if (principal instanceof org.springframework.security.core.userdetails.UserDetails) {
-				return ((org.springframework.security.core.userdetails.UserDetails) principal).getUsername(); // Use
-																												// getUsername()
-																												// method
-			}
+	public List<ResponseDto> findAllUser() {
+
+		List<User> users = userRepository.findAll();
+
+		if (users.isEmpty()) {
+			System.out.println("Users list in findAllUser method of UserServiceImpl class is empty");
+			logger.error("Users list in findAllUser method of UserServiceImpl class is empty");
+			return Collections.emptyList();
 		}
-		return "Unknown User";
+
+		else {
+			logger.info("List of users found in findAllUser method of UserServiceImpl class");
+			System.out.println("list of user printing");
+
+			List<ResponseDto> list = new ArrayList<>();
+			for (User u : users) {
+				ResponseDto responseDto = createResponseDto(u);
+				System.out.println(responseDto);
+				logger.info("response entity created ");
+				list.add(responseDto);
+
+			}
+
+			return list;
+
+		}
+
 	}
 
 }
