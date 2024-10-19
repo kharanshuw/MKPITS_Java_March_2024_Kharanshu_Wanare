@@ -4,9 +4,14 @@ package com.bankapplication.dto;
 import java.util.ArrayList;
 import java.util.Set;
 
+import com.bankapplication.controller.UserController;
 import com.bankapplication.model.Role;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ResponseDto {
+
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     private int id;
     private String email;
@@ -90,6 +95,9 @@ public class ResponseDto {
 	public ArrayList getrolestring()
 	{
 		System.out.println("getrolestring from responsedto called succesfully");
+		
+		logger.info("getrolestring from responsedto called succesfully");
+		
 		ArrayList<String> arrayList = new ArrayList<>();
 		for (Role r : roles){
 			System.out.println(r);

@@ -38,11 +38,9 @@ public class UserController {
 
         logger.info("the user logged in is :" + emailString);
 
-        System.out.println("the user logged in is :" + emailString);
-
         model.addAttribute("email", emailString);
 
-        if (httpServletRequest.isUserInRole("USER") &&   httpServletRequest.isUserInRole("ADMIN") ) {
+        if (httpServletRequest.isUserInRole("USER") && httpServletRequest.isUserInRole("ADMIN")) {
 
             logger.info("multi profile home page called after successful login inside UserController");
 
@@ -63,16 +61,17 @@ public class UserController {
         } else {
 
             logger.error("User role not identified, redirecting to error page");
-            return "error/error";
+            return "redirect:/access-denied";
         }
 
     }
 
+    //this method access denied exception when user with unauthorized role try to access some page
     @GetMapping("/access-denied")
     public String accessdenied() {
-        return "error/access-denied.html";
+        logger.error("error occured redirecting to error/access-denied");
+        return "error/access-denied";
     }
-
 
 
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -84,26 +83,31 @@ public class UserController {
 
         logger.info("the user logged in is :" + emailString);
 
-        System.out.println("the user logged in is :" + emailString);
-
         ResponseDto user = userService.getLoggedInUserDetails(emailString);
 
         if (user == null) {
-            return "error/error";
-        } else {
-              if (request.isUserInRole("USER")) {
-                // Handle user profile
-                logger.info("user provile invoked");
-                model.addAttribute("user", user);
-                return "home/userhome/userprofiledetails.html";
-            } else {
-                // Redirect to error page if no valid role is found
-                logger.error("error occured while handling userprofile request");
-                return "error/error";
-            }
+            return "redirect:/error";
         }
+
+        if (request.isUserInRole("USER")) {
+            // Handle user profile
+            logger.info("user provile invoked");
+            model.addAttribute("user", user);
+            return "home/userhome/userprofiledetails";
+        } else {
+            // Redirect to error page if no valid role is found
+            logger.error("error occured while handling userprofile request");
+            return "redirect:/access-denied";
+        }
+
     }
 
+
+    @GetMapping("/error")
+    public String error() {
+        logger.error("error occured redirecting to /error ");
+        return "error/error";
+    }
 
 
 }

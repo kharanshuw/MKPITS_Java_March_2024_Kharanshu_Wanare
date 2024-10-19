@@ -1,5 +1,9 @@
 package com.bankapplication.exceptionhandler;
 
+import com.bankapplication.controller.UserController;
+import org.hibernate.tool.schema.spi.SqlScriptException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -13,11 +17,27 @@ import java.util.List;
 @ControllerAdvice
 public class MyExceptionHandler {
 
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(value = Exception.class)
-    public String exceptionHandler(Model model)
+    @ExceptionHandler(Exception.class)
+    public String exceptionHandler(Model model,Exception e)
     {
-        model.addAttribute("msg","exception occured");
-        return  "/error/error";
+        model.addAttribute("msg","An unexpected error occurred");
+        
+        logger.error("An unexpected error occurred"+e);
+        
+        
+        return "redirect:/error";
     }
-}
+    
+    @ExceptionHandler(SqlScriptException.class )
+    public String handleSqlException(Model model,Exception exception){
+        
+        logger.error("Database error occurred during user registration"+exception);
+        
+        model.addAttribute("msg","Database error occurred during user registration");
+        
+        return "redirect:/error";
+    }
+ }

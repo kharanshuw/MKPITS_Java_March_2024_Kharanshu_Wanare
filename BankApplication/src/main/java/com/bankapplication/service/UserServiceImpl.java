@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import jakarta.transaction.Transactional;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
 
@@ -51,11 +52,12 @@ public class UserServiceImpl implements UserService {
 	// Method to create a new user
 
 	@Override
+	@Transactional
 	public RequestDto createuser(RequestDto requestDto) {
 
 		// Log the incoming request data
 
-		System.out.println(requestDto.toString());
+	
 
 		logger.info(requestDto.toString());
 
@@ -70,7 +72,7 @@ public class UserServiceImpl implements UserService {
 
 		password = stringBuffer.toString();
 
-		System.out.println("new password" + password);
+		logger.info("new password"+password);
 
 		// Set user properties
 		user.setPassword(password);
@@ -96,15 +98,13 @@ public class UserServiceImpl implements UserService {
 		Role role = null;
 
 		try {
-			role = roleRepository.findByRolename("ROLE_USER");
+			role = roleRepository.findByRolename("ROLE_ADMIN");
 
 			if (role == null) {
 				// this block of code will only run if user role does not exist in database
-				System.out.println("ROLE_USER not found!");
-
 				// Log error if ROLE_USER is not found
 				logger.error("ROLE_USER not found!");
-
+				
 				return null;
 			}
 		} catch (Exception e) {
@@ -113,26 +113,16 @@ public class UserServiceImpl implements UserService {
 			logger.error("Error finding ROLE_USER: " + e.getMessage());
 			System.out.println("Error finding ROLE_USER: " + e.getMessage());
 		}
-
 		// Add the ROLE_USER to the user
 		user.addrole(role);
-
 		try {
 			// Save the user to the database
-
 			userRepository.save(user);
-
-			System.out.println("Successfully registered user in user service.");
-
 			logger.info("Successfully registered user in user service.");
 		} catch (Exception e) {
-
 			// Log any errors in saving the user
-
-			System.out.println("Error saving user: " + e.getMessage());
 			logger.error("Error saving user: " + e.getMessage());
 		}
-
 		// Return the original request DTO
 		return requestDto;
 	}
@@ -231,5 +221,23 @@ public class UserServiceImpl implements UserService {
 		}
 
 	}
+
+	@Override
+	public List<ResponseDto> findallInactiveUser() {
+		
+	List<User> list	=userRepository.findInactiveUsers();
+	List<ResponseDto> list1= new ArrayList<>();
+		for(User u: list){
+			ResponseDto responseDto = new ResponseDto();
+			responseDto.setEmail(u.getEmail());
+			responseDto.setId(u.getId());
+			list1.add(responseDto);
+		}
+		
+		return list1;
+	}
+	
+	
+	
 
 }

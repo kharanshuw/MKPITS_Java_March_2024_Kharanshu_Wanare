@@ -47,7 +47,7 @@ public class SecurityConfig {
                         // Permit all users to access these paths
                         c.requestMatchers("/login", "/logout", "/", "/register", "/processregistration").permitAll()
 
-                                .requestMatchers("/successful/**", "/successful", "/access-denied").permitAll()
+                                .requestMatchers("/successful/**", "/successful", "/access-denied","/error").permitAll()
 
 
                                 // Only allow users with user role,or admin role to access /home2
@@ -59,6 +59,10 @@ public class SecurityConfig {
 //                                .requestMatchers("/").hasRole("USER")
                                 
                                 .requestMatchers(HttpMethod.GET,"/admin/alluser").hasRole("ADMIN")
+                                
+                                .requestMatchers("/admin/pending").hasRole("ADMIN")
+                                
+                                .requestMatchers("/admin/request").hasRole("ADMIN")
 
 
                                 .anyRequest().authenticated()

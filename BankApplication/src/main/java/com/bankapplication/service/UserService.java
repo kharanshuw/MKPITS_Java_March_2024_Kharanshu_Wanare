@@ -19,4 +19,6 @@ public interface UserService {
     
     
     public List<ResponseDto> findAllUser();
+    
+    public List<ResponseDto> findallInactiveUser();
 }

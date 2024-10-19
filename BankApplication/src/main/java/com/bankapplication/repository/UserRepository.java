@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 
 
+
 @Repository
 public interface UserRepository extends JpaRepository<User,Integer> {
 
@@ -31,6 +32,9 @@ public interface UserRepository extends JpaRepository<User,Integer> {
 //    	       "JOIN u.userDetails ud " +
 //    	       "JOIN u.role r")
 //    	public List<ResponseDto> findAllUserDetails();
+    
+    @Query("SELECT u FROM User u WHERE u.isActive = false ")
+    public List<User> findInactiveUsers();
 
     
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -197,59 +197,7 @@
 
         }
 
-        /* dropdown menu */
 
-
-        .dropdown-menu {
-            position: absolute;
-            display: none;
-            height: 0;
-            right: 2rem;
-            top: 60px;
-            width: 300px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .dropdown-menu li {
-            padding: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .dropdown-menu .action-btn {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .dropdown-menu.open {
-            height: 240px;
-        }
-
-
-        /* responsive design */
-
-        @media (max-width:992px) {
-
-            .navbar .links,
-            .navbar .action-btn {
-                display: none;
-            }
-
-
-            .navbar .toggle-btn {
-                display: block;
-            }
-
-            .dropdown-menu {
-                display: block;
-            }
-        }
 
 
         .icon {
@@ -489,25 +437,7 @@
   position: relative;
   transform: scale(0.5);
         }
-
-        @media (max-width: 1024px) {
-  h1 {
-    transform: scale(0.4);
-  }
-}
-
-@media (max-width: 768px) {
-  h1 {
-    transform: scale(0.3);
-  }
-}
-
-@media (max-width: 480px) {
-  h1 {
-    transform: scale(0.2);
-  }
-}
-
+        
 .navbar .logo .logo-heading::before {
   content: "";
   display: block;
@@ -669,33 +599,18 @@ em.planet.right {
                 </div>
 
                 <ul class="links">
-                    <li><a href="#" th:href="@{/}">home</a></li>
-                    <li><a href="#" th:href="@{/login}">Login</a></li>
+                    <li><a th:href="@{/}">home</a></li>
+                    <li><a th:href="@{/login}">Login</a></li>
                     <li>
-                        <form  th:action="@{/logout}" method="post">
+                        <form th:action="@{/logout}" method="post">
                             <input type="submit" value="Logout">
                         </form>
                     </li>
-                    <li><a  th:href="@{/admin/profile}">Profile</a></li>
+                    <li><a th:href="@{/admin/profile}">Profile</a></li>
                 </ul>
-
-
-                <a href="#" class="action-btn">get started</a>
-
-
-                <div class="toggle-btn">
-                    <i class="fa-solid fa-bars"></i>
-                </div>
             </div>
 
 
-            <div class="dropdown-menu ">
-                <li><a href="#">home</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Logout</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#" class="action-btn">get started</a></li>
-            </div>
         </nav>
 
     </div>
@@ -729,11 +644,11 @@ em.planet.right {
                 <h1>BANK</h1>
             </header>
             <ul>
-                <li><a href="#" th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/}">Home</a></li>
 
-                <li><a href="#">ALL ACCOUNT</a></li>
+                <li><a th:href="@{/admin/alluser}">All Account</a></li>
 
-                <li><a href="#">Account Overview </a></li>
+                <li><a th:href="@{/admin/pending}"> Pending Request </a></li>
 
                 <li><a href="#">Transactions</a></li>
 

@@ -2,6 +2,8 @@ package com.bankapplication.controller;
 
 import com.bankapplication.dto.ResponseDto;
 import com.bankapplication.getapplicationcontext.UserServiceAppContext;
+import com.bankapplication.model.User;
+import com.bankapplication.service.AdminService;
 import com.bankapplication.service.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AdminController {
@@ -23,11 +26,14 @@ public class AdminController {
     private UserServiceImpl userService;
 
     private UserServiceAppContext userServiceAppContext;
+    
+    private AdminService adminService;
 
     @Autowired
-    public AdminController(UserServiceImpl userService, UserServiceAppContext userServiceAppContext) {
+    public AdminController(UserServiceImpl userService, UserServiceAppContext userServiceAppContext,AdminService adminService) {
         this.userService = userService;
         this.userServiceAppContext = userServiceAppContext;
+        this.adminService=adminService;
     }
 
 
@@ -69,6 +75,8 @@ public class AdminController {
     	
     	else {
     		model.addAttribute("users", responseDtos);
+
+            System.out.println("data send from /admin/alluser to alluser.html");
     		
     		logger.info("data send from /admin/alluser to alluser.html");
     		
@@ -76,15 +84,34 @@ public class AdminController {
     		
     		return "home/adminhome/allusers";
 		}
-    	
-    	
-    	
-    	
-    	
-		
 	}
     
+    @GetMapping("/admin/pending")
+    public String findInactiveUser(Model model )
+    {
+        List<ResponseDto> list= userService.findallInactiveUser();
+        
+        model.addAttribute("users",list);
+        
+        return  "home/adminhome/approve";
+    }
     
+    @GetMapping("/admin/request")
+    public String requestAction(@RequestParam String a,@RequestParam String id){
+        System.out.println("input recived "+a);
+        
+        if (a.equals("accept")){
+
+            System.out.println("accept request");
+            adminService.activateUser(a,id);
+            return "redirect:/admin/pending" ;
+        }
+        else {
+            System.out.println("reject request ");
+           return "redirect:/admin/pending" ;
+        }
+   
+    }
     
 
 

@@ -33,7 +33,10 @@ public class RegistrationController {
 
     @GetMapping("/register")
     public String registerUser(Model model) {
-        System.out.println("registration page called ");
+        
+        
+        logger.info("registration page called ");
+        
         RequestDto requestDto = new RequestDto();
         model.addAttribute("requestDto", requestDto);
         return "registration/registeration";
@@ -41,6 +44,7 @@ public class RegistrationController {
 
     @GetMapping("/successful")
     public String successfullRegisterd() {
+        
         return "successful/index";
     }
 
@@ -48,9 +52,8 @@ public class RegistrationController {
     public String registerUser(@Valid @ModelAttribute("requestDto") RequestDto requestDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
 
-            logger.info("error found in user registration ");
-            logger.info(requestDto.toString());
-            System.out.println(requestDto);
+            logger.error("error found in user registration below is requestdto recived from form ");
+            logger.error(requestDto.toString());
 
             bindingResult.getFieldErrors().forEach(error -> {
                 System.out.println(
@@ -59,10 +62,13 @@ public class RegistrationController {
             });
 
 
+            
             return "registration/registeration"; // return the registration page if there are errors
         }
 
         System.out.println("register processing started successully");
+        
+        
 
         System.out.println(requestDto);
 
