@@ -4,6 +4,7 @@ package com.bankapplication.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -39,7 +40,16 @@ public class LoginController {
         logger.info("home page called inside login controller");
         return "home/home";
     }
-    
-    
+
+
+    @ExceptionHandler(Exception.class)
+    public String handleException()
+    {
+        logger.error("exception occured");
+        return  "error/error";
+    }
+
+
+
 
 }

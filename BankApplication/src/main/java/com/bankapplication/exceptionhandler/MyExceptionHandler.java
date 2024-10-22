@@ -19,7 +19,7 @@ public class MyExceptionHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    
     @ExceptionHandler(Exception.class)
     public String exceptionHandler(Model model,Exception e)
     {
@@ -27,17 +27,7 @@ public class MyExceptionHandler {
         
         logger.error("An unexpected error occurred"+e);
         
-        
         return "redirect:/error";
     }
     
-    @ExceptionHandler(SqlScriptException.class )
-    public String handleSqlException(Model model,Exception exception){
-        
-        logger.error("Database error occurred during user registration"+exception);
-        
-        model.addAttribute("msg","Database error occurred during user registration");
-        
-        return "redirect:/error";
-    }
  }

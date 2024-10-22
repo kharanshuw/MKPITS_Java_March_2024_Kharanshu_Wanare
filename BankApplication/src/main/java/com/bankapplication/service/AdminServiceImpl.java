@@ -17,18 +17,17 @@ import java.util.List;
 import java.util.Optional;
 
 /**
-* AdminServiceImpl class handles all Admin related services
-* 
-* */
+ * AdminServiceImpl class handles all Admin related services
+ */
 @Service
 public class AdminServiceImpl implements AdminService {
     private static final Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
 
     //this is userrepositry object
     private UserRepository userRepository;
-//userdetailsrepository object
+    //userdetailsrepository object
     private UserDetailsRepository userDetailsRepository;
-//rolerepository object
+    //rolerepository object
     private RoleRepository roleRepository;
 
     @Autowired
@@ -44,7 +43,7 @@ public class AdminServiceImpl implements AdminService {
      * Activates a user by setting their active status to true.
      *
      * @param action the action to be performed (not used in this method)
-     * @param id the ID of the user to be activated
+     * @param id     the ID of the user to be activated
      * @return a message indicating the result of the operation
      */
     public String activateUser(String action, String id) {
@@ -102,7 +101,7 @@ public class AdminServiceImpl implements AdminService {
     public List<String> findRole(String idString) {
         int id = Integer.valueOf(idString);
         List<String> list = null;
-        System.out.println("id recived from user" + id);
+        System.out.println("id recived in parameter is :" + id);
 
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
@@ -179,30 +178,29 @@ public class AdminServiceImpl implements AdminService {
      * Adds a role to a user.
      *
      * @param rolename the name of the role to be added
-     * @param userid the ID of the user
+     * @param userid   the ID of the user
      * @return a message indicating the result of the operation
      */
     public String addRoleToUser(String rolename, String userid) {
         int id = Integer.valueOf(userid);
         Optional<User> userOptional = userRepository.findById(id);
-		if (userOptional.isPresent()) {
+        if (userOptional.isPresent()) {
 
-			User user = userOptional.get();
-			logger.info("user found " + user.toString());
-			
+            User user = userOptional.get();
+            logger.info("user found " + user.toString());
+
             Role role = null;
-            
-            try{
+
+            try {
                 // Retrieve role by name
-                role= roleRepository.findByRolename(rolename);
+                role = roleRepository.findByRolename(rolename);
 
                 // Check if role exists
 
-                if (role==null)
-                {
+                if (role == null) {
                     // this block of code will only run if  role does not exist in database
                     // Log error if ROLE_USER is not found
-                    logger.error(rolename+" not found! in addroleuser method of adminserviceimpl class");
+                    logger.error(rolename + " not found! in addroleuser method of adminserviceimpl class");
 
                     return "role not found in user ";
                 }
@@ -214,24 +212,68 @@ public class AdminServiceImpl implements AdminService {
 
                 return "Role added successfully";
 
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 logger.error("Error finding given role in database");
                 logger.error(e.toString());
 
 
             }
-			
-			// Ensure the user is saved after updating the status
-			
-			
 
-		} else {
-			logger.error("User with given ID is not available to add role in AdminServiceImpl class addRoleToUser method  ");
-		    return  "user not found";	
-		}
-        return  "user not found";
+            // Ensure the user is saved after updating the status
+
+
+        } else {
+            logger.error("User with given ID is not available to add role in AdminServiceImpl class addRoleToUser method  ");
+            return "user not found";
+        }
+        return "user not found";
     }
-    
+
+    public String removeRoleFromUser(String rolename, String userid) {
+        int id = Integer.valueOf(userid);
+
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (userOptional.isPresent()) {
+
+            User user = userOptional.get();
+
+            logger.info("user found inside removeRoleFromUser from adminserviceimpl class " + user.toString());
+
+            Role role = null;
+
+            try {
+                // Retrieve role by name from database 
+                role = roleRepository.findByRolename(rolename);
+
+                // Check if returned role is null 
+                if (role == null) {
+                    // this block of code will only run if  role does not exist in database
+                    // Log error if ROLE_USER is not found
+                    logger.error(rolename + " not found! in removerole method of adminserviceimpl class");
+
+                    return "role not found in user ";
+                }
+                // Add role to user and save
+// Ensure the user is saved after updating the status
+                user.removeRole(role);
+                userRepository.save(user);
+                logger.info("Role removed successfully in AdminServiceImpl class removeRoleFromUser method");
+
+                return "Role removed successfully";
+
+            } catch (Exception e) {
+                logger.error("Error finding given role in database");
+                logger.error(e.toString());
+
+
+            }
+
+
+        } else {
+            logger.error("User with given ID is not available to add role in AdminServiceImpl class removeRoleFromUser method  ");
+            return "user not found";
+        }
+        return "user not found";
+    }
 }

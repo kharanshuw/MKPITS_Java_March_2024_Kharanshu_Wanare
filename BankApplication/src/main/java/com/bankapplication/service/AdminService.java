@@ -15,4 +15,6 @@ public interface AdminService {
     public List<String> findUnassignedRoles(String userid);
 
     public String addRoleToUser(String rolename, String userid);
+
+    public String removeRoleFromUser(String rolename, String userid);
 }

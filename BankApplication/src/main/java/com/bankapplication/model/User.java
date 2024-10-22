@@ -1,11 +1,14 @@
 package com.bankapplication.model;
 
 
+import com.bankapplication.service.AdminServiceImpl;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -15,6 +18,10 @@ import java.util.Set;
 @Table(name = "users")
 @Entity
 public class User {
+
+    private static final Logger logger = LoggerFactory.getLogger(User.class);
+    
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -136,6 +143,41 @@ public class User {
 
             //add role object in this.role
             this.role.add(roleobj);
+        }
+    }
+
+
+    /**
+     * Removes a role from the user's set of roles.
+     *
+     * @param roleobj the role to be removed
+     */
+    public void removeRole(Role roleobj)
+    {
+        // Check if the role object passed as parameter is null
+        if (roleobj == null)
+        {
+            logger.error("role object passes as parameter is null");
+            return;
+        }
+
+        // Check if the role set is not null
+        if (this.role != null)
+        {
+            // Attempt to remove the role from the set
+            if (this.role.remove(roleobj))
+            {
+                logger.info("role removed successfully"+roleobj.toString());
+                
+            }
+            else {
+                // Log a warning if the role was not found in the set
+                logger.warn("role not found to remove in user class removerole method " + roleobj.toString());
+            }
+        }
+        else {
+            // Log an error if the role set is null
+            logger.error("role set is null cannot remove role");
         }
     }
 }

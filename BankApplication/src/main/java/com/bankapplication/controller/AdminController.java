@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -44,7 +45,7 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-
+ 
     /**
      * Handles the request to display the admin profile data.
      *
@@ -52,7 +53,6 @@ public class AdminController {
      * @param model   the model to pass attributes to the view
      * @return the path to the admin profile page template
      */
-
     @GetMapping("/admin/profile")
     public String adminProfileData(HttpServletRequest request, Model model) {
         logger.info("admin profile method from admin controller called");
@@ -81,7 +81,6 @@ public class AdminController {
      * @param model the model to pass attributes to the view
      * @return the path to the all users page template if users are found, otherwise returns an error page
      */
-
     @GetMapping("/admin/alluser")
     public String getAllUser(Model model) {
 
@@ -111,7 +110,6 @@ public class AdminController {
      * @param model the model to pass attributes to the view
      * @return the path to the approve page template
      */
-
     @GetMapping("/admin/pending")
     public String findInactiveUser(Model model) {
 
@@ -133,7 +131,6 @@ public class AdminController {
      * @param id the ID of the user
      * @return a redirect to the pending page
      */
-
     @GetMapping("/admin/request")
     public String requestAction(@RequestParam String a, @RequestParam String id) {
 
@@ -161,7 +158,6 @@ public class AdminController {
      * @param model the model to pass attributes to the view
      * @return the path to the role management page template if users are found, otherwise returns an error page
      */
-
     @GetMapping("/admin/rolemanagement")
     public String manageRole(Model model) {
         logger.info("/admin/rolemanagement from admin controller  called successfully");
@@ -225,17 +221,33 @@ public class AdminController {
     }
 
 
-    /**
-     * Handles the request to navigate to the remove role page.
-     *
-     * @return the path to the remove role page template
-     */
     @GetMapping("/admin/removerolepage")
-    public String removeRolepage() {
+    public String removeRolepage(@RequestParam String a, @RequestParam String id, Model model) {
         logger.info(" /admin/removerolepage from admin controller  called successfully");
-        // Return the path to the remove role page template
+        
+        logger.info("recived action , id is :"+a+" "+id);
 
-        return "home/adminhome/removerol";
+        System.out.println("recived action , id is :"+a+" "+id);
+
+        if (a.equals("remove")) {
+            logger.info("remove request recived at /admin/removepage in admincontroller ");
+            // Retrieve the current roles of the user
+
+            List<String> roles = adminService.findRole(id);
+            model.addAttribute("roles", roles);
+
+            model.addAttribute("uid", id);
+
+
+            return  "home/adminhome/removerole";
+
+
+        } else {
+            logger.info("no change in role list of user ");
+            return "redirect:/admin/getrolelist";
+        }
+
+       
     }
 
 
@@ -247,8 +259,6 @@ public class AdminController {
      * @param rolename the name of the role to add
      * @return a redirect to the role management page
      */
-
-
     @GetMapping("/admin/addrole")
     public String addRole(@RequestParam String msg, @RequestParam String userid, @RequestParam String rolename) {
         logger.info("msg userid and rolename recived from addrole.html in addrole method of admincontroller is " + msg.toString()
@@ -263,4 +273,26 @@ public class AdminController {
 
         return "redirect:/admin/rolemanagement";
     }
+
+
+    @GetMapping("/admin/removerole")
+    public String removeRole(@RequestParam String msg, @RequestParam String userid, @RequestParam String rolename) {
+        logger.info("msg userid and rolename recived from addrole.html in addrole method of admincontroller is " + msg.toString()
+                + " " + userid.toString() + " " + rolename.toString());
+
+        // Call the service method to remove the role to the user
+        
+        String response=adminService.removeRoleFromUser(rolename,userid);
+
+        System.out.println("response recived from adminService.removeRoleFromUser(rolename,userid) is : "+response.toString());
+        return "redirect:/admin/rolemanagement";
+    }
+
+@ExceptionHandler(Exception.class)
+    public String handleException()
+    {
+        logger.error("exception occured");
+        return  "error/error";
+    }
+
 }

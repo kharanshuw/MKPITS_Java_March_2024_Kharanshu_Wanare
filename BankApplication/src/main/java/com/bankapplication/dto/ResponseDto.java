@@ -93,14 +93,12 @@ public class ResponseDto {
 
 	
 	public ArrayList<String> getrolestring()
-	{
-		System.out.println("getrolestring from responsedto called succesfully");
-		
+	{		
 		logger.info("getrolestring from responsedto called succesfully");
 		
 		ArrayList<String> arrayList = new ArrayList<>();
 		for (Role r : roles){
-			System.out.println(r);
+			System.out.println(r.toString());
 			arrayList.add(r.getRolename());
 		}
 		return arrayList;
