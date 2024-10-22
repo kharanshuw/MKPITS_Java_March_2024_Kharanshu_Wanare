@@ -19,7 +19,16 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true , securedEnabled = true,jsr250Enabled = true)
-public class SecurityConfig {
+public class 
+
+
+
+
+
+
+
+
+SecurityConfig {
 
     // Bean to manage user details using JDBC
     @Bean
@@ -63,8 +72,15 @@ public class SecurityConfig {
                                 .requestMatchers("/admin/pending").hasRole("ADMIN")
                                 
                                 .requestMatchers("/admin/request").hasRole("ADMIN")
+                                
+                                .requestMatchers(HttpMethod.GET,"/admin/rolemanagement").hasRole("ADMIN")
 
+                                .requestMatchers(HttpMethod.GET,"/admin/addrolepage").hasRole("ADMIN")
 
+                                .requestMatchers(HttpMethod.GET,"/admin/removerolepage").hasRole("ADMIN")
+                                
+                                .requestMatchers(HttpMethod.GET,"/admin/addrole").hasRole("ADMIN")
+                                
                                 .anyRequest().authenticated()
 
                 ).formLogin(

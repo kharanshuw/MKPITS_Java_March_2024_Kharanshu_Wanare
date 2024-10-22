@@ -32,7 +32,7 @@ public class User {
     private String email;
 
     @Column(name = "enable")
-    private boolean isActive = true;
+    private boolean isActive = false;
 
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")

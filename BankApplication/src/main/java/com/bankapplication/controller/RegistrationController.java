@@ -31,6 +31,13 @@ public class RegistrationController {
         this.userServiceImpl = userServiceImpl;
     }
 
+    /**
+     * Handles GET requests to the /register endpoint.
+     * Logs the access and adds a new RequestDto object to the model.
+     *
+     * @param model the model to which the RequestDto object is added
+     * @return the name of the registration view
+     */
     @GetMapping("/register")
     public String registerUser(Model model) {
         
@@ -41,18 +48,38 @@ public class RegistrationController {
         model.addAttribute("requestDto", requestDto);
         return "registration/registeration";
     }
-
+    
+    
+    
+    
+    /**
+     * Handles GET requests to the /successful endpoint.
+     *
+     * @return the name of the success view
+     */
     @GetMapping("/successful")
     public String successfullRegisterd() {
         
         return "successful/index";
     }
 
+
+
+
+    /**
+     * Handles POST requests to the /processregistration endpoint.
+     * Validates the RequestDto object and processes the user registration.
+     *
+     * @param requestDto the RequestDto object containing user registration data
+     * @param bindingResult the result of the validation and binding
+     * @return the name of the view to be returned
+     */
+
     @PostMapping("/processregistration")
     public String registerUser(@Valid @ModelAttribute("requestDto") RequestDto requestDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
 
-            logger.error("error found in user registration below is requestdto recived from form ");
+            logger.error("Error found in user registration. Below is the RequestDto received from form:");
             logger.error(requestDto.toString());
 
             bindingResult.getFieldErrors().forEach(error -> {
@@ -66,11 +93,12 @@ public class RegistrationController {
             return "registration/registeration"; // return the registration page if there are errors
         }
 
-        System.out.println("register processing started successully");
+       
         
+        logger.info("register processing started successully");
         
-
-        System.out.println(requestDto);
+        logger.info(requestDto.toString());
+        // Create the user with the provided data
 
         userServiceImpl.createuser(requestDto);
 

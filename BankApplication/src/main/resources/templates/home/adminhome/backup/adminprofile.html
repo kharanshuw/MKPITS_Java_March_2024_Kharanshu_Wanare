@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
 
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Profile</title>
 
     <style>
         :root {
@@ -56,7 +56,7 @@
             background-color: var(--primary-color);
             position: relative;
             padding: 0.2rem;
-            margin-top: 2px;
+            margin-top: 6px;
             border: 1px solid var(--secondary-color);
             border-radius: 20px;
         }
@@ -100,7 +100,7 @@
             /* Change the background color */
             border: 2px solid var(--secondary-color);
             border-radius: 10px;
-            /* box-shadow: 5px 5px 0px var(--secondary-color); */
+            box-shadow: 5px 5px 0px var(--secondary-color);
             transition: all 0.3s ease;
             cursor: pointer;
 
@@ -134,7 +134,7 @@
             /* Change the background color */
             border: 2px solid var(--secondary-color);
             border-radius: 10px;
-            /* box-shadow: 5px 5px 0px var(--secondary-color); */
+            box-shadow: 5px 5px 0px var(--secondary-color);
             transition: all 0.3s ease;
             cursor: pointer;
 
@@ -198,7 +198,59 @@
 
         }
 
+        /* dropdown menu */
 
+
+        .dropdown-menu {
+            position: absolute;
+            display: none;
+            height: 0;
+            right: 2rem;
+            top: 60px;
+            width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .dropdown-menu li {
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dropdown-menu .action-btn {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .dropdown-menu.open {
+            height: 240px;
+        }
+
+
+        /* responsive design */
+
+        @media (max-width:992px) {
+
+            .navbar .links,
+            .navbar .action-btn {
+                display: none;
+            }
+
+
+            .navbar .toggle-btn {
+                display: block;
+            }
+
+            .dropdown-menu {
+                display: block;
+            }
+        }
 
 
         .icon {
@@ -334,7 +386,7 @@
             transition: all 0.5s ease;
         }
 
-        /* 
+        /*
         #check:checked~.sidebar {
             left: 0;
         }
@@ -362,8 +414,20 @@
             margin-left: 260px;
         }
 
+        .account-summary,
+        .quick-actions {
+            background-color: var(--light-text-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-
+        .account-summary h2,
+        .quick-actions h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
 
         .balance .amount {
             font-size: 24px;
@@ -426,8 +490,26 @@
   position: relative;
   transform: scale(0.5);
         }
-        
-.navbar .logo .logo-heading::before {
+
+        @media (max-width: 1024px) {
+  h1 {
+    transform: scale(0.4);
+  }
+  }
+
+  @media (max-width: 768px) {
+  h1 {
+    transform: scale(0.3);
+  }
+  }
+
+  @media (max-width: 480px) {
+  h1 {
+    transform: scale(0.2);
+  }
+  }
+
+  .navbar .logo .logo-heading::before {
   content: "";
   display: block;
   position: absolute;
@@ -438,10 +520,10 @@
   border-radius: 50%;
   border: 1.3vmin solid currentColor;
   box-sizing: border-box;
-}
+  }
 
 
-.navbar .logo .logo-heading em{
+  .navbar .logo .logo-heading em{
   font-family: 'Josefin Sans', sans-serif;
   color: currentColor;
   font-size: 15vmin;
@@ -450,21 +532,21 @@
   width: 20vmin;
   text-align: center;
   transition: color 0.3s, font-size 0.3s;
-}
+  }
 
 
-em:hover {
+  em:hover {
   color: #ff0000;
   font-size: 20vmin;
-}
+  }
 
-em.planet {
+  em.planet {
   -webkit-animation: planet-rotate 10s linear infinite;
   animation: planet-rotate 10s linear infinite;
   position: relative;
-}
+  }
 
-em.planet::before {
+  em.planet::before {
   content: "";
   position: absolute;
   top: -.5vmin;
@@ -475,48 +557,48 @@ em.planet::before {
   border-radius: 50%;
   background: black;
   box-shadow: 0 0 10vmin rgba(255, 255, 255, 0.5);
-}
-em.planet.left {
+  }
+  em.planet.left {
   -webkit-transform-origin: 40vmin 5vmin;
   transform-origin: 40vmin 5vmin;
-}
+  }
 
-em.planet.right {
+  em.planet.right {
   -webkit-transform-origin: -20vmin 5vmin;
   transform-origin: -20vmin 5vmin;
-}
+  }
 
-@-webkit-keyframes planet-rotate {
+  @-webkit-keyframes planet-rotate {
   to {
     -webkit-transform: rotate(1turn);
   }
-}
+  }
 
-@keyframes planet-rotate {
+  @keyframes planet-rotate {
   to {
     transform: rotate(1turn);
   }
-}
+  }
 
-.logo-heading {
+  .logo-heading {
     font-size: 24px; /* Adjust the font size */
     width: 200px; /* Adjust the width */
     height: auto; /* Keep the height as auto */
     display: flex; /* Use flexbox to center the logo elements */
     align-items: center; /* Center the logo elements vertically */
     justify-content: center; /* Center the logo elements horizontally */
-}
+  }
 
-.logo-heading em {
+  .logo-heading em {
     font-size: 1.5em; /* Adjust the font size of the logo elements */
-}
+  }
 
-.logo-heading em.planet {
+  .logo-heading em.planet {
     font-size: 1.2em; /* Adjust the font size of the planet elements */
-}
+  }
 
 
-.logo-heading {
+  .logo-heading {
     font-size: 24px; /* Adjust the font size as needed */
     width: 200px; /* Adjust the width as needed */
     height: auto; /* Keep the height as auto */
@@ -531,310 +613,223 @@ em.planet.right {
     border-radius: 8px; /* Add a border radius if needed */
     padding: 10px; /* Add some padding if needed */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a box shadow if needed */
-}
+  }
 
-.logo-heading em {
+  .logo-heading em {
     font-size: 1.5em; /* Adjust the font size of the logo elements as needed */
     color: #000; /* Adjust the color as needed */
     transition: color 0.3s; /* Add a transition effect for hover */
-}
+  }
 
-.logo-heading em:hover {
+  .logo-heading em:hover {
     color: #ff0000; /* Change the color on hover */
-}
+  }
 
-.logo-heading em.planet {
+  .logo-heading em.planet {
     font-size: 1.2em; /* Adjust the font size of the planet elements as needed */
-}
+  }
 
-    </style>
-
-
-    <style>
-        table {
-            position: relative;
-            width: 100%;
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: center;
-            height: 10px;
-            color: #000;
-        }
-
-        thead {
-            background-color: var(--primary-color);
-        }
-
-        tbody tr:hover {
-            background-color: var(--accent-color);
-        }
-
-
-        .button-6 {
-            align-items: center;
-            background-color: rgb(14, 221, 14);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: .25rem;
-            box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-            box-sizing: border-box;
-            color: rgba(0, 0, 0, 0.85);
-            cursor: pointer;
-            display: inline-flex;
-            font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            justify-content: center;
-            margin: 0 5px;
-            min-height: 3rem;
-            padding: 5px;
-            position: relative;
-            text-decoration: none;
-            transition: all 250ms;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            vertical-align: baseline;
-            width: auto;
-        }
-
-        .button-6:hover,
-        .button-6:focus {
-            border-color: rgba(0, 0, 0, 0.15);
-            box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-            color: rgba(0, 0, 0, 0.65);
-        }
-
-        .button-6:hover {
-            transform: translateY(-1px);
-        }
-
-        .button-6:active {
-            background-color: #F0F0F1;
-            border-color: rgba(0, 0, 0, 0.15);
-            box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-            color: rgba(0, 0, 0, 0.65);
-            transform: translateY(0);
-        }
-
-
-        .button-5 {
-            align-items: center;
-            background-clip: padding-box;
-            background-color: #fa6400;
-            border: 1px solid transparent;
-            border-radius: .25rem;
-            box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-            box-sizing: border-box;
-            color: #fff;
-            cursor: pointer;
-            display: inline-flex;
-            font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            justify-content: center;
-            line-height: 1.25;
-            margin: 0;
-            min-height: 3rem;
-            padding: 10px;
-            position: relative;
-            text-decoration: none;
-            transition: all 250ms;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            vertical-align: baseline;
-            width: auto;
-        }
-
-        .button-5:hover,
-        .button-5:focus {
-            background-color: #fb8332;
-            box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-        }
-
-        .button-5:hover {
-            transform: translateY(-1px);
-        }
-
-        .button-5:active {
-            background-color: #c85000;
-            box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
-            transform: translateY(0);
-        }
     </style>
 
     <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
 
 </head>
-
 <body>
 
 
-    <!-- navbar start -->
+<!-- navbar start -->
 
-    <div>
-        <nav>
+<div>
+    <nav>
 
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportContent" aria-controls="navbarSupportContent" aria-expanded="false"
+                aria-label="Toggle navigation">
 
-            <div class="navbar">
+            <span class="navbar-toggler-icon"></span>
 
-                <div class="logo">
-                    <h1 class="logo-heading">
-                        <em>B</em>
-                        <em>a</em>
-                        <em>n</em>
-                        <em>k</em>
-                        <em>S</em>
-                        <em>p</em>
-                        <em>h</em>
-                        <em>e</em>
-                        <em>r</em>
-                        <em>e</em>
-                    </h1>
+        </button>
+        <div class="navbar">
 
+            <div class="logo">
+                <h1 class="logo-heading">
+                    <em>B</em>
+                    <em>a</em>
+                    <em>n</em>
+                    <em>k</em>
+                    <em>S</em>
+                    <em>p</em>
+                    <em>h</em>
+                    <em>e</em>
+                    <em>r</em>
+                    <em>e</em>
+                </h1>
 
-                </div>
-
-                <ul class="links">
-                    <li><a th:href="@{/}">home</a></li>
-                    <li><a th:href="@{/login}">Login</a></li>
-                    <li>
-                        <form th:action="@{/logout}" method="post">
-                            <input type="submit" value="Logout">
-                        </form>
-                    </li>
-                    <li><a th:href="@{/admin/profile}">Profile</a></li>
-                </ul>
-            </div>
-
-
-        </nav>
-
-    </div>
-
-    <!-- navbar end -->
-
-
-    <div class="mysidebar">
-        <input type="checkbox" id="check">
-        <label for="check" class="mylabel" style="z-index: 3;">
-            <div class="icon1" id="btn">
-
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#ffffff">
-                    <path
-                        d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z" />
-                </svg>
 
             </div>
 
-            <div class="icon2" id="cancel">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#000000">
-                    <path
-                        d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
-                </svg>
-            </div>
-        </label>
-
-
-        <div class="sidebar">
-            <header>
-                <h1>BANK</h1>
-            </header>
-            <ul>
-                <li><a th:href="@{/}">Home</a></li>
-
-                <li><a th:href="@{/admin/alluser}">All Account</a></li>
-
-                <li><a th:href="@{/admin/pending}"> Pending Request </a></li>
-
-                <li><a href="#">Transactions</a></li>
-
-                <li><a href="#">Settings</a></li>
-
+            <ul class="links">
+                <li><a href="#" th:href="@{/}">home</a></li>
+                <li><a href="#" th:href="@{/login}">Login</a></li>
                 <li>
-
-                    <form action="#" th:action="@{/logout}" method="post" class="logout-form-sidebar">
+                    <form action="#" th:action="@{/logout}" method="post">
                         <input type="submit" value="Logout">
                     </form>
                 </li>
-
+                <li><a th:href="@{/admin/profile}">Profile</a></li>
             </ul>
+
+
+            <a href="#" class="action-btn">get started</a>
+
+
+            <div class="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+
+
+    
+    </nav>
+
+</div>
+
+<!-- navbar end -->
+
+
+<div class="mysidebar">
+    <input type="checkbox" id="check">
+    <label for="check" class="mylabel" style="z-index: 3;">
+        <div class="icon1" id="btn">
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#ffffff">
+                <path
+                        d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z"/>
+            </svg>
 
         </div>
 
+        <div class="icon2" id="cancel">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#000000">
+                <path
+                        d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
+            </svg>
+        </div>
+    </label>
+
+
+    <div class="sidebar">
+        <header>
+            <h1>BANK</h1>
+        </header>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+
+            <li><a th:href="@{/admin/alluser}">ALL ACCOUNT</a></li>
+
+            <li><a href="#">Account Overview </a></li>
+
+            <li><a href="#">Transactions</a></li>
+
+            <li><a href="#">Settings</a></li>
+
+            <li>
+
+                <form action="#" th:action="@{/logout}" method="post" class="logout-form-sidebar">
+                    <input type="submit" value="Logout">
+                </form>
+            </li>
+
+        </ul>
 
     </div>
 
 
-    <!-- content start -->
-
-    <main class="dashboard-content">
-        <section class="account-summary">
-            <h1>Pending Request</h1>
+</div>
 
 
-            <table>
-                <thead>
-                    <tr style="font-size: 18px;">
-                        <th>ID</th>
-                        <th>Email</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
+<!-- content start -->
 
-                <tbody>
-                    <tr th:each="u:${users}">
-                        <td th:text="${u.getId()}"></td>
-                        <td th:text="${u.getEmail()}"></td>
-                        <td class="action">
-
-                            <!-- Approve link -->
-                            <a th:href="@{/admin/request(a=${'accept'} , id=${u.id})}"
-                                style="color: black; position: relative;" class="button-6">approve</a>
-                            <!-- Reject link -->
-                            <a th:href="@{/admin/request(a=${'reject'} , id=${u.id})}"
-                                style="color: black; position: relative;" class="button-5">reject</a>
-                        </td>
-                    </tr>
-                </tbody>
-
-            </table>
-        </section>
-    </main>
-
-    <!-- content end -->
-
-    <!-- footer start -->
-
-    <footer>
-        <p>&copy; 2024 SphereBank. All rights reserved.</p>
-        <nav>
-            <a href="#">Privacy Policy</a> |
-            <a href="#">Terms of Service</a> |
-            <a href="#">Contact Us</a>
-        </nav>
-    </footer>
-
-    <!-- footer end -->
+<main class="dashboard-content">
+    <section class="account-summary">
 
 
-    <!-- script -->
+        <h2>Admin Profile Information</h2>
 
-    <script>
-        const sidebar = document.querySelector('.sidebar');
-        const icon1 = document.querySelector('#btn');
+        <p>
+              <h1>user id:</h1>
+                 <strong th:text="${user.getId()}"></strong>
+        </p>
+        <p>
+        <h1>user email:</h1>
 
-        icon1.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-        });
-    </script>
+        <strong th:text="${user.getEmail()}"></strong>
+        </p>
+
+
+        <p>
+
+        <h1>user name:</h1>
+        <strong th:text="${user.getFname()}"></strong>
+        </p>
+        <p>
+
+        <h1>user last name:</h1>
+        <strong th:text="${user.getLname()}"></strong>
+
+        </p>
+
+        <p>
+        <h1>user gender:</h1>
+        <strong th:text="${user.getGender()}">male</strong>
+        </p>
+
+        <p>
+        <h1>List of roles</h1>
+        <ul>
+            <li th:each="u : ${user.getrolestring()}" th:text="${u}"></li>
+        </ul>
+        </p>
+
+        <p>
+        <h1>user phone no:</h1>
+
+        <strong th:text="${user.getPhoneno()}"></strong>
+
+        </p>
+
+
+    </section>
+</main>
+
+<!-- content end -->
+
+<!-- footer start -->
+
+
+<footer>
+    <p>© 2023 BANKSPHERE. All rights reserved.</p>
+    <nav>
+        <a href="#">Privacy Policy</a> |
+        <a href="#">Terms of Service</a> |
+        <a href="#">Contact Us</a>
+    </nav>
+</footer>
+
+<!-- footer end -->
+
+
+<!-- script -->
+
+<script>
+    const sidebar = document.querySelector('.sidebar');
+    const icon1 = document.querySelector('#btn');
+
+    icon1.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+    });
+</script>
+
+
 </body>
-
-
 </html>

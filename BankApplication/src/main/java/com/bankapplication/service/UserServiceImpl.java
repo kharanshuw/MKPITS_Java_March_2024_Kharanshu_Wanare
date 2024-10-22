@@ -16,7 +16,6 @@ import com.bankapplication.repository.*;
 
 import com.bankapplication.model.UserDetails;
 
-import com.bankapplication.controller.UserController;
 
 import com.bankapplication.dto.*;
 
@@ -28,7 +27,7 @@ import com.bankapplication.model.*;
 public class UserServiceImpl implements UserService {
 
 	// Logger for this class
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	// Repositories for database operations
 
@@ -56,9 +55,6 @@ public class UserServiceImpl implements UserService {
 	public RequestDto createuser(RequestDto requestDto) {
 
 		// Log the incoming request data
-
-	
-
 		logger.info(requestDto.toString());
 
 		// Create a new User entity
@@ -98,7 +94,7 @@ public class UserServiceImpl implements UserService {
 		Role role = null;
 
 		try {
-			role = roleRepository.findByRolename("ROLE_ADMIN");
+			role = roleRepository.findByRolename("ROLE_USER");
 
 			if (role == null) {
 				// this block of code will only run if user role does not exist in database
@@ -109,9 +105,9 @@ public class UserServiceImpl implements UserService {
 			}
 		} catch (Exception e) {
 			// Log any errors in finding the role
-			System.out.println(e);
+			
 			logger.error("Error finding ROLE_USER: " + e.getMessage());
-			System.out.println("Error finding ROLE_USER: " + e.getMessage());
+			
 		}
 		// Add the ROLE_USER to the user
 		user.addrole(role);
@@ -192,29 +188,50 @@ public class UserServiceImpl implements UserService {
 		return responseDto;
 	}
 
+	
+	/**
+	 * Method to find all users and convert them into ResponseDto objects.
+	 * 
+	 * @return a list of ResponseDto objects representing the users.
+	 */
+
 	@Override
 	public List<ResponseDto> findAllUser() {
+	    // Retrieve all users from the repository
 
 		List<User> users = userRepository.findAll();
 
+	    // Check if the users list is empty
+
 		if (users.isEmpty()) {
-			System.out.println("Users list in findAllUser method of UserServiceImpl class is empty");
-			logger.error("Users list in findAllUser method of UserServiceImpl class is empty");
-			return Collections.emptyList();
+	        // Log an error if no users are found
+	        logger.error("Users list in findAllUser method of UserServiceImpl class is empty");
+	        return Collections.emptyList();
+
 		}
 
 		else {
-			logger.info("List of users found in findAllUser method of UserServiceImpl class");
-			System.out.println("list of user printing");
+	        // Log information indicating users were found
+	        logger.info("List of users found in findAllUser method of UserServiceImpl class");
+	        // Create a list to hold the ResponseDto objects
 
 			List<ResponseDto> list = new ArrayList<>();
+	        // Iterate through each user and convert to ResponseDto
+
 			for (User u : users) {
+				
+	            // Create a ResponseDto from the User object
+
 				ResponseDto responseDto = createResponseDto(u);
-				System.out.println(responseDto);
+	            // Log information indicating a response entity was created
+
 				logger.info("response entity created ");
+	            // Add the ResponseDto to the list
+
 				list.add(responseDto);
 
 			}
+	        // Return the list of ResponseDto objects
 
 			return list;
 

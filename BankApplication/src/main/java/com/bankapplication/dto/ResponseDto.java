@@ -92,7 +92,7 @@ public class ResponseDto {
 	
 
 	
-	public ArrayList getrolestring()
+	public ArrayList<String> getrolestring()
 	{
 		System.out.println("getrolestring from responsedto called succesfully");
 		

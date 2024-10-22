@@ -2,7 +2,7 @@ package com.bankapplication.controller;
 
 import com.bankapplication.dto.ResponseDto;
 import com.bankapplication.getapplicationcontext.UserServiceAppContext;
-import com.bankapplication.model.User;
+
 import com.bankapplication.service.AdminService;
 import com.bankapplication.service.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,101 +18,249 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * AdminController handles all admin-related requests and actions.
+ */
 @Controller
 public class AdminController {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    // This sets up the logger for the AdminController class.
+    private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
+// This is a private field for the UserServiceImpl, which likely handles user-related operations.
 
     private UserServiceImpl userService;
+// This is a private field for UserServiceAppContext, which is a context class managing the session or user context.
 
     private UserServiceAppContext userServiceAppContext;
-    
+// This is a private field for AdminService, which likely handles administrative operations.
+
     private AdminService adminService;
 
     @Autowired
-    public AdminController(UserServiceImpl userService, UserServiceAppContext userServiceAppContext,AdminService adminService) {
+    public AdminController(UserServiceImpl userService, UserServiceAppContext userServiceAppContext,
+                           AdminService adminService) {
         this.userService = userService;
         this.userServiceAppContext = userServiceAppContext;
-        this.adminService=adminService;
+        this.adminService = adminService;
     }
 
+
+    /**
+     * Handles the request to display the admin profile data.
+     *
+     * @param request the HTTP servlet request
+     * @param model   the model to pass attributes to the view
+     * @return the path to the admin profile page template
+     */
 
     @GetMapping("/admin/profile")
     public String adminProfileData(HttpServletRequest request, Model model) {
         logger.info("admin profile method from admin controller called");
+        // Retrieve the email of the logged-in user
 
         String email = userServiceAppContext.getLoggedInUserEmail();
 
         logger.info("The user logged in is: {} inside /admin/profile", email);
-
+        // Retrieve the details of the logged-in user
 
         ResponseDto user = userService.getLoggedInUserDetails(email);
 
-        logger.info("user  received at /admin/profile is"+user.toString());
+        logger.info("user  received at /admin/profile is" + user.toString());
 
-        System.out.println("user recived at /admin/profile is"+user.toString());
+        // Add the user details to the model
 
-        logger.info("Admin profile invoked");
         model.addAttribute("user", user);
         return "home/adminhome/adminprofile";
 
-
     }
-    
-    
+
+
+    /**
+     * This method handles the request to get all users.
+     *
+     * @param model the model to pass attributes to the view
+     * @return the path to the all users page template if users are found, otherwise returns an error page
+     */
+
     @GetMapping("/admin/alluser")
     public String getAllUser(Model model) {
-    	
-    	System.out.println("getalluser method from admincontroller class called successfully");
-    	
-    	List<ResponseDto> responseDtos = userService.findAllUser();
-    	
-    	if (responseDtos.isEmpty()) {
-			System.out.println("responsdto list is empty in getalluser method of class admincontroller ");
-			logger.error("responsdto list is empty in getalluser method of class admincontroller ");
-			return "error/error.html";
-		}
-    	
-    	else {
-    		model.addAttribute("users", responseDtos);
 
-            System.out.println("data send from /admin/alluser to alluser.html");
-    		
-    		logger.info("data send from /admin/alluser to alluser.html");
-    		
-    		
-    		
-    		return "home/adminhome/allusers";
-		}
-	}
-    
+        logger.info("getalluser method from admincontroller class called successfully");
+        // Retrieve the list of all users
+
+        List<ResponseDto> responseDtos = userService.findAllUser();
+        // Check if the user list is empty
+
+        if (responseDtos.isEmpty()) {
+            logger.error("responsdto list is empty in getalluser method of class admincontroller ");
+            return "error/error.html";
+        } else {
+
+            // Add the user list to the model
+
+            model.addAttribute("users", responseDtos);
+
+            logger.info("data send from /admin/alluser to alluser.html");
+            return "home/adminhome/allusers";
+        }
+    }
+
+    /**
+     * Handles the request to find inactive users.
+     *
+     * @param model the model to pass attributes to the view
+     * @return the path to the approve page template
+     */
+
     @GetMapping("/admin/pending")
-    public String findInactiveUser(Model model )
-    {
-        List<ResponseDto> list= userService.findallInactiveUser();
-        
-        model.addAttribute("users",list);
-        
-        return  "home/adminhome/approve";
+    public String findInactiveUser(Model model) {
+
+        // Retrieve the list of inactive users
+
+        List<ResponseDto> list = userService.findallInactiveUser();
+        // Add the list of inactive users to the model
+
+        model.addAttribute("users", list);
+
+        return "home/adminhome/approve";
     }
-    
+
+
+    /**
+     * Handles the request action based on the provided parameters.
+     *
+     * @param a  the action to perform (accept or reject)
+     * @param id the ID of the user
+     * @return a redirect to the pending page
+     */
+
     @GetMapping("/admin/request")
-    public String requestAction(@RequestParam String a,@RequestParam String id){
-        System.out.println("input recived "+a);
-        
-        if (a.equals("accept")){
+    public String requestAction(@RequestParam String a, @RequestParam String id) {
 
-            System.out.println("accept request");
-            adminService.activateUser(a,id);
-            return "redirect:/admin/pending" ;
+        logger.info("input recived " + a);
+        // Check if the action is to accept
+
+        if (a.equals("accept")) {
+            // Activate the user based on the ID
+
+            logger.info("accept request");
+            adminService.activateUser(a, id);
+            return "redirect:/admin/pending";
+        } else {
+
+            logger.info("reject request");
+            return "redirect:/admin/pending";
         }
-        else {
-            System.out.println("reject request ");
-           return "redirect:/admin/pending" ;
-        }
-   
+
     }
-    
 
 
+    /**
+     * Handles the request to manage roles.
+     *
+     * @param model the model to pass attributes to the view
+     * @return the path to the role management page template if users are found, otherwise returns an error page
+     */
+
+    @GetMapping("/admin/rolemanagement")
+    public String manageRole(Model model) {
+        logger.info("/admin/rolemanagement from admin controller  called successfully");
+        // Retrieve the list of all users
+
+        List<ResponseDto> responseDtoList = userService.findAllUser();
+
+        // Check if the user list is empty
+        if (responseDtoList.isEmpty()) {
+            logger.error("responsdto list is empty in getalluser method of class admincontroller ");
+            return "error/error.html";
+        } else {
+
+            // Add the user list to the model
+
+            model.addAttribute("users", responseDtoList);
+            logger.info("data send from /admin/alluser to alluser.html");
+            return "home/adminhome/manager-role";
+        }
+
+    }
+
+
+    /**
+     * This method handles the request to navigate to the add role page for an existing user.
+     *
+     * @param a     a parameter indicating the action to perform
+     * @param id    the ID of the user
+     * @param model the model to pass attributes to the view
+     * @return the path to the add role page template if adding a role, otherwise redirects to the role list page
+     */
+    @GetMapping("/admin/addrolepage")
+    public String addRolepage(@RequestParam String a, @RequestParam String id, Model model) {
+
+        logger.info("/admin/addrolepage from admin controller  called successfully");
+        // Check if the action is to add a role
+
+        if (a.equals("addrole")) {
+            logger.info("add role request recieved");
+
+            // Retrieve the current roles of the user
+
+            List<String> roleList = adminService.findRole(id);
+
+            // Add the current roles and user ID to the mode
+            model.addAttribute("rolelist", roleList);
+            model.addAttribute("id", id);
+
+            // Retrieve roles not assigned to the user and add to the model
+
+            List<String> unassignedroleList = adminService.findUnassignedRoles(id);
+            model.addAttribute("unassignedroleList", unassignedroleList);
+            return "home/adminhome/addrole";
+        } else {
+            // If the action is not to add a role, log and redirect to the role list page
+
+            logger.info("no changes in role list");
+            return "redirect:/admin/getrolelist";
+        }
+
+    }
+
+
+    /**
+     * Handles the request to navigate to the remove role page.
+     *
+     * @return the path to the remove role page template
+     */
+    @GetMapping("/admin/removerolepage")
+    public String removeRolepage() {
+        logger.info(" /admin/removerolepage from admin controller  called successfully");
+        // Return the path to the remove role page template
+
+        return "home/adminhome/removerol";
+    }
+
+
+    /**
+     * Handles the request to add a role to a user.
+     *
+     * @param msg      the message parameter
+     * @param userid   the ID of the user
+     * @param rolename the name of the role to add
+     * @return a redirect to the role management page
+     */
+
+
+    @GetMapping("/admin/addrole")
+    public String addRole(@RequestParam String msg, @RequestParam String userid, @RequestParam String rolename) {
+        logger.info("msg userid and rolename recived from addrole.html in addrole method of admincontroller is " + msg.toString()
+                + " " + userid.toString() + " " + rolename.toString());
+        // Call the service method to add the role to the user
+
+        String response = adminService.addRoleToUser(rolename, userid);
+
+        logger.info("response from adminservie.addroletouser method is " + response.toString());
+
+        // Redirect to the role management page
+
+        return "redirect:/admin/rolemanagement";
+    }
 }

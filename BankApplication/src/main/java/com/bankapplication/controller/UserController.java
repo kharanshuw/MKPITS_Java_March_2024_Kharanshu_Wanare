@@ -14,6 +14,11 @@ import org.slf4j.*;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+
+/*
+controller to handle all user related services
+
+ */
 @Controller
 public class UserController {
 
@@ -28,7 +33,14 @@ public class UserController {
         this.userService = userService;
         this.userServiceAppContext = userServiceAppContext;
     }
-
+    /**
+     * Handles GET requests to the /home2 endpoint.
+     * Logs the access and determines the appropriate home page based on user roles.
+     *
+     * @param model the model to which attributes are added
+     * @param httpServletRequest the HTTP request to check user roles
+     * @return the name of the view to be returned
+     */
     @GetMapping("/home2")
     public String homepage2(Model model, HttpServletRequest httpServletRequest) {
 
@@ -66,14 +78,26 @@ public class UserController {
 
     }
 
-    //this method access denied exception when user with unauthorized role try to access some page
+    /**
+     * Handles GET requests to the /access-denied endpoint.
+     * Logs the access and returns the access denied view.
+     *
+     * @return the name of the access denied view
+     */
     @GetMapping("/access-denied")
     public String accessdenied() {
         logger.error("error occured redirecting to error/access-denied");
         return "error/access-denied";
     }
 
-
+    /**
+     * Handles GET requests to the /user/profile endpoint.
+     * Logs the access and retrieves the logged-in user's profile details.
+     *
+     * @param model the model to which attributes are added
+     * @param request the HTTP request to check user roles
+     * @return the name of the view to be returned
+     */
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/user/profile")
     public String userprofile(Model model, HttpServletRequest request) {
@@ -102,7 +126,12 @@ public class UserController {
 
     }
 
-
+    /**
+     * Handles GET requests to the /error endpoint.
+     * Logs the access and returns the error view.
+     *
+     * @return the name of the error view
+     */
     @GetMapping("/error")
     public String error() {
         logger.error("error occured redirecting to /error ");

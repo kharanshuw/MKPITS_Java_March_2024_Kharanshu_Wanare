@@ -42,3 +42,7 @@ INSERT INTO role(id,role_name) VALUES (3,'ROLE_USER');
        "JOIN u.userDetails ud " +
        "JOIN u.role r")
 		List<ResponseDto> findAllUserDetails();
+
+
+
+INSERT INTO user_role(role_id,user_id) VALUES(3,9)
