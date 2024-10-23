@@ -74,6 +74,10 @@ public class SecurityConfig {
                                 
                                 .requestMatchers(HttpMethod.GET,"/admin/removerole").hasRole("ADMIN")
                                 
+                                .requestMatchers(HttpMethod.GET,"/user/profile").hasRole("USER")
+                                
+                                .requestMatchers(HttpMethod.GET,"/admin/home").hasRole("ADMIN")
+                                
                                 .anyRequest().authenticated()
 
                 ).formLogin(

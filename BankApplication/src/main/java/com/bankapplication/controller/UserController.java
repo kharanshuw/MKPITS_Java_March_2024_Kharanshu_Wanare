@@ -17,8 +17,12 @@ import jakarta.servlet.http.HttpServletRequest;
 
 
 /*
-controller to handle all user related services
-
+ * This class serves as a controller for handling user related operations.
+ * It manages HTTP requests related to user userprofiledata and more.
+ *
+ * Annotations:
+ * - @Controller: Indicates that this class is a Spring MVC controller.
+ *
  */
 @Controller
 public class UserController {
@@ -34,11 +38,12 @@ public class UserController {
         this.userService = userService;
         this.userServiceAppContext = userServiceAppContext;
     }
+
     /**
      * Handles GET requests to the /home2 endpoint.
      * Logs the access and determines the appropriate home page based on user roles.
      *
-     * @param model the model to which attributes are added
+     * @param model              the model to which attributes are added
      * @param httpServletRequest the HTTP request to check user roles
      * @return the name of the view to be returned
      */
@@ -55,10 +60,19 @@ public class UserController {
 
         if (httpServletRequest.isUserInRole("USER") && httpServletRequest.isUserInRole("ADMIN")) {
 
-            logger.info("multi profile home page called after successful login inside UserController");
+            logger.info("USER AND ADMIN  profile home page called after successful login inside UserController");
 
             return "home/adminhome/multiple-user";
 
+        } else if (httpServletRequest.isUserInRole("USER") && httpServletRequest.isUserInRole("MANAGER")) {
+
+            logger.info("USER AND MANAGER  profile home page called after successful login inside UserController");
+
+            return "home/adminhome/multiple-user";
+        } else if (httpServletRequest.isUserInRole("ADMIN") && httpServletRequest.isUserInRole("MANAGER")) {
+            logger.info("ADMIN AND MANAGER profile home page called after successful login inside UserController");
+
+            return "home/adminhome/multiple-user";
         } else if (httpServletRequest.isUserInRole("ADMIN")) {
 
             logger.info("Admin home page called after successful login inside UserController");
@@ -71,6 +85,10 @@ public class UserController {
 
             return "home/userhome/userhome";
 
+        } else if (httpServletRequest.isUserInRole("MANAGER")) {
+            logger.info("MANAGER home page called after successful login inside UserController");
+
+            return "home/manager/dashboard";
         } else {
 
             logger.error("User role not identified, redirecting to error page");
@@ -95,11 +113,10 @@ public class UserController {
      * Handles GET requests to the /user/profile endpoint.
      * Logs the access and retrieves the logged-in user's profile details.
      *
-     * @param model the model to which attributes are added
+     * @param model   the model to which attributes are added
      * @param request the HTTP request to check user roles
      * @return the name of the view to be returned
      */
-    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/user/profile")
     public String userprofile(Model model, HttpServletRequest request) {
         logger.info("userprofile method from usercontroller class called ");
@@ -140,11 +157,15 @@ public class UserController {
     }
 
 
+    /**
+     * This method handles all exceptions that are not explicitly caught elsewhere in the application.
+     * It is annotated with @ExceptionHandler to indicate that it should be invoked when an Exception is thrown.
+     */
+
     @ExceptionHandler(Exception.class)
-    public String handleException()
-    {
+    public String handleException() {
         logger.error("exception occured");
-        return  "error/error";
+        return "error/error";
     }
 
 }

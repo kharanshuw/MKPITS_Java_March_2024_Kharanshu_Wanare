@@ -41,7 +41,10 @@ public class LoginController {
         return "home/home";
     }
 
-
+    /**
+     * This method handles all exceptions that are not explicitly caught elsewhere in the application.
+     * It is annotated with @ExceptionHandler to indicate that it should be invoked when an Exception is thrown.
+     */
     @ExceptionHandler(Exception.class)
     public String handleException()
     {

@@ -212,7 +212,6 @@
     </style>
 
 
-
     <style type="text/scss">
 
         html{
@@ -361,7 +360,7 @@ color: #ff0000; /* Change the color on hover */
 font-size: 1.2em; /* Adjust the font size of the planet elements as needed */
 }
 
-</style>
+    </style>
 
 
     <style>
@@ -373,107 +372,105 @@ font-size: 1.2em; /* Adjust the font size of the planet elements as needed */
     </style>
 
 
-<style>
-    .container {
-            max-width: 600px;
-            margin: auto auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        h1, h5 {
-            color: #333;
-        }
-        .card {
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        .card-body {
-            padding: 15px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            color: #fff;
-            background-color: #007bff;
-        }
-        .btn-primary {
-            background-color: #007bff;
-        }
-        .btn-success {
-            background-color: #28a745;
-        }
-        .btn-info {
-            background-color: #17a2b8;
-        }
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .col-12, .col-md-6 {
-            flex: 1 1 100%;
-        }
-        @media (min-width: 768px) {
-            .col-md-6 {
-                flex: 0 0 50%;
+    <style>
+        .container {
+                max-width: 600px;
+                margin: auto auto;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
-        }
-</style>
+            h1, h5 {
+                color: #333;
+            }
+            .card {
+                margin-bottom: 20px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                overflow: hidden;
+            }
+            .card-body {
+                padding: 15px;
+            }
+            .btn {
+                display: inline-block;
+                padding: 10px 20px;
+                margin-top: 10px;
+                border: none;
+                border-radius: 5px;
+                text-decoration: none;
+                color: #fff;
+                background-color: #007bff;
+            }
+            .btn-primary {
+                background-color: #007bff;
+            }
+            .btn-success {
+                background-color: #28a745;
+            }
+            .btn-info {
+                background-color: #17a2b8;
+            }
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .col-12, .col-md-6 {
+                flex: 1 1 100%;
+            }
+            @media (min-width: 768px) {
+                .col-md-6 {
+                    flex: 0 0 50%;
+                }
+            }
+    </style>
 </head>
 
 <body>
 
 
-    <!-- navbar start -->
+<!-- navbar start -->
 
-    <div>
-        <nav>
-
-
-            <div class="navbar">
-
-                <div class="logo">
-                    <h1 class="logo-heading">
-                        <em>B</em>
-                        <em>a</em>
-                        <em>n</em>
-                        <em>k</em>
-                        <em>S</em>
-                        <em>p</em>
-                        <em>h</em>
-                        <em>e</em>
-                        <em>r</em>
-                        <em>e</em>
-                    </h1>
+<div>
+    <nav>
 
 
-                </div>
+        <div class="navbar">
 
-                <ul class="links">
-                    <li><a th:href="@{/}">home</a></li>
-                    <li><a th:href="@{/login}">Login</a></li>
-                    <li>
-                        <form th:action="@{/logout}" method="post">
-                            <input type="submit" value="Logout">
-                        </form>
-                    </li>
-                </ul>
+            <div class="logo">
+                <h1 class="logo-heading">
+                    <em>B</em>
+                    <em>a</em>
+                    <em>n</em>
+                    <em>k</em>
+                    <em>S</em>
+                    <em>p</em>
+                    <em>h</em>
+                    <em>e</em>
+                    <em>r</em>
+                    <em>e</em>
+                </h1>
+
+
             </div>
 
+            <ul class="links">
+                <li><a th:href="@{/}">home</a></li>
+                <li><a th:href="@{/login}">Login</a></li>
+                <li>
+                    <form th:action="@{/logout}" method="post">
+                        <input type="submit" value="Logout">
+                    </form>
+                </li>
+            </ul>
+        </div>
 
-        </nav>
 
-    </div>
+    </nav>
 
-    <!-- navbar end -->
+</div>
 
-
+<!-- navbar end -->
 
 
 <div class="container">
@@ -490,7 +487,7 @@ font-size: 1.2em; /* Adjust the font size of the planet elements as needed */
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Hello Admin</h5>
-                        <a th:href="@{/admin/profile}" class="btn btn-primary">Go to admin Dashboard</a>
+                        <a th:href="@{/admin/home}" class="btn btn-primary">Go to admin Dashboard</a>
                     </div>
                 </div>
             </div>
@@ -520,7 +517,7 @@ font-size: 1.2em; /* Adjust the font size of the planet elements as needed */
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Hello Manager</h5>
-                        <a th:href="#" class="btn btn-info">Go to manager Dashboard</a>
+                        <a  class="btn btn-info">Go to manager Dashboard</a>
                     </div>
                 </div>
             </div>
@@ -529,15 +526,14 @@ font-size: 1.2em; /* Adjust the font size of the planet elements as needed */
 </div>
 
 
-
-    <footer>
-        <p>&copy; 2024 Your Bank Name. All rights reserved.</p>
-        <nav>
-            <a href="#">Privacy Policy</a> |
-            <a href="#">Terms of Service</a> |
-            <a href="#">Contact Us</a>
-        </nav>
-    </footer>
+<footer>
+    <p>&copy; 2024 Your Bank Name. All rights reserved.</p>
+    <nav>
+        <a href="#">Privacy Policy</a> |
+        <a href="#">Terms of Service</a> |
+        <a href="#">Contact Us</a>
+    </nav>
+</footer>
 </body>
 
 </html>

@@ -45,7 +45,7 @@ public class AdminController {
         this.adminService = adminService;
     }
 
- 
+
     /**
      * Handles the request to display the admin profile data.
      *
@@ -220,34 +220,48 @@ public class AdminController {
 
     }
 
-
+    /**
+     * Handles HTTP GET requests to display the role removal page.
+     * Mapped to the "/admin/removerolepage" URL.
+     *
+     * @param a     The action to be performed, typically "remove" to indicate role removal.
+     * @param id    The ID of the user whose roles are being managed.
+     * @param model The Model object to pass data to the view.
+     * @return The view name to be rendered.
+     */
     @GetMapping("/admin/removerolepage")
     public String removeRolepage(@RequestParam String a, @RequestParam String id, Model model) {
         logger.info(" /admin/removerolepage from admin controller  called successfully");
-        
-        logger.info("recived action , id is :"+a+" "+id);
 
-        System.out.println("recived action , id is :"+a+" "+id);
+        // Log the received parameters for debugging purposes.
+        logger.info(String.format("Received action and id: %s %s", a, id));
 
+
+// Check if the action is "remove".
         if (a.equals("remove")) {
-            logger.info("remove request recived at /admin/removepage in admincontroller ");
+            logger.info("Remove request received at /admin/removepage in admincontroller");
+
             // Retrieve the current roles of the user
 
             List<String> roles = adminService.findRole(id);
+
+            // Add the roles and user ID to the model to pass to the view.
             model.addAttribute("roles", roles);
 
             model.addAttribute("uid", id);
 
 
-            return  "home/adminhome/removerole";
+            return "home/adminhome/removerole";
 
 
         } else {
             logger.info("no change in role list of user ");
+
+            // Redirect to the role list page if the action is not "remove".
             return "redirect:/admin/getrolelist";
         }
 
-       
+
     }
 
 
@@ -275,24 +289,49 @@ public class AdminController {
     }
 
 
+    /**
+     * Handles HTTP GET requests to remove a role from a user.
+     * Mapped to the "/admin/removerole" URL.
+     *
+     * @param msg      A message received from the client, typically for logging or display purposes.
+     * @param userid   The ID of the user from whom the role is to be removed.
+     * @param rolename The name of the role to be removed from the user.
+     * @return A redirect to the role management page.
+     */
     @GetMapping("/admin/removerole")
     public String removeRole(@RequestParam String msg, @RequestParam String userid, @RequestParam String rolename) {
         logger.info("msg userid and rolename recived from addrole.html in addrole method of admincontroller is " + msg.toString()
                 + " " + userid.toString() + " " + rolename.toString());
 
         // Call the service method to remove the role to the user
-        
-        String response=adminService.removeRoleFromUser(rolename,userid);
+        // This method should handle the business logic for role removal.
+        String response = adminService.removeRoleFromUser(rolename, userid);
 
-        System.out.println("response recived from adminService.removeRoleFromUser(rolename,userid) is : "+response.toString());
+        System.out.println("response recived from adminService.removeRoleFromUser(rolename,userid) is : " + response.toString());
+        // Redirect the user to the role management page after the operation is complete.
         return "redirect:/admin/rolemanagement";
     }
 
-@ExceptionHandler(Exception.class)
-    public String handleException()
+    
+    @GetMapping("/admin/home")
+    public String getAdminHome()
     {
+        return  "home/adminhome/adminhome";
+    }
+    
+    
+    
+    
+    
+    /**
+     * This method handles all exceptions that are not explicitly caught elsewhere in the application.
+     * It is annotated with @ExceptionHandler to indicate that it should be invoked when an Exception is thrown.
+     */
+    @ExceptionHandler(Exception.class)
+    public String handleException() {
         logger.error("exception occured");
-        return  "error/error";
+        return "error/error";
     }
 
+    
 }

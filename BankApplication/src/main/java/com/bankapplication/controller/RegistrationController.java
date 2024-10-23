@@ -18,14 +18,23 @@ import com.bankapplication.service.*;
 
 import jakarta.validation.Valid;
 
-
+/**
+ * This class serves as a controller for handling registration related operations.
+ * It manages HTTP requests related to user registration,success and more.
+ *
+ * Annotations:
+ * - @Controller: Indicates that this class is a Spring MVC controller.
+ * 
+ */
 @Controller
 public class RegistrationController {
 
     private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
 
+   
     private UserServiceImpl userServiceImpl;
 
+    //Constructor for dependency injection
     @Autowired
     public RegistrationController(UserServiceImpl userServiceImpl) {
         super();
@@ -75,14 +84,15 @@ public class RegistrationController {
      * @param bindingResult the result of the validation and binding
      * @return the name of the view to be returned
      */
-
     @PostMapping("/processregistration")
     public String registerUser(@Valid @ModelAttribute("requestDto") RequestDto requestDto, BindingResult bindingResult) {
+        // Check for validation errors in the request data
+
         if (bindingResult.hasErrors()) {
 
             logger.error("Error found in user registration. Below is the RequestDto received from form:");
             logger.error(requestDto.toString());
-
+// Log each field error for detailed debugging
             bindingResult.getFieldErrors().forEach(error -> {
                 System.out.println(
                         "field" + error.getField() + ",error:" + error.getDefaultMessage()
@@ -90,12 +100,12 @@ public class RegistrationController {
             });
 
 
-            
-            return "registration/registeration"; // return the registration page if there are errors
+            // Return the registration page if there are errors
+            return "registration/registeration";
         }
-
-       
         
+        // Log the start of the registration processing
+
         logger.info("register processing started successully");
         
         logger.info(requestDto.toString());
@@ -103,11 +113,16 @@ public class RegistrationController {
 
         userServiceImpl.createuser(requestDto);
 
-
-        return "redirect:/successful"; // redirect to the success page after successful registration
+        // Redirect to the success page after successful registration
+        return "redirect:/successful"; 
     }
 
-
+    
+    
+    /**
+     * This method handles all exceptions that are not explicitly caught elsewhere in the application.
+     * It is annotated with @ExceptionHandler to indicate that it should be invoked when an Exception is thrown.
+     */
     @ExceptionHandler(Exception.class)
     public String handleException()
     {
