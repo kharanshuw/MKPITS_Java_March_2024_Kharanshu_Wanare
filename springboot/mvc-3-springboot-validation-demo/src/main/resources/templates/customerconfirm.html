@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ 
+	<link rel="stylesheet" 		th:href="@{/css/mycss.css}">
+</head>
+<body>
+	<h1 >customer Details</h1>
+	FirstName:<h1 th:text="${customer.getFirstnameString()}"></h1>
+	lastname:<h1 th:text="${customer.getLastnameString()}"></h1>
+	emailString:<h1 th:text="${customer.getEmailString()}"></h1>
+	passwordString:<h1 th:text="${customer.getPasswordString()}"></h1>
+	age:<h1 th:text="${customer.getAge()}"></h1>
+</body>
+</html>
