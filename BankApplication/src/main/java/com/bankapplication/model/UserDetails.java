@@ -65,6 +65,10 @@ public class UserDetails {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private User user;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "city_id")
+	private City city;
 
 	@PrePersist
 	public void prepersist() {
@@ -155,6 +159,14 @@ public class UserDetails {
 
 	public void setLastmodifiedby(Integer lastmodifiedby) {
 		this.lastmodifiedby = lastmodifiedby;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
 	}
 	
 	

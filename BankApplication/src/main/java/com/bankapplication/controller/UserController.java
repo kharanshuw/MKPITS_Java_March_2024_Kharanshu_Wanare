@@ -5,6 +5,7 @@ import com.bankapplication.getapplicationcontext.UserServiceAppContext;
 import com.bankapplication.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -161,10 +162,12 @@ public class UserController {
      * This method handles all exceptions that are not explicitly caught elsewhere in the application.
      * It is annotated with @ExceptionHandler to indicate that it should be invoked when an Exception is thrown.
      */
-
     @ExceptionHandler(Exception.class)
-    public String handleException() {
+    public String handleException(Exception exception,Model model) {
         logger.error("exception occured");
+        logger.error(exception.toString());
+        model.addAttribute("e",exception.getMessage());
+        model.addAttribute("r", HttpStatus.BAD_REQUEST);
         return "error/error";
     }
 

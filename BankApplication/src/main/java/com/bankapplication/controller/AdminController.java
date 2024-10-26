@@ -4,6 +4,7 @@ import com.bankapplication.dto.ResponseDto;
 import com.bankapplication.getapplicationcontext.UserServiceAppContext;
 
 import com.bankapplication.service.AdminService;
+import com.bankapplication.service.UserService;
 import com.bankapplication.service.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -13,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -29,7 +31,7 @@ public class AdminController {
     private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 // This is a private field for the UserServiceImpl, which likely handles user-related operations.
 
-    private UserServiceImpl userService;
+    private UserService userService;
 // This is a private field for UserServiceAppContext, which is a context class managing the session or user context.
 
     private UserServiceAppContext userServiceAppContext;
@@ -328,8 +330,11 @@ public class AdminController {
      * It is annotated with @ExceptionHandler to indicate that it should be invoked when an Exception is thrown.
      */
     @ExceptionHandler(Exception.class)
-    public String handleException() {
+    public String handleException(Exception exception,Model model) {
         logger.error("exception occured");
+        logger.error(exception.toString());
+        model.addAttribute("e",exception.getMessage());
+        model.addAttribute("r",HttpStatus.BAD_REQUEST);
         return "error/error";
     }
 

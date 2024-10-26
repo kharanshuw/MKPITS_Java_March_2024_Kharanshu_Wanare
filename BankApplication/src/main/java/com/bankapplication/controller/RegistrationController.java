@@ -4,6 +4,7 @@ import com.bankapplication.dto.RequestDto;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -117,17 +118,19 @@ public class RegistrationController {
         return "redirect:/successful"; 
     }
 
-    
-    
+
+
     /**
      * This method handles all exceptions that are not explicitly caught elsewhere in the application.
      * It is annotated with @ExceptionHandler to indicate that it should be invoked when an Exception is thrown.
      */
     @ExceptionHandler(Exception.class)
-    public String handleException()
-    {
+    public String handleException(Exception exception,Model model) {
         logger.error("exception occured");
-        return  "error/error";
+        logger.error(exception.toString());
+        model.addAttribute("e",exception.getMessage());
+        model.addAttribute("r", HttpStatus.BAD_REQUEST);
+        return "error/error";
     }
 
 

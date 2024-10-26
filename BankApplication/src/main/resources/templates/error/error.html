@@ -16,16 +16,14 @@
     <div class="text-center p-4 bg-white shadow rounded ">
         <h1 class="display-4 text-danger"><i class="bi bi-exclamation-triangle-fill"></i> An Error Occurred!</h1>
 
-        <p class="lead mt-3" th:text="${msg}"></p>
-        
+        <p class="lead mt-3" th:text="${e}"></p>
+
+        <p class="lead mt-3" th:text="${r}"></p>
         
         <p class="lead mt-3">An unexpected exception has occurred. Please try again later or contact support.</p>
         
-        
-        
-        <p class="mt-3">Error Code: 500. Please reference this code when contacting support.</p>
         <a th:href="@{/}" class="btn btn-primary mt-3">Return to Home</a>
-        <a th:href="@{/}" class="btn btn-secondary mt-3">Contact Support</a>
+        <a th:href="@{/login}" class="btn btn-secondary mt-3">Login</a>
     </div>
 
 

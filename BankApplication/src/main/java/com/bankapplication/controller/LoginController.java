@@ -3,7 +3,9 @@ package com.bankapplication.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -46,10 +48,12 @@ public class LoginController {
      * It is annotated with @ExceptionHandler to indicate that it should be invoked when an Exception is thrown.
      */
     @ExceptionHandler(Exception.class)
-    public String handleException()
-    {
+    public String handleException(Exception exception, Model model) {
         logger.error("exception occured");
-        return  "error/error";
+        logger.error(exception.toString());
+        model.addAttribute("e",exception.getMessage());
+        model.addAttribute("r", HttpStatus.BAD_REQUEST);
+        return "error/error";
     }
 
 

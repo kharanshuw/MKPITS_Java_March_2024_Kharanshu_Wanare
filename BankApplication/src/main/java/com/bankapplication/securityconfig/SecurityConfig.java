@@ -78,6 +78,14 @@ public class SecurityConfig {
                                 
                                 .requestMatchers(HttpMethod.GET,"/admin/home").hasRole("ADMIN")
                                 
+                                .requestMatchers(HttpMethod.GET,"/api/countries").permitAll()
+                                
+                                .requestMatchers(HttpMethod.GET,"/api/states/**").permitAll()
+                                
+                                .requestMatchers(HttpMethod.GET,"/api/district/**").permitAll()
+                                
+                                .requestMatchers(HttpMethod.GET,"/api/city/**").permitAll()
+                                
                                 .anyRequest().authenticated()
 
                 ).formLogin(

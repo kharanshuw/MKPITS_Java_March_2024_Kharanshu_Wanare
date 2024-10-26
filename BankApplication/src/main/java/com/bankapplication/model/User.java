@@ -1,7 +1,6 @@
 package com.bankapplication.model;
 
 
-import com.bankapplication.service.AdminServiceImpl;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -10,9 +9,9 @@ import jakarta.validation.constraints.Size;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.LocalDateTime;
+
 import java.util.HashSet;
-import java.util.List;
+
 import java.util.Set;
 
 @Table(name = "users")
@@ -20,8 +19,7 @@ import java.util.Set;
 public class User {
 
     private static final Logger logger = LoggerFactory.getLogger(User.class);
-    
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -29,8 +27,7 @@ public class User {
     @Column(name = "password", nullable = false)
     @Size(min = 8, max = 128, message = "password length must be between 0 to 128")
     @NotEmpty(message = "password should not be empty")
-    @Pattern(regexp = "\\{noop\\}(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&]).{8,128}$",
-            message = "Password must meet requirements (8-128 chars, uppercase, lowercase, digit, special char)")
+    @Pattern(regexp = "\\{noop\\}(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&]).{8,128}$", message = "Password must meet requirements (8-128 chars, uppercase, lowercase, digit, special char)")
     private String password;
 
     @Column(name = "email", unique = true)
@@ -41,143 +38,126 @@ public class User {
     @Column(name = "enable")
     private boolean isActive = false;
 
-
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private UserDetails userDetails;
 
-
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> role;
 
-
     public int getId() {
-        return id;
+	return id;
     }
 
-
     public String getPassword() {
-        return password;
+	return password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+	this.password = password;
     }
 
     public String getEmail() {
-        return email;
+	return email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+	this.email = email;
     }
 
     public boolean isActive() {
-        return isActive;
+	return isActive;
     }
 
     public void setActive(boolean isActive) {
-        this.isActive = isActive;
+	this.isActive = isActive;
     }
 
     public UserDetails getUserDetails() {
-        return userDetails;
+	return userDetails;
     }
 
     public void setUserDetails(UserDetails userDetails) {
-        this.userDetails = userDetails;
+	this.userDetails = userDetails;
     }
 
-
-    //user will be stored in set so no redundent roles will be assined
+    // user will be stored in set so no redundent roles will be assined
     public Set<Role> getRole() {
-        return role;
+	return role;
     }
 
     public void setRole(Set<Role> role) {
-        this.role = role;
+	this.role = role;
     }
 
-
-    //to string method
+    // to string method
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", password=" + password + ", email=" + email + ", isActive=" + isActive
-                + ", userDetails=" + userDetails + ", role=" + role + "]";
+	return "User [id=" + id + ", password=" + password + ", email=" + email + ", isActive=" + isActive
+		+ ", userDetails=" + userDetails + ", role=" + role + "]";
     }
 
-
-    //parametarized constructor
+    // parametarized constructor
     public User(int id,
-                @Size(min = 8, max = 128, message = "password length must be between 0 to 128") @NotEmpty(message = "password should not be empty") @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,128}$", message = "Password must meet requirements (8-128 chars, uppercase, lowercase, digit, special char)") String password,
-                @NotEmpty(message = "email should not be empty") @NotNull(message = "email should not be empty") String email,
-                boolean isActive, UserDetails userDetails, Set<Role> role) {
-        super();
-        this.id = id;
-        this.password = password;
-        this.email = email;
-        this.isActive = isActive;
-        this.userDetails = userDetails;
-        this.role = role;
+	    @Size(min = 8, max = 128, message = "password length must be between 0 to 128") @NotEmpty(message = "password should not be empty") @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,128}$", message = "Password must meet requirements (8-128 chars, uppercase, lowercase, digit, special char)") String password,
+	    @NotEmpty(message = "email should not be empty") @NotNull(message = "email should not be empty") String email,
+	    boolean isActive, UserDetails userDetails, Set<Role> role) {
+	super();
+	this.id = id;
+	this.password = password;
+	this.email = email;
+	this.isActive = isActive;
+	this.userDetails = userDetails;
+	this.role = role;
     }
 
     public User() {
-        super();
-        // TODO Auto-generated constructor stub
+	super();
+	// TODO Auto-generated constructor stub
     }
 
-
-    //this method is used to add new role for user
+    // this method is used to add new role for user
     public void addrole(Role roleobj) {
-        //if paramerter roleobj is not null then only this if will get executed
-        //this roleobj show role object to add in user
-        if (roleobj != null) {
+	// if paramerter roleobj is not null then only this if will get executed
+	// this roleobj show role object to add in user
+	if (roleobj != null) {
 
-            //if  this.role is null then initialize with hashset
-            if (this.role == null) {
-                this.role = new HashSet<>();
-            }
+	    // if this.role is null then initialize with hashset
+	    if (this.role == null) {
+		this.role = new HashSet<>();
+	    }
 
-            //add role object in this.role
-            this.role.add(roleobj);
-        }
+	    // add role object in this.role
+	    this.role.add(roleobj);
+	}
     }
-
 
     /**
      * Removes a role from the user's set of roles.
      *
      * @param roleobj the role to be removed
      */
-    public void removeRole(Role roleobj)
-    {
-        // Check if the role object passed as parameter is null
-        if (roleobj == null)
-        {
-            logger.error("role object passes as parameter is null");
-            return;
-        }
+    public void removeRole(Role roleobj) {
+	// Check if the role object passed as parameter is null
+	if (roleobj == null) {
+	    logger.error("role object passes as parameter is null");
+	    return;
+	}
 
-        // Check if the role set is not null
-        if (this.role != null)
-        {
-            // Attempt to remove the role from the set
-            if (this.role.remove(roleobj))
-            {
-                logger.info("role removed successfully"+roleobj.toString());
-                
-            }
-            else {
-                // Log a warning if the role was not found in the set
-                logger.warn("role not found to remove in user class removerole method " + roleobj.toString());
-            }
-        }
-        else {
-            // Log an error if the role set is null
-            logger.error("role set is null cannot remove role");
-        }
+	// Check if the role set is not null
+	if (this.role != null) {
+	    // Attempt to remove the role from the set
+	    if (this.role.remove(roleobj)) {
+		logger.info("role removed successfully" + roleobj.toString());
+
+	    } else {
+		// Log a warning if the role was not found in the set
+		logger.warn("role not found to remove in user class removerole method " + roleobj.toString());
+	    }
+	} else {
+	    // Log an error if the role set is null
+	    logger.error("role set is null cannot remove role");
+	}
     }
 }
