@@ -697,7 +697,13 @@
         <p>
         <h1>List of roles</h1>
         <ul>
-            <li th:each="u : ${user.getrolestring()}" th:text="${u}"></li>
+            <li >
+				
+				<span th:each="ua : ${user.getrolestring()}" th:text="${ua}">
+					
+				</span>
+				
+			</li>
         </ul>
         </p>
 

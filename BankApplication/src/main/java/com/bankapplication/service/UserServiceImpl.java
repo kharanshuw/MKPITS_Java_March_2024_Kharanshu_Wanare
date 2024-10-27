@@ -48,12 +48,18 @@ public class UserServiceImpl implements UserService {
 		this.roleRepository = repository;
 	}
 
-	// Method to create a new user
-
+	/**
+	 * Creates a new user based on the provided RequestDto.
+	 *
+	 * @param requestDto The request DTO containing user details.
+	 * @return The original request DTO (may be null on error).
+	 * @throws IllegalArgumentException if password is empty or null.
+	 */
 	@Override
 	@Transactional
 	public RequestDto createuser(RequestDto requestDto) {
 
+		
 		// Log the incoming request data
 		logger.info(requestDto.toString());
 
@@ -123,7 +129,12 @@ public class UserServiceImpl implements UserService {
 		return requestDto;
 	}
 
-	// Method to get user details who is logged in
+	/**
+	 * Retrieves the logged-in user's details based on the provided email.
+	 *
+	 * @param email The email address of the logged-in user.
+	 * @return The ResponseDto containing the user's details, or null if not found.
+	 */
 	public ResponseDto getLoggedInUserDetails(String email) {
 
 		// Log received email
@@ -166,25 +177,40 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	// Helper method to create ResponseDto from User entity
 
+	/**
+	 * Creates a ResponseDto object from a given User object.
+	 *
+	 * This method copies relevant fields from the User object to the ResponseDto object.
+	 *
+	 * @param user The User object to be converted.
+	 * @return The created ResponseDto object.
+	 */
 	private ResponseDto createResponseDto(User user) {
 		ResponseDto responseDto = new ResponseDto();
 
 		responseDto.setId(user.getId());
+		logger.debug("Setting ID: {}", user.getId());
 
 		responseDto.setEmail(user.getEmail());
+		logger.debug("Setting Email: {}", user.getEmail());
 
 		responseDto.setFname(user.getUserDetails().getFname());
+		logger.debug("Setting First Name: {}", user.getUserDetails().getFname());
 
 		responseDto.setLname(user.getUserDetails().getLname());
+		logger.debug("Setting Last Name: {}", user.getUserDetails().getLname());
 
 		responseDto.setGender(user.getUserDetails().getGender());
+		logger.debug("Setting Gender: {}", user.getUserDetails().getGender());
 
 		responseDto.setPhoneno(user.getUserDetails().getPhoneno());
+		logger.debug("Setting Phone Number: {}", user.getUserDetails().getPhoneno());
 
 		responseDto.setRoles(user.getRole());
+		logger.debug("Setting Roles: {}", user.getRole());
 
+		logger.debug("ResponseDto created: {}", responseDto);
 		return responseDto;
 	}
 
@@ -239,22 +265,77 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+
+	/**
+	 * Retrieves a list of inactive users and converts them to a list of ResponseDto objects.
+	 *
+	 * @return A list of ResponseDto objects representing inactive users.
+	 */
 	@Override
 	public List<ResponseDto> findallInactiveUser() {
+
+		List<User> inactiveUsers = userRepository.findInactiveUsers();
+		logger.debug("Found {} inactive users", inactiveUsers.size());
+
+
+		//list to store inactive store in dto obj
+		List<ResponseDto> list1= new ArrayList<>();
 		
-	List<User> list	=userRepository.findInactiveUsers();
-	List<ResponseDto> list1= new ArrayList<>();
-		for(User u: list){
+		for(User u: inactiveUsers){
 			ResponseDto responseDto = new ResponseDto();
 			responseDto.setEmail(u.getEmail());
 			responseDto.setId(u.getId());
 			list1.add(responseDto);
+			logger.debug("Added ResponseDto for user: {}", u.getId());
+
 		}
-		
+		logger.debug("Returning {} inactive user ResponseDtos", list1.size());
+
 		return list1;
 	}
-	
-	
+
+
+	/**
+	 * Converts a ResponseDto object to a ProfileUpdateDto object.
+	 *
+	 * This method copies the relevant fields from the ResponseDto to the ProfileUpdateDto.
+	 *
+	 * @param responseDto The ResponseDto object to be converted.
+	 * @return The converted ProfileUpdateDto object.
+	 */
+	public ProfileUpdateDto convertToProfileUpdate(User user)
+	{
+		// Check for null user
+		if (user == null) {
+			return null; 
+		}
+		
+		ProfileUpdateDto profileUpdateDto = new ProfileUpdateDto();
+
+		profileUpdateDto.setEmail(user.getEmail());
+		profileUpdateDto.setPassword(user.getPassword());
+		profileUpdateDto.setFname(user.getUserDetails().getFname());
+		profileUpdateDto.setLname(user.getUserDetails().getLname());
+		profileUpdateDto.setGender(user.getUserDetails().getGender());
+		profileUpdateDto.setPhoneno(user.getUserDetails().getPhoneno());
+//		profileUpdateDto.setCityid(user.getUserDetails().getCity().getId());
+//		profileUpdateDto.setDistrictid(user.getUserDetails().getCity().getDistrict().getId());
+//		profileUpdateDto.setStateid(user.getUserDetails().getCity().getDistrict().getState().getId());
+//		profileUpdateDto.setCountryid(user.getUserDetails().getCity().getDistrict().getState().getCountry().getId());
+//		
+		
+		
+		return profileUpdateDto;
+		
+	}
+
+	public User getUserByEmail(String email) {
+		User user=null;
+		
+		user=userRepository.findUserByEmail(email);
+		
+		return user;
+	}
 	
 
 }

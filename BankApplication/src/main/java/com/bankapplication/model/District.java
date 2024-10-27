@@ -2,6 +2,9 @@ package com.bankapplication.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,69 +19,69 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "district")
 public class District {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "district_name")
-    private String name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Column(name = "district_name")
+	private String name;
 
-   
+	@JsonManagedReference
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "state_id")
+	private State state;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "state_id")
-    private State state;
+	@JsonBackReference
+	@OneToMany(mappedBy = "district")
+	private List<City> cities;
 
-    @OneToMany(mappedBy = "district", cascade = CascadeType.ALL)
-    private List<City> cities;
+	public int getId() {
+		return id;
+	}
 
-    public int getId() {
-	return id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setId(int id) {
-	this.id = id;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getName() {
-	return name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setName(String name) {
-	this.name = name;
-    }
+	public State getState() {
+		return state;
+	}
 
-    public State getState() {
-	return state;
-    }
+	public void setState(State state) {
+		this.state = state;
+	}
 
-    public void setState(State state) {
-	this.state = state;
-    }
+	public List<City> getCities() {
+		return cities;
+	}
 
-    public List<City> getCities() {
-	return cities;
-    }
+	public void setCities(List<City> cities) {
+		this.cities = cities;
+	}
 
-    public void setCities(List<City> cities) {
-	this.cities = cities;
-    }
+	public District(int id, String name, State state, List<City> cities) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.state = state;
+		this.cities = cities;
+	}
 
-    public District(int id, String name, State state, List<City> cities) {
-	super();
-	this.id = id;
-	this.name = name;
-	this.state = state;
-	this.cities = cities;
-    }
+	public District() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-    public District() {
-	super();
-	// TODO Auto-generated constructor stub
-    }
-
-    @Override
-    public String toString() {
-	return "District [id=" + id + ", name=" + name + ", state=" + state + ", cities=" + cities + "]";
-    }
+	@Override
+	public String toString() {
+		return "District [id=" + id + ", name=" + name + ", state=" + state + ", cities=" + cities + "]";
+	}
 
 }

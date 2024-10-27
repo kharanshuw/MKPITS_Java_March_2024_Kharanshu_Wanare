@@ -36,7 +36,7 @@ public class User {
     private String email;
 
     @Column(name = "enable")
-    private boolean isActive = false;
+    private boolean isActive = true;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private UserDetails userDetails;

@@ -2,6 +2,8 @@ package com.bankapplication.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,10 +22,12 @@ public class Country {
     @Column(name = "country_name")
     private String name;
     
+    
     @Column(name = "country_code")
     private int countrycode;
 
-    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
+    @JsonBackReference
+    @OneToMany(mappedBy = "country")
     private List<State> states;
 
     public int getId() {

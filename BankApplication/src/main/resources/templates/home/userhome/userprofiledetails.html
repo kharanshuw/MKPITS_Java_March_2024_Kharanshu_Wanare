@@ -97,7 +97,7 @@
 			/* Change the background color */
 			border: 2px solid var(--secondary-color);
 			border-radius: 10px;
-			box-shadow: 5px 5px 0px var(--secondary-color);
+			/* box-shadow: 5px 5px 0px var(--secondary-color); */
 			transition: all 0.3s ease;
 			cursor: pointer;
 
@@ -131,7 +131,7 @@
 			/* Change the background color */
 			border: 2px solid var(--secondary-color);
 			border-radius: 10px;
-			box-shadow: 5px 5px 0px var(--secondary-color);
+			/* box-shadow: 5px 5px 0px var(--secondary-color); */
 			transition: all 0.3s ease;
 			cursor: pointer;
 
@@ -566,13 +566,7 @@ em.planet.right {
 	<div>
 		<nav>
 
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-				data-bs-target="#navbarSupportContent" aria-controls="navbarSupportContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-
-				<span class="navbar-toggler-icon"></span>
-
-			</button>
+			
 			<div class="navbar">
 
 				<div class="logo">
@@ -650,7 +644,7 @@ em.planet.right {
 				
 				<li><a th:href="@{/}">Home</a></li>
 
-				<li><a href="#">shortcuts</a></li>
+				<li><a th:href="@{/user/update}">Update Data</a></li>
 
 				<li><a href="#">Account Overview </a></li>
 

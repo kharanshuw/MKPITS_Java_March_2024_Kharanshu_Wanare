@@ -1,239 +1,104 @@
-2024-10-26T14:19:18.235+05:30  INFO 9784 --- [bankapplication] [main] c.b.BankapplicationApplication           : Starting BankapplicationApplication using Java 21.0.4 with PID 9784 (D:\intellij java project\bankapplication\target\classes started by Kharanshu in D:\intellij java project\bankapplication)
-2024-10-26T14:19:18.246+05:30  INFO 9784 --- [bankapplication] [main] c.b.BankapplicationApplication           : No active profile set, falling back to 1 default profile: "default"
-2024-10-26T14:19:19.075+05:30  INFO 9784 --- [bankapplication] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-26T14:19:19.182+05:30  INFO 9784 --- [bankapplication] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 98 ms. Found 7 JPA repository interfaces.
-2024-10-26T14:19:19.935+05:30  INFO 9784 --- [bankapplication] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9191 (http)
-2024-10-26T14:19:19.950+05:30  INFO 9784 --- [bankapplication] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-10-26T14:19:19.950+05:30  INFO 9784 --- [bankapplication] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
-2024-10-26T14:19:20.022+05:30  INFO 9784 --- [bankapplication] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-10-26T14:19:20.022+05:30  INFO 9784 --- [bankapplication] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1722 ms
-2024-10-26T14:19:20.213+05:30  INFO 9784 --- [bankapplication] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-26T14:19:20.299+05:30  INFO 9784 --- [bankapplication] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-10-26T14:19:20.340+05:30  INFO 9784 --- [bankapplication] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-10-26T14:19:20.685+05:30  INFO 9784 --- [bankapplication] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-10-26T14:19:20.716+05:30  INFO 9784 --- [bankapplication] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-10-26T14:19:21.136+05:30  INFO 9784 --- [bankapplication] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2f73f0c7
-2024-10-26T14:19:21.138+05:30  INFO 9784 --- [bankapplication] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-10-26T14:19:22.164+05:30  INFO 9784 --- [bankapplication] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-10-26T14:19:22.292+05:30  INFO 9784 --- [bankapplication] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-26T14:19:22.553+05:30  INFO 9784 --- [bankapplication] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-10-26T14:19:23.179+05:30  WARN 9784 --- [bankapplication] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-10-26T14:19:23.208+05:30  INFO 9784 --- [bankapplication] [main] o.s.s.p.JdbcUserDetailsManager           : No authentication manager set. Reauthentication of users when changing passwords will not be performed.
-2024-10-26T14:19:23.226+05:30  INFO 9784 --- [bankapplication] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsManager
-2024-10-26T14:19:23.621+05:30 DEBUG 9784 --- [bankapplication] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, BasicAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
-2024-10-26T14:19:23.934+05:30  INFO 9784 --- [bankapplication] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9191 (http) with context path '/'
-2024-10-26T14:19:23.941+05:30  INFO 9784 --- [bankapplication] [main] c.b.BankapplicationApplication           : Started BankapplicationApplication in 6.199 seconds (process running for 6.731)
-2024-10-26T14:19:31.529+05:30  INFO 9784 --- [bankapplication] [http-nio-9191-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-10-26T14:19:31.529+05:30  INFO 9784 --- [bankapplication] [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-10-26T14:19:31.529+05:30  INFO 9784 --- [bankapplication] [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2024-10-26T14:19:31.545+05:30 DEBUG 9784 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/countries
-2024-10-26T14:19:31.545+05:30 DEBUG 9784 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/countries
-2024-10-26T14:19:31.561+05:30  INFO 9784 --- [bankapplication] [http-nio-9191-exec-1] c.b.service.CountryServiceImpl           : getallcountried method from countryservice called 
-2024-10-26T14:19:31.655+05:30 DEBUG 9784 --- [bankapplication] [http-nio-9191-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2024-10-26T14:19:40.658+05:30  INFO 9784 --- [bankapplication] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-10-26T14:19:40.660+05:30  INFO 9784 --- [bankapplication] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-10-26T14:19:40.672+05:30  INFO 9784 --- [bankapplication] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-10-26T14:36:24.070+05:30  INFO 10636 --- [bankapplication] [main] c.b.BankapplicationApplication           : Starting BankapplicationApplication using Java 21.0.4 with PID 10636 (D:\java\bankapplication\target\classes started by Kharanshu in D:\java\bankapplication)
-2024-10-26T14:36:24.071+05:30  INFO 10636 --- [bankapplication] [main] c.b.BankapplicationApplication           : No active profile set, falling back to 1 default profile: "default"
-2024-10-26T14:36:24.912+05:30  INFO 10636 --- [bankapplication] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-26T14:36:24.978+05:30  INFO 10636 --- [bankapplication] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 60 ms. Found 7 JPA repository interfaces.
-2024-10-26T14:36:25.462+05:30  INFO 10636 --- [bankapplication] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9191 (http)
-2024-10-26T14:36:25.474+05:30  INFO 10636 --- [bankapplication] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-10-26T14:36:25.474+05:30  INFO 10636 --- [bankapplication] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
-2024-10-26T14:36:25.515+05:30  INFO 10636 --- [bankapplication] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-10-26T14:36:25.516+05:30  INFO 10636 --- [bankapplication] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1411 ms
-2024-10-26T14:36:25.647+05:30  INFO 10636 --- [bankapplication] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-26T14:36:25.691+05:30  INFO 10636 --- [bankapplication] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-10-26T14:36:25.718+05:30  INFO 10636 --- [bankapplication] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-10-26T14:36:25.953+05:30  INFO 10636 --- [bankapplication] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-10-26T14:36:25.976+05:30  INFO 10636 --- [bankapplication] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-10-26T14:36:26.250+05:30  INFO 10636 --- [bankapplication] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@21e702b8
-2024-10-26T14:36:26.252+05:30  INFO 10636 --- [bankapplication] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-10-26T14:36:27.154+05:30  INFO 10636 --- [bankapplication] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-10-26T14:36:27.242+05:30  INFO 10636 --- [bankapplication] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-26T14:36:27.430+05:30  INFO 10636 --- [bankapplication] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-10-26T14:36:27.951+05:30  WARN 10636 --- [bankapplication] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-10-26T14:36:27.975+05:30  INFO 10636 --- [bankapplication] [main] o.s.s.p.JdbcUserDetailsManager           : No authentication manager set. Reauthentication of users when changing passwords will not be performed.
-2024-10-26T14:36:27.990+05:30  INFO 10636 --- [bankapplication] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsManager
-2024-10-26T14:36:28.231+05:30 DEBUG 10636 --- [bankapplication] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, BasicAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
-2024-10-26T14:36:28.505+05:30  INFO 10636 --- [bankapplication] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9191 (http) with context path '/'
-2024-10-26T14:36:28.511+05:30  INFO 10636 --- [bankapplication] [main] c.b.BankapplicationApplication           : Started BankapplicationApplication in 4.744 seconds (process running for 5.431)
-2024-10-26T14:37:09.127+05:30  INFO 10636 --- [bankapplication] [http-nio-9191-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-10-26T14:37:09.127+05:30  INFO 10636 --- [bankapplication] [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-10-26T14:37:09.127+05:30  INFO 10636 --- [bankapplication] [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2024-10-26T14:37:09.143+05:30 DEBUG 10636 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/countries
-2024-10-26T14:37:09.143+05:30 DEBUG 10636 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/countries
-2024-10-26T14:37:09.158+05:30  INFO 10636 --- [bankapplication] [http-nio-9191-exec-1] c.b.service.CountryServiceImpl           : getallcountried method from countryservice called 
-2024-10-26T14:37:09.221+05:30  INFO 10636 --- [bankapplication] [http-nio-9191-exec-1] c.b.restcontroller.LocationController    : /countries endpoint called successfully
-2024-10-26T14:37:09.253+05:30 DEBUG 10636 --- [bankapplication] [http-nio-9191-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2024-10-26T14:37:54.543+05:30  INFO 10636 --- [bankapplication] [RMI TCP Connection(4)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2024-10-26T14:37:54.559+05:30  INFO 10636 --- [bankapplication] [RMI TCP Connection(4)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-10-26T14:37:54.559+05:30  INFO 10636 --- [bankapplication] [RMI TCP Connection(4)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-10-26T14:37:54.559+05:30  INFO 10636 --- [bankapplication] [RMI TCP Connection(4)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-10-26T14:39:15.205+05:30  INFO 1680 --- [bankapplication] [main] c.b.BankapplicationApplication           : Starting BankapplicationApplication using Java 21.0.4 with PID 1680 (D:\java\bankapplication\target\classes started by Kharanshu in D:\java\bankapplication)
-2024-10-26T14:39:15.207+05:30  INFO 1680 --- [bankapplication] [main] c.b.BankapplicationApplication           : No active profile set, falling back to 1 default profile: "default"
-2024-10-26T14:39:15.738+05:30  INFO 1680 --- [bankapplication] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-26T14:39:15.803+05:30  INFO 1680 --- [bankapplication] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 59 ms. Found 7 JPA repository interfaces.
-2024-10-26T14:39:16.290+05:30  INFO 1680 --- [bankapplication] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9191 (http)
-2024-10-26T14:39:16.301+05:30  INFO 1680 --- [bankapplication] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-10-26T14:39:16.301+05:30  INFO 1680 --- [bankapplication] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
-2024-10-26T14:39:16.341+05:30  INFO 1680 --- [bankapplication] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-10-26T14:39:16.341+05:30  INFO 1680 --- [bankapplication] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1101 ms
-2024-10-26T14:39:16.471+05:30  INFO 1680 --- [bankapplication] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-26T14:39:16.513+05:30  INFO 1680 --- [bankapplication] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-10-26T14:39:16.538+05:30  INFO 1680 --- [bankapplication] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-10-26T14:39:16.764+05:30  INFO 1680 --- [bankapplication] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-10-26T14:39:16.787+05:30  INFO 1680 --- [bankapplication] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-10-26T14:39:17.057+05:30  INFO 1680 --- [bankapplication] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1ea96ff2
-2024-10-26T14:39:17.059+05:30  INFO 1680 --- [bankapplication] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-10-26T14:39:17.970+05:30  INFO 1680 --- [bankapplication] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-10-26T14:39:18.058+05:30  INFO 1680 --- [bankapplication] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-26T14:39:18.255+05:30  INFO 1680 --- [bankapplication] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-10-26T14:39:18.767+05:30  WARN 1680 --- [bankapplication] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-10-26T14:39:18.791+05:30  INFO 1680 --- [bankapplication] [main] o.s.s.p.JdbcUserDetailsManager           : No authentication manager set. Reauthentication of users when changing passwords will not be performed.
-2024-10-26T14:39:18.806+05:30  INFO 1680 --- [bankapplication] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsManager
-2024-10-26T14:39:19.049+05:30 DEBUG 1680 --- [bankapplication] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, BasicAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
-2024-10-26T14:39:19.313+05:30  INFO 1680 --- [bankapplication] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9191 (http) with context path '/'
-2024-10-26T14:39:19.320+05:30  INFO 1680 --- [bankapplication] [main] c.b.BankapplicationApplication           : Started BankapplicationApplication in 4.414 seconds (process running for 5.027)
-2024-10-26T14:39:30.249+05:30  INFO 1680 --- [bankapplication] [http-nio-9191-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-10-26T14:39:30.249+05:30  INFO 1680 --- [bankapplication] [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-10-26T14:39:30.249+05:30  INFO 1680 --- [bankapplication] [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2024-10-26T14:39:30.279+05:30 DEBUG 1680 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/states/1
-2024-10-26T14:39:30.279+05:30 DEBUG 1680 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/states/1
-2024-10-26T14:39:30.311+05:30  INFO 1680 --- [bankapplication] [http-nio-9191-exec-1] c.b.restcontroller.LocationController    : Fetching states for country ID: 1
-2024-10-26T14:39:30.389+05:30  INFO 1680 --- [bankapplication] [http-nio-9191-exec-1] c.b.restcontroller.LocationController    : Successfully fetched 0 states for country ID: 1
-2024-10-26T14:39:30.420+05:30 DEBUG 1680 --- [bankapplication] [http-nio-9191-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2024-10-26T14:40:11.664+05:30  INFO 1680 --- [bankapplication] [RMI TCP Connection(4)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2024-10-26T14:40:11.671+05:30  INFO 1680 --- [bankapplication] [RMI TCP Connection(4)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-10-26T14:40:11.673+05:30  INFO 1680 --- [bankapplication] [RMI TCP Connection(4)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-10-26T14:40:11.680+05:30  INFO 1680 --- [bankapplication] [RMI TCP Connection(4)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-10-26T15:01:00.398+05:30  INFO 4808 --- [bankapplication] [main] c.b.BankapplicationApplication           : Starting BankapplicationApplication using Java 21.0.4 with PID 4808 (D:\java\bankapplication\target\classes started by Kharanshu in D:\java\bankapplication)
-2024-10-26T15:01:00.409+05:30  INFO 4808 --- [bankapplication] [main] c.b.BankapplicationApplication           : No active profile set, falling back to 1 default profile: "default"
-2024-10-26T15:01:01.131+05:30  INFO 4808 --- [bankapplication] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-26T15:01:01.198+05:30  INFO 4808 --- [bankapplication] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 56 ms. Found 7 JPA repository interfaces.
-2024-10-26T15:01:01.712+05:30  INFO 4808 --- [bankapplication] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9191 (http)
-2024-10-26T15:01:01.724+05:30  INFO 4808 --- [bankapplication] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-10-26T15:01:01.724+05:30  INFO 4808 --- [bankapplication] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
-2024-10-26T15:01:01.772+05:30  INFO 4808 --- [bankapplication] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-10-26T15:01:01.772+05:30  INFO 4808 --- [bankapplication] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1328 ms
-2024-10-26T15:01:01.906+05:30  INFO 4808 --- [bankapplication] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-26T15:01:01.975+05:30  INFO 4808 --- [bankapplication] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-10-26T15:01:02.011+05:30  INFO 4808 --- [bankapplication] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-10-26T15:01:02.309+05:30  INFO 4808 --- [bankapplication] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-10-26T15:01:02.339+05:30  INFO 4808 --- [bankapplication] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-10-26T15:01:02.622+05:30  INFO 4808 --- [bankapplication] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@627d35ff
-2024-10-26T15:01:02.624+05:30  INFO 4808 --- [bankapplication] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-10-26T15:01:03.632+05:30  INFO 4808 --- [bankapplication] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-10-26T15:01:03.722+05:30  INFO 4808 --- [bankapplication] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-26T15:01:03.919+05:30  INFO 4808 --- [bankapplication] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-10-26T15:01:04.472+05:30  WARN 4808 --- [bankapplication] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-10-26T15:01:04.497+05:30  INFO 4808 --- [bankapplication] [main] o.s.s.p.JdbcUserDetailsManager           : No authentication manager set. Reauthentication of users when changing passwords will not be performed.
-2024-10-26T15:01:04.511+05:30  INFO 4808 --- [bankapplication] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsManager
-2024-10-26T15:01:04.759+05:30 DEBUG 4808 --- [bankapplication] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, BasicAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
-2024-10-26T15:01:05.023+05:30  INFO 4808 --- [bankapplication] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9191 (http) with context path '/'
-2024-10-26T15:01:05.031+05:30  INFO 4808 --- [bankapplication] [main] c.b.BankapplicationApplication           : Started BankapplicationApplication in 4.946 seconds (process running for 7.493)
-2024-10-26T15:01:33.312+05:30  INFO 4808 --- [bankapplication] [http-nio-9191-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-10-26T15:01:33.312+05:30  INFO 4808 --- [bankapplication] [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-10-26T15:01:33.312+05:30  INFO 4808 --- [bankapplication] [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2024-10-26T15:01:33.328+05:30 DEBUG 4808 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/city/1
-2024-10-26T15:01:33.328+05:30 DEBUG 4808 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/city/1
-2024-10-26T15:01:33.343+05:30  INFO 4808 --- [bankapplication] [http-nio-9191-exec-1] c.b.restcontroller.LocationController    : Fetching cities for district ID: 1
-2024-10-26T15:01:33.343+05:30 ERROR 4808 --- [bankapplication] [http-nio-9191-exec-1] c.b.controller.UserController            : An unexpected error occurredjava.lang.NullPointerException: Cannot invoke "java.util.List.size()" because "cities" is null
-2024-10-26T15:01:33.359+05:30 DEBUG 4808 --- [bankapplication] [http-nio-9191-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2024-10-26T15:01:33.375+05:30 DEBUG 4808 --- [bankapplication] [http-nio-9191-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /error
-2024-10-26T15:01:33.375+05:30 DEBUG 4808 --- [bankapplication] [http-nio-9191-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /error
-2024-10-26T15:01:33.391+05:30 DEBUG 4808 --- [bankapplication] [http-nio-9191-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2024-10-26T15:01:33.454+05:30 DEBUG 4808 --- [bankapplication] [http-nio-9191-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
-2024-10-26T15:01:33.454+05:30 DEBUG 4808 --- [bankapplication] [http-nio-9191-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2024-10-26T15:01:33.454+05:30 DEBUG 4808 --- [bankapplication] [http-nio-9191-exec-3] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@68fce3e5, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]
-2024-10-26T15:01:33.454+05:30 DEBUG 4808 --- [bankapplication] [http-nio-9191-exec-3] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@521f2a23
-2024-10-26T15:01:33.454+05:30 DEBUG 4808 --- [bankapplication] [http-nio-9191-exec-3] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:9191/login
-2024-10-26T15:01:33.470+05:30 DEBUG 4808 --- [bankapplication] [http-nio-9191-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /login
-2024-10-26T15:01:33.470+05:30 DEBUG 4808 --- [bankapplication] [http-nio-9191-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /login
-2024-10-26T15:01:33.470+05:30  INFO 4808 --- [bankapplication] [http-nio-9191-exec-4] c.b.controller.LoginController           : inside login method
-2024-10-26T15:01:33.721+05:30 DEBUG 4808 --- [bankapplication] [http-nio-9191-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2024-10-26T15:02:00.512+05:30  INFO 4808 --- [bankapplication] [RMI TCP Connection(3)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2024-10-26T15:02:00.520+05:30  INFO 4808 --- [bankapplication] [RMI TCP Connection(3)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-10-26T15:02:00.522+05:30  INFO 4808 --- [bankapplication] [RMI TCP Connection(3)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-10-26T15:02:00.528+05:30  INFO 4808 --- [bankapplication] [RMI TCP Connection(3)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-10-26T15:03:51.318+05:30  INFO 11256 --- [bankapplication] [main] c.b.BankapplicationApplication           : Starting BankapplicationApplication using Java 21.0.4 with PID 11256 (D:\java\bankapplication\target\classes started by Kharanshu in D:\java\bankapplication)
-2024-10-26T15:03:51.320+05:30  INFO 11256 --- [bankapplication] [main] c.b.BankapplicationApplication           : No active profile set, falling back to 1 default profile: "default"
-2024-10-26T15:03:51.851+05:30  INFO 11256 --- [bankapplication] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-26T15:03:51.917+05:30  INFO 11256 --- [bankapplication] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 60 ms. Found 7 JPA repository interfaces.
-2024-10-26T15:03:52.406+05:30  INFO 11256 --- [bankapplication] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9191 (http)
-2024-10-26T15:03:52.417+05:30  INFO 11256 --- [bankapplication] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-10-26T15:03:52.417+05:30  INFO 11256 --- [bankapplication] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
-2024-10-26T15:03:52.461+05:30  INFO 11256 --- [bankapplication] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-10-26T15:03:52.462+05:30  INFO 11256 --- [bankapplication] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1108 ms
-2024-10-26T15:03:52.589+05:30  INFO 11256 --- [bankapplication] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-26T15:03:52.632+05:30  INFO 11256 --- [bankapplication] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-10-26T15:03:52.657+05:30  INFO 11256 --- [bankapplication] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-10-26T15:03:52.888+05:30  INFO 11256 --- [bankapplication] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-10-26T15:03:52.911+05:30  INFO 11256 --- [bankapplication] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-10-26T15:03:53.185+05:30  INFO 11256 --- [bankapplication] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1dc9f5ad
-2024-10-26T15:03:53.187+05:30  INFO 11256 --- [bankapplication] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-10-26T15:03:54.115+05:30  INFO 11256 --- [bankapplication] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-10-26T15:03:54.204+05:30  INFO 11256 --- [bankapplication] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-26T15:03:54.399+05:30  INFO 11256 --- [bankapplication] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-10-26T15:03:54.939+05:30  WARN 11256 --- [bankapplication] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-10-26T15:03:54.968+05:30  INFO 11256 --- [bankapplication] [main] o.s.s.p.JdbcUserDetailsManager           : No authentication manager set. Reauthentication of users when changing passwords will not be performed.
-2024-10-26T15:03:54.982+05:30  INFO 11256 --- [bankapplication] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsManager
-2024-10-26T15:03:55.234+05:30 DEBUG 11256 --- [bankapplication] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, BasicAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
-2024-10-26T15:03:55.506+05:30  INFO 11256 --- [bankapplication] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9191 (http) with context path '/'
-2024-10-26T15:03:55.512+05:30  INFO 11256 --- [bankapplication] [main] c.b.BankapplicationApplication           : Started BankapplicationApplication in 4.504 seconds (process running for 5.109)
-2024-10-26T15:03:59.190+05:30  INFO 11256 --- [bankapplication] [http-nio-9191-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-10-26T15:03:59.191+05:30  INFO 11256 --- [bankapplication] [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-10-26T15:03:59.194+05:30  INFO 11256 --- [bankapplication] [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
-2024-10-26T15:03:59.254+05:30 DEBUG 11256 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/city/1
-2024-10-26T15:03:59.267+05:30 DEBUG 11256 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/city/1
-2024-10-26T15:03:59.304+05:30  INFO 11256 --- [bankapplication] [http-nio-9191-exec-1] c.b.restcontroller.LocationController    : Fetching cities for district ID: 1
-2024-10-26T15:03:59.305+05:30  INFO 11256 --- [bankapplication] [http-nio-9191-exec-1] c.b.restcontroller.LocationController    : Successfully fetched cities for district ID: 1
-2024-10-26T15:03:59.328+05:30 DEBUG 11256 --- [bankapplication] [http-nio-9191-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2024-10-26T15:03:59.367+05:30 DEBUG 11256 --- [bankapplication] [http-nio-9191-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
-2024-10-26T15:03:59.369+05:30 DEBUG 11256 --- [bankapplication] [http-nio-9191-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2024-10-26T15:03:59.374+05:30 DEBUG 11256 --- [bankapplication] [http-nio-9191-exec-2] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@466d87a1, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]
-2024-10-26T15:03:59.374+05:30 DEBUG 11256 --- [bankapplication] [http-nio-9191-exec-2] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@1cb83205
-2024-10-26T15:03:59.375+05:30 DEBUG 11256 --- [bankapplication] [http-nio-9191-exec-2] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:9191/login
-2024-10-26T15:03:59.383+05:30 DEBUG 11256 --- [bankapplication] [http-nio-9191-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /login
-2024-10-26T15:03:59.384+05:30 DEBUG 11256 --- [bankapplication] [http-nio-9191-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /login
-2024-10-26T15:03:59.386+05:30  INFO 11256 --- [bankapplication] [http-nio-9191-exec-3] c.b.controller.LoginController           : inside login method
-2024-10-26T15:03:59.633+05:30 DEBUG 11256 --- [bankapplication] [http-nio-9191-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2024-10-26T15:04:23.439+05:30  INFO 11256 --- [bankapplication] [RMI TCP Connection(4)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2024-10-26T15:04:23.448+05:30  INFO 11256 --- [bankapplication] [RMI TCP Connection(4)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-10-26T15:04:23.449+05:30  INFO 11256 --- [bankapplication] [RMI TCP Connection(4)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-10-26T15:04:23.456+05:30  INFO 11256 --- [bankapplication] [RMI TCP Connection(4)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-10-26T15:05:01.212+05:30  INFO 4868 --- [bankapplication] [main] c.b.BankapplicationApplication           : Starting BankapplicationApplication using Java 21.0.4 with PID 4868 (D:\java\bankapplication\target\classes started by Kharanshu in D:\java\bankapplication)
-2024-10-26T15:05:01.213+05:30  INFO 4868 --- [bankapplication] [main] c.b.BankapplicationApplication           : No active profile set, falling back to 1 default profile: "default"
-2024-10-26T15:05:01.738+05:30  INFO 4868 --- [bankapplication] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-26T15:05:01.803+05:30  INFO 4868 --- [bankapplication] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 59 ms. Found 7 JPA repository interfaces.
-2024-10-26T15:05:02.303+05:30  INFO 4868 --- [bankapplication] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9191 (http)
-2024-10-26T15:05:02.313+05:30  INFO 4868 --- [bankapplication] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-10-26T15:05:02.314+05:30  INFO 4868 --- [bankapplication] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
-2024-10-26T15:05:02.356+05:30  INFO 4868 --- [bankapplication] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-10-26T15:05:02.356+05:30  INFO 4868 --- [bankapplication] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1110 ms
-2024-10-26T15:05:02.485+05:30  INFO 4868 --- [bankapplication] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-26T15:05:02.528+05:30  INFO 4868 --- [bankapplication] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-10-26T15:05:02.553+05:30  INFO 4868 --- [bankapplication] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-10-26T15:05:02.786+05:30  INFO 4868 --- [bankapplication] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-10-26T15:05:02.809+05:30  INFO 4868 --- [bankapplication] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-10-26T15:05:03.092+05:30  INFO 4868 --- [bankapplication] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@498b611e
-2024-10-26T15:05:03.093+05:30  INFO 4868 --- [bankapplication] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-10-26T15:05:04.054+05:30  INFO 4868 --- [bankapplication] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-10-26T15:05:04.139+05:30  INFO 4868 --- [bankapplication] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-26T15:05:04.338+05:30  INFO 4868 --- [bankapplication] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-10-26T15:05:05.318+05:30  WARN 4868 --- [bankapplication] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-10-26T15:05:05.363+05:30  INFO 4868 --- [bankapplication] [main] o.s.s.p.JdbcUserDetailsManager           : No authentication manager set. Reauthentication of users when changing passwords will not be performed.
-2024-10-26T15:05:05.391+05:30  INFO 4868 --- [bankapplication] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsManager
-2024-10-26T15:05:05.674+05:30 DEBUG 4868 --- [bankapplication] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, BasicAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
-2024-10-26T15:05:05.951+05:30  INFO 4868 --- [bankapplication] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9191 (http) with context path '/'
-2024-10-26T15:05:05.958+05:30  INFO 4868 --- [bankapplication] [main] c.b.BankapplicationApplication           : Started BankapplicationApplication in 5.041 seconds (process running for 5.622)
-2024-10-26T15:05:07.160+05:30  INFO 4868 --- [bankapplication] [http-nio-9191-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-10-26T15:05:07.160+05:30  INFO 4868 --- [bankapplication] [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-10-26T15:05:07.162+05:30  INFO 4868 --- [bankapplication] [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-10-26T15:05:07.186+05:30 DEBUG 4868 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/district/1
-2024-10-26T15:05:07.195+05:30 DEBUG 4868 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/district/1
-2024-10-26T15:05:07.370+05:30 DEBUG 4868 --- [bankapplication] [http-nio-9191-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2024-10-26T15:05:27.645+05:30  INFO 4868 --- [bankapplication] [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2024-10-26T15:05:27.654+05:30  INFO 4868 --- [bankapplication] [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-10-26T15:05:27.656+05:30  INFO 4868 --- [bankapplication] [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-10-26T15:05:27.662+05:30  INFO 4868 --- [bankapplication] [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-10-28T00:03:53.986+05:30  INFO 7060 --- [bankapplication] [main] c.b.BankapplicationApplication           : Starting BankapplicationApplication using Java 21.0.4 with PID 7060 (D:\java\bankapplication\target\classes started by Pratik in D:\java\bankapplication)
+2024-10-28T00:03:53.994+05:30  INFO 7060 --- [bankapplication] [main] c.b.BankapplicationApplication           : No active profile set, falling back to 1 default profile: "default"
+2024-10-28T00:03:54.498+05:30  INFO 7060 --- [bankapplication] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-28T00:03:54.553+05:30  INFO 7060 --- [bankapplication] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 7 JPA repository interfaces.
+2024-10-28T00:03:55.014+05:30  INFO 7060 --- [bankapplication] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9191 (http)
+2024-10-28T00:03:55.025+05:30  INFO 7060 --- [bankapplication] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-28T00:03:55.025+05:30  INFO 7060 --- [bankapplication] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-10-28T00:03:55.066+05:30  INFO 7060 --- [bankapplication] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-28T00:03:55.066+05:30  INFO 7060 --- [bankapplication] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1034 ms
+2024-10-28T00:03:55.191+05:30  INFO 7060 --- [bankapplication] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-28T00:03:55.236+05:30  INFO 7060 --- [bankapplication] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-10-28T00:03:55.264+05:30  INFO 7060 --- [bankapplication] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-28T00:03:55.499+05:30  INFO 7060 --- [bankapplication] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-28T00:03:55.521+05:30  INFO 7060 --- [bankapplication] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-10-28T00:03:55.782+05:30  INFO 7060 --- [bankapplication] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3595086b
+2024-10-28T00:03:55.785+05:30  INFO 7060 --- [bankapplication] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-10-28T00:03:56.647+05:30  INFO 7060 --- [bankapplication] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-28T00:03:56.723+05:30  INFO 7060 --- [bankapplication] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-28T00:03:56.910+05:30  INFO 7060 --- [bankapplication] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-10-28T00:03:57.432+05:30  WARN 7060 --- [bankapplication] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-28T00:03:57.455+05:30  INFO 7060 --- [bankapplication] [main] o.s.s.p.JdbcUserDetailsManager           : No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2024-10-28T00:03:57.470+05:30  INFO 7060 --- [bankapplication] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsManager
+2024-10-28T00:03:57.702+05:30 DEBUG 7060 --- [bankapplication] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, BasicAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2024-10-28T00:03:57.962+05:30  INFO 7060 --- [bankapplication] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9191 (http) with context path '/'
+2024-10-28T00:03:57.969+05:30  INFO 7060 --- [bankapplication] [main] c.b.BankapplicationApplication           : Started BankapplicationApplication in 4.262 seconds (process running for 4.842)
+2024-10-28T00:04:07.578+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-28T00:04:07.578+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-28T00:04:07.578+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-10-28T00:04:07.593+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /
+2024-10-28T00:04:07.605+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /
+2024-10-28T00:04:07.615+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-1] c.b.controller.LoginController           : home page called inside login controller
+2024-10-28T00:04:07.815+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-10-28T00:04:08.036+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2024-10-28T00:04:08.038+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-10-28T00:04:08.038+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-2] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@6fb9dab6, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]
+2024-10-28T00:04:08.038+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-2] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@21f3a99c
+2024-10-28T00:04:08.043+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-2] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:9191/login
+2024-10-28T00:04:08.043+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /login
+2024-10-28T00:04:08.043+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /login
+2024-10-28T00:04:08.043+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-3] c.b.controller.LoginController           : inside login method
+2024-10-28T00:04:08.067+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-10-28T00:04:14.054+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /
+2024-10-28T00:04:14.054+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /
+2024-10-28T00:04:14.056+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-5] c.b.controller.LoginController           : home page called inside login controller
+2024-10-28T00:04:14.077+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-10-28T00:04:14.361+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2024-10-28T00:04:14.365+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-10-28T00:04:14.365+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-6] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@6fb9dab6, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]
+2024-10-28T00:04:14.365+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-6] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@21f3a99c
+2024-10-28T00:04:14.365+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-6] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:9191/login
+2024-10-28T00:04:14.377+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /login
+2024-10-28T00:04:14.377+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /login
+2024-10-28T00:04:14.379+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-7] c.b.controller.LoginController           : inside login method
+2024-10-28T00:04:14.385+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-10-28T00:04:15.631+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /login
+2024-10-28T00:04:15.631+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /login
+2024-10-28T00:04:15.631+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.LoginController           : inside login method
+2024-10-28T00:04:15.631+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-10-28T00:04:15.708+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2024-10-28T00:04:15.712+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-10-28T00:04:15.712+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-9] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@6fb9dab6, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]
+2024-10-28T00:04:15.712+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-9] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@21f3a99c
+2024-10-28T00:04:15.712+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-9] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:9191/login
+2024-10-28T00:04:15.720+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /login
+2024-10-28T00:04:15.720+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /login
+2024-10-28T00:04:15.720+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.LoginController           : inside login method
+2024-10-28T00:04:15.722+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-10-28T00:04:17.088+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /authenticatetheuser
+2024-10-28T00:04:17.185+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-2] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-10-28T00:04:17.185+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-2] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=pratikwanare@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@294208b1]
+2024-10-28T00:04:17.185+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-2] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=pratikwanare@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
+2024-10-28T00:04:17.185+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-2] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /home2
+2024-10-28T00:04:17.199+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /home2
+2024-10-28T00:04:17.199+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=pratikwanare@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-10-28T00:04:17.199+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /home2
+2024-10-28T00:04:17.199+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-3] c.b.controller.UserController            : homepage2 method from usercontroller class called 
+2024-10-28T00:04:17.199+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-3] c.b.controller.UserController            : inside userserviceappcontext class getloggedinuseremail method
+2024-10-28T00:04:17.199+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-3] c.b.controller.UserController            : user data found inside userserviceappcontext class getloggedinuseremail method 
+2024-10-28T00:04:17.199+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-3] c.b.controller.UserController            : the user logged in is :pratikwanare@gmail.com
+2024-10-28T00:04:17.199+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-3] c.b.controller.UserController            : User home page called after successful login inside UserController
+2024-10-28T00:04:17.258+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2024-10-28T00:04:17.258+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=pratikwanare@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-10-28T00:04:17.260+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
+2024-10-28T00:04:19.744+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /user/update
+2024-10-28T00:04:19.744+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=pratikwanare@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-10-28T00:04:19.744+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /user/update
+2024-10-28T00:04:19.746+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-5] c.b.service.CountryServiceImpl           : getAllCountries method from CountryService called
+2024-10-28T00:04:19.826+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-5] c.b.service.CountryServiceImpl           : Retrieved 1 countries
+2024-10-28T00:04:19.826+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-5] c.b.controller.UserController            : inside userserviceappcontext class getloggedinuseremail method
+2024-10-28T00:04:19.826+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-5] c.b.controller.UserController            : user data found inside userserviceappcontext class getloggedinuseremail method 
+2024-10-28T00:04:19.973+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2024-10-28T00:04:19.973+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=pratikwanare@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-10-28T00:04:19.973+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
+2024-10-28T00:04:21.894+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/states/1
+2024-10-28T00:04:21.894+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /api/states/1
+2024-10-28T00:04:21.894+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-7] c.b.restcontroller.LocationController    : Fetching states for country ID: 1
+2024-10-28T00:04:21.894+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-7] c.b.service.StateServiceImpl             : getStatesByCountryId method called with countryId: 1
+2024-10-28T00:04:21.894+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-7] c.b.service.StateServiceImpl             : Retrieved 28 states for countryId: 1
+2024-10-28T00:04:21.894+05:30  INFO 7060 --- [bankapplication] [http-nio-9191-exec-7] c.b.restcontroller.LocationController    : Successfully fetched 28 states for country ID: 1
+2024-10-28T00:04:21.941+05:30 DEBUG 7060 --- [bankapplication] [http-nio-9191-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=pratikwanare@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2024-10-28T00:04:28.562+05:30  INFO 7060 --- [bankapplication] [RMI TCP Connection(4)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-10-28T00:04:28.580+05:30  INFO 7060 --- [bankapplication] [RMI TCP Connection(4)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-28T00:04:28.580+05:30  INFO 7060 --- [bankapplication] [RMI TCP Connection(4)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-10-28T00:04:28.582+05:30  INFO 7060 --- [bankapplication] [RMI TCP Connection(4)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

@@ -82,9 +82,11 @@ public class SecurityConfig {
                                 
                                 .requestMatchers(HttpMethod.GET,"/api/states/**").permitAll()
                                 
-                                .requestMatchers(HttpMethod.GET,"/api/district/**").permitAll()
+                                .requestMatchers(HttpMethod.GET,"/api/districts/**").permitAll()
                                 
-                                .requestMatchers(HttpMethod.GET,"/api/city/**").permitAll()
+                                .requestMatchers(HttpMethod.GET,"/api/cities/**").permitAll()
+                                
+                                .requestMatchers(HttpMethod.GET,"/user/update").hasRole("USER")
                                 
                                 .anyRequest().authenticated()
 

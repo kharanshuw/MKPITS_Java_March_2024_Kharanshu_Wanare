@@ -2,6 +2,9 @@ package com.bankapplication.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,11 +28,13 @@ public class City {
 
     
 
+    @JsonManagedReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "district_id")
     private District district;
 
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    @JsonBackReference
+    @OneToMany(mappedBy = "city")
     private List<UserDetails> userDetails;
 
     public int getId() {

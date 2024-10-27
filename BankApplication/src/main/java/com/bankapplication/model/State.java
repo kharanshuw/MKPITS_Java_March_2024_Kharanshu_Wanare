@@ -2,6 +2,9 @@ package com.bankapplication.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,13 +25,12 @@ public class State {
 
 	@Column(name = "state_name")
 	private String nameString;
-	
-	@Column(name = "state_code")
-	private int statecode;
 
-	@OneToMany(mappedBy = "state", cascade = CascadeType.ALL)
+	@JsonBackReference
+	@OneToMany(mappedBy = "state")
 	private List<District> districts;
 
+	@JsonManagedReference
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "country_id")
 	private Country country;
@@ -67,21 +69,21 @@ public class State {
 
 	@Override
 	public String toString() {
-	    return "State [id=" + id + ", nameString=" + nameString + ", districts=" + districts + ", country="
-		    + country + "]";
+		return "State [id=" + id + ", nameString=" + nameString + ", districts=" + districts + ", country=" + country
+				+ "]";
 	}
 
 	public State(int id, String nameString, List<District> districts, Country country) {
-	    super();
-	    this.id = id;
-	    this.nameString = nameString;
-	    this.districts = districts;
-	    this.country = country;
+		super();
+		this.id = id;
+		this.nameString = nameString;
+		this.districts = districts;
+		this.country = country;
 	}
 
 	public State() {
-	    super();
-	    // TODO Auto-generated constructor stub
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 }

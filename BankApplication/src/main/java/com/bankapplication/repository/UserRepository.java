@@ -12,10 +12,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 
-
-
 @Repository
-public interface UserRepository extends JpaRepository<User,Integer> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
 
     @Query("SELECT new com.bankapplication.dto.LoggesInUserDetails(u.id, u.email, ud.fname, ud.lname, ud.gender, ud.phoneno, r.rolename) " +
@@ -24,17 +22,21 @@ public interface UserRepository extends JpaRepository<User,Integer> {
             "JOIN u.role r " +
             "WHERE u.email = :email")
     public LoggesInUserDetails findUserRoleDetailsByEmail(@Param("email") String email);
-    
-    
+
+
 //    
 //    @Query("SELECT new com.bankapplication.dto.ResponseDto(u.id, u.email, ud.fname, ud.lname, ud.gender, ud.phoneno, r.rolename) " +
 //    	       "FROM User u " +
 //    	       "JOIN u.userDetails ud " +
 //    	       "JOIN u.role r")
 //    	public List<ResponseDto> findAllUserDetails();
-    
+
     @Query("SELECT u FROM User u WHERE u.isActive = false ")
     public List<User> findInactiveUsers();
 
-    
+
+    @Query("SELECT u FROM User u WHERE u.email = :email")
+    public User findUserByEmail(@Param("email") String email);
+
+
 }
