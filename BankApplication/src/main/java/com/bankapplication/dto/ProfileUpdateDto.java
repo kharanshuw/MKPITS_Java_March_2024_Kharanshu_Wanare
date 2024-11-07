@@ -109,4 +109,13 @@ public class ProfileUpdateDto {
     public void setCountryid(int countryid) {
         this.countryid = countryid;
     }
+
+	@Override
+	public String toString() {
+		return "ProfileUpdateDto [email=" + email + ", password=" + password + ", fname=" + fname + ", lname=" + lname
+				+ ", gender=" + gender + ", phoneno=" + phoneno + ", cityid=" + cityid + ", districtid=" + districtid
+				+ ", stateid=" + stateid + ", countryid=" + countryid + "]";
+	}
+    
+    
 }

@@ -16,7 +16,6 @@ import com.bankapplication.repository.*;
 
 import com.bankapplication.model.UserDetails;
 
-
 import com.bankapplication.dto.*;
 
 import com.bankapplication.model.*;
@@ -59,7 +58,6 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public RequestDto createuser(RequestDto requestDto) {
 
-		
 		// Log the incoming request data
 		logger.info(requestDto.toString());
 
@@ -74,7 +72,7 @@ public class UserServiceImpl implements UserService {
 
 		password = stringBuffer.toString();
 
-		logger.info("new password"+password);
+		logger.info("new password" + password);
 
 		// Set user properties
 		user.setPassword(password);
@@ -106,14 +104,14 @@ public class UserServiceImpl implements UserService {
 				// this block of code will only run if user role does not exist in database
 				// Log error if ROLE_USER is not found
 				logger.error("ROLE_USER not found!");
-				
+
 				return null;
 			}
 		} catch (Exception e) {
 			// Log any errors in finding the role
-			
+
 			logger.error("Error finding ROLE_USER: " + e.getMessage());
-			
+
 		}
 		// Add the ROLE_USER to the user
 		user.addrole(role);
@@ -143,45 +141,28 @@ public class UserServiceImpl implements UserService {
 
 		// Find logged in user details by email
 
-		LoggesInUserDetails loggesInUserDetails = userRepository.findUserRoleDetailsByEmail(email);
-		if (loggesInUserDetails == null) {
+		User user = userRepository.findUserByEmail(email);
+		if (user == null) {
 			logger.info("Logged in user not found");
 			return null;
 		}
 
 		// Log found user details
 
-		logger.info("Found user: {}", loggesInUserDetails);
+		logger.info("Found user: {}", user.toString());
 
 		// Find user by ID
 
-		User user = userRepository.findById(loggesInUserDetails.getId()).orElse(null);
+		ResponseDto responseDto = createResponseDto(user);
 
-		if (user == null) {
-
-			// Log if user is not found
-
-			logger.error("user not found in getLoggedInUserDetails method");
-			return null;
-		} else {
-			// Log if user is found
-
-			logger.info("user found in getLoggedInUserDetails method");
-
-			// Create and return ResponseDto with user details
-
-			ResponseDto responseDto = createResponseDto(user);
-
-			return responseDto;
-		}
-
+		return responseDto;
 	}
-
 
 	/**
 	 * Creates a ResponseDto object from a given User object.
 	 *
-	 * This method copies relevant fields from the User object to the ResponseDto object.
+	 * This method copies relevant fields from the User object to the ResponseDto
+	 * object.
 	 *
 	 * @param user The User object to be converted.
 	 * @return The created ResponseDto object.
@@ -214,7 +195,6 @@ public class UserServiceImpl implements UserService {
 		return responseDto;
 	}
 
-	
 	/**
 	 * Method to find all users and convert them into ResponseDto objects.
 	 * 
@@ -223,41 +203,41 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<ResponseDto> findAllUser() {
-	    // Retrieve all users from the repository
+		// Retrieve all users from the repository
 
 		List<User> users = userRepository.findAll();
 
-	    // Check if the users list is empty
+		// Check if the users list is empty
 
 		if (users.isEmpty()) {
-	        // Log an error if no users are found
-	        logger.error("Users list in findAllUser method of UserServiceImpl class is empty");
-	        return Collections.emptyList();
+			// Log an error if no users are found
+			logger.error("Users list in findAllUser method of UserServiceImpl class is empty");
+			return Collections.emptyList();
 
 		}
 
 		else {
-	        // Log information indicating users were found
-	        logger.info("List of users found in findAllUser method of UserServiceImpl class");
-	        // Create a list to hold the ResponseDto objects
+			// Log information indicating users were found
+			logger.info("List of users found in findAllUser method of UserServiceImpl class");
+			// Create a list to hold the ResponseDto objects
 
 			List<ResponseDto> list = new ArrayList<>();
-	        // Iterate through each user and convert to ResponseDto
+			// Iterate through each user and convert to ResponseDto
 
 			for (User u : users) {
-				
-	            // Create a ResponseDto from the User object
+
+				// Create a ResponseDto from the User object
 
 				ResponseDto responseDto = createResponseDto(u);
-	            // Log information indicating a response entity was created
+				// Log information indicating a response entity was created
 
 				logger.info("response entity created ");
-	            // Add the ResponseDto to the list
+				// Add the ResponseDto to the list
 
 				list.add(responseDto);
 
 			}
-	        // Return the list of ResponseDto objects
+			// Return the list of ResponseDto objects
 
 			return list;
 
@@ -265,9 +245,9 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-
 	/**
-	 * Retrieves a list of inactive users and converts them to a list of ResponseDto objects.
+	 * Retrieves a list of inactive users and converts them to a list of ResponseDto
+	 * objects.
 	 *
 	 * @return A list of ResponseDto objects representing inactive users.
 	 */
@@ -277,11 +257,10 @@ public class UserServiceImpl implements UserService {
 		List<User> inactiveUsers = userRepository.findInactiveUsers();
 		logger.debug("Found {} inactive users", inactiveUsers.size());
 
+		// list to store inactive store in dto obj
+		List<ResponseDto> list1 = new ArrayList<>();
 
-		//list to store inactive store in dto obj
-		List<ResponseDto> list1= new ArrayList<>();
-		
-		for(User u: inactiveUsers){
+		for (User u : inactiveUsers) {
 			ResponseDto responseDto = new ResponseDto();
 			responseDto.setEmail(u.getEmail());
 			responseDto.setId(u.getId());
@@ -294,22 +273,21 @@ public class UserServiceImpl implements UserService {
 		return list1;
 	}
 
-
 	/**
 	 * Converts a ResponseDto object to a ProfileUpdateDto object.
 	 *
-	 * This method copies the relevant fields from the ResponseDto to the ProfileUpdateDto.
+	 * This method copies the relevant fields from the ResponseDto to the
+	 * ProfileUpdateDto.
 	 *
 	 * @param responseDto The ResponseDto object to be converted.
 	 * @return The converted ProfileUpdateDto object.
 	 */
-	public ProfileUpdateDto convertToProfileUpdate(User user)
-	{
+	public ProfileUpdateDto convertToProfileUpdate(User user) {
 		// Check for null user
 		if (user == null) {
-			return null; 
+			return null;
 		}
-		
+
 		ProfileUpdateDto profileUpdateDto = new ProfileUpdateDto();
 
 		profileUpdateDto.setEmail(user.getEmail());
@@ -323,19 +301,17 @@ public class UserServiceImpl implements UserService {
 //		profileUpdateDto.setStateid(user.getUserDetails().getCity().getDistrict().getState().getId());
 //		profileUpdateDto.setCountryid(user.getUserDetails().getCity().getDistrict().getState().getCountry().getId());
 //		
-		
-		
+
 		return profileUpdateDto;
-		
+
 	}
 
 	public User getUserByEmail(String email) {
-		User user=null;
-		
-		user=userRepository.findUserByEmail(email);
-		
+		User user = null;
+
+		user = userRepository.findUserByEmail(email);
+
 		return user;
 	}
-	
 
 }

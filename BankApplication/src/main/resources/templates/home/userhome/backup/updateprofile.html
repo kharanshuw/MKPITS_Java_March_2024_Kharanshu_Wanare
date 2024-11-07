@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>update profile data</title>
+
+
+	<script src="https://code.jquery.com/jquery-3.7.1.js"
+		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+</head>
+
+
+<body>
+	<div class="container">
+
+		<form th:action="@{/user/processupdate}" method="post" th:object="${profileUpdateDto}">
+
+			<label for="email" class="col-md-4 col-form-label text-md-right">Email:</label>
+
+			<input type="email" id="email" th:field="*{email}" class="form-control" required>
+			<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+			<label for="fname">First Name:</label>
+			<div>
+				<input type="text" id="fname" th:field="*{fname}" required>
+				<span th:if="${#fields.hasErrors('fname')}" th:errors="*{fname}"></span>
+			</div>
+
+			<label for="lname">Last Name:</label>
+			<div>
+				<input type="text" id="lname" th:field="*{lname}" required>
+				<span th:if="${#fields.hasErrors('lname')}" th:errors="*{lname}"></span>
+			</div>
+
+
+			<label for="password">Password:</label>
+			<div class="col-md-6">
+				<input type="password" id="password" th:field="*{password}" required>
+				<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
+			</div>
+
+
+			<label for="Gender">Choose Gender</label>
+
+			<select name="Gender" id="Gender">
+				<option value="male">MALE</option>
+				<option value="female">FEMALE</option>
+			</select>
+
+
+			<select id="country" class="form-control" name="country" required>
+				<option value="">Select Country</option>
+				<th:block th:each="country : ${countries}">
+					<option th:value="${country.id}" th:text="${country.name}"></option>
+				</th:block>
+			</select>
+
+
+			<div class="form-group">
+				<label for="state">State</label>
+				<select id="state" class="form-control" name="state" required>
+					<option value="">Select State</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="district">District</label>
+				<select id="district" class="form-control" name="district" required>
+					<option value="">Select District</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="city">City</label>
+				<select id="city" class="form-control" name="cityId" required>
+					<option value="">Select City</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="phoneNumber">Phone Number</label>
+				<input type="text" id="phoneNumber" name="phoneNumber" class="form-control"
+					placeholder="Enter phone number" required>
+			</div>
+
+			<button type="submit" value="save">Update</button>
+
+		</form>
+
+
+	</div>
+
+
+	
+
+	<script>
+	  $(document).ready(function() {
+	    // Load states when country is selected
+	    $('#country').change(function() {
+	      var countryId = $(this).val();
+	      $.ajax({
+	        url: '/api/states/' + countryId,
+	        method: 'GET',
+	        success: function(states) {
+	          $('#state').empty().append('<option value="">Select State</option>');
+	          $.each(states, function(index, state) {
+	+            $('#state').append('<option value="' + state.id + '">' + state.nameString + '</option>');
+	          });
+	        }
+	      });
+	    });
+
+	    // Load districts when state is selected
+	    $('#state').change(function() {
+	      var stateId = $(this).val();
+	      $.ajax({
+	        url: '/api/districts/' + stateId,
+	        method: 'GET',
+	        success: function(districts) {
+	          $('#district').empty().append('<option value="">Select District</option>');
+	          $.each(districts, function(index, district) {
+	            $('#district').append('<option value="' + district.id + '">' + district.name + '</option>');
+	          });
+	        }
+	      });
+	    });
+
+	    // Load cities when district is selected
+	    $('#district').change(function() {
+	      var districtId = $(this).val();
+	      $.ajax({
+	        url: '/api/cities/' + districtId,
+	        method: 'GET',
+	        success: function(cities) {
+	          $('#city').empty().append('<option value="">Select City</option>');
+	          $.each(cities, function(index, city) {
+	            $('#city').append('<option value="' + city.id + '">' + city.name + '</option>');
+	          });
+	        }
+	      });
+	    });
+	  });
+	</script>
+
+
+</body>
+
+</html>

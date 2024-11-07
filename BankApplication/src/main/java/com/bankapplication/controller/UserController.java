@@ -1,29 +1,31 @@
 package com.bankapplication.controller;
 
 import com.bankapplication.dto.ProfileUpdateDto;
-import com.bankapplication.dto.RequestDto;
+
 import com.bankapplication.dto.ResponseDto;
 import com.bankapplication.getapplicationcontext.UserServiceAppContext;
 import com.bankapplication.model.Country;
 import com.bankapplication.model.User;
 import com.bankapplication.service.CountryService;
 import com.bankapplication.service.UserServiceImpl;
-import org.apache.coyote.Request;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.*;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /*
  * This class serves as a controller for handling user related operations.
@@ -125,12 +127,12 @@ public class UserController {
 	 * Handles GET requests to the /user/profile endpoint. Logs the access and
 	 * retrieves the logged-in user's profile details.
 	 *
-	 * @param model   the model to which attributes are added
-	 * @param request the HTTP request to check user roles
+	 * @param model the model to which attributes are added
+	 * 
 	 * @return the name of the view to be returned
 	 */
 	@GetMapping("/user/profile")
-	public String userprofile(Model model, HttpServletRequest request) {
+	public String userprofile(Model model) {
 		logger.info("userprofile method from usercontroller class called ");
 
 		String emailString = userServiceAppContext.getLoggedInUserEmail();
@@ -139,6 +141,9 @@ public class UserController {
 
 		ResponseDto user = userService.getLoggedInUserDetails(emailString);
 
+		ArrayList<String> roleList = user.getrolestring();
+
+		model.addAttribute("roles", roleList);
 		// Handle user profile
 		logger.info("user provile invoked");
 		model.addAttribute("user", user);
@@ -158,33 +163,53 @@ public class UserController {
 		return "error/error";
 	}
 
+	/**
+	 * Handles HTTP GET requests to the /user/update endpoint.
+	 * 
+	 * This method is responsible for preparing the data required for updating a
+	 * user's profile. Returns the name of the view (home/userhome/updateprofile)
+	 * that will be rendered.
+	 *
+	 * @param model the model object used to pass data to the view
+	 * @return the name of the view to be rendered for updating the user's profile
+	 */
 	@GetMapping("/user/update")
 	public String updateProfiledata(Model model) {
-
+		// Retrieve the list of all countries using the country service
 		List<Country> countries = countryService.getAllCountries();
 
+		// Add the list of countries to the model
 		model.addAttribute("countries", countries);
 
+		// Get the email of the currently logged-in user from the user service context
 		String emailString = userServiceAppContext.getLoggedInUserEmail();
+		// Retrieve the User object based on the logged-in user's email
 
-		User user =userService.getUserByEmail(emailString);
-		
-		ProfileUpdateDto profileUpdateDto =userService.convertToProfileUpdate(user);
-		
-		model.addAttribute("profileUpdateDto",profileUpdateDto);
-		
-		
+		User user = userService.getUserByEmail(emailString);
+		// Convert the User object to a ProfileUpdateDto object using the user service
+
+		ProfileUpdateDto profileUpdateDto = userService.convertToProfileUpdate(user);
+		// Add the ProfileUpdateDto to the model
+
+		model.addAttribute("profileUpdateDto", profileUpdateDto);
+		// Return the view name for updating the profile
+
 		return "home/userhome/updateprofile";
 	}
-	
-	
-	@GetMapping("/user/processupdate")
-	public String processUpdate(@ModelAttribute("requestdto") RequestDto requestDto){
-		System.out.println(requestDto.toString());
+
+	@PostMapping("/user/processupdate")
+	public String processUpdate(@ModelAttribute("profileUpdateDto") ProfileUpdateDto profileUpdateDto) {
+		System.out.println(profileUpdateDto.toString());
 		return null;
 	}
-	
-	
+
+	@GetMapping("/user/home")
+	public String userHome() {
+		logger.info("User home page called after successful login inside UserController");
+
+		return "home/userhome/userhome";
+
+	}
 
 	/**
 	 * This method handles all exceptions that are not explicitly caught elsewhere
