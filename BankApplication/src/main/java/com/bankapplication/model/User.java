@@ -36,9 +36,9 @@ public class User {
     private String email;
 
     @Column(name = "enable")
-    private boolean isActive = true;
+    private boolean isActive = false;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user") 
     private UserDetails userDetails;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -90,14 +90,9 @@ public class User {
 	this.role = role;
     }
 
-    // to string method
+  
 
-    @Override
-    public String toString() {
-	return "User [id=" + id + ", password=" + password + ", email=" + email + ", isActive=" + isActive
-		+ ", userDetails=" + userDetails + ", role=" + role + "]";
-    }
-
+   
     // parametarized constructor
     public User(int id,
 	    @Size(min = 8, max = 128, message = "password length must be between 0 to 128") @NotEmpty(message = "password should not be empty") @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,128}$", message = "Password must meet requirements (8-128 chars, uppercase, lowercase, digit, special char)") String password,
@@ -159,5 +154,18 @@ public class User {
 	    // Log an error if the role set is null
 	    logger.error("role set is null cannot remove role");
 	}
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", isActive=" + isActive +
+                ", userDetails=" + userDetails +
+                ", role=" + role +
+                '}';
     }
 }

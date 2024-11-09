@@ -16,59 +16,43 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "country")
 public class Country {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "country_name")
-    private String name;
-    
-    
-    @Column(name = "country_code")
-    private int countrycode;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Column(name = "country_name")
+	private String name;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "country")
-    private List<State> states;
+	public int getId() {
+		return id;
+	}
 
-    public int getId() {
-	return id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setId(int id) {
-	this.id = id;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getName() {
-	return name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setName(String name) {
-	this.name = name;
-    }
+	public Country(int id, String name, List<State> states) {
+		super();
+		this.id = id;
+		this.name = name;
 
-    public List<State> getStates() {
-	return states;
-    }
+	}
 
-    public void setStates(List<State> states) {
-	this.states = states;
-    }
+	public Country() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-    public Country(int id, String name, List<State> states) {
-	super();
-	this.id = id;
-	this.name = name;
-	this.states = states;
-    }
-
-    public Country() {
-	super();
-	// TODO Auto-generated constructor stub
-    }
-
-    @Override
-    public String toString() {
-	return "Country [id=" + id + ", name=" + name + ", states=" + states + "]";
-    }
+	@Override
+	public String toString() {
+		return "Country [id=" + id + ", name=" + name + "]";
+	}
 
 }

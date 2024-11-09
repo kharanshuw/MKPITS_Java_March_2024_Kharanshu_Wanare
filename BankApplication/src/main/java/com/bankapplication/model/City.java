@@ -1,20 +1,12 @@
 package com.bankapplication.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "city")
@@ -26,16 +18,15 @@ public class City {
     @Column(name = "city_name", nullable = false)
     private String name;
 
-    
-
-    @JsonManagedReference
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "district_id")
     private District district;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "city")
-    private List<UserDetails> userDetails;
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+//	@JsonManagedReference
+    private List<UserDetails> userDetails = new ArrayList<>(); // list of users
+
+    // getter and setters
 
     public int getId() {
 	return id;
@@ -61,6 +52,10 @@ public class City {
 	this.district = district;
     }
 
+    public City() {
+	super();
+    }
+
     public List<UserDetails> getUserDetails() {
 	return userDetails;
     }
@@ -69,8 +64,15 @@ public class City {
 	this.userDetails = userDetails;
     }
 
-    public City() {
-	super();
+    public boolean addUserDetails(UserDetails userDetails) {
+	boolean result = this.userDetails.add(userDetails);
+	if (result == true) {
+	    System.out.println("userdetails added in city successfully");
+	    return result;
+	} else {
+	    System.out.println("userdetails not added in city successfully");
+	    return result;
+	}
     }
 
     @Override

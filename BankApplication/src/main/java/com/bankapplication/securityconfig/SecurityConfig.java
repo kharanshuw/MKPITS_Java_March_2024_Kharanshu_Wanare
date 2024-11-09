@@ -91,6 +91,8 @@ public class SecurityConfig {
 				.requestMatchers(HttpMethod.GET, "/user/home").hasRole("USER")
 
 				.requestMatchers(HttpMethod.GET, "/admin/update").hasRole("ADMIN")
+				
+				.requestMatchers(HttpMethod.GET,"/admin/processupdate").hasRole("ADMIN")
 
 				.anyRequest().authenticated()
 

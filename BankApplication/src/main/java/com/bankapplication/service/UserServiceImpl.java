@@ -279,7 +279,7 @@ public class UserServiceImpl implements UserService {
 	 * This method copies the relevant fields from the ResponseDto to the
 	 * ProfileUpdateDto.
 	 *
-	 * @param responseDto The ResponseDto object to be converted.
+//	 * @param responseDto The ResponseDto object to be converted.
 	 * @return The converted ProfileUpdateDto object.
 	 */
 	public ProfileUpdateDto convertToProfileUpdate(User user) {
@@ -291,16 +291,13 @@ public class UserServiceImpl implements UserService {
 		ProfileUpdateDto profileUpdateDto = new ProfileUpdateDto();
 
 		profileUpdateDto.setEmail(user.getEmail());
-		profileUpdateDto.setPassword(user.getPassword());
+		
+		profileUpdateDto.setId(user.getId());
+		
 		profileUpdateDto.setFname(user.getUserDetails().getFname());
 		profileUpdateDto.setLname(user.getUserDetails().getLname());
 		profileUpdateDto.setGender(user.getUserDetails().getGender());
 		profileUpdateDto.setPhoneno(user.getUserDetails().getPhoneno());
-//		profileUpdateDto.setCityid(user.getUserDetails().getCity().getId());
-//		profileUpdateDto.setDistrictid(user.getUserDetails().getCity().getDistrict().getId());
-//		profileUpdateDto.setStateid(user.getUserDetails().getCity().getDistrict().getState().getId());
-//		profileUpdateDto.setCountryid(user.getUserDetails().getCity().getDistrict().getState().getCountry().getId());
-//		
 
 		return profileUpdateDto;
 

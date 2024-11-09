@@ -1,121 +1,107 @@
 package com.bankapplication.dto;
 
-import java.util.List;
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 public class ProfileUpdateDto {
     
+    private int id;
+
+
+    @Column(nullable = false, unique = true)
+    @Size(min = 1, max = 128, message = "email length must be between 0 to 128")
+    @NotEmpty(message = "email should not be empty")
+    @Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$", message = "Invalid email address")
     private String email;
-    
-    private String password;
-    
+
+    @Column(nullable = false)
+    @Size(min = 1, max = 128, message = "first name length must be between 0 to 128")
+    @NotEmpty(message = "Last name should not be empty")
     private String fname;
-    
+
+    @Column(nullable = false)
+    @Size(min = 1, max = 128, message = "last name length must be between 0 to 128")
+    @NotEmpty(message = "Last name should not be empty")
     private String lname;
-    
+
     private String gender;
-    
+
+    @Column(name = "phoneno",unique = true)
+    @NotEmpty(message = "Phone number cannot be empty")
+    @Pattern(regexp = "^\\d{10}$", message = "Phone number must be 10 digits")
     private String phoneno;
-    
-    private int cityid;
-    
-    private int districtid;
-    
-    private int stateid;
-    
-    private int countryid;
-    
+
+    private Integer cityid;
     
 
     public String getEmail() {
-        return email;
+	return email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+	this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getFname() {
-        return fname;
+	return fname;
     }
 
     public void setFname(String fname) {
-        this.fname = fname;
+	this.fname = fname;
     }
 
     public String getLname() {
-        return lname;
+	return lname;
     }
 
     public void setLname(String lname) {
-        this.lname = lname;
+	this.lname = lname;
     }
 
     public String getGender() {
-        return gender;
+	return gender;
     }
 
     public void setGender(String gender) {
-        this.gender = gender;
+	this.gender = gender;
     }
 
     public String getPhoneno() {
-        return phoneno;
+	return phoneno;
     }
 
     public void setPhoneno(String phoneno) {
-        this.phoneno = phoneno;
+	this.phoneno = phoneno;
     }
-
-   
-
-
-
-	public int getCityid() {
-		return cityid;
-	}
-
-	public void setCityid(int cityid) {
-		this.cityid = cityid;
-	}
-
-	public int getDistrictid() {
-		return districtid;
-	}
-
-	public void setDistrictid(int districtid) {
-		this.districtid = districtid;
-	}
-
-	public int getStateid() {
-		return stateid;
-	}
-
-	public void setStateid(int stateid) {
-		this.stateid = stateid;
-	}
-
-	public int getCountryid() {
-        return countryid;
-    }
-
-    public void setCountryid(int countryid) {
-        this.countryid = countryid;
-    }
-
-	@Override
-	public String toString() {
-		return "ProfileUpdateDto [email=" + email + ", password=" + password + ", fname=" + fname + ", lname=" + lname
-				+ ", gender=" + gender + ", phoneno=" + phoneno + ", cityid=" + cityid + ", districtid=" + districtid
-				+ ", stateid=" + stateid + ", countryid=" + countryid + "]";
-	}
     
-    
+    public Integer getCityid() {
+        return cityid;
+    }
+
+    public void setCityid(Integer cityid) {
+        this.cityid = cityid;
+    }
+
+
+    public String toString() {
+        return "ProfileUpdateDto{" +
+                "email='" + email + '\'' +
+                ", fname='" + fname + '\'' +
+                ", lname='" + lname + '\'' +
+                ", gender='" + gender + '\'' +
+                ", phoneno='" + phoneno + '\'' +
+                ", cityid=" + cityid +
+                '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

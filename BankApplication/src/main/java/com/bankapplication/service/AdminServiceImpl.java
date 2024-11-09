@@ -5,16 +5,25 @@ import com.bankapplication.dto.ResponseDto;
 import com.bankapplication.repository.RoleRepository;
 import com.bankapplication.repository.UserDetailsRepository;
 import com.bankapplication.repository.UserRepository;
+import jakarta.transaction.Transactional;
+
+import org.aspectj.lang.annotation.After;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.bankapplication.repository.CityRepository;
 
 import com.bankapplication.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import com.bankapplication.model.UserDetails;
+
+import com.bankapplication.dto.ProfileUpdateDto;
 
 /**
  * AdminServiceImpl class handles all Admin related services
@@ -23,21 +32,23 @@ import java.util.Optional;
 public class AdminServiceImpl implements AdminService {
     private static final Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
 
-    //this is userrepositry object
+    // this is userrepositry object
     private UserRepository userRepository;
-    //userdetailsrepository object
+    // userdetailsrepository object
     private UserDetailsRepository userDetailsRepository;
-    //rolerepository object
+    // rolerepository object
     private RoleRepository roleRepository;
+
+    private CityRepository cityRepository;
 
     @Autowired
     public AdminServiceImpl(UserRepository userRepository, UserDetailsRepository userDetailsRepository,
-                            RoleRepository roleRepository) {
+                            RoleRepository roleRepository, CityRepository cityRepository) {
         this.userRepository = userRepository;
         this.userDetailsRepository = userDetailsRepository;
         this.roleRepository = roleRepository;
+        this.cityRepository = cityRepository;
     }
-
 
     /**
      * Activates a user by setting their active status to true.
@@ -46,6 +57,7 @@ public class AdminServiceImpl implements AdminService {
      * @param id     the ID of the user to be activated
      * @return a message indicating the result of the operation
      */
+    @Transactional
     public String activateUser(String action, String id) {
         int id1 = Integer.valueOf(id);
         Optional<User> userOptional = userRepository.findById(id1);
@@ -71,6 +83,7 @@ public class AdminServiceImpl implements AdminService {
      * @param user the User object to be converted
      * @return the converted ResponseDto object, or null if the user is not found
      */
+    @Transactional
     public ResponseDto convertUserToResponseDto(User user) {
         if (user == null) {
             System.out.println("user not found");
@@ -98,6 +111,7 @@ public class AdminServiceImpl implements AdminService {
      * @param idString the ID of the user
      * @return a list of role names that the user has
      */
+    @Transactional
     public List<String> findRole(String idString) {
         int id = Integer.valueOf(idString);
         List<String> list = null;
@@ -126,9 +140,10 @@ public class AdminServiceImpl implements AdminService {
      * This method finds all roles that a user does not have and returns them in a
      * list.
      *
-     * @param idString the ID of the user
+     * @param userid
      * @return a list of role names that the user does not have
      */
+    @Transactional
     public List<String> findUnassignedRoles(String userid) {
 
         // This is the list of roles which the user already has
@@ -181,6 +196,7 @@ public class AdminServiceImpl implements AdminService {
      * @param userid   the ID of the user
      * @return a message indicating the result of the operation
      */
+    @Transactional
     public String addRoleToUser(String rolename, String userid) {
         int id = Integer.valueOf(userid);
         Optional<User> userOptional = userRepository.findById(id);
@@ -198,7 +214,7 @@ public class AdminServiceImpl implements AdminService {
                 // Check if role exists
 
                 if (role == null) {
-                    // this block of code will only run if  role does not exist in database
+                    // this block of code will only run if role does not exist in database
                     // Log error if ROLE_USER is not found
                     logger.error(rolename + " not found! in addroleuser method of adminserviceimpl class");
 
@@ -216,19 +232,19 @@ public class AdminServiceImpl implements AdminService {
                 logger.error("Error finding given role in database");
                 logger.error(e.toString());
 
-
             }
 
             // Ensure the user is saved after updating the status
 
-
         } else {
-            logger.error("User with given ID is not available to add role in AdminServiceImpl class addRoleToUser method  ");
+            logger.error(
+                    "User with given ID is not available to add role in AdminServiceImpl class addRoleToUser method  ");
             return "user not found";
         }
         return "user not found";
     }
 
+    @Transactional
     public String removeRoleFromUser(String rolename, String userid) {
         int id = Integer.valueOf(userid);
 
@@ -243,12 +259,12 @@ public class AdminServiceImpl implements AdminService {
             Role role = null;
 
             try {
-                // Retrieve role by name from database 
+                // Retrieve role by name from database
                 role = roleRepository.findByRolename(rolename);
 
-                // Check if returned role is null 
+                // Check if returned role is null
                 if (role == null) {
-                    // this block of code will only run if  role does not exist in database
+                    // this block of code will only run if role does not exist in database
                     // Log error if ROLE_USER is not found
                     logger.error(rolename + " not found! in removerole method of adminserviceimpl class");
 
@@ -266,14 +282,99 @@ public class AdminServiceImpl implements AdminService {
                 logger.error("Error finding given role in database");
                 logger.error(e.toString());
 
-
             }
 
-
         } else {
-            logger.error("User with given ID is not available to add role in AdminServiceImpl class removeRoleFromUser method  ");
+            logger.error(
+                    "User with given ID is not available to add role in AdminServiceImpl class removeRoleFromUser method  ");
             return "user not found";
         }
         return "user not found";
     }
+
+    @Transactional()
+    public User updateAdmin(ProfileUpdateDto profileUpdateDto) {
+
+        System.out.println("updating admin user :" + profileUpdateDto);
+
+        User user = null;
+
+        try {
+            Integer cityid = profileUpdateDto.getCityid();
+
+            System.out.println(cityid);
+
+            String email = profileUpdateDto.getEmail();
+            System.out.println(email);
+
+            String fname = profileUpdateDto.getFname();
+
+            String lname = profileUpdateDto.getLname();
+
+            String gender = profileUpdateDto.getGender();
+
+            String phoneno = profileUpdateDto.getPhoneno();
+
+            System.out.println(fname);
+
+            System.out.println(lname);
+            System.out.println(gender);
+            System.out.println(phoneno);
+
+            City city = cityRepository.findByCityId(cityid);
+
+            System.out.println("city found with this id : " + city);
+
+            int id = userRepository.findIdByEmail(email);
+
+            System.out.println("id find by userRepository.findIdByEmail(email) in adminserviceimpl is   " + id);
+
+            Optional<User> userOptional = userRepository.findById(id);
+
+            if (userOptional.isPresent()) {
+                user = userOptional.get();
+                System.out.println("user found by userRepository.findById(id) in admincontroller updateadmin method  "
+                        + user.getId());
+                UserDetails userDetails = user.getUserDetails();
+
+                userDetails.setFname(fname);
+                userDetails.setLname(lname);
+                userDetails.setPhoneno(phoneno);
+                userDetails.setGender(gender);
+                
+                city.addUserDetails(userDetails);
+                
+                userDetails.setCity(city);
+                user.setUserDetails(userDetails);
+
+                userRepository.save(user);
+
+                System.out.println("user updated successfully");
+            }
+
+        } catch (Exception e) {
+            System.out.println("exception occured at updateadmin method of adminservice class ");
+            throw new RuntimeException(e);
+        }
+
+        return user;
+
+    }
+
+    @Transactional
+    public User getUserById(int id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+            return optionalUser.get();
+        } else {
+            throw new RuntimeException("user with given id not found ");
+        }
+    }
+
+    @Transactional
+    public int getIdByEmail(String email) {
+        int id = userRepository.findIdByEmail(email);
+        return id;
+    }
+
 }

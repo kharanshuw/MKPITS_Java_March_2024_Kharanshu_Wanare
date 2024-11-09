@@ -30,13 +30,15 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 //    	       "JOIN u.userDetails ud " +
 //    	       "JOIN u.role r")
 //    	public List<ResponseDto> findAllUserDetails();
-
     @Query("SELECT u FROM User u WHERE u.isActive = false ")
     public List<User> findInactiveUsers();
 
 
     @Query("SELECT u FROM User u WHERE u.email = :email")
     public User findUserByEmail(@Param("email") String email);
+    
+    @Query("SELECT u.id FROM User u WHERE u.email = :email")
+    public int findIdByEmail(@Param("email") String email);
 
 
 }

@@ -17,4 +17,9 @@ public interface CityRepository extends JpaRepository<City, Integer> {
 	List<City> findCitiesByDistrictId(@Param("districtId") int districtId);
 
 
+	@Query("SELECT c FROM City c WHERE c.id = :id")
+	City findByCityId(@Param("id") int id);
+
+
+
 }

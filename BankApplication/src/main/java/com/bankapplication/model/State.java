@@ -26,11 +26,6 @@ public class State {
 	@Column(name = "state_name")
 	private String nameString;
 
-	@JsonBackReference
-	@OneToMany(mappedBy = "state")
-	private List<District> districts;
-
-	@JsonManagedReference
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "country_id")
 	private Country country;
@@ -51,14 +46,6 @@ public class State {
 		this.nameString = nameString;
 	}
 
-	public List<District> getDistricts() {
-		return districts;
-	}
-
-	public void setDistricts(List<District> districts) {
-		this.districts = districts;
-	}
-
 	public Country getCountry() {
 		return country;
 	}
@@ -67,18 +54,19 @@ public class State {
 		this.country = country;
 	}
 
-	@Override
-	public String toString() {
-		return "State [id=" + id + ", nameString=" + nameString + ", districts=" + districts + ", country=" + country
-				+ "]";
-	}
+	
+	
 
-	public State(int id, String nameString, List<District> districts, Country country) {
+	public State(int id, String nameString, Country country) {
 		super();
 		this.id = id;
 		this.nameString = nameString;
-		this.districts = districts;
 		this.country = country;
+	}
+
+	@Override
+	public String toString() {
+		return "State [id=" + id + ", nameString=" + nameString + ", country=" + country + "]";
 	}
 
 	public State() {

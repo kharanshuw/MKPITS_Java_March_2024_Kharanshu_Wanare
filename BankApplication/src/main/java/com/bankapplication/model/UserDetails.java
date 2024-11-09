@@ -3,6 +3,8 @@ package com.bankapplication.model;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.springframework.data.annotation.CreatedBy;
@@ -50,13 +52,13 @@ public class UserDetails {
 	@Column(name = "lastmodified_at", insertable = false)
 	private LocalDateTime lastmodified;
 
-	// createdby should be inserted 1st time only
+	// created by should be inserted 1st time only
 	// update not
 	@CreatedBy
 	@Column(name = "create_by", nullable = false, updatable = false)
 	private Integer createBy;
 
-	// lastmodifiedby should be updated only
+	// modifiability should be updated only
 	// insert not
 	@LastModifiedBy
 	@Column(name = "lastmodified_by", insertable = false)
@@ -66,8 +68,9 @@ public class UserDetails {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name = "city_id")
+//	@JsonBackReference
 	private City city;
 
 	@PrePersist
@@ -168,7 +171,22 @@ public class UserDetails {
 	public void setCity(City city) {
 		this.city = city;
 	}
-	
-	
-	
+
+
+	@Override
+	public String toString() {
+		return "UserDetails{" +
+				"id=" + id +
+				", fname='" + fname + '\'' +
+				", lname='" + lname + '\'' +
+				", phoneno='" + phoneno + '\'' +
+				", gender='" + gender + '\'' +
+				", createdate=" + createdate +
+				", lastmodified=" + lastmodified +
+				", createBy=" + createBy +
+				", lastmodifiedby=" + lastmodifiedby +
+				", user=" + user +
+				", city=" + city +
+				'}';
+	}
 }

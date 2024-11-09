@@ -25,14 +25,9 @@ public class District {
 	@Column(name = "district_name")
 	private String name;
 
-	@JsonManagedReference
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "state_id")
 	private State state;
-
-	@JsonBackReference
-	@OneToMany(mappedBy = "district")
-	private List<City> cities;
 
 	public int getId() {
 		return id;
@@ -58,20 +53,13 @@ public class District {
 		this.state = state;
 	}
 
-	public List<City> getCities() {
-		return cities;
-	}
-
-	public void setCities(List<City> cities) {
-		this.cities = cities;
-	}
-
-	public District(int id, String name, State state, List<City> cities) {
+	
+	public District(int id, String name, State state) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.state = state;
-		this.cities = cities;
+	
 	}
 
 	public District() {
@@ -81,7 +69,7 @@ public class District {
 
 	@Override
 	public String toString() {
-		return "District [id=" + id + ", name=" + name + ", state=" + state + ", cities=" + cities + "]";
+		return "District [id=" + id + ", name=" + name + ", state=" + state + "]";
 	}
 
 }

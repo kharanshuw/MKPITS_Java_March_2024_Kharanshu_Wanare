@@ -11,17 +11,18 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @ControllerAdvice
 public class MyExceptionHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private static final Logger logger = LoggerFactory.getLogger(MyExceptionHandler.class);
 
     
     @ExceptionHandler(Exception.class)
-    public String exceptionHandler(Model model,Exception e)
+    public String exceptionHandler(Model model, Exception e)
     {
         model.addAttribute("msg","An unexpected error occurred");
         
