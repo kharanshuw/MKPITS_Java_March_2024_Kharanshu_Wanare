@@ -1,13 +1,12 @@
 package com.bankapplication.service;
 
-import com.bankapplication.controller.UserController;
 import com.bankapplication.dto.ResponseDto;
 import com.bankapplication.repository.RoleRepository;
 import com.bankapplication.repository.UserDetailsRepository;
 import com.bankapplication.repository.UserRepository;
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 
-import org.aspectj.lang.annotation.After;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +31,8 @@ import com.bankapplication.dto.ProfileUpdateDto;
 public class AdminServiceImpl implements AdminService {
     private static final Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
 
+    EntityManager entityManager;
+
     // this is userrepositry object
     private UserRepository userRepository;
     // userdetailsrepository object
@@ -43,11 +44,12 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     public AdminServiceImpl(UserRepository userRepository, UserDetailsRepository userDetailsRepository,
-                            RoleRepository roleRepository, CityRepository cityRepository) {
+                            RoleRepository roleRepository, CityRepository cityRepository, EntityManager entityManager) {
         this.userRepository = userRepository;
         this.userDetailsRepository = userDetailsRepository;
         this.roleRepository = roleRepository;
         this.cityRepository = cityRepository;
+        this.entityManager = entityManager;
     }
 
     /**
@@ -60,15 +62,15 @@ public class AdminServiceImpl implements AdminService {
     @Transactional
     public String activateUser(String action, String id) {
         int id1 = Integer.valueOf(id);
-        Optional<User> userOptional = userRepository.findById(id1);
+        Optional<Users> userOptional = userRepository.findById(id1);
         // check user obj found in database or not
         if (userOptional.isPresent()) {
 
-            User user = userOptional.get();
-            logger.info("user found " + user.toString());
-            user.setActive(true);
+            Users users = userOptional.get();
+            logger.info("user found " + users.toString());
+            users.setActive(true);
             // Ensure the user is saved after updating the status
-            userRepository.save(user);
+            userRepository.save(users);
             return "Successfully updated status";
 
         } else {
@@ -80,24 +82,24 @@ public class AdminServiceImpl implements AdminService {
     /**
      * Helper method to convert a User object to a ResponseDto object.
      *
-     * @param user the User object to be converted
+     * @param users the User object to be converted
      * @return the converted ResponseDto object, or null if the user is not found
      */
     @Transactional
-    public ResponseDto convertUserToResponseDto(User user) {
-        if (user == null) {
+    public ResponseDto convertUserToResponseDto(Users users) {
+        if (users == null) {
             System.out.println("user not found");
             logger.error("user not found with id");
             return null;
         } else {
             ResponseDto responseDto = new ResponseDto();
-            responseDto.setEmail(user.getEmail());
-            responseDto.setFname(user.getUserDetails().getFname());
-            responseDto.setLname(user.getUserDetails().getLname());
-            responseDto.setId(user.getId());
-            responseDto.setGender(user.getUserDetails().getGender());
-            responseDto.setPhoneno(user.getUserDetails().getPhoneno());
-            responseDto.setRoles(user.getRole());
+            responseDto.setEmail(users.getEmail());
+            responseDto.setFname(users.getUserDetails().getFname());
+            responseDto.setLname(users.getUserDetails().getLname());
+            responseDto.setId(users.getId());
+            responseDto.setGender(users.getUserDetails().getGender());
+            responseDto.setPhoneno(users.getUserDetails().getPhoneno());
+            responseDto.setRoles(users.getRole());
 
             logger.info("user successfully convertd to response dto in adminserviceimpl");
             return responseDto;
@@ -117,13 +119,13 @@ public class AdminServiceImpl implements AdminService {
         List<String> list = null;
         System.out.println("id recived in parameter is :" + id);
 
-        Optional<User> userOptional = userRepository.findById(id);
+        Optional<Users> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
 
             logger.info("user found in findrole");
-            User user = userOptional.get();
+            Users users = userOptional.get();
             // convert user to response dto
-            ResponseDto responseDto = convertUserToResponseDto(user);
+            ResponseDto responseDto = convertUserToResponseDto(users);
 
             // response dto method getrolestring returns arraylist<string> of roles assigned
             // to user
@@ -199,11 +201,11 @@ public class AdminServiceImpl implements AdminService {
     @Transactional
     public String addRoleToUser(String rolename, String userid) {
         int id = Integer.valueOf(userid);
-        Optional<User> userOptional = userRepository.findById(id);
+        Optional<Users> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
 
-            User user = userOptional.get();
-            logger.info("user found " + user.toString());
+            Users users = userOptional.get();
+            logger.info("user found " + users.toString());
 
             Role role = null;
 
@@ -222,8 +224,8 @@ public class AdminServiceImpl implements AdminService {
                 }
                 // Add role to user and save
 
-                user.addrole(role);
-                userRepository.save(user);
+                users.addrole(role);
+                userRepository.save(users);
                 logger.info("Role added successfully in AdminServiceImpl class addRoleToUser method");
 
                 return "Role added successfully";
@@ -248,13 +250,13 @@ public class AdminServiceImpl implements AdminService {
     public String removeRoleFromUser(String rolename, String userid) {
         int id = Integer.valueOf(userid);
 
-        Optional<User> userOptional = userRepository.findById(id);
+        Optional<Users> userOptional = userRepository.findById(id);
 
         if (userOptional.isPresent()) {
 
-            User user = userOptional.get();
+            Users users = userOptional.get();
 
-            logger.info("user found inside removeRoleFromUser from adminserviceimpl class " + user.toString());
+            logger.info("user found inside removeRoleFromUser from adminserviceimpl class " + users.toString());
 
             Role role = null;
 
@@ -272,8 +274,8 @@ public class AdminServiceImpl implements AdminService {
                 }
                 // Add role to user and save
 // Ensure the user is saved after updating the status
-                user.removeRole(role);
-                userRepository.save(user);
+                users.removeRole(role);
+                userRepository.save(users);
                 logger.info("Role removed successfully in AdminServiceImpl class removeRoleFromUser method");
 
                 return "Role removed successfully";
@@ -292,78 +294,82 @@ public class AdminServiceImpl implements AdminService {
         return "user not found";
     }
 
-    @Transactional()
-    public User updateAdmin(ProfileUpdateDto profileUpdateDto) {
-
-        System.out.println("updating admin user :" + profileUpdateDto);
-
-        User user = null;
-
-        try {
-            Integer cityid = profileUpdateDto.getCityid();
-
-            System.out.println(cityid);
-
-            String email = profileUpdateDto.getEmail();
-            System.out.println(email);
-
-            String fname = profileUpdateDto.getFname();
-
-            String lname = profileUpdateDto.getLname();
-
-            String gender = profileUpdateDto.getGender();
-
-            String phoneno = profileUpdateDto.getPhoneno();
-
-            System.out.println(fname);
-
-            System.out.println(lname);
-            System.out.println(gender);
-            System.out.println(phoneno);
-
-            City city = cityRepository.findByCityId(cityid);
-
-            System.out.println("city found with this id : " + city);
-
-            int id = userRepository.findIdByEmail(email);
-
-            System.out.println("id find by userRepository.findIdByEmail(email) in adminserviceimpl is   " + id);
-
-            Optional<User> userOptional = userRepository.findById(id);
-
-            if (userOptional.isPresent()) {
-                user = userOptional.get();
-                System.out.println("user found by userRepository.findById(id) in admincontroller updateadmin method  "
-                        + user.getId());
-                UserDetails userDetails = user.getUserDetails();
-
-                userDetails.setFname(fname);
-                userDetails.setLname(lname);
-                userDetails.setPhoneno(phoneno);
-                userDetails.setGender(gender);
-                
-                city.addUserDetails(userDetails);
-                
-                userDetails.setCity(city);
-                user.setUserDetails(userDetails);
-
-                userRepository.save(user);
-
-                System.out.println("user updated successfully");
-            }
-
-        } catch (Exception e) {
-            System.out.println("exception occured at updateadmin method of adminservice class ");
-            throw new RuntimeException(e);
-        }
-
-        return user;
-
-    }
+//    @Transactional()
+//    public Users updateAdmin(ProfileUpdateDto profileUpdateDto) {
+//
+//        System.out.println("updating admin user :" + profileUpdateDto);
+//
+//        Users users = null;
+//
+//        try {
+//            Integer cityid = profileUpdateDto.getCityid();
+//
+//            System.out.println(cityid);
+//
+//            String email = profileUpdateDto.getEmail();
+//            System.out.println(email);
+//
+//            String fname = profileUpdateDto.getFname();
+//
+//            String lname = profileUpdateDto.getLname();
+//
+//            String gender = profileUpdateDto.getGender();
+//
+//            String phoneno = profileUpdateDto.getPhoneno();
+//
+//            System.out.println(fname);
+//
+//            System.out.println(lname);
+//            System.out.println(gender);
+//            System.out.println(phoneno);
+//
+//            City city = cityRepository.findByCityId(cityid);
+//
+//            System.out.println("city found with this id : " + city);
+//
+//            int id = userRepository.findIdByEmail(email);
+//
+//            System.out.println("id find by userRepository.findIdByEmail(email) in adminserviceimpl is   " + id);
+//
+//            Optional<Users> userOptional = userRepository.findById(id);
+//
+//            if (userOptional.isPresent()) {
+//                users = userOptional.get();
+//                System.out.println("user found by userRepository.findById(id) in admincontroller updateadmin method  "
+//                        + users.getId());
+//                UserDetails userDetails = users.getUserDetails();
+//
+//                userDetails.setFname(fname);
+//                userDetails.setLname(lname);
+//                userDetails.setPhoneno(phoneno);
+//                userDetails.setGender(gender);
+//
+//                city.addUserDetails(userDetails);
+//
+//
+//                userDetails.setCity(city);
+//                users.setUserDetails(userDetails);
+//
+//                System.out.println("user updated successfully");
+//
+//                entityManager.flush();
+//
+//                
+//            }
+//
+//        } catch (Exception e) {
+//            System.out.println("exception occured at updateadmin method of adminservice class ");
+//            throw new RuntimeException(e);
+//        }
+//
+//
+//        return userRepository.save(users);
+//
+//    }
 
     @Transactional
-    public User getUserById(int id) {
-        Optional<User> optionalUser = userRepository.findById(id);
+    public Users getUserById(int id) {
+        Optional<Users> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             return optionalUser.get();
         } else {
@@ -377,4 +383,16 @@ public class AdminServiceImpl implements AdminService {
         return id;
     }
 
+    public Users getUserByEmail(String email) {
+        Users users = userRepository.findUserByEmail(email);
+        if (users == null) {
+            logger.error("user not found by email");
+            throw new RuntimeException("user not found by email ");
+
+        } else {
+            return users;
+        }
+
+
+    }
 }

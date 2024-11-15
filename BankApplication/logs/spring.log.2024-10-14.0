@@ -16,7 +16,7 @@
 2024-10-14T11:45:06.284+05:30  INFO 9808 --- [bankapplication] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
 2024-10-14T11:45:07.413+05:30  INFO 9808 --- [bankapplication] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 2024-10-14T11:45:07.501+05:30  INFO 9808 --- [bankapplication] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-14T11:45:07.860+05:30  INFO 9808 --- [bankapplication] [main] c.b.controller.UserController            : user controller constructor called successfully
+2024-10-14T11:45:07.860+05:30  INFO 9808 --- [bankapplication] [main] c.b.controller.UserController            : users controller constructor called successfully
 2024-10-14T11:45:07.875+05:30  INFO 9808 --- [bankapplication] [main] o.s.s.p.JdbcUserDetailsManager           : No authentication manager set. Reauthentication of users when changing passwords will not be performed.
 2024-10-14T11:45:07.903+05:30  WARN 9808 --- [bankapplication] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2024-10-14T11:45:07.943+05:30  INFO 9808 --- [bankapplication] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsManager
@@ -65,7 +65,7 @@
 2024-10-14T11:46:42.647+05:30  INFO 9808 --- [bankapplication] [http-nio-9191-exec-9] c.b.controller.LoginController           : inside login method
 2024-10-14T11:46:42.647+05:30 DEBUG 9808 --- [bankapplication] [http-nio-9191-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
 2024-10-14T11:46:47.566+05:30 DEBUG 9808 --- [bankapplication] [http-nio-9191-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /authenticatetheuser
-2024-10-14T11:46:47.661+05:30 DEBUG 9808 --- [bankapplication] [http-nio-9191-exec-10] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-10-14T11:46:47.661+05:30 DEBUG 9808 --- [bankapplication] [http-nio-9191-exec-10] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated users
 2024-10-14T11:46:47.661+05:30 DEBUG 9808 --- [bankapplication] [http-nio-9191-exec-10] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@7daa5ab1]
 2024-10-14T11:46:47.661+05:30 DEBUG 9808 --- [bankapplication] [http-nio-9191-exec-10] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
 2024-10-14T11:46:47.661+05:30 DEBUG 9808 --- [bankapplication] [http-nio-9191-exec-10] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /home2
@@ -73,7 +73,7 @@
 2024-10-14T11:46:47.661+05:30 DEBUG 9808 --- [bankapplication] [http-nio-9191-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
 2024-10-14T11:46:47.661+05:30 DEBUG 9808 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /home2
 2024-10-14T11:46:47.677+05:30  INFO 9808 --- [bankapplication] [http-nio-9191-exec-1] c.b.controller.UserController            : homepage2 method from usercontroller class called 
-2024-10-14T11:46:47.677+05:30  INFO 9808 --- [bankapplication] [http-nio-9191-exec-1] c.b.controller.UserController            : the user logged in is :manthan1@gmail.com
+2024-10-14T11:46:47.677+05:30  INFO 9808 --- [bankapplication] [http-nio-9191-exec-1] c.b.controller.UserController            : the users logged in is :manthan1@gmail.com
 2024-10-14T11:46:47.677+05:30  INFO 9808 --- [bankapplication] [http-nio-9191-exec-1] c.b.controller.UserController            : User home page called after successful login inside UserController
 2024-10-14T11:46:47.693+05:30 ERROR 9808 --- [bankapplication] [http-nio-9191-exec-1] org.thymeleaf.TemplateEngine             : [THYMELEAF][http-nio-9191-exec-1] Exception processing template "home/userhome/userhome": An error happened during template parsing (template: "class path resource [templates/home/userhome/userhome.html]" - line 644, col 25)
 
@@ -880,7 +880,7 @@ Caused by: org.hibernate.query.SemanticException: Missing constructor for type '
 2024-10-14T14:28:13.841+05:30  INFO 11584 --- [bankapplication] [http-nio-9191-exec-4] c.b.controller.LoginController           : inside login method
 2024-10-14T14:28:13.841+05:30 DEBUG 11584 --- [bankapplication] [http-nio-9191-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
 2024-10-14T14:28:15.193+05:30 DEBUG 11584 --- [bankapplication] [http-nio-9191-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /authenticatetheuser
-2024-10-14T14:28:15.271+05:30 DEBUG 11584 --- [bankapplication] [http-nio-9191-exec-9] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-10-14T14:28:15.271+05:30 DEBUG 11584 --- [bankapplication] [http-nio-9191-exec-9] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated users
 2024-10-14T14:28:15.271+05:30 DEBUG 11584 --- [bankapplication] [http-nio-9191-exec-9] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@6d121b29]
 2024-10-14T14:28:15.271+05:30 DEBUG 11584 --- [bankapplication] [http-nio-9191-exec-9] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
 2024-10-14T14:28:15.287+05:30 DEBUG 11584 --- [bankapplication] [http-nio-9191-exec-9] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /home2
@@ -888,7 +888,7 @@ Caused by: org.hibernate.query.SemanticException: Missing constructor for type '
 2024-10-14T14:28:15.287+05:30 DEBUG 11584 --- [bankapplication] [http-nio-9191-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
 2024-10-14T14:28:15.287+05:30 DEBUG 11584 --- [bankapplication] [http-nio-9191-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /home2
 2024-10-14T14:28:15.297+05:30  INFO 11584 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : homepage2 method from usercontroller class called 
-2024-10-14T14:28:15.297+05:30  INFO 11584 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : the user logged in is :manthan1@gmail.com
+2024-10-14T14:28:15.297+05:30  INFO 11584 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : the users logged in is :manthan1@gmail.com
 2024-10-14T14:28:15.297+05:30  INFO 11584 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : User home page called after successful login inside UserController
 2024-10-14T14:28:16.011+05:30 DEBUG 11584 --- [bankapplication] [http-nio-9191-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
 2024-10-14T14:28:16.011+05:30 DEBUG 11584 --- [bankapplication] [http-nio-9191-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
@@ -897,8 +897,8 @@ Caused by: org.hibernate.query.SemanticException: Missing constructor for type '
 2024-10-14T14:28:20.628+05:30 DEBUG 11584 --- [bankapplication] [http-nio-9191-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
 2024-10-14T14:28:20.628+05:30 DEBUG 11584 --- [bankapplication] [http-nio-9191-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /userprofile
 2024-10-14T14:28:20.628+05:30  INFO 11584 --- [bankapplication] [http-nio-9191-exec-7] c.b.controller.UserController            : userprofile method from usercontroller class called 
-2024-10-14T14:28:20.628+05:30  INFO 11584 --- [bankapplication] [http-nio-9191-exec-7] c.b.controller.UserController            : the user logged in is :manthan1@gmail.com
-2024-10-14T14:28:20.707+05:30  INFO 11584 --- [bankapplication] [http-nio-9191-exec-7] c.b.controller.UserController            : found user:LoggesInUserDetails{id=1, email='manthan1@gmail.com', fname='Manthan', lname='Wanare', gender='male', phoneno='1234567890', rolename =ROLE_USER}
+2024-10-14T14:28:20.628+05:30  INFO 11584 --- [bankapplication] [http-nio-9191-exec-7] c.b.controller.UserController            : the users logged in is :manthan1@gmail.com
+2024-10-14T14:28:20.707+05:30  INFO 11584 --- [bankapplication] [http-nio-9191-exec-7] c.b.controller.UserController            : found users:LoggesInUserDetails{id=1, email='manthan1@gmail.com', fname='Manthan', lname='Wanare', gender='male', phoneno='1234567890', rolename =ROLE_USER}
 2024-10-14T14:28:20.707+05:30 ERROR 11584 --- [bankapplication] [http-nio-9191-exec-7] org.thymeleaf.TemplateEngine             : [THYMELEAF][http-nio-9191-exec-7] Exception processing template "userprofile": Error resolving template [userprofile], template might not exist or might not be accessible by any of the configured Template Resolvers
 
 org.thymeleaf.exceptions.TemplateInputException: Error resolving template [userprofile], template might not exist or might not be accessible by any of the configured Template Resolvers
@@ -1190,7 +1190,7 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [userp
 2024-10-14T23:05:01.272+05:30  INFO 8856 --- [bankapplication] [http-nio-9191-exec-6] c.b.controller.LoginController           : inside login method
 2024-10-14T23:05:01.272+05:30 DEBUG 8856 --- [bankapplication] [http-nio-9191-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
 2024-10-14T23:05:03.314+05:30 DEBUG 8856 --- [bankapplication] [http-nio-9191-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /authenticatetheuser
-2024-10-14T23:05:03.409+05:30 DEBUG 8856 --- [bankapplication] [http-nio-9191-exec-7] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-10-14T23:05:03.409+05:30 DEBUG 8856 --- [bankapplication] [http-nio-9191-exec-7] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated users
 2024-10-14T23:05:03.409+05:30 DEBUG 8856 --- [bankapplication] [http-nio-9191-exec-7] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@4be41a0]
 2024-10-14T23:05:03.409+05:30 DEBUG 8856 --- [bankapplication] [http-nio-9191-exec-7] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
 2024-10-14T23:05:03.425+05:30 DEBUG 8856 --- [bankapplication] [http-nio-9191-exec-7] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /home2
@@ -1198,7 +1198,7 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [userp
 2024-10-14T23:05:03.425+05:30 DEBUG 8856 --- [bankapplication] [http-nio-9191-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
 2024-10-14T23:05:03.425+05:30 DEBUG 8856 --- [bankapplication] [http-nio-9191-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /home2
 2024-10-14T23:05:03.435+05:30  INFO 8856 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : homepage2 method from usercontroller class called 
-2024-10-14T23:05:03.435+05:30  INFO 8856 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : the user logged in is :manthan1@gmail.com
+2024-10-14T23:05:03.435+05:30  INFO 8856 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : the users logged in is :manthan1@gmail.com
 2024-10-14T23:05:03.435+05:30  INFO 8856 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : User home page called after successful login inside UserController
 2024-10-14T23:05:03.519+05:30 DEBUG 8856 --- [bankapplication] [http-nio-9191-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
 2024-10-14T23:05:03.519+05:30 DEBUG 8856 --- [bankapplication] [http-nio-9191-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
@@ -1207,9 +1207,9 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [userp
 2024-10-14T23:05:06.360+05:30 DEBUG 8856 --- [bankapplication] [http-nio-9191-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
 2024-10-14T23:05:06.360+05:30 DEBUG 8856 --- [bankapplication] [http-nio-9191-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /userprofile
 2024-10-14T23:05:06.360+05:30  INFO 8856 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : userprofile method from usercontroller class called 
-2024-10-14T23:05:06.360+05:30  INFO 8856 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : the user logged in is :manthan1@gmail.com
+2024-10-14T23:05:06.360+05:30  INFO 8856 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : the users logged in is :manthan1@gmail.com
 2024-10-14T23:05:06.360+05:30  INFO 8856 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : Email received at getuserdetail method: manthan1@gmail.com
-2024-10-14T23:05:06.438+05:30  INFO 8856 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : Found user: LoggesInUserDetails{id=1, email='manthan1@gmail.com', fname='Manthan', lname='Wanare', gender='male', phoneno='1234567890', rolename =ROLE_USER}
+2024-10-14T23:05:06.438+05:30  INFO 8856 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : Found users: LoggesInUserDetails{id=1, email='manthan1@gmail.com', fname='Manthan', lname='Wanare', gender='male', phoneno='1234567890', rolename =ROLE_USER}
 2024-10-14T23:05:06.580+05:30 DEBUG 8856 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
 2024-10-14T23:05:06.580+05:30 DEBUG 8856 --- [bankapplication] [http-nio-9191-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
 2024-10-14T23:05:06.580+05:30 DEBUG 8856 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
@@ -1272,7 +1272,7 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [userp
 2024-10-14T23:41:13.103+05:30  INFO 1080 --- [bankapplication] [http-nio-9191-exec-6] c.b.controller.LoginController           : inside login method
 2024-10-14T23:41:13.103+05:30 DEBUG 1080 --- [bankapplication] [http-nio-9191-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
 2024-10-14T23:41:14.431+05:30 DEBUG 1080 --- [bankapplication] [http-nio-9191-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /authenticatetheuser
-2024-10-14T23:41:14.509+05:30 DEBUG 1080 --- [bankapplication] [http-nio-9191-exec-7] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-10-14T23:41:14.509+05:30 DEBUG 1080 --- [bankapplication] [http-nio-9191-exec-7] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated users
 2024-10-14T23:41:14.525+05:30 DEBUG 1080 --- [bankapplication] [http-nio-9191-exec-7] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@6976545e]
 2024-10-14T23:41:14.525+05:30 DEBUG 1080 --- [bankapplication] [http-nio-9191-exec-7] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
 2024-10-14T23:41:14.525+05:30 DEBUG 1080 --- [bankapplication] [http-nio-9191-exec-7] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /home2
@@ -1280,7 +1280,7 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [userp
 2024-10-14T23:41:14.525+05:30 DEBUG 1080 --- [bankapplication] [http-nio-9191-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
 2024-10-14T23:41:14.525+05:30 DEBUG 1080 --- [bankapplication] [http-nio-9191-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /home2
 2024-10-14T23:41:14.535+05:30  INFO 1080 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : homepage2 method from usercontroller class called 
-2024-10-14T23:41:14.535+05:30  INFO 1080 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : the user logged in is :manthan1@gmail.com
+2024-10-14T23:41:14.535+05:30  INFO 1080 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : the users logged in is :manthan1@gmail.com
 2024-10-14T23:41:14.535+05:30  INFO 1080 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : User home page called after successful login inside UserController
 2024-10-14T23:41:14.604+05:30 DEBUG 1080 --- [bankapplication] [http-nio-9191-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
 2024-10-14T23:41:14.604+05:30 DEBUG 1080 --- [bankapplication] [http-nio-9191-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
@@ -1289,10 +1289,10 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [userp
 2024-10-14T23:41:15.892+05:30 DEBUG 1080 --- [bankapplication] [http-nio-9191-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
 2024-10-14T23:41:15.892+05:30 DEBUG 1080 --- [bankapplication] [http-nio-9191-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /userprofile
 2024-10-14T23:41:15.892+05:30  INFO 1080 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : userprofile method from usercontroller class called 
-2024-10-14T23:41:15.908+05:30  INFO 1080 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : the user logged in is :manthan1@gmail.com
+2024-10-14T23:41:15.908+05:30  INFO 1080 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : the users logged in is :manthan1@gmail.com
 2024-10-14T23:41:15.908+05:30  INFO 1080 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : Email received at getuserdetail method: manthan1@gmail.com
-2024-10-14T23:41:15.971+05:30  INFO 1080 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : Found user: LoggesInUserDetails{id=1, email='manthan1@gmail.com', fname='Manthan', lname='Wanare', gender='male', phoneno='1234567890', rolename =ROLE_USER}
-2024-10-14T23:41:16.002+05:30  INFO 1080 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : user found in getLoggedInUserDetails method
+2024-10-14T23:41:15.971+05:30  INFO 1080 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : Found users: LoggesInUserDetails{id=1, email='manthan1@gmail.com', fname='Manthan', lname='Wanare', gender='male', phoneno='1234567890', rolename =ROLE_USER}
+2024-10-14T23:41:16.002+05:30  INFO 1080 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : users found in getLoggedInUserDetails method
 2024-10-14T23:41:16.091+05:30 DEBUG 1080 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
 2024-10-14T23:41:16.091+05:30 DEBUG 1080 --- [bankapplication] [http-nio-9191-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
 2024-10-14T23:41:16.091+05:30 DEBUG 1080 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
@@ -1348,7 +1348,7 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [userp
 2024-10-14T23:43:58.767+05:30  INFO 6220 --- [bankapplication] [http-nio-9191-exec-4] c.b.controller.LoginController           : inside login method
 2024-10-14T23:43:58.771+05:30 DEBUG 6220 --- [bankapplication] [http-nio-9191-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
 2024-10-14T23:44:01.319+05:30 DEBUG 6220 --- [bankapplication] [http-nio-9191-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /authenticatetheuser
-2024-10-14T23:44:01.406+05:30 DEBUG 6220 --- [bankapplication] [http-nio-9191-exec-5] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-10-14T23:44:01.406+05:30 DEBUG 6220 --- [bankapplication] [http-nio-9191-exec-5] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated users
 2024-10-14T23:44:01.407+05:30 DEBUG 6220 --- [bankapplication] [http-nio-9191-exec-5] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from 05E39250F2A91FA0DD9D8EFF18C9D286
 2024-10-14T23:44:01.407+05:30 DEBUG 6220 --- [bankapplication] [http-nio-9191-exec-5] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=05E39250F2A91FA0DD9D8EFF18C9D286], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@718cf036]
 2024-10-14T23:44:01.407+05:30 DEBUG 6220 --- [bankapplication] [http-nio-9191-exec-5] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=05E39250F2A91FA0DD9D8EFF18C9D286], Granted Authorities=[ROLE_USER]]
@@ -1357,7 +1357,7 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [userp
 2024-10-14T23:44:01.414+05:30 DEBUG 6220 --- [bankapplication] [http-nio-9191-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=05E39250F2A91FA0DD9D8EFF18C9D286], Granted Authorities=[ROLE_USER]]]
 2024-10-14T23:44:01.414+05:30 DEBUG 6220 --- [bankapplication] [http-nio-9191-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /home2
 2024-10-14T23:44:01.417+05:30  INFO 6220 --- [bankapplication] [http-nio-9191-exec-6] c.b.controller.UserController            : homepage2 method from usercontroller class called 
-2024-10-14T23:44:01.417+05:30  INFO 6220 --- [bankapplication] [http-nio-9191-exec-6] c.b.controller.UserController            : the user logged in is :manthan1@gmail.com
+2024-10-14T23:44:01.417+05:30  INFO 6220 --- [bankapplication] [http-nio-9191-exec-6] c.b.controller.UserController            : the users logged in is :manthan1@gmail.com
 2024-10-14T23:44:01.418+05:30  INFO 6220 --- [bankapplication] [http-nio-9191-exec-6] c.b.controller.UserController            : User home page called after successful login inside UserController
 2024-10-14T23:44:01.491+05:30 DEBUG 6220 --- [bankapplication] [http-nio-9191-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
 2024-10-14T23:44:01.492+05:30 DEBUG 6220 --- [bankapplication] [http-nio-9191-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=05E39250F2A91FA0DD9D8EFF18C9D286], Granted Authorities=[ROLE_USER]]]
@@ -1366,10 +1366,10 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [userp
 2024-10-14T23:44:03.011+05:30 DEBUG 6220 --- [bankapplication] [http-nio-9191-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=05E39250F2A91FA0DD9D8EFF18C9D286], Granted Authorities=[ROLE_USER]]]
 2024-10-14T23:44:03.011+05:30 DEBUG 6220 --- [bankapplication] [http-nio-9191-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /userprofile
 2024-10-14T23:44:03.012+05:30  INFO 6220 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : userprofile method from usercontroller class called 
-2024-10-14T23:44:03.012+05:30  INFO 6220 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : the user logged in is :manthan1@gmail.com
+2024-10-14T23:44:03.012+05:30  INFO 6220 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : the users logged in is :manthan1@gmail.com
 2024-10-14T23:44:03.013+05:30  INFO 6220 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : Email received at getuserdetail method: manthan1@gmail.com
-2024-10-14T23:44:03.081+05:30  INFO 6220 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : Found user: LoggesInUserDetails{id=1, email='manthan1@gmail.com', fname='Manthan', lname='Wanare', gender='male', phoneno='1234567890', rolename =ROLE_USER}
-2024-10-14T23:44:03.120+05:30  INFO 6220 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : user found in getLoggedInUserDetails method
+2024-10-14T23:44:03.081+05:30  INFO 6220 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : Found users: LoggesInUserDetails{id=1, email='manthan1@gmail.com', fname='Manthan', lname='Wanare', gender='male', phoneno='1234567890', rolename =ROLE_USER}
+2024-10-14T23:44:03.120+05:30  INFO 6220 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : users found in getLoggedInUserDetails method
 2024-10-14T23:44:03.185+05:30 DEBUG 6220 --- [bankapplication] [http-nio-9191-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
 2024-10-14T23:44:03.186+05:30 DEBUG 6220 --- [bankapplication] [http-nio-9191-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=05E39250F2A91FA0DD9D8EFF18C9D286], Granted Authorities=[ROLE_USER]]]
 2024-10-14T23:44:03.186+05:30 DEBUG 6220 --- [bankapplication] [http-nio-9191-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
@@ -1450,7 +1450,7 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [userp
 2024-10-14T23:44:51.494+05:30  INFO 5960 --- [bankapplication] [http-nio-9191-exec-6] c.b.controller.LoginController           : inside login method
 2024-10-14T23:44:51.509+05:30 DEBUG 5960 --- [bankapplication] [http-nio-9191-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
 2024-10-14T23:44:54.134+05:30 DEBUG 5960 --- [bankapplication] [http-nio-9191-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /authenticatetheuser
-2024-10-14T23:44:54.229+05:30 DEBUG 5960 --- [bankapplication] [http-nio-9191-exec-7] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-10-14T23:44:54.229+05:30 DEBUG 5960 --- [bankapplication] [http-nio-9191-exec-7] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated users
 2024-10-14T23:44:54.229+05:30 DEBUG 5960 --- [bankapplication] [http-nio-9191-exec-7] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@549370ee]
 2024-10-14T23:44:54.229+05:30 DEBUG 5960 --- [bankapplication] [http-nio-9191-exec-7] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
 2024-10-14T23:44:54.229+05:30 DEBUG 5960 --- [bankapplication] [http-nio-9191-exec-7] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /home2
@@ -1458,7 +1458,7 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [userp
 2024-10-14T23:44:54.245+05:30 DEBUG 5960 --- [bankapplication] [http-nio-9191-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
 2024-10-14T23:44:54.245+05:30 DEBUG 5960 --- [bankapplication] [http-nio-9191-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /home2
 2024-10-14T23:44:54.245+05:30  INFO 5960 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : homepage2 method from usercontroller class called 
-2024-10-14T23:44:54.245+05:30  INFO 5960 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : the user logged in is :manthan1@gmail.com
+2024-10-14T23:44:54.245+05:30  INFO 5960 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : the users logged in is :manthan1@gmail.com
 2024-10-14T23:44:54.245+05:30  INFO 5960 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : User home page called after successful login inside UserController
 2024-10-14T23:44:54.307+05:30 DEBUG 5960 --- [bankapplication] [http-nio-9191-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
 2024-10-14T23:44:54.307+05:30 DEBUG 5960 --- [bankapplication] [http-nio-9191-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
@@ -1467,17 +1467,17 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [userp
 2024-10-14T23:44:56.145+05:30 DEBUG 5960 --- [bankapplication] [http-nio-9191-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
 2024-10-14T23:44:56.145+05:30 DEBUG 5960 --- [bankapplication] [http-nio-9191-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /userprofile
 2024-10-14T23:44:56.145+05:30  INFO 5960 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : userprofile method from usercontroller class called 
-2024-10-14T23:44:56.145+05:30  INFO 5960 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : the user logged in is :manthan1@gmail.com
+2024-10-14T23:44:56.145+05:30  INFO 5960 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : the users logged in is :manthan1@gmail.com
 2024-10-14T23:44:56.145+05:30  INFO 5960 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : Email received at getuserdetail method: manthan1@gmail.com
-2024-10-14T23:44:56.208+05:30  INFO 5960 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : Found user: LoggesInUserDetails{id=1, email='manthan1@gmail.com', fname='Manthan', lname='Wanare', gender='male', phoneno='1234567890', rolename =ROLE_USER}
-2024-10-14T23:44:56.255+05:30  INFO 5960 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : user found in getLoggedInUserDetails method
+2024-10-14T23:44:56.208+05:30  INFO 5960 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : Found users: LoggesInUserDetails{id=1, email='manthan1@gmail.com', fname='Manthan', lname='Wanare', gender='male', phoneno='1234567890', rolename =ROLE_USER}
+2024-10-14T23:44:56.255+05:30  INFO 5960 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : users found in getLoggedInUserDetails method
 2024-10-14T23:44:56.281+05:30 ERROR 5960 --- [bankapplication] [http-nio-9191-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler processing failed: java.lang.StackOverflowError] with root cause
 
 java.lang.StackOverflowError: null
 	at java.base/java.lang.StringBuilder.<init>(StringBuilder.java:106) ~[na:na]
 	at java.base/java.lang.Object.toString(Object.java:257) ~[na:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:102) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:102) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1489,7 +1489,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1501,7 +1501,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1513,7 +1513,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1525,7 +1525,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1537,7 +1537,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1549,7 +1549,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1561,7 +1561,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1573,7 +1573,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1585,7 +1585,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1597,7 +1597,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1609,7 +1609,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1621,7 +1621,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1633,7 +1633,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1645,7 +1645,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1657,7 +1657,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1669,7 +1669,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1681,7 +1681,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1693,7 +1693,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1705,7 +1705,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1717,7 +1717,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1729,7 +1729,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1741,7 +1741,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1753,7 +1753,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1765,7 +1765,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1777,7 +1777,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1789,7 +1789,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1801,7 +1801,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1813,7 +1813,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1825,7 +1825,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1837,7 +1837,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1849,7 +1849,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1861,7 +1861,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1873,7 +1873,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1885,7 +1885,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1897,7 +1897,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1909,7 +1909,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1921,7 +1921,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1933,7 +1933,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1945,7 +1945,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1957,7 +1957,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1969,7 +1969,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1981,7 +1981,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -1993,7 +1993,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2005,7 +2005,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2017,7 +2017,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2029,7 +2029,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2041,7 +2041,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2053,7 +2053,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2065,7 +2065,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2077,7 +2077,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2089,7 +2089,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2101,7 +2101,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2113,7 +2113,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2125,7 +2125,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2137,7 +2137,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2149,7 +2149,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2161,7 +2161,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2173,7 +2173,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2185,7 +2185,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2197,7 +2197,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2209,7 +2209,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2221,7 +2221,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2233,7 +2233,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2245,7 +2245,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2257,7 +2257,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2269,7 +2269,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2281,7 +2281,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2293,7 +2293,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2305,7 +2305,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2317,7 +2317,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2329,7 +2329,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2341,7 +2341,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2353,7 +2353,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2365,7 +2365,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2377,7 +2377,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2389,7 +2389,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2401,7 +2401,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2413,7 +2413,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2425,7 +2425,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2437,7 +2437,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2449,7 +2449,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2461,7 +2461,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2473,7 +2473,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2485,7 +2485,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
 	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173) ~[na:na]
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
@@ -2497,7 +2497,7 @@ java.lang.StackOverflowError: null
 	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:459) ~[na:na]
 	at org.hibernate.collection.spi.PersistentSet.toString(PersistentSet.java:298) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
 	at java.base/java.lang.String.valueOf(String.java:4465) ~[na:na]
-	at com.bankapplication.model.User.toString(User.java:101) ~[classes/:na]
+	at com.bankapplication.model.Users.toString(User.java:101) ~[classes/:na]
 
 2024-10-14T23:44:56.287+05:30 DEBUG 5960 --- [bankapplication] [http-nio-9191-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /error
 2024-10-14T23:44:56.287+05:30 DEBUG 5960 --- [bankapplication] [http-nio-9191-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
@@ -2564,7 +2564,7 @@ java.lang.StackOverflowError: null
 2024-10-14T23:45:55.659+05:30  INFO 9196 --- [bankapplication] [http-nio-9191-exec-6] c.b.controller.LoginController           : inside login method
 2024-10-14T23:45:55.675+05:30 DEBUG 9196 --- [bankapplication] [http-nio-9191-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
 2024-10-14T23:45:56.918+05:30 DEBUG 9196 --- [bankapplication] [http-nio-9191-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /authenticatetheuser
-2024-10-14T23:45:57.012+05:30 DEBUG 9196 --- [bankapplication] [http-nio-9191-exec-7] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-10-14T23:45:57.012+05:30 DEBUG 9196 --- [bankapplication] [http-nio-9191-exec-7] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated users
 2024-10-14T23:45:57.012+05:30 DEBUG 9196 --- [bankapplication] [http-nio-9191-exec-7] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@3c39cb8f]
 2024-10-14T23:45:57.012+05:30 DEBUG 9196 --- [bankapplication] [http-nio-9191-exec-7] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
 2024-10-14T23:45:57.012+05:30 DEBUG 9196 --- [bankapplication] [http-nio-9191-exec-7] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /home2
@@ -2572,7 +2572,7 @@ java.lang.StackOverflowError: null
 2024-10-14T23:45:57.027+05:30 DEBUG 9196 --- [bankapplication] [http-nio-9191-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
 2024-10-14T23:45:57.027+05:30 DEBUG 9196 --- [bankapplication] [http-nio-9191-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /home2
 2024-10-14T23:45:57.027+05:30  INFO 9196 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : homepage2 method from usercontroller class called 
-2024-10-14T23:45:57.027+05:30  INFO 9196 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : the user logged in is :manthan1@gmail.com
+2024-10-14T23:45:57.027+05:30  INFO 9196 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : the users logged in is :manthan1@gmail.com
 2024-10-14T23:45:57.027+05:30  INFO 9196 --- [bankapplication] [http-nio-9191-exec-8] c.b.controller.UserController            : User home page called after successful login inside UserController
 2024-10-14T23:45:57.091+05:30 DEBUG 9196 --- [bankapplication] [http-nio-9191-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
 2024-10-14T23:45:57.091+05:30 DEBUG 9196 --- [bankapplication] [http-nio-9191-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
@@ -2581,10 +2581,10 @@ java.lang.StackOverflowError: null
 2024-10-14T23:45:58.505+05:30 DEBUG 9196 --- [bankapplication] [http-nio-9191-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
 2024-10-14T23:45:58.505+05:30 DEBUG 9196 --- [bankapplication] [http-nio-9191-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /userprofile
 2024-10-14T23:45:58.505+05:30  INFO 9196 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : userprofile method from usercontroller class called 
-2024-10-14T23:45:58.505+05:30  INFO 9196 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : the user logged in is :manthan1@gmail.com
+2024-10-14T23:45:58.505+05:30  INFO 9196 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : the users logged in is :manthan1@gmail.com
 2024-10-14T23:45:58.505+05:30  INFO 9196 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : Email received at getuserdetail method: manthan1@gmail.com
-2024-10-14T23:45:58.568+05:30  INFO 9196 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : Found user: LoggesInUserDetails{id=1, email='manthan1@gmail.com', fname='Manthan', lname='Wanare', gender='male', phoneno='1234567890', rolename =ROLE_USER}
-2024-10-14T23:45:58.615+05:30  INFO 9196 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : user found in getLoggedInUserDetails method
+2024-10-14T23:45:58.568+05:30  INFO 9196 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : Found users: LoggesInUserDetails{id=1, email='manthan1@gmail.com', fname='Manthan', lname='Wanare', gender='male', phoneno='1234567890', rolename =ROLE_USER}
+2024-10-14T23:45:58.615+05:30  INFO 9196 --- [bankapplication] [http-nio-9191-exec-10] c.b.controller.UserController            : users found in getLoggedInUserDetails method
 2024-10-14T23:45:58.662+05:30 DEBUG 9196 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
 2024-10-14T23:45:58.662+05:30 DEBUG 9196 --- [bankapplication] [http-nio-9191-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=manthan1@gmail.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
 2024-10-14T23:45:58.662+05:30 DEBUG 9196 --- [bankapplication] [http-nio-9191-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico

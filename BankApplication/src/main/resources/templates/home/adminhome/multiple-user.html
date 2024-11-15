@@ -476,7 +476,7 @@ font-size: 1.2em; /* Adjust the font size of the planet elements as needed */
 <div class="container">
     <!-- Authenticated User Section -->
     <div sec:authorize="isAuthenticated()">
-        <h1 class="mb-3">Hello user <span th:text="${email}"></span></h1>
+        <h1 class="mb-3">Hello users <span th:text="${email}"></span></h1>
     </div>
 
     <!-- Admin Section -->
@@ -502,7 +502,7 @@ font-size: 1.2em; /* Adjust the font size of the planet elements as needed */
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Hello User</h5>
-                        <a th:href="@{/user/home}" class="btn btn-success">Go to user Dashboard</a>
+                        <a th:href="@{/users/home}" class="btn btn-success">Go to users Dashboard</a>
                     </div>
                 </div>
             </div>

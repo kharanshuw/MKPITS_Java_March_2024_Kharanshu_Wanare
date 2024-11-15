@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>user Dashboard</title>
+	<title>users Dashboard</title>
 
 	<style>
 		:root {
@@ -265,7 +265,7 @@
 			text-align: center;
 			line-height: 70px;
 			background: var(--secondary-color);
-			user-select: none;
+			users-select: none;
 		}
 
 
@@ -525,7 +525,7 @@ em.planet.right {
 
 
 
-	<!-- user profile -->
+	<!-- users profile -->
 	<style>
 		.dashboard-content {
 			padding: 20px;
@@ -594,7 +594,7 @@ em.planet.right {
 							<input type="submit" value="Logout">
 						</form>
 					</li>
-					<li><a th:href="@{/user/profile}">Profile</a></li>
+					<li><a th:href="@{/users/profile}">Profile</a></li>
 				</ul>
 
 
@@ -644,7 +644,7 @@ em.planet.right {
 				
 				<li><a th:href="@{/}">Home</a></li>
 
-				<li><a th:href="@{/user/update}">Update Data</a></li>
+				<li><a th:href="@{/users/update}">Update Data</a></li>
 
 				<li><a href="#">Account Overview </a></li>
 
@@ -670,31 +670,31 @@ em.planet.right {
 			<p>
 				
 				
-				<h1>user id:</h1>
-				<strong th:text="${user.getId()}"></strong>
+				<h1>users id:</h1>
+				<strong th:text="${users.getId()}"></strong>
 			</p>
 			<p>
-				<h1>user email:</h1>
+				<h1>users email:</h1>
 				
-				<strong th:text="${user.getEmail()}"></strong>
+				<strong th:text="${users.getEmail()}"></strong>
 			</p>
 
 
-			<p>
-				
-				<h1>user name:</h1>
-				<strong th:text="${user.getFname()}"></strong>
-			</p>
 			<p>
 				
-				<h1>user last name:</h1>
-				<strong th:text="${user.getLname()}"></strong>
+				<h1>users name:</h1>
+				<strong th:text="${users.getFname()}"></strong>
+			</p>
+			<p>
+				
+				<h1>users last name:</h1>
+				<strong th:text="${users.getLname()}"></strong>
 
 			</p>
 
 			<p>
-				<h1>user gender:</h1>
-				<strong th:text="${user.getGender()}">male</strong>
+				<h1>users gender:</h1>
+				<strong th:text="${users.getGender()}">male</strong>
 			</p>
 
 			<p>
@@ -705,9 +705,9 @@ em.planet.right {
 			</p>
 
 			<p>
-			<h1>user phone no:</h1>
+			<h1>users phone no:</h1>
 
-			<strong th:text="${user.getPhoneno()}"></strong>
+			<strong th:text="${users.getPhoneno()}"></strong>
 
 			</p>
 

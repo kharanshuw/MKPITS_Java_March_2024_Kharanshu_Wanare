@@ -1,10 +1,10 @@
 package com.bankapplication.dto;
 
 import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 public class RequestDto {
 
@@ -38,11 +38,19 @@ public class RequestDto {
     @NotEmpty(message = "gender should not be empty")
     private String gender;
 
-    private int countryid;
+    @Column(name = "date_of_birth")
+    @Past(message = "Date of birth must be in the past")
+    @DateTimeFormat(pattern = "YYYY-MM-DD")
+    private LocalDate dob;
 
-    private int stateid;
 
-    private int districtid;
+    public @Past(message = "Date of birth must be in the past") LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(@Past(message = "Date of birth must be in the past") LocalDate dob) {
+        this.dob = dob;
+    }
 
     private int cityid;
 
@@ -93,30 +101,7 @@ public class RequestDto {
     public void setGender(String gender) {
         this.gender = gender;
     }
-
-    public int getCountryid() {
-        return countryid;
-    }
-
-    public void setCountryid(int countryid) {
-        this.countryid = countryid;
-    }
-
-    public int getStateid() {
-        return stateid;
-    }
-
-    public void setStateid(int stateid) {
-        this.stateid = stateid;
-    }
-
-    public int getDistrictid() {
-        return districtid;
-    }
-
-    public void setDistrictid(int districtid) {
-        this.districtid = districtid;
-    }
+    
 
     public int getCityid() {
         return cityid;
@@ -125,7 +110,21 @@ public class RequestDto {
     public void setCityid(int cityid) {
         this.cityid = cityid;
     }
-    
+
+    @Override
+    public String toString() {
+        return "RequestDto{" +
+                "password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", fname='" + fname + '\'' +
+                ", lname='" + lname + '\'' +
+                ", phoneno='" + phoneno + '\'' +
+                ", gender='" + gender + '\'' +
+                ", dob=" + dob +
+                ", cityid=" + cityid +
+                '}';
+    }
+
     
     public void printpassword()
     {

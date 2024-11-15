@@ -5,7 +5,7 @@ import com.bankapplication.dto.ProfileUpdateDto;
 import com.bankapplication.dto.ResponseDto;
 import com.bankapplication.getapplicationcontext.UserServiceAppContext;
 import com.bankapplication.model.Country;
-import com.bankapplication.model.User;
+import com.bankapplication.model.Users;
 import com.bankapplication.service.CountryService;
 import com.bankapplication.service.UserServiceImpl;
 
@@ -185,10 +185,10 @@ public class UserController {
 		String emailString = userServiceAppContext.getLoggedInUserEmail();
 		// Retrieve the User object based on the logged-in user's email
 
-		User user = userService.getUserByEmail(emailString);
+		Users users = userService.getUserByEmail(emailString);
 		// Convert the User object to a ProfileUpdateDto object using the user service
 
-		ProfileUpdateDto profileUpdateDto = userService.convertToProfileUpdate(user);
+		ProfileUpdateDto profileUpdateDto = userService.convertToProfileUpdate(users);
 		// Add the ProfileUpdateDto to the model
 
 		model.addAttribute("profileUpdateDto", profileUpdateDto);

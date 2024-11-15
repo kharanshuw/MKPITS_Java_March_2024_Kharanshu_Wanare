@@ -1,10 +1,8 @@
 package com.bankapplication.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.springframework.data.annotation.CreatedBy;
@@ -12,6 +10,9 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "userdetails")
@@ -21,12 +22,12 @@ public class UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "fname")
+	@Column(name = "first_name")
 	@NotEmpty(message = "First name cannot be empty")
 	@Size(min = 2, max = 50, message = "First name must be between 2 to 50 characters")
 	private String fname;
 
-	@Column(name = "lname")
+	@Column(name = "last_name")
 	@NotEmpty(message = "Last name cannot be empty")
 	@Size(min = 2, max = 50, message = "Last name must be between 2 to 50 characters")
 	private String lname;
@@ -35,6 +36,11 @@ public class UserDetails {
 	@NotEmpty(message = "Phone number cannot be empty")
 	@Pattern(regexp = "^\\d{10}$", message = "Phone number must be 10 digits")
 	private String phoneno;
+	
+	@Column(name = "date_of_birth")
+	@Past(message = "Date of birth must be in the past")
+	@DateTimeFormat(pattern = "YYYY-MM-DD")
+	private LocalDate dob;
 
 	@Column(name = "gender")
 	@NotEmpty(message = "gender should not be empty")
@@ -64,15 +70,15 @@ public class UserDetails {
 	@Column(name = "lastmodified_by", insertable = false)
 	private Integer lastmodifiedby;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private User user;
-	
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-	@JoinColumn(name = "city_id")
-//	@JsonBackReference
-	private City city;
+	@OneToOne(cascade = CascadeType.ALL,mappedBy = "userDetails")
+	private Users users;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "city_id",nullable = false)
+	@JsonManagedReference
+	private City city;
+	
+	
 	@PrePersist
 	public void prepersist() {
 		this.createBy=getcurrentuserid();
@@ -80,7 +86,7 @@ public class UserDetails {
 	}
 	
 	public Integer getcurrentuserid() {
-		Integer idInteger=user.getId();
+		Integer idInteger= users.getId();
 		return idInteger;
 	}
 		
@@ -124,14 +130,7 @@ public class UserDetails {
 		this.gender = gender;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
+	
 	public LocalDateTime getCreatedate() {
 		return createdate;
 	}
@@ -164,29 +163,29 @@ public class UserDetails {
 		this.lastmodifiedby = lastmodifiedby;
 	}
 
+
+	public @Past(message = "Date of birth must be in the past") LocalDate getDob() {
+		return dob;
+	}
+
+	public void setDob(@Past(message = "Date of birth must be in the past") LocalDate dob) {
+		this.dob = dob;
+	}
+
+	public Users getUsers() {
+		return users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
+		users.setUserDetails(this);
+	}
+
 	public City getCity() {
 		return city;
 	}
 
 	public void setCity(City city) {
 		this.city = city;
-	}
-
-
-	@Override
-	public String toString() {
-		return "UserDetails{" +
-				"id=" + id +
-				", fname='" + fname + '\'' +
-				", lname='" + lname + '\'' +
-				", phoneno='" + phoneno + '\'' +
-				", gender='" + gender + '\'' +
-				", createdate=" + createdate +
-				", lastmodified=" + lastmodified +
-				", createBy=" + createBy +
-				", lastmodifiedby=" + lastmodifiedby +
-				", user=" + user +
-				", city=" + city +
-				'}';
 	}
 }

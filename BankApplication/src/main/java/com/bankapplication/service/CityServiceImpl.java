@@ -1,5 +1,6 @@
 package com.bankapplication.service;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -46,7 +47,13 @@ public class CityServiceImpl implements CityService {
 
 		// Fetch the list of cities by district ID from the repository
 		List<City> list = cityRepository.findCitiesByDistrictId(districtId);
-
+		
+//		
+//		for(City city2 : list)
+//		{
+//		    System.out.println(city2.getCityName());
+//		}
+		
 		// Log an informational message indicating the successful retrieval of cities
 		logger.info("Successfully fetched {} cities for district ID: {}", list.size(), districtId);
 

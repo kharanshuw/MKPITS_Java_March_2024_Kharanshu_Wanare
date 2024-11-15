@@ -81,6 +81,7 @@ public class LocationController {
 
 		// Log an informational message indicating the endpoint was called successfully
 		logger.info("/countries endpoint called successfully");
+		logger.info("length of country is "+countries.size());
 
 		return countries;
 	}
@@ -119,6 +120,11 @@ public class LocationController {
 
 		// Fetch the list of cities by district ID from the service layer
 		List<City> cities = cityService.getCitiesByDistrictId(districtId);
+		
+//		for(City city : cities)
+//		{
+//		    System.out.println(city.getCityName());
+//		}
 
 		// Log an informational message indicating the successful retrieval of cities
 		logger.info("Successfully fetched cities for district ID: {}", districtId);

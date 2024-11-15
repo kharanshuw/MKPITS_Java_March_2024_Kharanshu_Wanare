@@ -461,7 +461,7 @@ font-size: 1.2em; /* Adjust the font size of the planet elements as needed */
 
 
             <div sec:authorize="isAuthenticated()">
-                <h1>Hello user <span th:text="${email}"></span></h1>
+                <h1>Hello users <span th:text="${email}"></span></h1>
             </div>
     
             <div sec:authorize="hasRole('ROLE_ADMIN')">
@@ -484,7 +484,7 @@ font-size: 1.2em; /* Adjust the font size of the planet elements as needed */
                         <div class="card h-100 shadow-sm">
                             <div class="card-body">
                                 <h5 class="card-title">Hello User</h5>
-                                <a th:href="@{/user/profile}" class="btn " style="background-color: #1a5f7a; color: whitesmoke;" >Go to user Dashboard</a>
+                                <a th:href="@{/users/profile}" class="btn " style="background-color: #1a5f7a; color: whitesmoke;" >Go to users Dashboard</a>
                             </div>
                         </div>
                     </div>

@@ -61,6 +61,9 @@ http://localhost:9191/user/update
 
 http://localhost:9191/
 
+UPDATE district
+set state_id=15
+WHERE state_id = 14
 
 INSERT INTO country(country_code,country_name) VALUE(1,INDIA)
 

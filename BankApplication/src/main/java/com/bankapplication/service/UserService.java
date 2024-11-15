@@ -5,7 +5,7 @@ import java.util.List;
 import com.bankapplication.dto.ProfileUpdateDto;
 import com.bankapplication.dto.RequestDto;
 import com.bankapplication.dto.ResponseDto;
-import com.bankapplication.model.User;
+import com.bankapplication.model.Users;
 
 
 public interface UserService {
@@ -20,7 +20,7 @@ public interface UserService {
     
     public List<ResponseDto> findallInactiveUser();
     
-    public User getUserByEmail(String email);
+    public Users getUserByEmail(String email);
     
-    public ProfileUpdateDto convertToProfileUpdate(User user);
+    public ProfileUpdateDto convertToProfileUpdate(Users users);
 }

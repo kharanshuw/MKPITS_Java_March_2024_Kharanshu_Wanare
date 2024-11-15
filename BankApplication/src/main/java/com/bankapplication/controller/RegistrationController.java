@@ -1,8 +1,12 @@
 package com.bankapplication.controller;
 
 import com.bankapplication.dto.RequestDto;
-
-
+import com.bankapplication.model.Country;
+import com.bankapplication.service.CountryService;
+import com.bankapplication.service.UserServiceImpl;
+import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -13,11 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import org.slf4j.*;
-
-import com.bankapplication.service.*;
-
-import jakarta.validation.Valid;
+import java.util.List;
 
 /**
  * This class serves as a controller for handling registration related operations.
@@ -32,14 +32,16 @@ public class RegistrationController {
 
     private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
 
+    private CountryService countryService;
    
     private UserServiceImpl userServiceImpl;
 
     //Constructor for dependency injection
     @Autowired
-    public RegistrationController(UserServiceImpl userServiceImpl) {
+    public RegistrationController(UserServiceImpl userServiceImpl,CountryService countryService) {
         super();
         this.userServiceImpl = userServiceImpl;
+        this.countryService = countryService;
     }
 
     /**
@@ -51,9 +53,12 @@ public class RegistrationController {
      */
     @GetMapping("/register")
     public String registerUser(Model model) {
-        
+
+        List<Country> countries = countryService.getAllCountries();
         
         logger.info("registration page called ");
+        
+        model.addAttribute("countries", countries); 
         
         RequestDto requestDto = new RequestDto();
         model.addAttribute("requestDto", requestDto);
@@ -109,7 +114,7 @@ public class RegistrationController {
 
         logger.info("register processing started successully");
         
-        logger.info(requestDto.toString());
+        logger.info("recived request dto is "+requestDto.toString());
         // Create the user with the provided data
 
         userServiceImpl.createuser(requestDto);

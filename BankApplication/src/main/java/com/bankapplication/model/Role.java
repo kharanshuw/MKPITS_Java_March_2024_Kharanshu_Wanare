@@ -20,15 +20,15 @@ public class Role {
 	private String rolename;
 	
 	@ManyToMany(mappedBy = "role",fetch = FetchType.LAZY)
-	private Set<User> user;
+	private Set<Users> users;
 
 
 
-	public Role(int id, String rolename, Set<User> user) {
+	public Role(int id, String rolename, Set<Users> users) {
 		super();
 		this.id = id;
 		this.rolename = rolename;
-		this.user = user;
+		this.users = users;
 	}
 
 	public Role() {
@@ -50,12 +50,12 @@ public class Role {
 		this.rolename = rolename;
 	}
 
-	public Set<User> getUser() {
-		return user;
+	public Set<Users> getUser() {
+		return users;
 	}
 
-	public void setUser(Set<User> user) {
-		this.user = user;
+	public void setUser(Set<Users> users) {
+		this.users = users;
 	}
 
 	

@@ -33,7 +33,7 @@ public class SecurityConfig {
 		// Custom query to fetch user authorities/roles
 
 		jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
-				"select u.email as username, a.role_name AS authority from users u join user_role ua on u.id=ua.user_id join role a on a.id=ua.role_id where u.email=?");
+				"select u.email as username, a.role_name as authority from users u join user_role ua on u.id=ua.user_id join role a on a.id=ua.role_id where u.email=?");
 
 		return jdbcUserDetailsManager;
 	}
@@ -82,7 +82,9 @@ public class SecurityConfig {
 
 				.requestMatchers(HttpMethod.GET, "/api/districts/**").permitAll()
 
-				.requestMatchers(HttpMethod.GET, "/api/cities/**").permitAll()
+				.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+				
+				.requestMatchers(HttpMethod.GET,"/api/cities/**").permitAll()
 
 				.requestMatchers(HttpMethod.GET, "/user/update").hasRole("USER")
 

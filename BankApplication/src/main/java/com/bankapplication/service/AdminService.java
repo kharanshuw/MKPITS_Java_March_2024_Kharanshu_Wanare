@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.bankapplication.dto.ProfileUpdateDto;
 import com.bankapplication.dto.ResponseDto;
-import com.bankapplication.model.User;
+import com.bankapplication.model.Users;
 
 public interface AdminService {
     public String activateUser(String action,String id);
     
-    public ResponseDto convertUserToResponseDto(User user);
+    public ResponseDto convertUserToResponseDto(Users users);
     
     public List<String> findRole(String idString);
     
@@ -19,9 +19,9 @@ public interface AdminService {
 
     public String removeRoleFromUser(String rolename, String userid);
 
-    public User updateAdmin(ProfileUpdateDto profileUpdateDto);
+   // public Users updateAdmin(ProfileUpdateDto profileUpdateDto);
 
     public int getIdByEmail(String email);
 
-    public User getUserById(int id);
+    public Users getUserById(int id);
 }

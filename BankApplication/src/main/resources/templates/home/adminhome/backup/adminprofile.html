@@ -284,7 +284,7 @@
             text-align: center;
             line-height: 70px;
             background: var(--secondary-color);
-            user-select: none;
+            users-select: none;
         }
 
 
@@ -757,44 +757,44 @@
         <h2>Admin Profile Information</h2>
 
         <p>
-              <h1>user id:</h1>
-                 <strong th:text="${user.getId()}"></strong>
+              <h1>users id:</h1>
+                 <strong th:text="${users.getId()}"></strong>
         </p>
         <p>
-        <h1>user email:</h1>
+        <h1>users email:</h1>
 
-        <strong th:text="${user.getEmail()}"></strong>
+        <strong th:text="${users.getEmail()}"></strong>
         </p>
 
 
         <p>
 
-        <h1>user name:</h1>
-        <strong th:text="${user.getFname()}"></strong>
+        <h1>users name:</h1>
+        <strong th:text="${users.getFname()}"></strong>
         </p>
         <p>
 
-        <h1>user last name:</h1>
-        <strong th:text="${user.getLname()}"></strong>
+        <h1>users last name:</h1>
+        <strong th:text="${users.getLname()}"></strong>
 
         </p>
 
         <p>
-        <h1>user gender:</h1>
-        <strong th:text="${user.getGender()}">male</strong>
+        <h1>users gender:</h1>
+        <strong th:text="${users.getGender()}">male</strong>
         </p>
 
         <p>
         <h1>List of roles</h1>
         <ul>
-            <li th:each="u : ${user.getrolestring()}" th:text="${u}"></li>
+            <li th:each="u : ${users.getrolestring()}" th:text="${u}"></li>
         </ul>
         </p>
 
         <p>
-        <h1>user phone no:</h1>
+        <h1>users phone no:</h1>
 
-        <strong th:text="${user.getPhoneno()}"></strong>
+        <strong th:text="${users.getPhoneno()}"></strong>
 
         </p>
 

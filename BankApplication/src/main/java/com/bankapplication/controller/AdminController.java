@@ -4,7 +4,7 @@ import com.bankapplication.dto.ProfileUpdateDto;
 import com.bankapplication.dto.ResponseDto;
 import com.bankapplication.getapplicationcontext.UserServiceAppContext;
 import com.bankapplication.model.Country;
-import com.bankapplication.model.User;
+import com.bankapplication.model.Users;
 import com.bankapplication.service.AdminService;
 import com.bankapplication.service.CountryService;
 import com.bankapplication.service.UserService;
@@ -346,81 +346,81 @@ public class AdminController {
         return "error/error";
     }
 
-    /**
-     * Handles HTTP GET requests to the /user/update endpoint.
-     * <p>
-     * This method is responsible for preparing the data required for updating a
-     * user's profile. Returns the name of the view (home/userhome/updateprofile)
-     * that will be rendered.
-     *
-     * @param model the model object used to pass data to the view
-     * @return the name of the view to be rendered for updating the user's profile
-     */
-    @GetMapping("/admin/update")
-    public String updateProfiledata(Model model) {
-
-        // Retrieve the list of all countries using the country service
-        List<Country> countries = countryService.getAllCountries();
-
-        // Add the list of countries to the model
-        model.addAttribute("countries", countries);
-
-        // Get the email of the currently logged-in user from the user service context
-        String emailString = userServiceAppContext.getLoggedInUserEmail();
-        // Retrieve the User object based on the logged-in user's email
-
-        logger.info("logged in user is :" + emailString);
-
-        User user = userService.getUserByEmail(emailString);
-
-        int id = adminService.getIdByEmail(emailString);
-
-        System.out.println("logged in user id is " + id);
-
-        User user1 = adminService.getUserById(id);
-
-//        System.out.println("logged in user is "+user1);
-//      logger.info("user found by userService.getUserByEmail(emailString) in admincontroller is :" + user.toString());
-
-        // Convert the User object to a ProfileUpdateDto object using the user service
-
-        ProfileUpdateDto profileUpdateDto = userService.convertToProfileUpdate(user);
-//        logger.info("profileupdate dto in admincontroller is :" + profileUpdateDto);
-
-        // Add the ProfileUpdateDto to the model
-
-        model.addAttribute("profileUpdateDto", profileUpdateDto);
-        // Return the view name for updating the profile
-
-        return "home/adminhome/updateprofile";
-
-    }
-
-
-    @PostMapping("/admin/processupdate")
-    public String processUpdate(@Valid @ModelAttribute("profileUpdateDto") ProfileUpdateDto profileUpdateDto, BindingResult result, Model model) {
-
-        if (result.hasErrors()) {
-            result.getFieldErrors().forEach(error -> {
-                System.out.println(
-                        "field" + error.getField() + ",error:" + error.getDefaultMessage()
-                );
-            });
-            return "home/adminhome/updateprofile";
-        }
-
-        System.out.println(profileUpdateDto.toString());
+//    /**
+//     * Handles HTTP GET requests to the /user/update endpoint.
+//     * <p>
+//     * This method is responsible for preparing the data required for updating a
+//     * user's profile. Returns the name of the view (home/userhome/updateprofile)
+//     * that will be rendered.
+//     *
+//     * @param model the model object used to pass data to the view
+//     * @return the name of the view to be rendered for updating the user's profile
+//     */
+//    @GetMapping("/admin/update")
+//    public String updateProfiledata(Model model) {
+//
+//        // Retrieve the list of all countries using the country service
+//        List<Country> countries = countryService.getAllCountries();
+//
+//        // Add the list of countries to the model
+//        model.addAttribute("countries", countries);
+//
+//        // Get the email of the currently logged-in user from the user service context
+//        String emailString = userServiceAppContext.getLoggedInUserEmail();
+//        // Retrieve the User object based on the logged-in user's email
+//
+//        logger.info("logged in user is :" + emailString);
+//
+//        Users users = userService.getUserByEmail(emailString);
+//
+//        int id = adminService.getIdByEmail(emailString);
+//
+//        System.out.println("logged in user id is " + id);
+//
+//        Users users1 = adminService.getUserById(id);
+//
+////        System.out.println("logged in user is "+user1);
+////      logger.info("user found by userService.getUserByEmail(emailString) in admincontroller is :" + user.toString());
+//
+//        // Convert the User object to a ProfileUpdateDto object using the user service
+//
+//        ProfileUpdateDto profileUpdateDto = userService.convertToProfileUpdate(users);
+////        logger.info("profileupdate dto in admincontroller is :" + profileUpdateDto);
+//
+//        // Add the ProfileUpdateDto to the model
+//
+//        model.addAttribute("profileUpdateDto", profileUpdateDto);
+//        // Return the view name for updating the profile
+//
+//        return "home/adminhome/updateprofile";
+//
+//    }
 
 
-        try {
-            User user = adminService.updateAdmin(profileUpdateDto);
-            return "home/adminhome/successfully-update";
-        } catch (Exception e) {
-            System.out.println("error occured while updatting admin details");
-            System.out.println(e);
-            return "redirect:/admin/update";
-        }
-
-    }
+//    @PostMapping("/admin/processupdate")
+//    public String processUpdate(@Valid @ModelAttribute("profileUpdateDto") ProfileUpdateDto profileUpdateDto, BindingResult result, Model model) {
+//
+//        if (result.hasErrors()) {
+//            result.getFieldErrors().forEach(error -> {
+//                System.out.println(
+//                        "field" + error.getField() + ",error:" + error.getDefaultMessage()
+//                );
+//            });
+//            return "home/adminhome/updateprofile";
+//        }
+//
+//        System.out.println(profileUpdateDto.toString());
+//
+//
+//        try {
+//            Users users = adminService.updateAdmin(profileUpdateDto);
+//            return "home/adminhome/successfully-update";
+//        } catch (Exception e) {
+//            System.out.println("error occured while updatting admin details");
+//            System.out.println(e);
+//            return "redirect:/admin/update";
+//        }
+//
+//    }
 
 }

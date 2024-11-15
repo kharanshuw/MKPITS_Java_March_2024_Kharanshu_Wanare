@@ -1,8 +1,7 @@
 package com.bankapplication.auditconfig;
 
+import com.bankapplication.model.Users;
 import org.springframework.data.domain.AuditorAware;
-
-import com.bankapplication.model.User;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -30,11 +29,11 @@ public class ApplicationAudit implements AuditorAware<Integer> {
         }
                
         
-        User userPrincipal = (User) authentication.getPrincipal();
+        Users usersPrincipal = (Users) authentication.getPrincipal();
 
 
 
-        return Optional.ofNullable(userPrincipal.getId());
+        return Optional.ofNullable(usersPrincipal.getId());
     }
     
     

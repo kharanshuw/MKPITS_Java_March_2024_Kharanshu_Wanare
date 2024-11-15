@@ -7,77 +7,78 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 
 @Entity
 @Table(name = "city")
 public class City {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "city_name", nullable = false)
-    private String name;
+    @Column(nullable = false)
+    private String cityName;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "district_id")
+    @ManyToOne
+    @JoinColumn(name = "district_id", nullable = false)
     private District district;
 
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-//	@JsonManagedReference
-    private List<UserDetails> userDetails = new ArrayList<>(); // list of users
+    @OneToMany(mappedBy = "city", cascade = CascadeType.PERSIST)
+    @JsonBackReference
+    private List<UserDetails> userDetailsList = new ArrayList<>(); // List of UserDetails
 
-    // getter and setters
+    public void addUserDetail(UserDetails userDetails) {
+        userDetailsList.add(userDetails);
+        userDetails.setCity(this); // Set bi-directional relationship
+    }
+
 
     public int getId() {
-	return id;
+        return id;
     }
 
     public void setId(int id) {
-	this.id = id;
+        this.id = id;
     }
 
-    public String getName() {
-	return name;
+    public String getCityName() {
+        return cityName;
     }
 
-    public void setName(String name) {
-	this.name = name;
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
     public District getDistrict() {
-	return district;
+        return district;
     }
 
     public void setDistrict(District district) {
-	this.district = district;
+        this.district = district;
     }
 
-    public City() {
-	super();
+    public List<UserDetails> getUserDetailsList() {
+        return userDetailsList;
     }
 
-    public List<UserDetails> getUserDetails() {
-	return userDetails;
-    }
-
-    public void setUserDetails(List<UserDetails> userDetails) {
-	this.userDetails = userDetails;
-    }
-
-    public boolean addUserDetails(UserDetails userDetails) {
-	boolean result = this.userDetails.add(userDetails);
-	if (result == true) {
-	    System.out.println("userdetails added in city successfully");
-	    return result;
-	} else {
-	    System.out.println("userdetails not added in city successfully");
-	    return result;
-	}
+    public void setUserDetailsList(List<UserDetails> userDetailsList) {
+        this.userDetailsList = userDetailsList;
     }
 
     @Override
     public String toString() {
-	return "City [id=" + id + ", name=" + name + ", district=" + district + ", userDetails=" + userDetails + "]";
+        return "City{" +
+                "id=" + id +
+                ", cityName='" + cityName + '\'' +
+                ", district=" + district +
+                ", userDetailsList=" + userDetailsList +
+                '}';
     }
-
 }
+
+    
