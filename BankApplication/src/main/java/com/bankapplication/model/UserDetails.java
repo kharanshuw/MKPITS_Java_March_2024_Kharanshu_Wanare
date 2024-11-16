@@ -18,174 +18,174 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "userdetails")
 @EntityListeners(AuditingEntityListener.class)
 public class UserDetails {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@Column(name = "first_name")
-	@NotEmpty(message = "First name cannot be empty")
-	@Size(min = 2, max = 50, message = "First name must be between 2 to 50 characters")
-	private String fname;
+    @Column(name = "first_name")
+    @NotEmpty(message = "First name cannot be empty")
+    @Size(min = 2, max = 50, message = "First name must be between 2 to 50 characters")
+    private String fname;
 
-	@Column(name = "last_name")
-	@NotEmpty(message = "Last name cannot be empty")
-	@Size(min = 2, max = 50, message = "Last name must be between 2 to 50 characters")
-	private String lname;
+    @Column(name = "last_name")
+    @NotEmpty(message = "Last name cannot be empty")
+    @Size(min = 2, max = 50, message = "Last name must be between 2 to 50 characters")
+    private String lname;
 
-	@Column(name = "phoneno",unique = true)
-	@NotEmpty(message = "Phone number cannot be empty")
-	@Pattern(regexp = "^\\d{10}$", message = "Phone number must be 10 digits")
-	private String phoneno;
-	
-	@Column(name = "date_of_birth")
-	@Past(message = "Date of birth must be in the past")
-	@DateTimeFormat(pattern = "YYYY-MM-DD")
-	private LocalDate dob;
+    @Column(name = "phoneno", unique = true)
+    @NotEmpty(message = "Phone number cannot be empty")
+    @Pattern(regexp = "^\\d{10}$", message = "Phone number must be 10 digits")
+    private String phoneno;
 
-	@Column(name = "gender")
-	@NotEmpty(message = "gender should not be empty")
-	private String gender;
+    @Column(name = "date_of_birth")
+    @Past(message = "Date of birth must be in the past")
+    @DateTimeFormat(pattern = "YYYY-MM-DD")
+    private LocalDate dob;
 
-	// created date should be inserted 1st time only
-	// update not
-	@CreatedDate
-	@Column(name = "create_at", nullable = false, updatable = false)
-	private LocalDateTime createdate;
+    @Column(name = "gender")
+    @NotEmpty(message = "gender should not be empty")
+    private String gender;
 
-	// lastmodified date should be updated only
-	// insert date not allowd
-	@LastModifiedDate
-	@Column(name = "lastmodified_at", insertable = false)
-	private LocalDateTime lastmodified;
+    // created date should be inserted 1st time only
+    // update not
+    @CreatedDate
+    @Column(name = "create_at", nullable = false, updatable = false)
+    private LocalDateTime createdate;
 
-	// created by should be inserted 1st time only
-	// update not
-	@CreatedBy
-	@Column(name = "create_by", nullable = false, updatable = false)
-	private Integer createBy;
+    // lastmodified date should be updated only
+    // insert date not allowd
+    @LastModifiedDate
+    @Column(name = "lastmodified_at", insertable = false)
+    private LocalDateTime lastmodified;
 
-	// modifiability should be updated only
-	// insert not
-	@LastModifiedBy
-	@Column(name = "lastmodified_by", insertable = false)
-	private Integer lastmodifiedby;
+    // created by should be inserted 1st time only
+    // update not
+    @CreatedBy
+    @Column(name = "create_by", nullable = false, updatable = false)
+    private Integer createBy;
 
-	@OneToOne(cascade = CascadeType.ALL,mappedBy = "userDetails")
-	private Users users;
+    // modifiability should be updated only
+    // insert not
+    @LastModifiedBy
+    @Column(name = "lastmodified_by", insertable = false)
+    private Integer lastmodifiedby;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "city_id",nullable = false)
-	@JsonManagedReference
-	private City city;
-	
-	
-	@PrePersist
-	public void prepersist() {
-		this.createBy=getcurrentuserid();
-		this.createdate=LocalDateTime.now();
-	}
-	
-	public Integer getcurrentuserid() {
-		Integer idInteger= users.getId();
-		return idInteger;
-	}
-		
-	public int getId() {
-		return id;
-	}
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userDetails")
+    private Users users;
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getFname() {
-		return fname;
-	}
-
-	public void setFname(String fname) {
-		this.fname = fname;
-	}
-
-	public String getLname() {
-		return lname;
-	}
-
-	public void setLname(String lname) {
-		this.lname = lname;
-	}
-
-	public String getPhoneno() {
-		return phoneno;
-	}
-
-	public void setPhoneno(String phoneno) {
-		this.phoneno = phoneno;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	
-	public LocalDateTime getCreatedate() {
-		return createdate;
-	}
-
-	public void setCreatedate(LocalDateTime createdate) {
-		this.createdate = createdate;
-	}
-
-	public LocalDateTime getLastmodified() {
-		return lastmodified;
-	}
-
-	public void setLastmodified(LocalDateTime lastmodified) {
-		this.lastmodified = lastmodified;
-	}
-
-	public Integer getCreateBy() {
-		return createBy;
-	}
-
-	public void setCreateBy(Integer createBy) {
-		this.createBy = createBy;
-	}
-
-	public Integer getLastmodifiedby() {
-		return lastmodifiedby;
-	}
-
-	public void setLastmodifiedby(Integer lastmodifiedby) {
-		this.lastmodifiedby = lastmodifiedby;
-	}
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "city_id", nullable = false)
+    @JsonManagedReference
+    private City city;
 
 
-	public @Past(message = "Date of birth must be in the past") LocalDate getDob() {
-		return dob;
-	}
+    @PrePersist
+    public void prepersist() {
+        this.createBy = getcurrentuserid();
+        this.createdate = LocalDateTime.now();
+    }
 
-	public void setDob(@Past(message = "Date of birth must be in the past") LocalDate dob) {
-		this.dob = dob;
-	}
+    public Integer getcurrentuserid() {
+        Integer idInteger = users.getId();
+        return idInteger;
+    }
 
-	public Users getUsers() {
-		return users;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setUsers(Users users) {
-		this.users = users;
-		users.setUserDetails(this);
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public City getCity() {
-		return city;
-	}
+    public String getFname() {
+        return fname;
+    }
 
-	public void setCity(City city) {
-		this.city = city;
-	}
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    public String getLname() {
+        return lname;
+    }
+
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
+
+    public String getPhoneno() {
+        return phoneno;
+    }
+
+    public void setPhoneno(String phoneno) {
+        this.phoneno = phoneno;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+
+    public LocalDateTime getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(LocalDateTime createdate) {
+        this.createdate = createdate;
+    }
+
+    public LocalDateTime getLastmodified() {
+        return lastmodified;
+    }
+
+    public void setLastmodified(LocalDateTime lastmodified) {
+        this.lastmodified = lastmodified;
+    }
+
+    public Integer getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(Integer createBy) {
+        this.createBy = createBy;
+    }
+
+    public Integer getLastmodifiedby() {
+        return lastmodifiedby;
+    }
+
+    public void setLastmodifiedby(Integer lastmodifiedby) {
+        this.lastmodifiedby = lastmodifiedby;
+    }
+
+
+    public @Past(message = "Date of birth must be in the past") LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(@Past(message = "Date of birth must be in the past") LocalDate dob) {
+        this.dob = dob;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+        users.setUserDetails(this);
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
 }

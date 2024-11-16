@@ -95,6 +95,10 @@ public class SecurityConfig {
 				.requestMatchers(HttpMethod.GET, "/admin/update").hasRole("ADMIN")
 				
 				.requestMatchers(HttpMethod.GET,"/admin/processupdate").hasRole("ADMIN")
+				
+				.requestMatchers(HttpMethod.GET,"/admin/branch/create").hasRole("ADMIN")
+				
+				.requestMatchers(HttpMethod.POST,"/admin/branch/processbranch").hasRole("ADMIN")
 
 				.anyRequest().authenticated()
 

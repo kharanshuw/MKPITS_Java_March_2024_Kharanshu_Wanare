@@ -334,7 +334,7 @@
 			transition: all 0.5s ease;
 		}
 
-		
+
 		.sidebar.open {
 			left: 0;
 		}
@@ -566,7 +566,7 @@ em.planet.right {
 	<div>
 		<nav>
 
-			
+
 			<div class="navbar">
 
 				<div class="logo">
@@ -587,18 +587,18 @@ em.planet.right {
 				</div>
 
 				<ul class="links">
-					<li><a  th:href="@{/}">home</a></li>
+					<li><a th:href="@{/}">home</a></li>
 					<li><a th:href="@{/login}">Login</a></li>
 					<li>
 						<form action="#" th:action="@{/logout}" method="post">
 							<input type="submit" value="Logout">
 						</form>
 					</li>
-					<li><a th:href="@{/users/profile}">Profile</a></li>
+					<li><a th:href="@{/user/profile}">Profile</a></li>
 				</ul>
 
 
-			
+
 
 
 				<div class="toggle-btn">
@@ -607,7 +607,7 @@ em.planet.right {
 			</div>
 
 
-			
+
 		</nav>
 
 	</div>
@@ -641,7 +641,7 @@ em.planet.right {
 				<h1>BANK</h1>
 			</header>
 			<ul>
-				
+
 				<li><a th:href="@{/}">Home</a></li>
 
 				<li><a th:href="@{/users/update}">Update Data</a></li>
@@ -668,33 +668,33 @@ em.planet.right {
 		<section class="account-summary">
 			<h2>Profile Information</h2>
 			<p>
-				
-				
-				<h1>users id:</h1>
-				<strong th:text="${users.getId()}"></strong>
-			</p>
-			<p>
-				<h1>users email:</h1>
-				
-				<strong th:text="${users.getEmail()}"></strong>
-			</p>
 
 
-			<p>
-				
-				<h1>users name:</h1>
-				<strong th:text="${users.getFname()}"></strong>
+			<h1>users id:</h1>
+			<strong th:text="${user.getId()}"></strong>
 			</p>
 			<p>
-				
-				<h1>users last name:</h1>
-				<strong th:text="${users.getLname()}"></strong>
+			<h1>users email:</h1>
+
+			<strong th:text="${user.getEmail()}"></strong>
+			</p>
+
+
+			<p>
+
+			<h1>users name:</h1>
+			<strong th:text="${user.getFname()}"></strong>
+			</p>
+			<p>
+
+			<h1>users last name:</h1>
+			<strong th:text="${user.getLname()}"></strong>
 
 			</p>
 
 			<p>
-				<h1>users gender:</h1>
-				<strong th:text="${users.getGender()}">male</strong>
+			<h1>users gender:</h1>
+			<strong th:text="${user.getGender()}">male</strong>
 			</p>
 
 			<p>
@@ -707,11 +707,39 @@ em.planet.right {
 			<p>
 			<h1>users phone no:</h1>
 
-			<strong th:text="${users.getPhoneno()}"></strong>
+			<strong th:text="${user.getPhoneno()}"></strong>
 
 			</p>
 
 
+			<p>
+			<h1>users city name:</h1>
+
+			<strong th:text="${user.getCitynameString()}"></strong>
+
+			</p>
+
+
+			<p>
+			<h1>users district name:</h1>
+
+			<strong th:text="${user.getDistrictnameString()}"></strong>
+
+			</p>
+
+			<p>
+			<h1>users state name:</h1>
+
+			<strong th:text="${user.getStateString()}"></strong>
+
+			</p>
+
+			<p>
+			<h1>users country name:</h1>
+
+			<strong th:text="${user.getCountryString()}"></strong>
+
+			</p>
 
 		</section>
 	</main>

@@ -1,3 +1,5 @@
+use bank2;
+
 SELECT * FROM role 
 
 SELECT * from users
@@ -13,6 +15,17 @@ INSERT INTO role(id,role_name) VALUES (1,'ROLE_ADMIN');
 INSERT INTO role(id,role_name) VALUES (2,'ROLE_MANAGER');
 
 INSERT INTO role(id,role_name) VALUES (3,'ROLE_USER');
+
+UPDATE users
+SET enable = 1 
+WHERE id = 1;
+
+UPDATE district
+set state_id=15
+WHERE state_id = 14
+
+
+INSERT INTO user_role(role_id,user_id) VALUES(1,1)
 
 
     @Query("SELECT new com.bankapplication.dto.LoggesInUserDetails(u.id, u.email, ud.fname, ud.lname, ud.gender, ud.phoneno, r.rolename) " +
@@ -45,7 +58,7 @@ INSERT INTO role(id,role_name) VALUES (3,'ROLE_USER');
 
 
 
-INSERT INTO user_role(role_id,user_id) VALUES(3,9)
+
 
 
 //endpoint to call location for testing
@@ -61,9 +74,6 @@ http://localhost:9191/user/update
 
 http://localhost:9191/
 
-UPDATE district
-set state_id=15
-WHERE state_id = 14
 
 INSERT INTO country(country_code,country_name) VALUE(1,INDIA)
 

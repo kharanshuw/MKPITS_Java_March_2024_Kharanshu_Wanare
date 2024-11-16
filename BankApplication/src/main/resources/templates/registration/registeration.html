@@ -20,13 +20,13 @@
 		}
 
 		.navbar {
-			background-color: #1F3A93;
+			background-color: #159895;
 		}
 
 		.card-header,
 		.btn-primary {
-			background-color: #1F3A93;
-			border-color: #1F3A93;
+			background-color: #159895;
+
 			color: white;
 		}
 
@@ -36,47 +36,28 @@
 	</style>
 
 
+
+
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark">
-		<div class="container">
-			<a class="navbar-brand" href="#">Kharanshu Bank</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">About</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Contact</a>
-					</li>
-					<li class="nav-item">
-						<button class="btn btn-secondary ml-2">SignIn</button>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
 
+
+
+
+	<!-- form div start  -->
 	<div class="container mt-5 ">
 
 
-		<div class="text-center h1 card-header">Register Form</div>
+		<div class="text-center h1 card-header  ">Register Form</div>
 
-		<div class="container">
+		<div class="container border border-info">
 
 
 			<!-- form start -->
 			<form th:action="@{/processregistration}" th:object="${requestDto}" method="post">
 				<!-- email start -->
-				<div class="form-group row mb-3 mt-3">
+				<div class="form-group row mb-3 mt-3  ">
 					<label for="email" class="col-md-4 col-form-label text-md-right">Email:</label>
 					<div class="col-md-6">
 						<input type="email" id="email" th:field="*{email}" class="form-control" required>
@@ -148,7 +129,8 @@
 					</div>
 				</div>
 
-				<div class="form-group">
+				<!-- country -->
+				<div class="form-group mb-3 ">
 					<label for="country">Country</label>
 					<select id="country" class="form-control" name="country" required>
 						<option value="">Select Country</option>
@@ -158,35 +140,39 @@
 					</select>
 				</div>
 
-				<div class="form-group">
+				<!-- state -->
+				<div class="form-group mb-3">
 					<label for="state">State</label>
 					<select id="state" class="form-control" name="state" required>
 						<option value="">Select State</option>
 					</select>
 				</div>
 
-				<div class="form-group">
+				<!-- district -->
+				<div class="form-group mb-3">
 					<label for="district">District</label>
 					<select id="district" class="form-control" name="district" required>
 						<option value="">Select District</option>
 					</select>
 				</div>
-				
-				
 
-				<div class="form-group">
+				<!-- city -->
+
+				<div class="form-group mb-3">
 					<label for="city">City</label>
-					<select id="city" class="form-control" name="cityId" required>
+					<select id="city" class="form-control" name="cityid" required>
 						<option value="">Select City</option>
 					</select>
 				</div>
 
 				<!-- register button -->
-				<div class="form-group row mb-3">
-					<div class="col-md-6 offset-md-4">
-						<button type="submit" class="btn btn-primary">Register</button>
-					</div>
+
+				<div class="d-flex justify-content-center ">
+					<button type="submit" class="btn btn-primary">Register</button>
 				</div>
+
+
+
 			</form>
 
 			<!-- form end -->
@@ -201,7 +187,7 @@
 
 
 	</div>
-
+	<!-- form div end  -->
 
 	<!-- script for handling datepicker -->
 	<script>
@@ -268,7 +254,7 @@
 					url: '/api/cities/' + districtId,
 					method: 'GET',
 					success: function (cities) {
-						
+
 						console.log(cities);
 						$('#city').empty().append('<option value="">Select City</option>');
 						$.each(cities, function (index, city) {
@@ -277,9 +263,9 @@
 							$('#city').append('<option value="' + city.id + '">' + city.cityName + '</option>');
 						});
 					},
-					error: function(xhr, status, error) {
-					    console.log('Error:', error);
-					  }
+					error: function (xhr, status, error) {
+						console.log('Error:', error);
+					}
 				});
 			});
 		});

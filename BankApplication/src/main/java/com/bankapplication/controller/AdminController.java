@@ -1,34 +1,26 @@
 package com.bankapplication.controller;
 
-import com.bankapplication.dto.ProfileUpdateDto;
+import com.bankapplication.dto.RequstBranchDto;
 import com.bankapplication.dto.ResponseDto;
 import com.bankapplication.getapplicationcontext.UserServiceAppContext;
 import com.bankapplication.model.Country;
-import com.bankapplication.model.Users;
 import com.bankapplication.service.AdminService;
 import com.bankapplication.service.CountryService;
 import com.bankapplication.service.UserService;
 import com.bankapplication.service.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * AdminController handles all admin-related requests and actions.
@@ -423,4 +415,42 @@ public class AdminController {
 //
 //    }
 
+
+    @GetMapping("/admin/branch/create")
+    public String createBranch(Model model) {
+
+        List<Country> countries = countryService.getAllCountries();
+
+        model.addAttribute("countries", countries);
+
+        RequstBranchDto requstBranchDto = new RequstBranchDto();
+
+        model.addAttribute("dto", requstBranchDto);
+
+        return "branch/create-branch-form";
+
+    }
+
+    @PostMapping("/admin/branch/processbranch")
+    public String processCreateBranch(@Valid @ModelAttribute("dto") RequstBranchDto requstBranchDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+
+            logger.error("Error found in creation of branch. Below is the RequestbranchDto received from form:");
+            logger.error(requstBranchDto.toString());
+// Log each field error for detailed debugging
+            bindingResult.getFieldErrors().forEach(error -> {
+                System.out.println(
+                        "field" + error.getField() + ",error:" + error.getDefaultMessage()
+                );
+            });
+            // Return the registration page if there are errors
+            return "branch/create-branch-form";
+        }
+
+        System.out.println(requstBranchDto.toString());
+
+
+        return null;
+
+    }
 }

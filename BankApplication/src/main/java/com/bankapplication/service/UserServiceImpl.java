@@ -39,12 +39,13 @@ public class UserServiceImpl implements UserService {
     // Constructor for dependency injection
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, UserDetailsRepository userDetailsRepository, RoleRepository repository, CityRepository cityRepository) {
-        super();
-        this.userRepository = userRepository;
-        this.userDetailsRepository = userDetailsRepository;
-        this.roleRepository = repository;
-        this.cityRepository = cityRepository;
+    public UserServiceImpl(UserRepository userRepository, UserDetailsRepository userDetailsRepository,
+	    RoleRepository repository, CityRepository cityRepository) {
+	super();
+	this.userRepository = userRepository;
+	this.userDetailsRepository = userDetailsRepository;
+	this.roleRepository = repository;
+	this.cityRepository = cityRepository;
     }
 
     /**
@@ -58,110 +59,112 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public RequestDto createuser(RequestDto requestDto) {
 
-        // Log the incoming request data
-        logger.info("Request data: " + requestDto.getFname() + " " + requestDto.getLname() + " " + requestDto.getGender() + " " + requestDto.getPhoneno() + " " + requestDto.getEmail());
+	// Log the incoming request data
+	logger.info("Request data: " + requestDto.getFname() + " " + requestDto.getLname() + " "
+		+ requestDto.getGender() + " " + requestDto.getPhoneno() + " " + requestDto.getEmail());
 
-        String email = requestDto.getEmail();
+	String email = requestDto.getEmail();
 
-        try {
-            if (!email.isEmpty()) {
-                int id = userRepository.findIdByEmail(email);
-                if (id != 0) {
-                    throw new IllegalArgumentException("User with email " + email + " already exists");
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("exception occured in userservice class createuser method");
-            logger.error(e.getMessage());
-        }
+	try {
+	    if (!email.isEmpty()) {
+		int id = userRepository.findIdByEmail(email);
+		if (id != 0) {
+		    throw new IllegalArgumentException("User with email " + email + " already exists");
+		}
+	    }
+	} catch (Exception e) {
+	    System.out.println("exception occured in userservice class createuser method");
+	    logger.error(e.getMessage());
+	}
 
-        int cityid = requestDto.getCityid();
-        System.out.println("city id from request dto is " + cityid);
+	int cityid = requestDto.getCityid();
+	System.out.println("city id from request dto is " + cityid);
 
-        City city = cityRepository.findById(cityid).get();
+	City city = cityRepository.findById(cityid).get();
 
-        System.out.println("city name is " + city.getCityName());
-        System.out.println(city.getCityName());
+	System.out.println("city name is " + city.getCityName());
+	System.out.println(city.getCityName());
 
-        if (city == null || city.getDistrict() == null || city.getDistrict().getState() == null || city.getDistrict().getState().getCountry() == null) {
-            throw new IllegalArgumentException("Invalid city ID OR district or state or country in userserviceimpl class createuser method");
-        }
+	if (city == null || city.getDistrict() == null || city.getDistrict().getState() == null
+		|| city.getDistrict().getState().getCountry() == null) {
+	    throw new IllegalArgumentException(
+		    "Invalid city ID OR district or state or country in userserviceimpl class createuser method");
+	}
 
-        // Create a new User entity
-        Users users = new Users();
-        String password = requestDto.getPassword();
+	// Create a new User entity
+	Users users = new Users();
+	String password = requestDto.getPassword();
 
-        // Prepare the password by adding "{noop}" prefix (for NoOpPasswordEncoder)
-        StringBuffer stringBuffer = new StringBuffer(password);
+	// Prepare the password by adding "{noop}" prefix (for NoOpPasswordEncoder)
+	StringBuffer stringBuffer = new StringBuffer(password);
 
-        stringBuffer.insert(0, "{noop}");
+	stringBuffer.insert(0, "{noop}");
 
-        password = stringBuffer.toString();
+	password = stringBuffer.toString();
 
-        logger.info("new password" + password);
+	logger.info("new password" + password);
 
-        // Set user properties
-        users.setPassword(password);
-        users.setEmail(requestDto.getEmail());
+	// Set user properties
+	users.setPassword(password);
+	users.setEmail(requestDto.getEmail());
 
-        // Create and set UserDetails entity
-        UserDetails userDetails = new UserDetails();
+	// Create and set UserDetails entity
+	UserDetails userDetails = new UserDetails();
 
-        userDetails.setFname(requestDto.getFname());
+	userDetails.setFname(requestDto.getFname());
 
-        userDetails.setLname(requestDto.getLname());
+	userDetails.setLname(requestDto.getLname());
 
-        userDetails.setGender(requestDto.getGender());
+	userDetails.setGender(requestDto.getGender());
 
-        userDetails.setPhoneno(requestDto.getPhoneno());
+	userDetails.setPhoneno(requestDto.getPhoneno());
 
-        // Set the city in userdetails object
-        userDetails.setCity(city);
+	// Set the city in userdetails object
+	userDetails.setCity(city);
 
-        System.out.println("date of birth is " + requestDto.getDob());
-      
-        //set date of birth
-        userDetails.setDob(requestDto.getDob());
+	System.out.println("date of birth is " + requestDto.getDob());
 
+	// set date of birth
+	userDetails.setDob(requestDto.getDob());
 
 //set the user in userdetails object
-        userDetails.setUsers(users);
+	userDetails.setUsers(users);
 
-        // Establish bidirectional relationship
-        users.setUserDetails(userDetails);
+	// Establish bidirectional relationship
+	users.setUserDetails(userDetails);
 
-        // Find the "ROLE_USER" role
-        Role role = null;
+	// Find the "ROLE_USER" role
+	Role role = null;
 
-        try {
-            role = roleRepository.findByRolename("ROLE_USER");
+	try {
+	    role = roleRepository.findByRolename("ROLE_USER");
 
-            if (role == null) {
-                // this block of code will only run if user role does not exist in database
-                // Log error if ROLE_USER is not found
-                logger.error("ROLE_USER not found!");
+	    if (role == null) {
+		// this block of code will only run if user role does not exist in database
+		// Log error if ROLE_USER is not found
+		logger.error("ROLE_USER not found!");
 
-                return null;
-            }
-        } catch (Exception e) {
-            // Log any errors in finding the role
+		return null;
+	    }
+	} catch (Exception e) {
+	    // Log any errors in finding the role
 
-            logger.error("Error finding ROLE_USER: " + e.getMessage());
+	    logger.error("Error finding ROLE_USER: " + e.getMessage());
 
-        }
-        // Add the ROLE_USER to the user
-        users.addrole(role);
-        try {
-            // Save the user to the database
-           Users savedUser  = userRepository.save(users);
-           logger.info("user successfully saved in user service " + savedUser.toString());
-            logger.info("Successfully registered user in user service.");
-        } catch (Exception e) {
-            // Log any errors in saving the user
-            logger.error("Error saving user: " + e.getMessage());
-        }
-        // Return the original request DTO
-        return requestDto;
+	}
+	// Add the ROLE_USER to the user
+	users.addrole(role);
+	try {
+	    // Save the user to the database
+	    Users savedUser = userRepository.save(users);
+	    logger.info("user successfully saved in user service " + savedUser.toString());
+	    logger.info("Successfully registered user in user service.");
+	} catch (Exception e) {
+	    // Log any errors in saving the user
+	    logger.error("Error saving user: " + e.getMessage());
+	}
+	// Return the original request DTO
+	return requestDto;
     }
 
     /**
@@ -171,28 +174,59 @@ public class UserServiceImpl implements UserService {
      * @return The ResponseDto containing the user's details, or null if not found.
      */
     public ResponseDto getLoggedInUserDetails(String email) {
+//
+//	// Log received email
+//
+//	logger.info("Email received at getLoggedInUserDetails  method of UserServiceImpl class  : {}", email);
+//
+//	// Find logged in user details by email
+//
+//	Users users = userRepository.findUserByEmail(email);
+//	if (users == null) {
+//	    logger.info("Logged in user not found");
+//	    return null;
+//	}
+//
+//	// Log found user details
+//
+//	logger.info("Found user: {}", users.toString());
+//
+//	// Find user by ID
+//
+//	ResponseDto responseDto = createResponseDto(users);
+//
+//	return responseDto;
 
-        // Log received email
+	try {
+	    // Log the received email address for auditing purposes
+	    logger.info("Email received at getLoggedInUserDetails method of UserServiceImpl class: {}", email);
 
-        logger.info("Email received at getLoggedInUserDetails  method of UserServiceImpl class  : {}", email);
+	    // Attempt to find the logged-in user's details by their email address
+	    Users users = userRepository.findUserByEmail(email);
 
-        // Find logged in user details by email
+	    // Check if the user was found
+	    if (users == null) {
+		// Log a message indicating that the user was not found
+		logger.info("Logged in user not found");
+		// Return null to indicate that the user was not found
+		return null;
+	    }
 
-        Users users = userRepository.findUserByEmail(email);
-        if (users == null) {
-            logger.info("Logged in user not found");
-            return null;
-        }
+	    // Log the found user's details for auditing purposes
+	    logger.info("Found user: {}", users.toString());
 
-        // Log found user details
+	    // Create a ResponseDto object to hold the user's details
+	    ResponseDto responseDto = createResponseDto(users);
 
-        logger.info("Found user: {}", users.toString());
-
-        // Find user by ID
-
-        ResponseDto responseDto = createResponseDto(users);
-
-        return responseDto;
+	    // Return the ResponseDto object containing the user's details
+	    return responseDto;
+	} catch (Exception e) {
+	    // Log the exception for error tracking purposes
+	    logger.error("Error retrieving logged-in user details", e);
+	    System.out.println(e.getMessage());
+	    // Return null to indicate that an error occurred
+	    return null;
+	}
     }
 
     /**
@@ -205,31 +239,43 @@ public class UserServiceImpl implements UserService {
      * @return The created ResponseDto object.
      */
     private ResponseDto createResponseDto(Users users) {
-        ResponseDto responseDto = new ResponseDto();
+	ResponseDto responseDto = new ResponseDto();
 
-        responseDto.setId(users.getId());
-        logger.debug("Setting ID: {}", users.getId());
+	responseDto.setId(users.getId());
+	logger.debug("Setting ID: {}", users.getId());
 
-        responseDto.setEmail(users.getEmail());
-        logger.debug("Setting Email: {}", users.getEmail());
+	responseDto.setEmail(users.getEmail());
+	logger.debug("Setting Email: {}", users.getEmail());
 
-        responseDto.setFname(users.getUserDetails().getFname());
-        logger.debug("Setting First Name: {}", users.getUserDetails().getFname());
+	responseDto.setFname(users.getUserDetails().getFname());
+	logger.debug("Setting First Name: {}", users.getUserDetails().getFname());
 
-        responseDto.setLname(users.getUserDetails().getLname());
-        logger.debug("Setting Last Name: {}", users.getUserDetails().getLname());
+	responseDto.setLname(users.getUserDetails().getLname());
+	logger.debug("Setting Last Name: {}", users.getUserDetails().getLname());
 
-        responseDto.setGender(users.getUserDetails().getGender());
-        logger.debug("Setting Gender: {}", users.getUserDetails().getGender());
+	responseDto.setGender(users.getUserDetails().getGender());
+	logger.debug("Setting Gender: {}", users.getUserDetails().getGender());
 
-        responseDto.setPhoneno(users.getUserDetails().getPhoneno());
-        logger.debug("Setting Phone Number: {}", users.getUserDetails().getPhoneno());
+	responseDto.setPhoneno(users.getUserDetails().getPhoneno());
+	logger.debug("Setting Phone Number: {}", users.getUserDetails().getPhoneno());
 
-        responseDto.setRoles(users.getRole());
-        logger.debug("Setting Roles: {}", users.getRole());
+	responseDto.setRoles(users.getRole());
+	logger.debug("Setting Roles: {}", users.getRole());
+	
+	responseDto.setCitynameString(users.getUserDetails().getCity().getCityName());
+	logger.info("Setting city in responsedto"+users.getUserDetails().getCity().getCityName());
+	
+	responseDto.setDistrictnameString(users.getUserDetails().getCity().getDistrict().getDistrictName());
+	logger.info("Setting district in responsedto"+users.getUserDetails().getCity().getDistrict().getDistrictName());
+	
+	responseDto.setStateString(users.getUserDetails().getCity().getDistrict().getState().getStateName());
+	logger.info("Setting state in responsedto"+users.getUserDetails().getCity().getDistrict().getState().getStateName());
+	
+	responseDto.setCountryString(users.getUserDetails().getCity().getDistrict().getState().getCountry().getCountryName());
+	logger.info("Setting country in responsedto"+users.getUserDetails().getCity().getDistrict().getState().getCountry().getCountryName());
 
-        logger.debug("ResponseDto created: {}", responseDto);
-        return responseDto;
+	logger.debug("ResponseDto created: {}", responseDto);
+	return responseDto;
     }
 
     /**
@@ -240,43 +286,43 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<ResponseDto> findAllUser() {
-        // Retrieve all users from the repository
+	// Retrieve all users from the repository
 
-        List<Users> users = userRepository.findAll();
+	List<Users> users = userRepository.findAll();
 
-        // Check if the users list is empty
+	// Check if the users list is empty
 
-        if (users.isEmpty()) {
-            // Log an error if no users are found
-            logger.error("Users list in findAllUser method of UserServiceImpl class is empty");
-            return Collections.emptyList();
+	if (users.isEmpty()) {
+	    // Log an error if no users are found
+	    logger.error("Users list in findAllUser method of UserServiceImpl class is empty");
+	    return Collections.emptyList();
 
-        } else {
-            // Log information indicating users were found
-            logger.info("List of users found in findAllUser method of UserServiceImpl class");
-            // Create a list to hold the ResponseDto objects
+	} else {
+	    // Log information indicating users were found
+	    logger.info("List of users found in findAllUser method of UserServiceImpl class");
+	    // Create a list to hold the ResponseDto objects
 
-            List<ResponseDto> list = new ArrayList<>();
-            // Iterate through each user and convert to ResponseDto
+	    List<ResponseDto> list = new ArrayList<>();
+	    // Iterate through each user and convert to ResponseDto
 
-            for (Users u : users) {
+	    for (Users u : users) {
 
-                // Create a ResponseDto from the User object
+		// Create a ResponseDto from the User object
 
-                ResponseDto responseDto = createResponseDto(u);
-                // Log information indicating a response entity was created
+		ResponseDto responseDto = createResponseDto(u);
+		// Log information indicating a response entity was created
 
-                logger.info("response entity created ");
-                // Add the ResponseDto to the list
+		logger.info("response entity created ");
+		// Add the ResponseDto to the list
 
-                list.add(responseDto);
+		list.add(responseDto);
 
-            }
-            // Return the list of ResponseDto objects
+	    }
+	    // Return the list of ResponseDto objects
 
-            return list;
+	    return list;
 
-        }
+	}
 
     }
 
@@ -288,24 +334,29 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public List<ResponseDto> findallInactiveUser() {
+	// Retrieve the list of inactive users from the repository
+	List<Users> inactiveUsers = userRepository.findInactiveUsers();
+	logger.debug("Found {} inactive users", inactiveUsers.size());
 
-        List<Users> inactiveUsers = userRepository.findInactiveUsers();
-        logger.debug("Found {} inactive users", inactiveUsers.size());
+	// Create a list to store the inactive users in ResponseDto objects
 
-        // list to store inactive store in dto obj
-        List<ResponseDto> list1 = new ArrayList<>();
+	List<ResponseDto> list1 = new ArrayList<>();
 
-        for (Users u : inactiveUsers) {
-            ResponseDto responseDto = new ResponseDto();
-            responseDto.setEmail(u.getEmail());
-            responseDto.setId(u.getId());
-            list1.add(responseDto);
-            logger.debug("Added ResponseDto for user: {}", u.getId());
+	// Iterate over the inactive users and create a ResponseDto object for each one
 
-        }
-        logger.debug("Returning {} inactive user ResponseDtos", list1.size());
+	for (Users u : inactiveUsers) {
+	    ResponseDto responseDto = new ResponseDto();
+	    responseDto.setEmail(u.getEmail());
+	    responseDto.setId(u.getId());
+	    // Add the ResponseDto object to the list
+	    list1.add(responseDto);
+	    logger.debug("Added ResponseDto for user: {}", u.getId());
 
-        return list1;
+	}
+	logger.debug("Returning {} inactive user ResponseDtos", list1.size());
+	// Return the list of ResponseDto objects
+
+	return list1;
     }
 
     /**
@@ -314,38 +365,48 @@ public class UserServiceImpl implements UserService {
      * This method copies the relevant fields from the ResponseDto to the
      * ProfileUpdateDto.
      * <p>
-     * //	 * @param responseDto The ResponseDto object to be converted.
+     * // * @param responseDto The ResponseDto object to be converted.
      *
      * @return The converted ProfileUpdateDto object.
      */
     public ProfileUpdateDto convertToProfileUpdate(Users users) {
-        // Check for null user
-        if (users == null) {
-            return null;
-        }
+	// Check for null user
+	if (users == null) {
+	    return null;
+	}
 
-        ProfileUpdateDto profileUpdateDto = new ProfileUpdateDto();
+	ProfileUpdateDto profileUpdateDto = new ProfileUpdateDto();
 
-        profileUpdateDto.setEmail(users.getEmail());
+	profileUpdateDto.setEmail(users.getEmail());
 
-        profileUpdateDto.setId(users.getId());
+	profileUpdateDto.setId(users.getId());
 
-        profileUpdateDto.setFname(users.getUserDetails().getFname());
-        profileUpdateDto.setLname(users.getUserDetails().getLname());
-        profileUpdateDto.setGender(users.getUserDetails().getGender());
-        profileUpdateDto.setPhoneno(users.getUserDetails().getPhoneno());
+	profileUpdateDto.setFname(users.getUserDetails().getFname());
+	profileUpdateDto.setLname(users.getUserDetails().getLname());
+	profileUpdateDto.setGender(users.getUserDetails().getGender());
+	profileUpdateDto.setPhoneno(users.getUserDetails().getPhoneno());
 
-        return profileUpdateDto;
+	return profileUpdateDto;
 
     }
 
+    /**
+     * Retrieves a user by their email address.
+     * 
+     * @param email the email address of the user to retrieve
+     * @return the user associated with the given email address, or null if no user
+     *         is found
+     */
     public Users getUserByEmail(String email) {
-        Users users = null;
-
-        users = userRepository.findUserByEmail(email);
-
-        return users;
+	Users users = null;
+	try {
+	    users = userRepository.findUserByEmail(email);
+	    logger.info("User found with email: {}", email);
+	} catch (Exception e) {
+	    logger.error("Error retrieving user by email: {}", email, e);
+	    System.out.println(e.getMessage());
+	}
+	return users;
     }
-
 
 }
