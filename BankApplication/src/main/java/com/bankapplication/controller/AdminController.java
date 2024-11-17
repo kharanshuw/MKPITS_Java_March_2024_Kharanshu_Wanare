@@ -30,14 +30,11 @@ public class AdminController {
 
     // This sets up the logger for the AdminController class.
     private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
-// This is a private field for the UserServiceImpl, which likely handles user-related operations.
-
+    // This is a private field for the UserServiceImpl, which likely handles user-related operations.
     private UserService userService;
-// This is a private field for UserServiceAppContext, which is a context class managing the session or user context.
-
+    // This is a private field for UserServiceAppContext, which is a context class managing the session or user context.
     private UserServiceAppContext userServiceAppContext;
-// This is a private field for AdminService, which likely handles administrative operations.
-
+    // This is a private field for AdminService, which likely handles administrative operations.
     private AdminService adminService;
 
     private CountryService countryService;
@@ -415,24 +412,44 @@ public class AdminController {
 //
 //    }
 
-
+    /**
+     * Displays the form for creating a new branch.
+     *
+     * @param model the model to pass attributes to the view
+     * @return the view name of the create branch form
+     */
     @GetMapping("/admin/branch/create")
     public String createBranch(Model model) {
 
-        List<Country> countries = countryService.getAllCountries();
+        try {
+            // Fetch all countries to be displayed in the form's dropdown
+            List<Country> countries = countryService.getAllCountries();
+            model.addAttribute("countries", countries);
 
-        model.addAttribute("countries", countries);
+            // Add an empty DTO to the model to bind form data
+            RequstBranchDto requstBranchDto = new RequstBranchDto();
+            model.addAttribute("dto", requstBranchDto);
 
-        RequstBranchDto requstBranchDto = new RequstBranchDto();
-
-        model.addAttribute("dto", requstBranchDto);
-
-        return "branch/create-branch-form";
+            logger.info("Navigating to create branch form with countries list");
+            return "branch/create-branch-form";
+        } catch (Exception e) {
+            logger.error("Error occurred while preparing create branch form: {}", e.getMessage());
+            model.addAttribute("e", "Unable to load the form at this moment. Please try again later.");
+            return "error/error";
+        }
 
     }
 
+
+    /**
+     * Processes the creation of a branch using the data from RequstBranchDto.
+     *
+     * @param requstBranchDto the DTO containing branch data from the form
+     * @param bindingResult   the result of validation binding
+     * @return the view name or redirect URL based on the success or failure of the operation
+     */
     @PostMapping("/admin/branch/processbranch")
-    public String processCreateBranch(@Valid @ModelAttribute("dto") RequstBranchDto requstBranchDto, BindingResult bindingResult) {
+    public String processCreateBranch(@Valid @ModelAttribute("dto") RequstBranchDto requstBranchDto, BindingResult bindingResult,Model model) {
         if (bindingResult.hasErrors()) {
 
             logger.error("Error found in creation of branch. Below is the RequestbranchDto received from form:");
@@ -447,10 +464,27 @@ public class AdminController {
             return "branch/create-branch-form";
         }
 
-        System.out.println(requstBranchDto.toString());
+        // Log the DTO data for debugging
+        logger.info("Processing branch creation for: {}", requstBranchDto.toString());
 
+        try {
+            // Process the branch creation logic
+            boolean result = adminService.processBranchCreation(requstBranchDto);
 
-        return null;
+            if (result) {
+                logger.info("Branch created successfully for email: {}", requstBranchDto.getEmail());
+                return "branch/successful";
+            } else {
+                logger.warn("Branch creation failed for email: {}", requstBranchDto.getEmail());
+                return "branch/error";
+            }
+        } catch (Exception e) {
+            // Log unexpected exceptions
+            logger.error("Error occurred while creating the branch: {}", e.getMessage());
+            model.addAttribute("e", "Unable to load the form at this moment. Please try again later.");
+            return "error/error";
+            
+        }
 
     }
 }

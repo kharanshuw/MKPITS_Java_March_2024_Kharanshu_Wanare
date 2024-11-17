@@ -3,6 +3,7 @@ package com.bankapplication.service;
 import java.util.List;
 
 import com.bankapplication.dto.ProfileUpdateDto;
+import com.bankapplication.dto.RequstBranchDto;
 import com.bankapplication.dto.ResponseDto;
 import com.bankapplication.model.Users;
 
@@ -24,4 +25,6 @@ public interface AdminService {
     public int getIdByEmail(String email);
 
     public Users getUserById(int id);
+
+    public boolean processBranchCreation(RequstBranchDto requstBranchDto);
 }

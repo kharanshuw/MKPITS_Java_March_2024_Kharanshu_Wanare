@@ -1,28 +1,26 @@
 package com.bankapplication.service;
 
+import com.bankapplication.dto.RequstBranchDto;
 import com.bankapplication.dto.ResponseDto;
-import com.bankapplication.repository.RoleRepository;
-import com.bankapplication.repository.UserDetailsRepository;
-import com.bankapplication.repository.UserRepository;
+import com.bankapplication.exceptionhandler.BranchCreationException;
+import com.bankapplication.exceptionhandler.UserNotFoundException;
+import com.bankapplication.exceptionhandler.UserRetrievalException;
+import com.bankapplication.model.Branch;
+import com.bankapplication.model.City;
+import com.bankapplication.model.Role;
+import com.bankapplication.model.Users;
+import com.bankapplication.repository.*;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bankapplication.repository.CityRepository;
-
-import com.bankapplication.model.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import com.bankapplication.model.UserDetails;
-
-import com.bankapplication.dto.ProfileUpdateDto;
 
 /**
  * AdminServiceImpl class handles all Admin related services
@@ -42,14 +40,17 @@ public class AdminServiceImpl implements AdminService {
 
     private CityRepository cityRepository;
 
+    private BranchRepository branchRepository;
+
     @Autowired
     public AdminServiceImpl(UserRepository userRepository, UserDetailsRepository userDetailsRepository,
-                            RoleRepository roleRepository, CityRepository cityRepository, EntityManager entityManager) {
+                            RoleRepository roleRepository, CityRepository cityRepository, EntityManager entityManager, BranchRepository branchRepository) {
         this.userRepository = userRepository;
         this.userDetailsRepository = userDetailsRepository;
         this.roleRepository = roleRepository;
         this.cityRepository = cityRepository;
         this.entityManager = entityManager;
+        this.branchRepository = branchRepository;
     }
 
     /**
@@ -367,32 +368,168 @@ public class AdminServiceImpl implements AdminService {
 //
 //    }
 
+    /**
+     * Retrieves a user by their ID from the repository.
+     *
+     * @param id the ID of the user to retrieve
+     * @return the user with the given ID if found
+     * @throws UserNotFoundException if the user with the given ID is not found
+     */
     @Transactional
     public Users getUserById(int id) {
+        // Retrieve user by ID from the repository
         Optional<Users> optionalUser = userRepository.findById(id);
+        // Check if the user is present
         if (optionalUser.isPresent()) {
             return optionalUser.get();
         } else {
-            throw new RuntimeException("user with given id not found ");
+            throw new UserNotFoundException("User with ID " + id + " not found.");
         }
     }
 
+
+    /**
+     * Retrieves the ID of a user by their email address.
+     *
+     * @param email the email address of the user
+     * @return the ID of the user with the given email address
+     * @throws UserNotFoundException if the user with the given email is not found
+     */
     @Transactional
     public int getIdByEmail(String email) {
-        int id = userRepository.findIdByEmail(email);
-        return id;
+        // Validate input parameter
+        if (email == null || email.isEmpty()) {
+            throw new IllegalArgumentException("Email cannot be null or empty");
+        }
+
+        try {
+            // Retrieve user ID by email from the repository
+            int id = userRepository.findIdByEmail(email);
+
+            // Check if ID is valid (assuming IDs are positive numbers)
+            if (id <= 0) {
+                throw new UserNotFoundException("User with email " + email + " not found.");
+            }
+
+            return id;
+        } catch (Exception e) {
+            // Handle any unexpected exceptions
+            throw new UserRetrievalException("Error occurred while retrieving user ID by email", e);
+        }
     }
 
+    /**
+     * Retrieves a user by their email address.
+     *
+     * @param email the email address of the user to retrieve
+     * @return the user with the given email address
+     * @throws UserNotFoundException if the user with the given email is not found
+     */
     public Users getUserByEmail(String email) {
+        // Validate input parameter
+        if (email == null || email.isEmpty()) {
+            throw new IllegalArgumentException("Email cannot be null or empty");
+        }
+        // Retrieve user by email from the repository
         Users users = userRepository.findUserByEmail(email);
+        // Check if user is found
         if (users == null) {
-            logger.error("user not found by email");
-            throw new RuntimeException("user not found by email ");
+            // Log error and throw custom exception
+            logger.error("User not found by email: " + email);
+            throw new UserNotFoundException("User not found by email: " + email);
+        }
+        return users;
 
-        } else {
-            return users;
+
+    }
+
+    /**
+     * Converts a RequstBranchDto object to a Branch object.
+     *
+     * @param requstBranchDto the DTO containing branch data
+     * @return the converted Branch object
+     * @throws IllegalArgumentException if the DTO contains invalid data
+     * @throws EntityNotFoundException  if the city ID is not found
+     */
+    public Branch convertToBranch(RequstBranchDto requstBranchDto) {
+
+        // Validate input parameter
+        if (requstBranchDto == null) {
+            throw new IllegalArgumentException("RequstBranchDto cannot be null");
+        }
+
+        // Extract and validate data from DTO
+        String email = requstBranchDto.getEmail();
+        String branchname = requstBranchDto.getBranchName();
+        String contactno = requstBranchDto.getContactNo();
+        String requstBranchDtoCityid = requstBranchDto.getCityid();
+
+        if (email == null || email.isEmpty() || branchname == null || branchname.isEmpty() || contactno == null || contactno.isEmpty() || contactno == null || contactno.isEmpty()) {
+            throw new IllegalArgumentException("Invalid data in RequstBranchDto");
         }
 
 
+        int cityId;
+        try {
+            cityId = Integer.parseInt(requstBranchDtoCityid);
+            System.out.println("City ID converted to int: " + cityId);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid city ID format: " + requstBranchDtoCityid, e);
+        }
+        // Retrieve the city entity
+        Optional<City> cityOptional = cityRepository.findById(cityId);
+        if (!cityOptional.isPresent()) {
+            throw new EntityNotFoundException("City with ID " + cityId + " not found");
+        }
+        City city = cityOptional.get();
+        System.out.println("City found: " + city);
+        // Create and populate the Branch entity
+        Branch branch = new Branch();
+        branch.setBranchName(branchname);
+        branch.setEmail(email);
+        branch.setContactNo(contactno);
+        branch.setCity(city);
+        return branch;
     }
+
+    /**
+     * Processes the creation of a branch using the data from RequstBranchDto.
+     *
+     * @param requstBranchDto the DTO containing branch data
+     * @return true if the branch is successfully saved, otherwise false
+     * @throws IllegalArgumentException if the DTO contains invalid data
+     */
+    public boolean processBranchCreation(RequstBranchDto requstBranchDto) {
+        boolean result = false;
+
+        // Validate input parameter
+        if (requstBranchDto == null) {
+            logger.error("RequstBranchDto cannot be null");
+            throw new IllegalArgumentException("RequstBranchDto cannot be null");
+        }
+
+        try {
+            // Convert DTO to Branch entity
+            Branch branch = convertToBranch(requstBranchDto);
+
+            // Log the branch details (for debugging purposes)
+            System.out.println(branch.toString());
+
+            // Save the branch to the repository
+           Branch branch1  = branchRepository.save(branch);
+           logger.info("branch saved successfully is "+branch1.toString());
+            result = true;
+        } catch (UserNotFoundException e) {
+            // Handle case where city is not found
+            logger.error(e.getMessage());
+            System.err.println(e.getMessage());
+        } catch (Exception e) {
+            // Handle any unexpected exceptions during branch creation
+            logger.error(e.getMessage());
+            System.err.println("Error occurred while creating the branch: " + e.getMessage());
+        }
+
+        return result;
+    }
+
 }

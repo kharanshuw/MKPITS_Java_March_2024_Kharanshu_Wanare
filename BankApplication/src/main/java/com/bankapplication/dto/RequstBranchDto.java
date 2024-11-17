@@ -8,9 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.*;
 
 public class RequstBranchDto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+   
 
     @NotNull(message = "branch name should not be empty")
     @Column(name = "branch_name", unique = true)
@@ -32,15 +30,7 @@ public class RequstBranchDto {
     @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "invalid email format")
     private String email;
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    
     public @NotNull(message = "branch name should not be empty") @NotEmpty(message = "branch name should not be empty") @Size(min = 2, max = 50, message = "branch name must be between 2 to 50 characters") String getBranchName() {
         return branchName;
     }
@@ -77,7 +67,6 @@ public class RequstBranchDto {
     @Override
     public String toString() {
         return "RequstBranchDto{" +
-                "id=" + id +
                 ", branchName='" + branchName + '\'' +
                 ", contactNo='" + contactNo + '\'' +
                 ", cityid='" + cityid + '\'' +

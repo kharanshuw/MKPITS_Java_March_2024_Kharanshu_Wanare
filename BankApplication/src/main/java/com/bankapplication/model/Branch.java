@@ -82,4 +82,16 @@ public class Branch {
     public void setManagerId(UserDetails managerId) {
         this.managerId = managerId;
     }
+
+    @Override
+    public String toString() {
+        return "Branch{" +
+                "id=" + id +
+                ", branchName='" + branchName + '\'' +
+                ", contactNo='" + contactNo + '\'' +
+                ", city=" + city +
+                ", email='" + email + '\'' +
+                ", managerId=" + managerId +
+                '}';
+    }
 }
