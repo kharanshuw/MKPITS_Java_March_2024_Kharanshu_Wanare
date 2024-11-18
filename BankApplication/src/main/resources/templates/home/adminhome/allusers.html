@@ -755,7 +755,11 @@ em.planet.right {
 						<td th:text="${u.getLname()}"></td>
 						<td th:text="${u.getGender()}"></td>
 						<td th:text="${u.getPhoneno()}"></td>
-						<td th:each="role : ${u.getrolestring()}" th:text="${role}"></td>
+						<td >
+
+							<ul> <li th:each="role : ${u.getrolestring()}" th:text="${role}"></li> </ul>
+							
+						</td>
 						<td th:text="${u.getEmail()}"></td>
 					</tr>
 

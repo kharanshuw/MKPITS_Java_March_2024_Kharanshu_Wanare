@@ -25,6 +25,8 @@ set state_id=15
 WHERE state_id = 14
 
 
+
+
 INSERT INTO user_role(role_id,user_id) VALUES(1,1)
 
 
@@ -75,7 +77,7 @@ http://localhost:9191/user/update
 http://localhost:9191/
 
 
-INSERT INTO country(country_code,country_name) VALUE(1,INDIA)
+INSERT INTO country(country_name) VALUE('INDIA');
 
 INSERT INTO state(state_name,country_id) VALUE()
 

@@ -27,7 +27,6 @@ public class LoginController {
     @GetMapping("/login")
     public String loginuser() {
     	logger.info("inside login method");
-      
         return "login/login";
     }
 

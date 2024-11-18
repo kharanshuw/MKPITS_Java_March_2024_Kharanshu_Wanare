@@ -91,23 +91,34 @@ public class AdminController {
     public String getAllUser(Model model) {
 
         logger.info("getalluser method from admincontroller class called successfully");
-        // Retrieve the list of all users
+        
+        try {
+            // Retrieve the list of all users
+            List<ResponseDto> responseDtos = userService.findAllUser();
 
-        List<ResponseDto> responseDtos = userService.findAllUser();
-        // Check if the user list is empty
+            // Check if the user list is empty
+            if (responseDtos.isEmpty()) {
+                logger.error("ResponseDto list is empty in getAllUser method of AdminController");
+                return "error/error";
+            } else {
+                
+                
+                
+                // Add the user list to the model
+                model.addAttribute("users", responseDtos);
 
-        if (responseDtos.isEmpty()) {
-            logger.error("responsdto list is empty in getalluser method of class admincontroller ");
-            return "error/error.html";
-        } else {
-
-            // Add the user list to the model
-
-            model.addAttribute("users", responseDtos);
-
-            logger.info("data send from /admin/alluser to alluser.html");
-            return "home/adminhome/allusers";
+                
+                logger.info("Data sent from /admin/allusers to allusers.html");
+                return "home/adminhome/allusers";
+            }
         }
+        catch (Exception e)
+        {
+            logger.error("Exception occurred in getAllUser method of AdminController: {}", e.getMessage());
+            model.addAttribute("e", "An error occurred while retrieving the user list. Please try again later.");
+            return "error/error";
+        }
+       
     }
 
     /**

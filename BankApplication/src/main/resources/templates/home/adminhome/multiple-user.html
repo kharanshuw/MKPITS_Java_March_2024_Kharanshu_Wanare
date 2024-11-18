@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" >
 
 
 <head>
@@ -379,6 +379,7 @@ font-size: 1.2em; /* Adjust the font size of the planet elements as needed */
                 padding: 20px;
                 background-color: #fff;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                margin-top: 15px;
             }
             h1, h5 {
                 color: #333;
@@ -473,7 +474,7 @@ font-size: 1.2em; /* Adjust the font size of the planet elements as needed */
 <!-- navbar end -->
 
 
-<div class="container">
+<div class="container" >
     <!-- Authenticated User Section -->
     <div sec:authorize="isAuthenticated()">
         <h1 class="mb-3">Hello users <span th:text="${email}"></span></h1>
@@ -502,7 +503,7 @@ font-size: 1.2em; /* Adjust the font size of the planet elements as needed */
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Hello User</h5>
-                        <a th:href="@{/users/home}" class="btn btn-success">Go to users Dashboard</a>
+                        <a th:href="@{/user/home}" class="btn btn-success">Go to users Dashboard</a>
                     </div>
                 </div>
             </div>
@@ -517,7 +518,7 @@ font-size: 1.2em; /* Adjust the font size of the planet elements as needed */
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Hello Manager</h5>
-                        <a  class="btn btn-info">Go to manager Dashboard</a>
+                        <a class="btn btn-info">Go to manager Dashboard</a>
                     </div>
                 </div>
             </div>
