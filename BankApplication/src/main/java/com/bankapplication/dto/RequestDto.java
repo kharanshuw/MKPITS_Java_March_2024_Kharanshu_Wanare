@@ -101,7 +101,7 @@ public class RequestDto {
     public void setGender(String gender) {
         this.gender = gender;
     }
-    
+
 
     public int getCityid() {
         return cityid;
@@ -125,9 +125,8 @@ public class RequestDto {
                 '}';
     }
 
-    
-    public void printpassword()
-    {
+
+    public void printpassword() {
         System.out.println(this.password.toString());
     }
 }

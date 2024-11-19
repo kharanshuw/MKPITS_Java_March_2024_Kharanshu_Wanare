@@ -2,13 +2,12 @@ package com.bankapplication.repository;
 
 import com.bankapplication.dto.LoggesInUserDetails;
 import com.bankapplication.model.Users;
-
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 @Repository
@@ -23,7 +22,7 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
     public LoggesInUserDetails findUserRoleDetailsByEmail(@Param("email") String email);
 
 
-//    
+    //    
 //    @Query("SELECT new com.bankapplication.dto.ResponseDto(u.id, u.email, ud.fname, ud.lname, ud.gender, ud.phoneno, r.rolename) " +
 //    	       "FROM User u " +
 //    	       "JOIN u.userDetails ud " +
@@ -35,7 +34,7 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
 
     @Query("SELECT u FROM Users u WHERE u.email = :email")
     public Users findUserByEmail(@Param("email") String email);
-    
+
     @Query("SELECT u.id FROM Users u WHERE u.email = :email")
     public int findIdByEmail(@Param("email") String email);
 

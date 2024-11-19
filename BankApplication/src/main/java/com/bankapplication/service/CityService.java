@@ -1,14 +1,11 @@
 package com.bankapplication.service;
 
 
-import java.util.List;
-
 import com.bankapplication.model.City;
 
+import java.util.List;
 
 
-
-
-public interface CityService  {
-    public List<City> getCitiesByDistrictId(int districtId) ;
+public interface CityService {
+    public List<City> getCitiesByDistrictId(int districtId);
 }

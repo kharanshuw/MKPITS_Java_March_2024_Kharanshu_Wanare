@@ -8,11 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class BankapplicationApplication {
 
-
     public static void main(String[] args) {
-	SpringApplication.run(BankapplicationApplication.class, args);
+        SpringApplication.run(BankapplicationApplication.class, args);
     }
 
 }
-
-

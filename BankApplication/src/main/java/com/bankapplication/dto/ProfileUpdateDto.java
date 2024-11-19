@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class ProfileUpdateDto {
-    
+
     private int id;
 
 
@@ -28,55 +28,55 @@ public class ProfileUpdateDto {
 
     private String gender;
 
-    @Column(name = "phoneno",unique = true)
+    @Column(name = "phoneno", unique = true)
     @NotEmpty(message = "Phone number cannot be empty")
     @Pattern(regexp = "^\\d{10}$", message = "Phone number must be 10 digits")
     private String phoneno;
 
     private Integer cityid;
-    
+
 
     public String getEmail() {
-	return email;
+        return email;
     }
 
     public void setEmail(String email) {
-	this.email = email;
+        this.email = email;
     }
 
 
     public String getFname() {
-	return fname;
+        return fname;
     }
 
     public void setFname(String fname) {
-	this.fname = fname;
+        this.fname = fname;
     }
 
     public String getLname() {
-	return lname;
+        return lname;
     }
 
     public void setLname(String lname) {
-	this.lname = lname;
+        this.lname = lname;
     }
 
     public String getGender() {
-	return gender;
+        return gender;
     }
 
     public void setGender(String gender) {
-	this.gender = gender;
+        this.gender = gender;
     }
 
     public String getPhoneno() {
-	return phoneno;
+        return phoneno;
     }
 
     public void setPhoneno(String phoneno) {
-	this.phoneno = phoneno;
+        this.phoneno = phoneno;
     }
-    
+
     public Integer getCityid() {
         return cityid;
     }

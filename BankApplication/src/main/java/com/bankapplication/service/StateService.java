@@ -1,8 +1,8 @@
 package com.bankapplication.service;
 
-import java.util.List;
-
 import com.bankapplication.model.State;
+
+import java.util.List;
 
 public interface StateService {
     public List<State> getStatesByCountryId(int countryId);

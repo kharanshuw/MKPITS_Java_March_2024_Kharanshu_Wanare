@@ -1,10 +1,8 @@
 package com.bankapplication.service;
 
-import java.util.List;
-
 import com.bankapplication.model.District;
 
-
+import java.util.List;
 
 
 public interface DistrictService {

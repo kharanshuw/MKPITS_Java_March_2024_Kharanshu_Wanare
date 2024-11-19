@@ -1,31 +1,26 @@
 package com.bankapplication.controller;
 
 import com.bankapplication.dto.ProfileUpdateDto;
-
 import com.bankapplication.dto.ResponseDto;
 import com.bankapplication.getapplicationcontext.UserServiceAppContext;
 import com.bankapplication.model.Country;
 import com.bankapplication.model.Users;
 import com.bankapplication.service.CountryService;
 import com.bankapplication.service.UserServiceImpl;
-
+import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.HttpStatus;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.slf4j.*;
-
-import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
 /*
  * This class serves as a controller for handling user related operations.
@@ -48,10 +43,10 @@ public class UserController {
 
     @Autowired
     public UserController(UserServiceImpl userService, UserServiceAppContext userServiceAppContext,
-	    CountryService countryService) {
-	this.userService = userService;
-	this.userServiceAppContext = userServiceAppContext;
-	this.countryService = countryService;
+                          CountryService countryService) {
+        this.userService = userService;
+        this.userServiceAppContext = userServiceAppContext;
+        this.countryService = countryService;
     }
 
     /**
@@ -65,49 +60,49 @@ public class UserController {
     @GetMapping("/home2")
     public String homepage2(Model model, HttpServletRequest httpServletRequest) {
 
-	logger.info("homepage2 method from usercontroller class called ");
+        logger.info("homepage2 method from usercontroller class called ");
 
-	String emailString = userServiceAppContext.getLoggedInUserEmail();
+        String emailString = userServiceAppContext.getLoggedInUserEmail();
 
-	logger.info("the user logged in is :" + emailString);
+        logger.info("the user logged in is :" + emailString);
 
-	model.addAttribute("email", emailString);
+        model.addAttribute("email", emailString);
 
-	if (httpServletRequest.isUserInRole("USER") && httpServletRequest.isUserInRole("ADMIN")) {
+        if (httpServletRequest.isUserInRole("USER") && httpServletRequest.isUserInRole("ADMIN")) {
 
-	    logger.info("USER AND ADMIN  profile home page called after successful login inside UserController");
+            logger.info("USER AND ADMIN  profile home page called after successful login inside UserController");
 
-	    return "home/adminhome/multiple-user";
+            return "home/adminhome/multiple-user";
 
-	} else if (httpServletRequest.isUserInRole("USER") && httpServletRequest.isUserInRole("MANAGER")) {
+        } else if (httpServletRequest.isUserInRole("USER") && httpServletRequest.isUserInRole("MANAGER")) {
 
-	    logger.info("USER AND MANAGER  profile home page called after successful login inside UserController");
+            logger.info("USER AND MANAGER  profile home page called after successful login inside UserController");
 
-	    return "home/adminhome/multiple-user";
-	} else if (httpServletRequest.isUserInRole("ADMIN") && httpServletRequest.isUserInRole("MANAGER")) {
-	    logger.info("ADMIN AND MANAGER profile home page called after successful login inside UserController");
+            return "home/adminhome/multiple-user";
+        } else if (httpServletRequest.isUserInRole("ADMIN") && httpServletRequest.isUserInRole("MANAGER")) {
+            logger.info("ADMIN AND MANAGER profile home page called after successful login inside UserController");
 
-	    return "home/adminhome/multiple-user";
-	} else if (httpServletRequest.isUserInRole("ADMIN")) {
+            return "home/adminhome/multiple-user";
+        } else if (httpServletRequest.isUserInRole("ADMIN")) {
 
-	    logger.info("Admin home page called after successful login inside UserController");
-	    return "home/adminhome/adminhome";
+            logger.info("Admin home page called after successful login inside UserController");
+            return "home/adminhome/adminhome";
 
-	} else if (httpServletRequest.isUserInRole("USER")) {
+        } else if (httpServletRequest.isUserInRole("USER")) {
 
-	    logger.info("User home page called after successful login inside UserController");
+            logger.info("User home page called after successful login inside UserController");
 
-	    return "home/userhome/userhome";
+            return "home/userhome/userhome";
 
-	} else if (httpServletRequest.isUserInRole("MANAGER")) {
-	    logger.info("MANAGER home page called after successful login inside UserController");
+        } else if (httpServletRequest.isUserInRole("MANAGER")) {
+            logger.info("MANAGER home page called after successful login inside UserController");
 
-	    return "home/manager/dashboard";
-	} else {
+            return "home/manager/dashboard";
+        } else {
 
-	    logger.error("User role not identified, redirecting to error page");
-	    return "redirect:/access-denied";
-	}
+            logger.error("User role not identified, redirecting to error page");
+            return "redirect:/access-denied";
+        }
 
     }
 
@@ -119,8 +114,8 @@ public class UserController {
      */
     @GetMapping("/access-denied")
     public String accessdenied() {
-	logger.error("error occured redirecting to error/access-denied");
-	return "error/access-denied";
+        logger.error("error occured redirecting to error/access-denied");
+        return "error/access-denied";
     }
 
     /**
@@ -128,44 +123,32 @@ public class UserController {
      * retrieves the logged-in user's profile details.
      *
      * @param model the model to which attributes are added
-     * 
      * @return the name of the view to be returned
      */
     @GetMapping("/user/profile")
     public String userprofile(Model model) {
-	logger.info("userprofile method from usercontroller class called ");
+        logger.info("userprofile method from usercontroller class called ");
 
-	String emailString = userServiceAppContext.getLoggedInUserEmail();
+        String emailString = userServiceAppContext.getLoggedInUserEmail();
 
-	logger.info("the user logged in is :" + emailString);
+        logger.info("the user logged in is :" + emailString);
 
-	ResponseDto user = userService.getLoggedInUserDetails(emailString);
+        ResponseDto user = userService.getLoggedInUserDetails(emailString);
 
-	ArrayList<String> roleList = user.getrolestring();
+        ArrayList<String> roleList = user.getrolestring();
 
-	model.addAttribute("roles", roleList);
-	// Handle user profile
-	logger.info("user provile invoked");
-	model.addAttribute("user", user);
-	return "home/userhome/userprofiledetails";
+        model.addAttribute("roles", roleList);
+        // Handle user profile
+        logger.info("user provile invoked");
+        model.addAttribute("user", user);
+        return "home/userhome/userprofiledetails";
 
     }
 
-    /**
-     * Handles GET requests to the /error endpoint. Logs the access and returns the
-     * error view.
-     *
-     * @return the name of the error view
-     */
-    @GetMapping("/error")
-    public String error() {
-	logger.error("error occured redirecting to /error ");
-	return "error/error";
-    }
 
     /**
      * Handles HTTP GET requests to the /user/update endpoint.
-     * 
+     * <p>
      * This method is responsible for preparing the data required for updating a
      * user's profile. Returns the name of the view (home/userhome/updateprofile)
      * that will be rendered.
@@ -175,39 +158,39 @@ public class UserController {
      */
     @GetMapping("/user/update")
     public String updateProfiledata(Model model) {
-	// Retrieve the list of all countries using the country service
-	List<Country> countries = countryService.getAllCountries();
+        // Retrieve the list of all countries using the country service
+        List<Country> countries = countryService.getAllCountries();
 
-	// Add the list of countries to the model
-	model.addAttribute("countries", countries);
+        // Add the list of countries to the model
+        model.addAttribute("countries", countries);
 
-	// Get the email of the currently logged-in user from the user service context
-	String emailString = userServiceAppContext.getLoggedInUserEmail();
-	// Retrieve the User object based on the logged-in user's email
+        // Get the email of the currently logged-in user from the user service context
+        String emailString = userServiceAppContext.getLoggedInUserEmail();
+        // Retrieve the User object based on the logged-in user's email
 
-	Users users = userService.getUserByEmail(emailString);
-	// Convert the User object to a ProfileUpdateDto object using the user service
+        Users users = userService.getUserByEmail(emailString);
+        // Convert the User object to a ProfileUpdateDto object using the user service
 
-	ProfileUpdateDto profileUpdateDto = userService.convertToProfileUpdate(users);
-	// Add the ProfileUpdateDto to the model
+        ProfileUpdateDto profileUpdateDto = userService.convertToProfileUpdate(users);
+        // Add the ProfileUpdateDto to the model
 
-	model.addAttribute("profileUpdateDto", profileUpdateDto);
-	// Return the view name for updating the profile
+        model.addAttribute("profileUpdateDto", profileUpdateDto);
+        // Return the view name for updating the profile
 
-	return "home/userhome/updateprofile";
+        return "home/userhome/updateprofile";
     }
 
     @PostMapping("/user/processupdate")
     public String processUpdate(@ModelAttribute("profileUpdateDto") ProfileUpdateDto profileUpdateDto) {
-	System.out.println(profileUpdateDto.toString());
-	return null;
+        System.out.println(profileUpdateDto.toString());
+        return null;
     }
 
     @GetMapping("/user/home")
     public String userHome() {
-	logger.info("User home page called after successful login inside UserController");
+        logger.info("User home page called after successful login inside UserController");
 
-	return "home/userhome/userhome";
+        return "home/userhome/userhome";
 
     }
 
@@ -218,11 +201,11 @@ public class UserController {
      */
     @ExceptionHandler(Exception.class)
     public String handleException(Exception exception, Model model) {
-	logger.error("exception occured");
-	logger.error(exception.toString());
-	model.addAttribute("e", exception.getMessage());
-	model.addAttribute("r", HttpStatus.BAD_REQUEST);
-	return "error/error";
+        logger.error("exception occured");
+        logger.error(exception.toString());
+        model.addAttribute("e", exception.getMessage());
+        model.addAttribute("r", HttpStatus.BAD_REQUEST);
+        return "error/error";
     }
 
 }

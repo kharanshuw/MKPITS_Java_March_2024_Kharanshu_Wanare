@@ -6,9 +6,7 @@ import jakarta.validation.constraints.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import java.util.HashSet;
-
 import java.util.Set;
 
 @Table(name = "users")
@@ -42,7 +40,7 @@ public class Users {
     private boolean isActive = false;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_details_id",referencedColumnName = "id")
+    @JoinColumn(name = "user_details_id", referencedColumnName = "id")
     private UserDetails userDetails;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

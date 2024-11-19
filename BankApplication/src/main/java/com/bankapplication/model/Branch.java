@@ -11,7 +11,7 @@ public class Branch {
     private int id;
 
     @NotNull(message = "branch name should not be empty")
-    @Column(name = "branch_name",unique = true)
+    @Column(name = "branch_name", unique = true)
     @NotEmpty(message = "branch name should not be empty")
     @Size(min = 2, max = 50, message = "branch name must be between 2 to 50 characters")
     private String branchName;
@@ -23,16 +23,16 @@ public class Branch {
     private String contactNo;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "city_id",nullable = false)
+    @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
     @Email(message = "Invalid email address")
     @NotNull(message = "email should not be empty")
     @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "invalid email format")
     private String email;
-    
+
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "manager_id",nullable = true)
+    @JoinColumn(name = "manager_id", nullable = true)
     private UserDetails managerId;
 
     public int getId() {
@@ -47,7 +47,7 @@ public class Branch {
         return branchName;
     }
 
-    public void setBranchName( String branchName) {
+    public void setBranchName(String branchName) {
         this.branchName = branchName;
     }
 

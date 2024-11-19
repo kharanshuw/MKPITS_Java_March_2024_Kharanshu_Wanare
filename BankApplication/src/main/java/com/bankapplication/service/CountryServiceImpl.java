@@ -1,15 +1,13 @@
 package com.bankapplication.service;
 
-import java.util.List;
-
-import com.bankapplication.model.City;
+import com.bankapplication.model.Country;
+import com.bankapplication.repository.CountryRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bankapplication.model.Country;
-import com.bankapplication.repository.CountryRepository;
+import java.util.List;
 
 /**
  * Service implementation for managing countries.
@@ -24,8 +22,8 @@ public class CountryServiceImpl implements CountryService {
 
     @Autowired
     public CountryServiceImpl(CountryRepository countryRepository) {
-	super();
-	this.countryRepository = countryRepository;
+        super();
+        this.countryRepository = countryRepository;
     }
 
     /**
@@ -36,16 +34,14 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public List<Country> getAllCountries() {
 
-	logger.info("getAllCountries method from CountryService called");
+        logger.info("getAllCountries method from CountryService called");
 
-	List<Country> list = countryRepository.findAll();
-    
-    
-    
-    
-	logger.info("Retrieved {} countries", list.size());
+        List<Country> list = countryRepository.findAll();
 
-	return list;
+
+        logger.info("Retrieved {} countries", list.size());
+
+        return list;
     }
 
 }

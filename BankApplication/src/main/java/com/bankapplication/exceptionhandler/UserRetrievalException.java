@@ -1,6 +1,6 @@
 package com.bankapplication.exceptionhandler;
 
-public class UserRetrievalException extends RuntimeException{
+public class UserRetrievalException extends RuntimeException {
     public UserRetrievalException(String message) {
         super(message);
     }

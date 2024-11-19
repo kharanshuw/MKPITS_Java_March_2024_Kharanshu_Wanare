@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class LoginController {
-	
+
     // This sets up the logger for the AdminController class.
-	    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     /**
      * Handles GET requests to the /login endpoint.
@@ -26,7 +26,7 @@ public class LoginController {
      */
     @GetMapping("/login")
     public String loginuser() {
-    	logger.info("inside login method");
+        logger.info("inside login method");
         return "login/login";
     }
 
@@ -50,12 +50,10 @@ public class LoginController {
     public String handleException(Exception exception, Model model) {
         logger.error("exception occured");
         logger.error(exception.toString());
-        model.addAttribute("e",exception.getMessage());
+        model.addAttribute("e", exception.getMessage());
         model.addAttribute("r", HttpStatus.BAD_REQUEST);
         return "error/error";
     }
-
-
 
 
 }

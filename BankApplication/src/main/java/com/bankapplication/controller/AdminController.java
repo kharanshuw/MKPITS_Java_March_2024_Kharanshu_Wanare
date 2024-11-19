@@ -30,11 +30,14 @@ public class AdminController {
 
     // This sets up the logger for the AdminController class.
     private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
-    // This is a private field for the UserServiceImpl, which likely handles user-related operations.
+    // This is a private field for the UserServiceImpl, which likely handles
+    // user-related operations.
     private UserService userService;
-    // This is a private field for UserServiceAppContext, which is a context class managing the session or user context.
+    // This is a private field for UserServiceAppContext, which is a context class
+    // managing the session or user context.
     private UserServiceAppContext userServiceAppContext;
-    // This is a private field for AdminService, which likely handles administrative operations.
+    // This is a private field for AdminService, which likely handles administrative
+    // operations.
     private AdminService adminService;
 
     private CountryService countryService;
@@ -58,26 +61,31 @@ public class AdminController {
     @GetMapping("/admin/profile")
     public String adminProfileData(HttpServletRequest request, Model model) {
         logger.info("admin profile method from admin controller called");
-        // Retrieve the email of the logged-in user
+        try {
+            // Retrieve the email of the logged-in user
+            String email = userServiceAppContext.getLoggedInUserEmail();
+            logger.info("The user logged in is: {} inside /admin/profile", email);
 
-        String email = userServiceAppContext.getLoggedInUserEmail();
+            // Retrieve the details of the logged-in user
+            ResponseDto user = userService.getLoggedInUserDetails(email);
+            logger.info("User details retrieved for email {}: {}", email, user);
 
-        logger.info("The user logged in is: {} inside /admin/profile", email);
-        // Retrieve the details of the logged-in user
+            // Get the roles of the user
+            ArrayList<String> roleList = user.getrolestring();
+            model.addAttribute("roles", roleList);
+            logger.info("Roles for user {}: {}", email, roleList);
 
-        ResponseDto user = userService.getLoggedInUserDetails(email);
+            // Add the user details to the model
+            model.addAttribute("user", user);
 
-        ArrayList<String> roleList = user.getrolestring();
+            return "home/adminhome/adminprofile";
 
-        model.addAttribute("roles", roleList);
-
-        logger.info("user  received at /admin/profile is" + user.toString());
-
-        // Add the user details to the model
-
-        model.addAttribute("user", user);
-        return "home/adminhome/adminprofile";
-
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            logger.error("Exception occurred while retrieving admin profile data: {}", e.getMessage());
+            model.addAttribute("e", "An error occurred while retrieving your profile data. Please try again later.");
+            return "error/error";
+        }
     }
 
     /**
@@ -91,7 +99,7 @@ public class AdminController {
     public String getAllUser(Model model) {
 
         logger.info("getalluser method from admincontroller class called successfully");
-        
+
         try {
             // Retrieve the list of all users
             List<ResponseDto> responseDtos = userService.findAllUser();
@@ -101,24 +109,19 @@ public class AdminController {
                 logger.error("ResponseDto list is empty in getAllUser method of AdminController");
                 return "error/error";
             } else {
-                
-                
-                
+
                 // Add the user list to the model
                 model.addAttribute("users", responseDtos);
 
-                
                 logger.info("Data sent from /admin/allusers to allusers.html");
                 return "home/adminhome/allusers";
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             logger.error("Exception occurred in getAllUser method of AdminController: {}", e.getMessage());
             model.addAttribute("e", "An error occurred while retrieving the user list. Please try again later.");
             return "error/error";
         }
-       
+
     }
 
     /**
@@ -176,22 +179,29 @@ public class AdminController {
      */
     @GetMapping("/admin/rolemanagement")
     public String manageRole(Model model) {
-        logger.info("/admin/rolemanagement from admin controller  called successfully");
-        // Retrieve the list of all users
+        logger.info("/admin/rolemanagement from AdminController called successfully");
 
-        List<ResponseDto> responseDtoList = userService.findAllUser();
+        try {
 
-        // Check if the user list is empty
-        if (responseDtoList.isEmpty()) {
-            logger.error("responsdto list is empty in getalluser method of class admincontroller ");
+            // Retrieve the list of all users
+            List<ResponseDto> responseDtoList = userService.findAllUser();
+
+            // Check if the user list is empty
+            if (responseDtoList.isEmpty()) {
+                logger.error("ResponseDto list is empty in manageRole method of AdminController");
+                model.addAttribute("errorMessage", "No users found.");
+                return "error/error.html";
+            } else {
+                // Add the user list to the model
+                model.addAttribute("users", responseDtoList);
+                logger.info("Data sent from /admin/rolemanagement to manager-role.html");
+                return "home/adminhome/manager-role";
+            }
+
+        } catch (Exception e) {
+            logger.error("Exception occurred in manageRole method of AdminController: {}", e.getMessage());
+            model.addAttribute("e", "An error occurred while retrieving the user list. Please try again later.");
             return "error/error.html";
-        } else {
-
-            // Add the user list to the model
-
-            model.addAttribute("users", responseDtoList);
-            logger.info("data send from /admin/alluser to alluser.html");
-            return "home/adminhome/manager-role";
         }
 
     }
@@ -327,9 +337,25 @@ public class AdminController {
         return "redirect:/admin/rolemanagement";
     }
 
+    /**
+     * Handles the request to display the admin home page.
+     *
+     * @param model the model to pass attributes to the view
+     * @return the view name of the admin home page
+     */
     @GetMapping("/admin/home")
-    public String getAdminHome() {
-        return "home/adminhome/adminhome";
+    public String getAdminHome(Model model) {
+        logger.info("getAdminHome method from AdminController called successfully");
+        try {
+            // Return the view name for the admin home page
+            return "home/adminhome/adminhome";
+        } catch (Exception e) {
+            logger.error("Exception occurred in getAdminHome method of AdminController: {}", e.getMessage());
+            model.addAttribute("e",
+                    "Exception occurred in getAdminHome method of AdminController" + " " + e.getMessage());
+            return "error/error";
+        }
+
     }
 
     /**
@@ -396,7 +422,6 @@ public class AdminController {
 //
 //    }
 
-
 //    @PostMapping("/admin/processupdate")
 //    public String processUpdate(@Valid @ModelAttribute("profileUpdateDto") ProfileUpdateDto profileUpdateDto, BindingResult result, Model model) {
 //
@@ -451,25 +476,24 @@ public class AdminController {
 
     }
 
-
     /**
      * Processes the creation of a branch using the data from RequstBranchDto.
      *
      * @param requstBranchDto the DTO containing branch data from the form
      * @param bindingResult   the result of validation binding
-     * @return the view name or redirect URL based on the success or failure of the operation
+     * @return the view name or redirect URL based on the success or failure of the
+     * operation
      */
     @PostMapping("/admin/branch/processbranch")
-    public String processCreateBranch(@Valid @ModelAttribute("dto") RequstBranchDto requstBranchDto, BindingResult bindingResult,Model model) {
+    public String processCreateBranch(@Valid @ModelAttribute("dto") RequstBranchDto requstBranchDto,
+                                      BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
 
             logger.error("Error found in creation of branch. Below is the RequestbranchDto received from form:");
             logger.error(requstBranchDto.toString());
 // Log each field error for detailed debugging
             bindingResult.getFieldErrors().forEach(error -> {
-                System.out.println(
-                        "field" + error.getField() + ",error:" + error.getDefaultMessage()
-                );
+                System.out.println("field" + error.getField() + ",error:" + error.getDefaultMessage());
             });
             // Return the registration page if there are errors
             return "branch/create-branch-form";
@@ -494,8 +518,10 @@ public class AdminController {
             logger.error("Error occurred while creating the branch: {}", e.getMessage());
             model.addAttribute("e", "Unable to load the form at this moment. Please try again later.");
             return "error/error";
-            
+
         }
 
     }
+
+
 }

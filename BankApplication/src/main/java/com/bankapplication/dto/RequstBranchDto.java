@@ -2,13 +2,10 @@ package com.bankapplication.dto;
 
 
 import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.*;
 
 public class RequstBranchDto {
-   
+
 
     @NotNull(message = "branch name should not be empty")
     @Column(name = "branch_name", unique = true)
@@ -30,7 +27,7 @@ public class RequstBranchDto {
     @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "invalid email format")
     private String email;
 
-    
+
     public @NotNull(message = "branch name should not be empty") @NotEmpty(message = "branch name should not be empty") @Size(min = 2, max = 50, message = "branch name must be between 2 to 50 characters") String getBranchName() {
         return branchName;
     }

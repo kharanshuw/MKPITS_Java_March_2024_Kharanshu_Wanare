@@ -9,7 +9,7 @@ public class LoggesInUserDetails {
     private String lname;
     private String gender;
     private String phoneno;
- private   String rolename ;
+    private String rolename;
 
     public LoggesInUserDetails(int id, String email, String fname, String lname, String gender, String phoneno, String rolename) {
         this.id = id;

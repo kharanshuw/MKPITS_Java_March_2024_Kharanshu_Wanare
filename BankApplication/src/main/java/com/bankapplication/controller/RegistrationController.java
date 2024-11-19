@@ -87,12 +87,12 @@ public class RegistrationController {
      */
     @PostMapping("/processregistration")
     public String registerUser(@Valid @ModelAttribute("requestDto") RequestDto requestDto, BindingResult bindingResult) {
-        
+
         // Check for validation errors in the request data
         if (bindingResult.hasErrors()) {
             logger.error("Error found in user registration. Below is the RequestDto received from form:");
             logger.error(requestDto.toString());
-        // Log each field error for detailed debugging
+            // Log each field error for detailed debugging
             bindingResult.getFieldErrors().forEach(error -> {
                 System.out.println(
                         "field" + error.getField() + ",error:" + error.getDefaultMessage()
@@ -106,9 +106,8 @@ public class RegistrationController {
         logger.info("register processing started successully");
 
         logger.info("recived request dto is " + requestDto.toString());
-        
-        
-        
+
+
         // Create the user with the provided data
         userServiceImpl.createuser(requestDto);
 

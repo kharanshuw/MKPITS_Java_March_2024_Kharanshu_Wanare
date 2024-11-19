@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org">
 
 
 <head>
@@ -474,7 +474,7 @@ font-size: 1.2em; /* Adjust the font size of the planet elements as needed */
 <!-- navbar end -->
 
 
-<div class="container" >
+<div class="container">
     <!-- Authenticated User Section -->
     <div sec:authorize="isAuthenticated()">
         <h1 class="mb-3">Hello users <span th:text="${email}"></span></h1>
@@ -518,7 +518,7 @@ font-size: 1.2em; /* Adjust the font size of the planet elements as needed */
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Hello Manager</h5>
-                        <a class="btn btn-info">Go to manager Dashboard</a>
+                        <a class="btn btn-info" th:href="@{/manager/home}">Go to manager Dashboard</a>
                     </div>
                 </div>
             </div>

@@ -2,7 +2,6 @@ package com.bankapplication.service;
 
 import com.bankapplication.dto.RequstBranchDto;
 import com.bankapplication.dto.ResponseDto;
-import com.bankapplication.exceptionhandler.BranchCreationException;
 import com.bankapplication.exceptionhandler.UserNotFoundException;
 import com.bankapplication.exceptionhandler.UserRetrievalException;
 import com.bankapplication.model.Branch;
@@ -516,8 +515,8 @@ public class AdminServiceImpl implements AdminService {
             System.out.println(branch.toString());
 
             // Save the branch to the repository
-           Branch branch1  = branchRepository.save(branch);
-           logger.info("branch saved successfully is "+branch1.toString());
+            Branch branch1 = branchRepository.save(branch);
+            logger.info("branch saved successfully is " + branch1.toString());
             result = true;
         } catch (UserNotFoundException e) {
             // Handle case where city is not found
