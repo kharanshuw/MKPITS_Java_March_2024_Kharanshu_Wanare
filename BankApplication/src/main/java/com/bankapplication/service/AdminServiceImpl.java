@@ -9,12 +9,10 @@ import com.bankapplication.model.City;
 import com.bankapplication.model.Role;
 import com.bankapplication.model.Users;
 import com.bankapplication.repository.*;
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,8 +26,6 @@ import java.util.Optional;
 public class AdminServiceImpl implements AdminService {
     private static final Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
 
-    EntityManager entityManager;
-
     // this is userrepositry object
     private UserRepository userRepository;
     // userdetailsrepository object
@@ -41,16 +37,6 @@ public class AdminServiceImpl implements AdminService {
 
     private BranchRepository branchRepository;
 
-    @Autowired
-    public AdminServiceImpl(UserRepository userRepository, UserDetailsRepository userDetailsRepository,
-                            RoleRepository roleRepository, CityRepository cityRepository, EntityManager entityManager, BranchRepository branchRepository) {
-        this.userRepository = userRepository;
-        this.userDetailsRepository = userDetailsRepository;
-        this.roleRepository = roleRepository;
-        this.cityRepository = cityRepository;
-        this.entityManager = entityManager;
-        this.branchRepository = branchRepository;
-    }
 
     /**
      * Activates a user by setting their active status to true.

@@ -6,7 +6,6 @@ import jakarta.validation.constraints.*;
 
 public class RequstBranchDto {
 
-
     @NotNull(message = "branch name should not be empty")
     @Column(name = "branch_name", unique = true)
     @NotEmpty(message = "branch name should not be empty")
@@ -20,7 +19,6 @@ public class RequstBranchDto {
     private String contactNo;
 
     private String cityid;
-
 
     @Email(message = "Invalid email address")
     @NotNull(message = "email should not be empty")
@@ -70,4 +68,5 @@ public class RequstBranchDto {
                 ", email='" + email + '\'' +
                 '}';
     }
+
 }

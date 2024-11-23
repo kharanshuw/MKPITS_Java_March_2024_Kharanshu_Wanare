@@ -105,6 +105,10 @@ public class SecurityConfig {
 
                                         .requestMatchers(HttpMethod.GET, "/branch/allbranch").hasRole("ADMIN")
 
+                                        .requestMatchers(HttpMethod.GET, "/branch/addmanager").hasRole("ADMIN")
+
+                                        .requestMatchers(HttpMethod.GET, "/branch/removemanager").hasRole("ADMIN")
+
                                         .anyRequest().authenticated()
 
                 ).formLogin(
