@@ -108,6 +108,8 @@ public class SecurityConfig {
                                         .requestMatchers(HttpMethod.GET, "/branch/addmanager").hasRole("ADMIN")
 
                                         .requestMatchers(HttpMethod.GET, "/branch/removemanager").hasRole("ADMIN")
+                                        
+                                        .requestMatchers(HttpMethod.POST,"/branch/processaddmanager").hasRole("ADMIN")
 
                                         .anyRequest().authenticated()
 

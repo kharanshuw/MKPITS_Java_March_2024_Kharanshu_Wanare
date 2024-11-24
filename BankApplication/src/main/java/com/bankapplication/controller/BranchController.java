@@ -2,6 +2,7 @@ package com.bankapplication.controller;
 
 import com.bankapplication.dto.ManagerDto;
 import com.bankapplication.dto.ResponseBranchDto;
+import com.bankapplication.exceptionhandler.CustomServiceException;
 import com.bankapplication.getapplicationcontext.UserServiceAppContext;
 import com.bankapplication.model.Branch;
 import com.bankapplication.service.*;
@@ -68,8 +69,9 @@ public class BranchController {
             logger.error("Exception occurred while retrieving branches: {}", e.getMessage());
 
             // Add an error message to the model
-            model.addAttribute("errorMessage", "An error occurred while retrieving branch data. Please try again later.");
+            model.addAttribute("e", "An error occurred while retrieving branch data. Please try again later.");
 
+            model.addAttribute("r", e.getCause());
             // Return the error view name
             return "error/error";
         }
@@ -102,7 +104,7 @@ public class BranchController {
 
             // Convert branch to ResponseBranchDto
             ResponseBranchDto responseBranchDto = branchService.branchToResponseDto(branch);
-            logger.info("branch converted to responsebranchdto object "+responseBranchDto.toString());
+            logger.info("branch converted to responsebranchdto object " + responseBranchDto.toString());
             model.addAttribute("dto", responseBranchDto);
 
             // Retrieve all managers
@@ -113,10 +115,12 @@ public class BranchController {
         } catch (NumberFormatException e) {
             logger.error("Invalid branch ID format: {}", id, e);
             model.addAttribute("e", "Invalid branch ID format.");
+            model.addAttribute("r", e.getCause());
             return "error/error";
         } catch (Exception e) {
             logger.error("Exception occurred while processing addManager: {}", e.getMessage(), e);
-            model.addAttribute("error", "An error occurred while processing your request.");
+            model.addAttribute("e", "An error occurred while processing your request.");
+            model.addAttribute("r", e.getCause());
             return "error/error";
         }
     }
@@ -129,11 +133,11 @@ public class BranchController {
     }
 
     @PostMapping("/processaddmanager")
-    public String processAddManager(@Valid @ModelAttribute("dto") ResponseBranchDto responseBranchDto, BindingResult bindingResult) {
+    public String processAddManager(@Valid @ModelAttribute("dto") ResponseBranchDto responseBranchDto, BindingResult bindingResult ,Model model) {
         // Check for validation errors in the request data
         if (bindingResult.hasErrors()) {
-            logger.error("Error found in adduser. Below is the RequestDto received from form:");
-            logger.error(responseBranchDto.toString());
+            logger.error("Validation errors found in add manager request. Request DTO: {}", responseBranchDto);
+
             // Log each field error for detailed debugging
             bindingResult.getFieldErrors().forEach(error -> {
                 System.out.println(
@@ -144,8 +148,30 @@ public class BranchController {
             return "branch/add-branch-manager";
         }
 
-        System.out.println("recived responseBranchdto is "+responseBranchDto.toString());
-        return "";
+        logger.info("Received DTO: {}", responseBranchDto);
+
+        try {
+            boolean result = branchService.processAndUpdateBranch(responseBranchDto);
+            //if result true 
+            if (result) {
+                return "branch/branch-manager-successfully-added";
+            }
+            //if result is false then exception thrown
+            else {
+                throw new CustomServiceException("Failed to add branch manager");
+            }
+        } catch (CustomServiceException e) {
+            logger.error("Service exception occurred: {}", e.getMessage(), e);
+            model.addAttribute("e", e.getMessage());
+            model.addAttribute("r",e.getCause());
+            return "error/error";
+        } catch (Exception e) {
+            logger.error("Unexpected exception occurred while processing addManager: {}", e.getMessage(), e);
+            model.addAttribute("e", "An unexpected error occurred. Please try again later.");
+            model.addAttribute("r",e.getCause());
+            return "error/error";
+        }
+
     }
 
 

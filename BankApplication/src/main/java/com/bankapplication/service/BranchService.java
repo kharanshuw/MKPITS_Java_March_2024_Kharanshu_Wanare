@@ -14,4 +14,7 @@ public interface BranchService {
     public RequstBranchDto branchToRequestDTO(Branch branch);
 
     public ResponseBranchDto branchToResponseDto(Branch branch);
+
+    public boolean processAndUpdateBranch(ResponseBranchDto responseBranchDto);
+
 }
