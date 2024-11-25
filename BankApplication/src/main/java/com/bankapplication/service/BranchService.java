@@ -17,4 +17,8 @@ public interface BranchService {
 
     public boolean processAndUpdateBranch(ResponseBranchDto responseBranchDto);
 
+    public ResponseBranchDto branchToResponseDto2(Branch branch);
+
+    public boolean removeManagerFromBranch(String branchId);
+
 }

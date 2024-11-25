@@ -159,6 +159,46 @@ public class BranchServiceImpl implements BranchService {
 
         return responseBranchDto;
     }
+    
+    public ResponseBranchDto branchToResponseDto2(Branch branch)
+    {
+        ResponseBranchDto responseBranchDto = new ResponseBranchDto();
+        try {
+            // Set the branch ID
+            responseBranchDto.setId(branch.getId());
+            logger.info("Branch ID set: {}", branch.getId());
+
+            // Set the branch name
+            responseBranchDto.setBranchName(branch.getBranchName());
+            logger.info("Branch name set: {}", branch.getBranchName());
+
+            // Set the city name
+            responseBranchDto.setCityName(branch.getCity().getCityName());
+            logger.info("City name set: {}", branch.getCity().getCityName());
+
+            // Set the contact number
+            responseBranchDto.setContactNo(branch.getContactNo());
+            logger.info("Contact number set: {}", branch.getContactNo());
+
+            // Set the email
+            responseBranchDto.setEmail(branch.getEmail()); // Corrected
+            logger.info("Email set: {}", branch.getEmail());
+            
+            //set manager id 
+           Integer managerid = branch.getManagerId().getId();
+           responseBranchDto.setManagerId(managerid.toString());
+            logger.info("manager id set: {}", managerid.toString());
+
+
+        } catch (NullPointerException e) {
+            logger.error("Null value encountered: {}", e.getMessage());
+            throw new IllegalArgumentException("Branch object contains null values", e);
+        } catch (Exception e) {
+            logger.error("Exception occurred: {}", e.getMessage());
+            throw new RuntimeException("Failed to convert Branch to ResponseBranchDto", e);
+        }
+        return responseBranchDto;
+    }
 
     /**
      * Processes and updates the branch data based on the provided ResponseBranchDto object.
@@ -203,6 +243,54 @@ public class BranchServiceImpl implements BranchService {
         } catch (Exception e) {
             logger.error("Exception occurred while processing and updating branch: {}", e.getMessage(), e);
             return false;
+        }
+
+    }
+
+    /**
+     * Removes the manager from the specified branch.
+     * Retrieves the branch by its ID, sets the manager to null, and updates the branch.
+     * If the branch ID is invalid or the branch is not found, throws a RuntimeException.
+     *
+     * @param branchId the ID of the branch from which the manager is to be removed
+     * @return true if the manager was successfully removed, false otherwise
+     */
+    public boolean removeManagerFromBranch(String branchId)
+    {
+        try {
+            // Convert branch ID to integer
+            int intBranchId = Integer.parseInt(branchId);
+            logger.info("Branch ID in int is: {}", intBranchId);
+
+            // Retrieve the branch by ID
+            Optional<Branch> optionalBranch = branchRepository.findById(intBranchId);
+            if (optionalBranch.isPresent()) {
+                Branch branch = optionalBranch.get();
+                logger.info("Branch found: {}", branch);
+
+                // Retrieve the manager ID
+                if (branch.getManagerId() != null) {
+                    int branchManagerId = branch.getManagerId().getId();
+                    logger.info("Branch manager ID is: {}", branchManagerId);
+
+                    // Remove the manager from the branch
+                    branch.setManagerId(null);
+                    branchRepository.save(branch);
+                    return true;
+                } else {
+                    logger.warn("No manager found for branch: {}", intBranchId);
+                    return false;
+                }
+            } else {
+                logger.error("Branch not found for ID: {}", intBranchId);
+                throw new RuntimeException("Branch not found");
+            }
+        } catch (NumberFormatException e) {
+            logger.error("Invalid branch ID format: "+ e.getMessage());
+            throw new RuntimeException("Invalid branch ID format", e);
+        } catch (Exception e) {
+            logger.error("Exception occurred while removing manager from branch: {}", e.getMessage(), e);
+            throw new RuntimeException("Exception occurred while removing manager from branch", e);
         }
 
     }

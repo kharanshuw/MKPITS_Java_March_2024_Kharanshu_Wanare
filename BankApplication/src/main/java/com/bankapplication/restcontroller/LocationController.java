@@ -36,7 +36,6 @@ import java.util.List;
  * DistrictService, and CityService to fetch data. - Ensure that the services
  * are properly injected and configured.
  */
-
 @RestController
 @RequestMapping("/api")
 public class LocationController {

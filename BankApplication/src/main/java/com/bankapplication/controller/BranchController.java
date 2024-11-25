@@ -125,15 +125,53 @@ public class BranchController {
         }
     }
 
+    /**
+     * Handles a GET request to remove a manager from a bank branch.
+     * Retrieves the branch by its ID, converts it to a ResponseBranchDto, and adds it to the model.
+     * If the branch ID is invalid or an error occurs during processing, it logs the error and returns an error view.
+     *
+     * @param a     the action identifier
+     * @param id    the ID of the branch from which the manager is to be removed
+     * @param model the model to which attributes are added for rendering the view
+     * @return the name of the view to be rendered
+     */
     @GetMapping("/removemanager")
-    public String removeManager(@RequestParam String a, @RequestParam String id) {
+    public String removeManager(@RequestParam String a, @RequestParam String id, Model model) {
         logger.info("action is " + a);
         logger.info("branch id is " + id);
-        return "";
+        int branchId = Integer.parseInt(id);
+
+        // Retrieve the branch by ID
+        Branch branch = branchService.getBranchById(branchId);
+        if (branch.getManagerId()==null)
+        {
+            return "branch/no-branch-manager";
+        }
+        logger.info("Branch found: {}", branch.getBranchName());
+
+        // Convert branch to ResponseBranchDto
+        ResponseBranchDto responseBranchDto = branchService.branchToResponseDto2(branch);
+        logger.info("branch converted to responsebranchdto object " + responseBranchDto.toString());
+        model.addAttribute("dto", responseBranchDto);
+            
+        return "branch/remove-branch-manager";
+
     }
 
+    /**
+     * Processes the addition of a branch manager.
+     * Validates the incoming ResponseBranchDto, checks for errors, and updates the branch details.
+     * If validation errors are found, it logs the errors and returns the add-branch-manager page.
+     * If processing is successful, returns a success page. If an exception occurs, it logs the exception
+     * and returns an error page.
+     *
+     * @param responseBranchDto the data transfer object containing the branch details to be updated
+     * @param bindingResult     the result of the validation of the DTO
+     * @param model             the model to hold attributes for rendering the view
+     * @return the name of the view to be rendered
+     */
     @PostMapping("/processaddmanager")
-    public String processAddManager(@Valid @ModelAttribute("dto") ResponseBranchDto responseBranchDto, BindingResult bindingResult ,Model model) {
+    public String processAddManager(@Valid @ModelAttribute("dto") ResponseBranchDto responseBranchDto, BindingResult bindingResult, Model model) {
         // Check for validation errors in the request data
         if (bindingResult.hasErrors()) {
             logger.error("Validation errors found in add manager request. Request DTO: {}", responseBranchDto);
@@ -163,17 +201,34 @@ public class BranchController {
         } catch (CustomServiceException e) {
             logger.error("Service exception occurred: {}", e.getMessage(), e);
             model.addAttribute("e", e.getMessage());
-            model.addAttribute("r",e.getCause());
+
             return "error/error";
         } catch (Exception e) {
             logger.error("Unexpected exception occurred while processing addManager: {}", e.getMessage(), e);
             model.addAttribute("e", "An unexpected error occurred. Please try again later.");
-            model.addAttribute("r",e.getCause());
             return "error/error";
         }
 
     }
 
+    /**
+     * Processes the removal of a branch manager.
+     * Takes a branch ID as a request parameter, removes the manager from the branch,
+     * and returns a view indicating the result.
+     *
+     * @param id the ID of the branch from which the manager is to be removed
+     * @return the name of the view to be rendered
+     */
+    @GetMapping("/remove-manager")
+    public String processRemoveManager(@RequestParam String id) {
+        logger.info("Received branch ID: {}", id);
+
+        boolean result = branchService.removeManagerFromBranch(id);
+        logger.info("result is " + result);
+        return "branch/branch-manager-removed-successfully";
+
+
+    }
 
     /**
      * This method handles all exceptions that are not explicitly caught elsewhere

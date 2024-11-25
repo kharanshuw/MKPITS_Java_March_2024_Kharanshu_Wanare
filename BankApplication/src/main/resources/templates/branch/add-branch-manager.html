@@ -87,16 +87,18 @@
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Branches</a>
+                    <a class="nav-link" th:href="@{/branch/allbranch}">Branches</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" th:href="@{/branch/allbranch}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" th:href="@{/branch/allbranch}">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
+                    <form action="#" th:action="@{/logout}" method="post" class="logout-form-sidebar">
+                        <input type="submit" value="Logout">
+                    </form>
                 </li>
             </ul>
         </div>
