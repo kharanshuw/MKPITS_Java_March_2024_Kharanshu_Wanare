@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Update Student</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
+	<style>
+		.container {
+			max-width: 600px;
+			margin-top: 20px;
+		}
+
+		.form-group {
+			margin-bottom: 20px;
+		}
+
+		.form-label {
+			font-weight: bold;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h2>Update Student</h2>
+		<form th:action="@{/processupdate}" method="post" th:object="${student}">
+			<div class="form-group">
+				<h1>student update</h1>
+				<label class="form-label" for="id">ID</label>
+				<input type="text" class="form-control" id="id" th:field="*{id}" readonly>
+			</div>
+			<div class="form-group">
+				<label class="form-label" for="firstname">First Name</label>
+				<input type="text" class="form-control" id="firstname" th:field="*{firstname}" name="firstname">
+			</div>
+			<div class="form-group">
+				<label class="form-label" for="lastname">Last Name</label>
+				<input type="text" class="form-control" id="lastname" th:field="*{lastnameString}" name="lastname">
+			</div>
+
+			<h1>student details</h1>
+			<div class="form-group">
+				student_details.id
+				<input type="text" class="form-control" th:field="*{student_details.id}" readonly>
+				cityString
+				<input type="text" class="form-control" th:field="*{student_details.cityString}">
+				student_details.emailString
+				<input type="email" class="form-control" id="email" th:field="*{student_details.emailString}">
+
+
+				<div class="form-group">
+					<label for="gender">Gender:</label>
+					<input type="radio" th:field="*{student_details.genderString}" value="Male" /> Male
+					<input type="radio" th:field="*{student_details.genderString}" value="Female" /> Female
+				</div>
+
+
+			</div>
+			<button type="submit" class="btn btn-primary">Update Student</button>
+		</form>
+	</div>
+</body>
+
+</html>
