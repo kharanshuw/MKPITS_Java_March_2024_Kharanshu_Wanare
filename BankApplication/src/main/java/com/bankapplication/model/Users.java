@@ -29,11 +29,6 @@ public class Users {
     @NotNull(message = "Email should not be empty")
     @Email(message = "Email should be valid")
     @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Email should be valid")
-    /**   ^[\\w-\\.]+: The local part before the @ symbol can contain alphanumeric characters, dashes, and dots.    
-     @: The @ symbol separates the local part and the domain part.
-     ([\\w-]+\\.)+: The domain part can contain alphanumeric characters and dashes, followed by a dot. This can be repeated to match subdomains.
-     [\\w-]{2,4}$: The top-level domain (TLD) should be 2 to 4 characters long and contain alphanumeric characters.
-     **/
     private String email;
 
     @Column(name = "enable")

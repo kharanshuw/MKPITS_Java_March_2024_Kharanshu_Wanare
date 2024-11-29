@@ -1,5 +1,6 @@
 package com.bankapplication.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -15,6 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "userdetails")
@@ -79,6 +81,11 @@ public class UserDetails {
     @JoinColumn(name = "city_id", nullable = false)
     @JsonManagedReference
     private City city;
+    
+    
+    @OneToMany(mappedBy = "userDetails")
+    @JsonBackReference
+    private Set<Account> account;
 
 
     @PrePersist
@@ -132,6 +139,13 @@ public class UserDetails {
         this.gender = gender;
     }
 
+    public Set<Account> getAccount() {
+        return account;
+    }
+
+    public void setAccount(Set<Account> account) {
+        this.account = account;
+    }
 
     public LocalDateTime getCreatedate() {
         return createdate;
@@ -189,5 +203,23 @@ public class UserDetails {
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+
+    /**
+     * Adds a new account to the list of accounts.
+     *
+     * @param account the account to be added
+     * @return true if the account was successfully added, false otherwise
+     * @throws IllegalArgumentException if the account is null
+     */
+    public boolean addAccount(Account account)
+    {
+        //if parameter account is null exception will be thrown
+        if (account==null)
+        {
+            throw new IllegalArgumentException("account to be added cannot be null");
+        }
+        return this.account.add(account);
     }
 }

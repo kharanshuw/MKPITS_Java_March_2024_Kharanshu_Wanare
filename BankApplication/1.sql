@@ -25,9 +25,15 @@ set state_id=15
 WHERE state_id = 14
 
 
-
+SELECT * from account_type
 
 INSERT INTO user_role(role_id,user_id) VALUES(1,1)
+
+INSERT INTO account_type(id,type) VALUES(1,"SAVING ACCOUNT");
+INSERT INTO account_type(id,type) VALUES(2,"CURRENT ACCOUNT");
+INSERT INTO account_type(id,type) VALUES(3,"RECURRING DEPOSIT ACCOUNT");
+INSERT INTO account_type(id,type) VALUES(4,"FIXED DEPOSIT ACCOUNT");
+
 
 
 @Query("SELECT new com.bankapplication.dto.LoggesInUserDetails(u.id, u.email, ud.fname, ud.lname, ud.gender, ud.phoneno, r.rolename) " +
