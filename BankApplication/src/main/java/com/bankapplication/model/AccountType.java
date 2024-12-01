@@ -12,10 +12,34 @@ public class AccountType {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column(name = "type",nullable = false,unique = true)
+
+    @Column(name = "type", nullable = false, unique = true)
     private String type;
-    
+
     @ManyToMany(mappedBy = "accountType")
     private Set<Account> accounts = new HashSet<>();
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+    }
 }

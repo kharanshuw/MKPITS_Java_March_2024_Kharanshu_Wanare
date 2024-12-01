@@ -159,9 +159,8 @@ public class BranchServiceImpl implements BranchService {
 
         return responseBranchDto;
     }
-    
-    public ResponseBranchDto branchToResponseDto2(Branch branch)
-    {
+
+    public ResponseBranchDto branchToResponseDto2(Branch branch) {
         ResponseBranchDto responseBranchDto = new ResponseBranchDto();
         try {
             // Set the branch ID
@@ -183,10 +182,10 @@ public class BranchServiceImpl implements BranchService {
             // Set the email
             responseBranchDto.setEmail(branch.getEmail()); // Corrected
             logger.info("Email set: {}", branch.getEmail());
-            
+
             //set manager id 
-           Integer managerid = branch.getManagerId().getId();
-           responseBranchDto.setManagerId(managerid.toString());
+            Integer managerid = branch.getManagerId().getId();
+            responseBranchDto.setManagerId(managerid.toString());
             logger.info("manager id set: {}", managerid.toString());
 
 
@@ -255,8 +254,7 @@ public class BranchServiceImpl implements BranchService {
      * @param branchId the ID of the branch from which the manager is to be removed
      * @return true if the manager was successfully removed, false otherwise
      */
-    public boolean removeManagerFromBranch(String branchId)
-    {
+    public boolean removeManagerFromBranch(String branchId) {
         try {
             // Convert branch ID to integer
             int intBranchId = Integer.parseInt(branchId);
@@ -286,7 +284,7 @@ public class BranchServiceImpl implements BranchService {
                 throw new RuntimeException("Branch not found");
             }
         } catch (NumberFormatException e) {
-            logger.error("Invalid branch ID format: "+ e.getMessage());
+            logger.error("Invalid branch ID format: " + e.getMessage());
             throw new RuntimeException("Invalid branch ID format", e);
         } catch (Exception e) {
             logger.error("Exception occurred while removing manager from branch: {}", e.getMessage(), e);

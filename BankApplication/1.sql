@@ -10,11 +10,26 @@ SELECT * from user_role
 
 SELECT * from role;
 
+SELECT * from account_type
+
+SELECT * from branch
+
 INSERT INTO role(id,role_name) VALUES (1,'ROLE_ADMIN');
 
 INSERT INTO role(id,role_name) VALUES (2,'ROLE_MANAGER');
 
 INSERT INTO role(id,role_name) VALUES (3,'ROLE_USER');
+
+INSERT INTO user_role(role_id,user_id) VALUES(1,1)
+
+INSERT INTO account_type(id,type) VALUES(1,"SAVING ACCOUNT");
+INSERT INTO account_type(id,type) VALUES(2,"CURRENT ACCOUNT");
+INSERT INTO account_type(id,type) VALUES(3,"RECURRING DEPOSIT ACCOUNT");
+INSERT INTO account_type(id,type) VALUES(4,"FIXED DEPOSIT ACCOUNT");
+
+DROP TABLE branch;
+DROP TABLE ACCOUNT;
+DROP TABLE account_type;
 
 UPDATE users
 SET enable = 1 
@@ -24,17 +39,15 @@ UPDATE district
 set state_id=15
 WHERE state_id = 14
 
+ALTER TABLE branch 
+MODIFY COLUMN contact_no VARCHAR(10) NOT NULL,
+ADD UNIQUE (contact_no);
 
-SELECT * from account_type
+ALTER TABLE ACCOUNT
+ADD INDEX (id)
 
-INSERT INTO user_role(role_id,user_id) VALUES(1,1)
-
-INSERT INTO account_type(id,type) VALUES(1,"SAVING ACCOUNT");
-INSERT INTO account_type(id,type) VALUES(2,"CURRENT ACCOUNT");
-INSERT INTO account_type(id,type) VALUES(3,"RECURRING DEPOSIT ACCOUNT");
-INSERT INTO account_type(id,type) VALUES(4,"FIXED DEPOSIT ACCOUNT");
-
-
+ALTER TABLE account_type
+ADD INDEX (id)
 
 @Query("SELECT new com.bankapplication.dto.LoggesInUserDetails(u.id, u.email, ud.fname, ud.lname, ud.gender, ud.phoneno, r.rolename) " +
 "FROM User u " + "INNER JOIN u.userDetails ud " +"JOIN u.role r " +"WHERE u.email = :email")
@@ -50,13 +63,6 @@ INSERT INTO account_type(id,type) VALUES(4,"FIXED DEPOSIT ACCOUNT");
 "FROM User u " +
 "JOIN u.userDetails ud " +
 "JOIN u.role r")
-
-List<ResponseDto> findAllUserDetails();
-
-
-
-
-
 
 //endpoint to call location for testing
 http://localhost:9191/api/countries

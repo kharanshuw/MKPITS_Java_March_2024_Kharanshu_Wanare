@@ -55,7 +55,7 @@
     </div>
 
     <!-- form start -->
-    <form action="/admin/branch/processbranch" method="post" th:object="${dto}">
+    <form th:action="@{/admin/branch/processbranch}" method="post" th:object="${dto}">
 
         <!-- branch name -->
         <div class="form-group mb-3">

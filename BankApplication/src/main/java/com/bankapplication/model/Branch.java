@@ -2,6 +2,9 @@ package com.bankapplication.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 @Table(name = "branch")
 @Entity
@@ -11,7 +14,7 @@ public class Branch {
     private int id;
 
     @NotNull(message = "branch name should not be empty")
-    @Column(name = "branch_name", unique = true)
+    @Column(name = "branch_name", unique = true, nullable = false)
     @NotEmpty(message = "branch name should not be empty")
     @Size(min = 2, max = 50, message = "branch name must be between 2 to 50 characters")
     private String branchName;
@@ -19,7 +22,7 @@ public class Branch {
     @NotNull(message = "contact number should not be empty")
     @Size(min = 10, max = 10, message = "contact number must be 10 digits")
     @Pattern(regexp = "^\\d{10}$", message = "invalid phone number format")
-    @Column(name = "contact_no")
+    @Column(name = "contact_no", nullable = false,unique = true)
     private String contactNo;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,6 +37,13 @@ public class Branch {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "manager_id", nullable = true)
     private UserDetails managerId;
+
+    @Column(name = "ifsc_code", nullable = false, unique = true)
+    private String ifscCode;
+
+    @Column(name = "establish_date", nullable = false)
+    @DateTimeFormat(pattern = "YYYY-MM-DD")
+    private LocalDate establishDate = LocalDate.now();
 
     public int getId() {
         return id;
@@ -121,6 +131,22 @@ public class Branch {
 
     public String getCityName() {
         return city.getCityName();
+    }
+
+    public String getIfscCode() {
+        return ifscCode;
+    }
+
+    public void setIfscCode(String ifscCode) {
+        this.ifscCode = ifscCode;
+    }
+
+    public LocalDate getEstablishDate() {
+        return establishDate;
+    }
+
+    public void setEstablishDate(LocalDate establishDate) {
+        this.establishDate = establishDate;
     }
 
     @Override

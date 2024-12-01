@@ -143,8 +143,7 @@ public class BranchController {
 
         // Retrieve the branch by ID
         Branch branch = branchService.getBranchById(branchId);
-        if (branch.getManagerId()==null)
-        {
+        if (branch.getManagerId() == null) {
             return "branch/no-branch-manager";
         }
         logger.info("Branch found: {}", branch.getBranchName());
@@ -153,7 +152,7 @@ public class BranchController {
         ResponseBranchDto responseBranchDto = branchService.branchToResponseDto2(branch);
         logger.info("branch converted to responsebranchdto object " + responseBranchDto.toString());
         model.addAttribute("dto", responseBranchDto);
-            
+
         return "branch/remove-branch-manager";
 
     }

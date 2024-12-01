@@ -81,11 +81,11 @@ public class UserDetails {
     @JoinColumn(name = "city_id", nullable = false)
     @JsonManagedReference
     private City city;
-    
-    
+
+
     @OneToMany(mappedBy = "userDetails")
     @JsonBackReference
-    private Set<Account> account;
+    private Set<Account> account = null;
 
 
     @PrePersist
@@ -213,11 +213,9 @@ public class UserDetails {
      * @return true if the account was successfully added, false otherwise
      * @throws IllegalArgumentException if the account is null
      */
-    public boolean addAccount(Account account)
-    {
+    public boolean addAccount(Account account) {
         //if parameter account is null exception will be thrown
-        if (account==null)
-        {
+        if (account == null) {
             throw new IllegalArgumentException("account to be added cannot be null");
         }
         return this.account.add(account);

@@ -18,7 +18,7 @@ public class ResponseBranchDto {
     @Pattern(regexp = "^\\d{10}$", message = "invalid phone number format")
     @Column(name = "contact_no")
     private String contactNo;
-    
+
     private String cityName;
 
     @Email(message = "Invalid email address")
