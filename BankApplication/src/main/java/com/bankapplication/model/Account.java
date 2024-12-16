@@ -27,7 +27,7 @@ public class Account {
     @ManyToOne
     public AccountType accountType;
 
-    @Column(nullable = false, name = "ifsc_code",unique = false)
+    @Column(nullable = false, name = "ifsc_code", unique = false)
     private String ifscCode;
 
     @ManyToOne

@@ -436,10 +436,10 @@ public class AdminServiceImpl implements AdminService {
             Branch branch = convertToBranch(requstBranchDto);
 
             // Log the branch details (for debugging purposes)
-            System.out.println(branch.toString());
-            
-            String bankCode="SPHE";
-            
+            logger.info("requestbranchdto converted to branch object"+branch.toString());
+
+            String bankCode = "SPHE";
+
             branch.setIfscCode(generateUniqueIFSCCode(bankCode));
 
 
@@ -468,8 +468,7 @@ public class AdminServiceImpl implements AdminService {
      * @return the generated unique IFSC code
      * @throws IllegalArgumentException if the bank code is null or not exactly 4 characters long
      */
-    public String generateUniqueIFSCCode(String bankCode)
-    {
+    public String generateUniqueIFSCCode(String bankCode) {
         String ifscCode;
         int attempt = 0;
 
@@ -496,8 +495,7 @@ public class AdminServiceImpl implements AdminService {
      * @return the generated IFSC code
      * @throws IllegalArgumentException if the bank code is null or not exactly 4 characters long
      */
-    private String generateIFSC(String bankCode)
-    {
+    private String generateIFSC(String bankCode) {
         // Validate the bank code
         if (bankCode == null || bankCode.length() != 4) {
             logger.error("Invalid bank code: {}", bankCode);
@@ -515,7 +513,7 @@ public class AdminServiceImpl implements AdminService {
         return ifscCode;
 
     }
-    
+
 
     /**
      * Generates a random 6-digit branch code.
@@ -539,11 +537,12 @@ public class AdminServiceImpl implements AdminService {
         } catch (Exception e) {
             // Logging any exceptions that occur
             logger.error("An error occurred while generating the branch code", e);
+            System.out.println(e);
         }
 
         // Returning the generated branch code
         return branchCode;
     }
-    
+
 
 }

@@ -160,6 +160,12 @@ public class BranchServiceImpl implements BranchService {
         return responseBranchDto;
     }
 
+    /** Converts branch object to ResponseDto class object
+    * this is 2nd method which is reponsible for converting  branch object to ResponseDto class object  *
+    * it takes object of branch class
+    * returns object of ReponseBranchDto class 
+    **/
+    @Override
     public ResponseBranchDto branchToResponseDto2(Branch branch) {
         ResponseBranchDto responseBranchDto = new ResponseBranchDto();
         try {
@@ -205,6 +211,7 @@ public class BranchServiceImpl implements BranchService {
      * @param responseBranchDto the DTO object containing updated branch data
      * @return true if the branch is successfully updated, false otherwise
      */
+    @Override
     public boolean processAndUpdateBranch(ResponseBranchDto responseBranchDto) {
         logger.info("processAndUpdateBranch method called with DTO: {}", responseBranchDto);
         try {
@@ -254,6 +261,7 @@ public class BranchServiceImpl implements BranchService {
      * @param branchId the ID of the branch from which the manager is to be removed
      * @return true if the manager was successfully removed, false otherwise
      */
+    @Override
     public boolean removeManagerFromBranch(String branchId) {
         try {
             // Convert branch ID to integer

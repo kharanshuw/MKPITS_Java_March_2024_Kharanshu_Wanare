@@ -16,6 +16,9 @@ public class District {
     @JoinColumn(name = "state_id")
     private State state;
 
+    @Column(name = "district_id")
+    private int districtId;
+
     public int getId() {
         return id;
     }

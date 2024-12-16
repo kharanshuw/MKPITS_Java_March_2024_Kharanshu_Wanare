@@ -17,8 +17,8 @@ public class State {
     @ManyToOne
     @JoinColumn(name = "country_id", nullable = false)
     private Country country;
-    
-    @Column(name = "state_code",unique = true,nullable = false)
+
+    @Column(name = "state_code", unique = true, nullable = false)
     @Min(1)
     @Max(38)
     private int stateCode;

@@ -23,13 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
- * This class serves as a controller for handling user related operations.
- * It manages HTTP requests related to user userprofiledata and more.
- *
- * Annotations:
- * - @Controller: Indicates that this class is a Spring MVC controller.
- *
- */
+* this controller handles all the opration done by user
+* 
+* */
 @Controller
 public class UserController {
 

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Account Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex ;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        form {
+            background-color: #f9f9f9;
+            padding: 80px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 60%;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        select {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .text-danger{
+        color : red;
+        }
+        
+    </style>
+</head>
+<body>
+<form id="create-account-form" th:object="${requestAccountForm}" method="post"  th:action="@{/account/create-account}">
+    <h2>Create Bank Account</h2>
+    
+    
+    <label for="user" id="user">User ID:</label>
+    <input type="text" id="user" th:field="*{userId}" required>
+    <br>
+    <br>
+    
+    
+    <label for="account-type">Account Type:</label>
+    <input type="text" id="account-type" th:field="*{accountType}" required>
+    <br><br>
+    
+    <label for="branch">Branch:</label>
+    <select id="branch" name="branchId" required>
+        <option value="">Select Branch</option>
+        <th:block th:each="branch : ${branchlist}">
+            <option th:value="${branch.id}" th:text="${branch.branchName}"></option>
+        </th:block>
+    </select>    
+    
+    <label for="initial-deposit">Initial Deposit:</label>
+    <input type="number" id="initial-deposit" th:field="*{initialBalance}" required>
+    <div th:if="${#fields.hasErrors('initialBalance')}" th:errors="*{initialBalance}" class="text-danger" >
+        
+    </div>
+    <br><br>
+    <button type="submit">Create Account</button>
+</form>
+</body>
+</html>

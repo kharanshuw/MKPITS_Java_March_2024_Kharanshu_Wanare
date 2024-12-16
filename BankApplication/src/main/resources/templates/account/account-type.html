@@ -1,0 +1,122 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0px;
+            padding: 0px;
+            background-color: #d1e0e0;
+            font-family: Open Sans, sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            width: 100%;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        
+        .heading{
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .account-type {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        .account-type:hover {
+            background-color: #3e8e41;
+        }
+        
+        .container-2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+            margin-top: 20px;
+            gap: 20px;
+        }
+        
+        .container-2 button {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .container-2 button:hover {
+            background-color: #c0392b;
+        }
+
+        .logout-button {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .logout-btn {
+            background-color: transparent;
+            color: #fff;
+            border: none;
+            padding: 0;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        a{
+        background-color: #e74c3c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="heading">Hello user <span th:text="${fname}"></span>  <span th:text="${lname}"></span></h1>
+        <h1 class="heading">Please select one of the following account types:</h1>
+        <ul>
+            <a class="account-type" th:each="account:${nonExistingAccount}" th:text="${account}" th:href="@{/account/create-account-form(type=${account})}">
+            </a>
+        </ul>
+       
+    </div>
+    <div class="container-2">
+        <a th:href="@{/user/home}">GO BACK</a>
+        <form  th:action="@{/logout}" method="post" class="logout-button">
+            <input type="submit" value="Logout" class="logout-btn">
+        </form>
+    </div>
+</body>
+</html>
