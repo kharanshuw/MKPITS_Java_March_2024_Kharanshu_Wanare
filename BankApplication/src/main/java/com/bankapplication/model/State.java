@@ -47,6 +47,15 @@ public class State {
         this.country = country;
     }
 
+
+    public int getStateCode() {
+        return stateCode;
+    }
+
+    public void setStateCode(int stateCode) {
+        this.stateCode = stateCode;
+    }
+
     @Override
     public String toString() {
         return "State{" +

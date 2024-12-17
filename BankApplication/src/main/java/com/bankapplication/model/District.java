@@ -1,6 +1,8 @@
 package com.bankapplication.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "district")
@@ -41,6 +43,15 @@ public class District {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+
+    public int getDistrictId() {
+        return districtId;
+    }
+
+    public void setDistrictId(int districtId) {
+        this.districtId = districtId;
     }
 
     @Override

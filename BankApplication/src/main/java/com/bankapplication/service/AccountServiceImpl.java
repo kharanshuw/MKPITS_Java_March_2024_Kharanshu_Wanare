@@ -13,10 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -129,6 +126,12 @@ public class AccountServiceImpl implements AccountService {
     }
 
 
+    /**
+     * Save new account details in database
+     *
+     * @param requestAccountDto
+     * @return Account class object which is saved inside database
+     **/
     public Account saveNewAccount(RequestAccountDto requestAccountDto) {
         Account account = new Account();
 
@@ -189,7 +192,78 @@ public class AccountServiceImpl implements AccountService {
         account.setUserDetails(userDetailsOptional.get());
         logger.info("userdetail object added successfully in account");
 
+
+        String branchCode = branch.get().getIfscCode();
+        String userDetailId = Integer.toString(userId);
+
+        String accountNumber = generateAccountNumber(branchCode.substring(5), userDetailId);
+
+
         return account;
+    }
+
+
+    public String generateAccountNumber(String branchCode, String userDetailId) {
+
+        logger.info("branch code to used to generate unique account no is  " + branchCode);
+        logger.info("userdetails id used to generate bank acc no is " + userDetailId);
+
+        if (branchCode.length() != 6) {
+            logger.info("branch code length  is not equal to 6  ");
+            throw new IllegalArgumentException("branch code must be exactly 6 characters long.");
+        }
+
+        StringBuffer branchCodeStringBuffer = new StringBuffer(branchCode);
+
+        StringBuffer userDetailIdStringBuffer = new StringBuffer(userDetailId);
+
+        //accno variable represents account no 
+        StringBuffer accno = new StringBuffer();
+
+
+        accno = branchCodeStringBuffer.append(userDetailIdStringBuffer);
+        logger.info("acc no before adding uniqe no is " + accno);
+
+        int remainingNoOdDigit = 13 - accno.length();
+
+        System.out.println("no of digits needed is " + remainingNoOdDigit);
+
+        int uniqueNo = generateUniqueNo(remainingNoOdDigit);
+
+        accno = accno.append(uniqueNo);
+        
+
+        return "";
+    }
+
+
+    /**
+     * generateUniqueNo() method generates random unique no
+     *
+     * @return UNIQUE RANDOM NO
+     */
+    public int generateUniqueNo(int digit) {
+        //random class contains build in methods to generate random numbers
+        Random random = new Random();
+
+        if (digit <= 0) {
+            logger.info("exception occured in generateUniqueNo of accountserviceimpl class");
+            throw new IllegalArgumentException("Number of digits must be positive");
+        }
+        // Math.pow(10,digit-1) always gives min value exist in this no of digit
+        int min = (int) Math.pow(10, digit - 1);
+        logger.info("min no from this :" + digit + "is " + min);
+
+        //Math.pow(10,digit)-1 alwasy gives maximum value exist in this no of digit
+        int max = (int) Math.pow(10, digit) - 1;
+        logger.info("max no from this :" + digit + "is " + max);
+        int bound = (max - min) + 1;
+
+        int no = random.nextInt(bound) + min;
+
+        logger.info("random no generated with given digit :" + digit + " is " + no);
+
+        return no;
     }
 
 }
