@@ -2,6 +2,7 @@ package com.bankapplication.controller;
 
 import com.bankapplication.dto.request.RequestAccountDto;
 import com.bankapplication.getapplicationcontext.UserServiceAppContext;
+import com.bankapplication.model.Account;
 import com.bankapplication.model.Branch;
 import com.bankapplication.model.Users;
 import com.bankapplication.service.AccountService;
@@ -124,9 +125,9 @@ public class AccountController {
         }
         logger.info("requestaccountdto is "+requestAccountDto.toString());
         
-        accountService.saveNewAccount(requestAccountDto);
+          Account account = accountService.saveNewAccount(requestAccountDto);
         
-        
+          logger.info("account created "+account.toString());  
         return "account/successfull";
     }
     

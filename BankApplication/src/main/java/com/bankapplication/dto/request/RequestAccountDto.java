@@ -1,32 +1,33 @@
 package com.bankapplication.dto.request;
 
-import jakarta.validation.constraints.DecimalMin;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 public class RequestAccountDto {
     @NotNull(message = "account type should not be empty")
     @NotEmpty(message = "Account type should not be empty")
     @Size(min = 3, max = 20, message = "Account type should be between 3 and 20 characters")
     private String accountType;
-  
-    
-   @NotNull(message = "branch id should not be empty")
-   @Min(value = 1, message = "Branch id should be a positive integer")
-   private int branchId;
-   
-   
-   @NotNull(message = "initial balance should not be empty")
-   @DecimalMin(value = "0.01", message = "Initial balance should be a positive decimal value")
-   private double initialBalance;
-   
-   
-   @Min(value = 1, message = "User id should be a positive integer")
-   @NotNull(message = "user id should not be empty")
-   private int userId;
+
+
+    @NotNull(message = "branch id should not be empty")
+    @Min(value = 1, message = "Branch id should be a positive integer")
+    private int branchId;
+
+    @Column(name = "balance")
+    @Min(value = 0, message = "Balance should be positive")
+    @NotNull(message = "initial balance should not be empty")
+    private BigDecimal initialBalance;
+
+
+    @Min(value = 1, message = "User id should be a positive integer")
+    @NotNull(message = "user id should not be empty")
+    private int userId;
 
 
     public String getAccountType() {
@@ -45,11 +46,12 @@ public class RequestAccountDto {
         this.branchId = branchId;
     }
 
-    public double getInitialBalance() {
+
+    public BigDecimal getInitialBalance() {
         return initialBalance;
     }
 
-    public void setInitialBalance(double initialBalance) {
+    public void setInitialBalance(BigDecimal initialBalance) {
         this.initialBalance = initialBalance;
     }
 

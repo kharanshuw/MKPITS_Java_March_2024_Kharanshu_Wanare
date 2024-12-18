@@ -2,7 +2,10 @@ package com.bankapplication.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Min;
+
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 
 @Entity
@@ -21,16 +24,19 @@ public class Account {
     private String accountNumber;
 
     @Column(name = "balance")
-    @Size(min = 0)
-    private double balance;
+    @NotNull
+    @Min(value = 0,message = "Balance should be positive")
+    private BigDecimal balance ;
 
     @ManyToOne
+    @JoinColumn(name = "account_type_id")
     public AccountType accountType;
 
     @Column(nullable = false, name = "ifsc_code", unique = false)
     private String ifscCode;
 
     @ManyToOne
+    @JoinColumn(name = "branch_id")
     private Branch branch;
 
     private Boolean accountStatus = true;
@@ -59,12 +65,11 @@ public class Account {
         this.accountNumber = accountNumber;
     }
 
-    @Size(min = 0)
-    public double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(@Size(min = 0) double balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 

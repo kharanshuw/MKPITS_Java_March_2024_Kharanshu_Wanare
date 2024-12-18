@@ -218,11 +218,15 @@ public class BranchServiceImpl implements BranchService {
             // Extract data from the DTO
             int id = responseBranchDto.getId();
             String managerId = responseBranchDto.getManagerId();
-
+            logger.info("manager id recived from dto is "+managerId);
+            
+            Integer managerIdInteger   = Integer.parseInt(managerId);
+            logger.info("manager id in integer is "+managerIdInteger.toString());
+            
             // Retrieve manager details
-            Optional<UserDetails> optionalUserDetails = userDetailsRepository.findById(Integer.parseInt(managerId));
+            Optional<UserDetails> optionalUserDetails = userDetailsRepository.findById(managerIdInteger);
             if (optionalUserDetails.isEmpty()) {
-                logger.warn("Manager with ID {} not found", managerId);
+                logger.error("Manager with ID {} not found", managerId);
                 return false;
             }
             UserDetails userDetails = optionalUserDetails.get();
@@ -230,7 +234,7 @@ public class BranchServiceImpl implements BranchService {
             // Retrieve branch details
             Optional<Branch> optionalBranch = branchRepository.findById(id);
             if (optionalBranch.isEmpty()) {
-                logger.warn("Branch with ID {} not found", id);
+                logger.error("Branch with ID {} not found", id);
                 return false;
             }
             Branch branch = optionalBranch.get();

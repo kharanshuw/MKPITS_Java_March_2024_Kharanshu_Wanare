@@ -236,6 +236,8 @@ public class UserServiceImpl implements UserService {
 
         responseDto.setGender(users.getUserDetails().getGender());
         logger.debug("Setting Gender: {}", users.getUserDetails().getGender());
+        
+        
 
         responseDto.setPhoneno(users.getUserDetails().getPhoneno());
         logger.debug("Setting Phone Number: {}", users.getUserDetails().getPhoneno());

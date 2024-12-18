@@ -4,15 +4,14 @@ import com.bankapplication.dto.request.RequestAccountDto;
 import com.bankapplication.exceptionhandler.BranchNotFountException;
 import com.bankapplication.exceptionhandler.UserNotFoundException;
 import com.bankapplication.model.*;
-import com.bankapplication.repository.AccountTypeRepository;
-import com.bankapplication.repository.BranchRepository;
-import com.bankapplication.repository.UserDetailsRepository;
-import com.bankapplication.repository.UserRepository;
+import com.bankapplication.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 @Service
@@ -27,12 +26,15 @@ public class AccountServiceImpl implements AccountService {
 
     private UserDetailsRepository userDetailsRepository;
 
+    private AccountRepository accountRepository;
+
     @Autowired
-    public AccountServiceImpl(UserRepository userRepository, AccountTypeRepository accountTypeRepository, BranchRepository branchRepository, UserDetailsRepository userDetailsRepository) {
+    public AccountServiceImpl(UserRepository userRepository, AccountTypeRepository accountTypeRepository, BranchRepository branchRepository, UserDetailsRepository userDetailsRepository, AccountRepository accountRepository) {
         this.userRepository = userRepository;
         this.accountTypeRepository = accountTypeRepository;
         this.branchRepository = branchRepository;
         this.userDetailsRepository = userDetailsRepository;
+        this.accountRepository = accountRepository;
     }
 
 
@@ -126,12 +128,14 @@ public class AccountServiceImpl implements AccountService {
     }
 
 
+    
     /**
      * Save new account details in database
      *
      * @param requestAccountDto
      * @return Account class object which is saved inside database
      **/
+    @Transactional
     public Account saveNewAccount(RequestAccountDto requestAccountDto) {
         Account account = new Account();
 
@@ -142,13 +146,12 @@ public class AccountServiceImpl implements AccountService {
 
         int branchId = requestAccountDto.getBranchId();
 
-        double initialBalance = requestAccountDto.getInitialBalance();
+        BigDecimal initialBalance = requestAccountDto.getInitialBalance();
 
         int userId = requestAccountDto.getUserId();
 
         AccountType accountTypeObj = accountTypeRepository.findByType(accountType);
 
-        System.out.println(accountTypeObj.toString());
 
         //this if checks whether accounttype object find by accountTypeRepository.findByType(accountType) method is null or not  
         if (accountTypeObj == null) {
@@ -185,7 +188,6 @@ public class AccountServiceImpl implements AccountService {
 
         if (userDetailsOptional.isEmpty()) {
             logger.error("userdetails with given id not exist:" + userId);
-
             throw new UserNotFoundException("userdetails with given id not exist:" + userId);
         }
 
@@ -199,18 +201,33 @@ public class AccountServiceImpl implements AccountService {
         String accountNumber = generateAccountNumber(branchCode.substring(5), userDetailId);
 
 
-        return account;
+        logger.info("Generated account number inside saveNewAccount method: {}", accountNumber);
+
+
+        account.setAccountNumber(accountNumber);
+
+        return accountRepository.save(account);
+
     }
 
-
+    /**
+     * Generates a unique account number based on branch code and user detail ID.
+     *
+     * @param branchCode   The 6-character branch code.
+     * @param userDetailId The user detail ID.
+     * @return A unique account number as a string.
+     */
     public String generateAccountNumber(String branchCode, String userDetailId) {
 
-        logger.info("branch code to used to generate unique account no is  " + branchCode);
-        logger.info("userdetails id used to generate bank acc no is " + userDetailId);
+        logger.info("Branch code used to generate unique account number: {}", branchCode);
+        logger.info("User details ID used to generate bank account number: {}", userDetailId);
+
+
+        int attemps = 0;
 
         if (branchCode.length() != 6) {
-            logger.info("branch code length  is not equal to 6  ");
-            throw new IllegalArgumentException("branch code must be exactly 6 characters long.");
+            logger.error("Branch code length is not equal to 6");
+            throw new IllegalArgumentException("Branch code must be exactly 6 characters long.");
         }
 
         StringBuffer branchCodeStringBuffer = new StringBuffer(branchCode);
@@ -230,10 +247,16 @@ public class AccountServiceImpl implements AccountService {
 
         int uniqueNo = generateUniqueNo(remainingNoOdDigit);
 
-        accno = accno.append(uniqueNo);
-        
+        //this do while loop will run till accountRepository.existsByAccountNumber method does not return false 
+        //false means accno does not present in Account table of database 
+        do {
+            accno = accno.append(uniqueNo);
+            attemps++;
+            logger.info("Attempts {}: Generated account number is {}", attemps, accno);
+        } while (accountRepository.existsByAccountNumber(accno.toString()));
 
-        return "";
+
+        return accno.toString();
     }
 
 
@@ -247,7 +270,7 @@ public class AccountServiceImpl implements AccountService {
         Random random = new Random();
 
         if (digit <= 0) {
-            logger.info("exception occured in generateUniqueNo of accountserviceimpl class");
+            logger.error("Exception occurred in generateUniqueNo of AccountServiceImpl class");
             throw new IllegalArgumentException("Number of digits must be positive");
         }
         // Math.pow(10,digit-1) always gives min value exist in this no of digit
@@ -261,7 +284,7 @@ public class AccountServiceImpl implements AccountService {
 
         int no = random.nextInt(bound) + min;
 
-        logger.info("random no generated with given digit :" + digit + " is " + no);
+        logger.info("Random number generated with given digits {}: {}", digit, no);
 
         return no;
     }

@@ -1,4 +1,4 @@
-use bank2;
+use bankmanagement;;
 
 SELECT * FROM role 
 
@@ -18,6 +18,10 @@ SELECT * from state;
 
 SELECT * from account_type;
 
+SELECT * from district;
+
+SELECT * from ACCOUNT;
+
 INSERT INTO role(id,role_name) VALUES (1,'ROLE_ADMIN');
 
 INSERT INTO role(id,role_name) VALUES (2,'ROLE_MANAGER');
@@ -34,6 +38,7 @@ INSERT INTO account_type(id,type) VALUES(4,"FIXED DEPOSIT ACCOUNT");
 DROP TABLE branch;
 DROP TABLE ACCOUNT;
 DROP TABLE account_type;
+DROP TABLE district;
 
 UPDATE users
 SET enable = 1 
@@ -88,41 +93,42 @@ INSERT INTO country(country_name) VALUE('INDIA');
 
 INSERT INTO state(state_name,country_id) VALUE()
 
-INSERT INTO state (state_name, country_id) VALUES ('Andhra Pradesh', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Arunachal Pradesh', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Assam', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Bihar', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Chhattisgarh', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Goa', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Gujarat', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Haryana', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Himachal Pradesh', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Jharkhand', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Karnataka', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Kerala', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Madhya Pradesh', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Maharashtra', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Manipur', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Meghalaya', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Mizoram', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Nagaland', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Odisha', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Punjab', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Rajasthan', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Sikkim', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Tamil Nadu', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Telangana', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Tripura', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Uttar Pradesh', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Uttarakhand', 1);
-INSERT INTO state (state_name, country_id) VALUES ('West Bengal', 1);
-INSERT INTO state (state_name, country_id) VALUES ('Jammu & Kashmir', 1);
+INSERT INTO state (state_name, country_id,state_code ) VALUES ('Andhra Pradesh', 1,37);
+INSERT INTO state (state_name, country_id,state_code ) VALUES ('Arunachal Pradesh', 1,12);
+INSERT INTO state (state_name, country_id, state_code) VALUES ('Assam', 1,18);
+INSERT INTO state (state_name, country_id,state_code ) VALUES ('Bihar', 1,10);
+INSERT INTO state (state_name, country_id, state_code) VALUES ('Chhattisgarh', 1,22);
+INSERT INTO state (state_name, country_id, state_code) VALUES ('Goa', 1,30);
+INSERT INTO state (state_name, country_id,state_code) VALUES ('Gujarat', 1,24);
+INSERT INTO state (state_name, country_id ,state_code) VALUES ('Haryana', 1,6);
+INSERT INTO state (state_name, country_id , state_code) VALUES ('Himachal Pradesh', 1,2);
+INSERT INTO state (state_name, country_id ,state_code ) VALUES ('Jharkhand', 1,20);
+INSERT INTO state (state_name, country_id ,state_code ) VALUES ('Karnataka', 1,29);
+INSERT INTO state (state_name, country_id , state_code) VALUES ('Kerala', 1,32);
+INSERT INTO state (state_name, country_id ,state_code ) VALUES ('Madhya Pradesh', 1,23);
+INSERT INTO state (state_name, country_id,state_code ) VALUES ('Maharashtra', 1,27);
+INSERT INTO state (state_name, country_id , state_code) VALUES ('Manipur', 1,14);
+INSERT INTO state (state_name, country_id, state_code) VALUES ('Meghalaya', 1,17);
+INSERT INTO state (state_name, country_id ,state_code ) VALUES ('Mizoram', 1,15);
+INSERT INTO state (state_name, country_id ,state_code ) VALUES ('Nagaland', 1,13);
+INSERT INTO state (state_name, country_id , state_code) VALUES ('Odisha', 1,21);
+INSERT INTO state (state_name, country_id,state_code ) VALUES ('Punjab', 1,3);
+INSERT INTO state (state_name, country_id,state_code ) VALUES ('Rajasthan', 1,8);
+INSERT INTO state (state_name, country_id,state_code ) VALUES ('Sikkim', 1,11);
+INSERT INTO state (state_name, country_id, state_code) VALUES ('Tamil Nadu', 1,33);
+INSERT INTO state (state_name, country_id,state_code ) VALUES ('Telangana', 1,36);
+INSERT INTO state (state_name, country_id , state_code) VALUES ('Tripura', 1,16);
+INSERT INTO state (state_name, country_id,state_code) VALUES ('Uttar Pradesh', 1,9);
+INSERT INTO state (state_name, country_id,state_code ) VALUES ('Uttarakhand', 1,05);
+INSERT INTO state (state_name, country_id,state_code ) VALUES ('West Bengal', 1,19);
+INSERT INTO state (state_name, country_id , state_code) VALUES ('Jammu & Kashmir', 1,1);
 INSERT INTO state (state_name, country_id,state_code) VALUES ('Delhi', 1,07);
 INSERT INTO state (state_name, country_id,state_code) VALUES ('Chandigarh', 1,04);
 INSERT INTO state (state_name, country_id,state_code) VALUES ('Lakshadweep', 1,31);
 INSERT INTO state (state_name, country_id,state_code) VALUES ('Puducherry', 1,34);
 INSERT INTO state (state_name, country_id,state_code) VALUES ('Andaman & Nicobar Islands', 1,35);
 INSERT INTO state (state_name, country_id,state_code) VALUES ('Ladakh', 1,38);
+
 
 
 INSERT INTO district (district_name, state_id) VALUES ('Ahmednagar', 14);

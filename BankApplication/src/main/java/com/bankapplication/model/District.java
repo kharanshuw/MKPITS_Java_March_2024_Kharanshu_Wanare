@@ -18,9 +18,7 @@ public class District {
     @JoinColumn(name = "state_id")
     private State state;
 
-    @Column(name = "district_id")
-    private int districtId;
-
+    
     public int getId() {
         return id;
     }
@@ -45,14 +43,7 @@ public class District {
         this.state = state;
     }
 
-
-    public int getDistrictId() {
-        return districtId;
-    }
-
-    public void setDistrictId(int districtId) {
-        this.districtId = districtId;
-    }
+    
 
     @Override
     public String toString() {
