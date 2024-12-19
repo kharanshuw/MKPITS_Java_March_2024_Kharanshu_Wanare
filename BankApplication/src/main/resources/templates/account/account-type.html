@@ -1,55 +1,66 @@
-
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
     <style>
-        body{
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             height: 100vh;
-            margin: 0px;
-            padding: 0px;
-            background-color: #d1e0e0;
-            font-family: Open Sans, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #004080;
+            /* Navy Blue */
+            font-family: 'Open Sans', sans-serif;
             overflow: hidden;
+            color: white;
         }
+
         .container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 200px;
-            width: 100%;
             flex-wrap: wrap;
             padding: 20px;
+            background-color: #004080;
+            /* Navy Blue */
         }
-        
-        .heading{
+
+        .heading {
             text-align: center;
             font-size: 24px;
             font-weight: bold;
             width: 100%;
             margin-bottom: 20px;
+            color: #FFD700;
+            /* Gold */
         }
-        
+
         .account-type {
-            background-color: #4CAF50;
-            color: #fff;
+            background-color: #1a75ff;
+            /* Slightly lighter navy blue */
+            color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             margin: 10px;
+            border: 1px solid #FFD700;
+            /* Gold border */
         }
-        
+
         .account-type:hover {
-            background-color: #3e8e41;
+            background-color: #002f50;
+            /* Darker navy blue on hover */
+            color: #fff;
+            /* White text on hover */
         }
-        
+
         .container-2 {
             display: flex;
             justify-content: center;
@@ -59,29 +70,32 @@
             margin-top: 20px;
             gap: 20px;
         }
-        
-        .container-2 button {
-            background-color: #e74c3c;
-            color: #fff;
+
+        .container-2 button{
+            background-color: #FFD700; /* Gold */
+            color: #004080; /* Navy Blue */
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            text-decoration: none;
         }
-        
+
         .container-2 button:hover {
-            background-color: #c0392b;
+            background-color: #004080; /* Navy Blue */
+            color: #FFD700; /* Gold */
+            border: 1px solid #FFD700; /* Gold border */
         }
 
         .logout-button {
-            background-color: #e74c3c;
-            color: #fff;
+            background-color: #e74c3c; /* Red */
+            color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
-        
+
         .logout-btn {
             background-color: transparent;
             color: #fff;
@@ -90,9 +104,21 @@
             font-size: 16px;
             cursor: pointer;
         }
-        
-        a{
-        background-color: #e74c3c;
+
+        .logout-button:hover {
+            background-color: #c0392b; /* Darker red */
+        }
+        .logout-btn {
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 0;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        a {
+            background-color: green;
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -101,22 +127,26 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
-        <h1 class="heading">Hello user <span th:text="${fname}"></span>  <span th:text="${lname}"></span></h1>
+        <h1 class="heading">Hello user <span th:text="${fname}"></span> <span th:text="${lname}"></span></h1>
         <h1 class="heading">Please select one of the following account types:</h1>
         <ul>
-            <a class="account-type" th:each="account:${nonExistingAccount}" th:text="${account}" th:href="@{/account/create-account-form(type=${account})}">
+            <a class="account-type" th:each="account:${nonExistingAccount}" th:text="${account}"
+                th:href="@{/account/create-account-form(type=${account})}">
+                hello
             </a>
         </ul>
-       
+
     </div>
     <div class="container-2">
         <a th:href="@{/user/home}">GO BACK</a>
-        <form  th:action="@{/logout}" method="post" class="logout-button">
+        <form th:action="@{/logout}" method="post" class="logout-button">
             <input type="submit" value="Logout" class="logout-btn">
         </form>
     </div>
 </body>
+
 </html>

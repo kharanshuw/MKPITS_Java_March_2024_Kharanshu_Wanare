@@ -7,534 +7,260 @@
     <meta charset="UTF-8">
     <title>Dashboard Options</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.4.0/esm/ionicons.min.js"
+        integrity="sha512-heZj7rPbZHWyOEhE34vsJkzj2DKK2mZ9D3jjMkXQJ0uMGu/m5iOty+le26NL1eFZ5+qa4XBYcflwYwITwCWufw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
-        :root {
-            --primary-color: #1a5f7a;
-            --secondary-color: #159895;
-            --accent-color: #57c5b6;
-            --background-color: #f9f9f9;
-            --text-color: #333333;
-            --light-text-color: #ffffff;
-        }
-
         body {
-            background-color: var(--background-color);
-            color: var(--text-color);
-            font-family: Arial, sans-serif;
-            margin: 0;
-            height: 100%;
-            width: 100%;
-            font-family: 'Josefin Sans', sans-serif;
-
-        }
-
-
-
-        * {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            /* Light Gray */
+
         }
-
-        li {
-            list-style: none;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--light-text-color);
-            font-size: 1rem;
-        }
-
-        a:hover {
-            color: var(--accent-color);
-        }
-
-
-
-        nav {
-            background-color: var(--primary-color);
-            position: relative;
-            padding: 0.2rem;
-            margin-top: 2px;
-            border: 1px solid var(--secondary-color);
-            border-radius: 20px;
-        }
-
         .navbar {
-            width: 100%;
-            height: 60px;
-            max-width: 1200px;
-            margin: 0 auto;
+            color: white;
+            background-color: #004080;
+            /* Navy Blue */
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .btn-login,
+        .btn-register {
+            color: #004080;
+            /* Navy Blue */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-login {
+            background-color: #FFFFFF;
+            /* White */
+        }
+
+        .btn-register {
+            background-color: #FFD700;
+            /* Gold */
+        }
+
+        .btn-login:hover,
+        .btn-register:hover {
+            opacity: 0.8;
+        }
+
+        .logo-container {
             display: flex;
             align-items: center;
-            justify-content: space-between;
         }
 
-        .navbar .logo a {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-
-        .navbar .links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .navbar .logo a {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .navbar .links a {
-            display: inline-block;
+        .logo {
+            background-color: #004080;
+            /* Navy Blue */
+            color: #FFD700;
+            /* Gold */
             padding: 10px 20px;
-            font-size: 24px;
+            border-radius: 50%;
+            font-size: 18px;
             font-weight: bold;
             text-align: center;
-            text-decoration: none;
-            color: var(--light-text-color);
-            /* Change the text color */
-            background-color: var(--primary-color);
-            /* Change the background color */
-            border: 2px solid var(--secondary-color);
-            border-radius: 10px;
-            /* box-shadow: 5px 5px 0px var(--secondary-color); */
-            transition: all 0.3s ease;
-            cursor: pointer;
-
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-
-        .navbar .links a:hover {
-            background-color: var(--accent-color);
-            color: var(--light-text-color);
-            border: 2px solid var(--accent-color);
-            box-shadow: 5px 5px 0px var(--accent-color);
+        .container {
+            margin-top: 20px;
+            flex: 1;
         }
 
-        .navbar .links a:active {
-            background-color: var(--secondary-color);
-            box-shadow: none;
-            transform: translateY(4px);
-
+        .card {
+            margin-bottom: 20px;
         }
 
-        .links li form input {
-            display: inline-block;
+        .card-title {
+            color: #004080;
+            /* Navy Blue */
+        }
+
+        .btn-primary,
+        .btn-success,
+        .btn-info {
+            border: none;
+            border-radius: 5px;
             padding: 10px 20px;
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: none;
-            color: var(--light-text-color);
-            /* Change the text color */
-            background-color: var(--primary-color);
-            /* Change the background color */
-            border: 2px solid var(--secondary-color);
-            border-radius: 10px;
-            /* box-shadow: 5px 5px 0px var(--secondary-color); */
-            transition: all 0.3s ease;
-            cursor: pointer;
-
-
         }
 
-        .links li form input:hover {
-            background-color: var(--accent-color);
-            color: var(--light-text-color);
-            border: 2px solid var(--accent-color);
-            box-shadow: 5px 5px 0px var(--accent-color);
+        .btn-primary {
+            background-color: #004080;
+            /* Navy Blue */
         }
 
-        .links li form input:active {
-            background-color: var(--secondary-color);
-            box-shadow: none;
-            transform: translateY(4px);
+        .btn-primary:hover {
+            background-color: #002d5f;
         }
 
-
-
-
-        .navbar .toggle-btn {
-            color: var(--light-text-color);
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: none;
+        .btn-success {
+            background-color: #28a745;
+            /* Green */
         }
 
-
-        .action-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: none;
-            color: var(--light-text-color);
-            /* Change the text color */
-            background-color: var(--primary-color);
-            /* Change the background color */
-            border: 2px solid var(--secondary-color);
-            border-radius: 10px;
-            box-shadow: 5px 5px 0px var(--secondary-color);
-            transition: all 0.3s ease;
-            cursor: pointer;
+        .btn-success:hover {
+            background-color: #218838;
         }
 
-        .action-btn:hover {
-            background-color: var(--accent-color);
-            color: var(--light-text-color);
-            border: 2px solid var(--accent-color);
-            box-shadow: 5px 5px 0px var(--accent-color);
-
+        .btn-info {
+            background-color: #17a2b8;
+            /* Cyan */
         }
 
-        .action-btn:active {
-            background-color: var(--secondary-color);
-            box-shadow: none;
-            transform: translateY(4px);
-
+        .btn-info:hover {
+            background-color: #117a8b;
         }
 
-
-
-
-        .icon {
-            width: 1.5%;
-            height: 1.5%;
-            object-fit: cover;
-            padding: 2px;
-            margin-top: 3px;
-            margin-left: 3px;
-        }
-    </style>
-
-
-    <style type="text/scss">
-
-        html{
-overflow: hidden !important;
-height: 100vh;
-width: 100vw;
-
-    }
-
-    .navbar .logo .logo-heading{
-        margin: 0;
-height: 12vmin;
-width: 120vmin;
-display: flex;
-justify-content: center;
-align-items: center;
-position: relative;
-transform: scale(0.5);
-    }
-
-    @media (max-width: 1024px) {
-h1 {
-transform: scale(0.4);
-}
-}
-
-
-
-.navbar .logo .logo-heading::before {
-content: "";
-display: block;
-position: absolute;
-top: -26vmin;
-left: 29vmin;
-width: 62vmin;
-height: 62vmin;
-border-radius: 50%;
-border: 1.3vmin solid currentColor;
-box-sizing: border-box;
-}
-
-
-.navbar .logo .logo-heading em{
-font-family: 'Josefin Sans', sans-serif;
-color: currentColor;
-font-size: 15vmin;
-position: relative;
-font-style: normal;
-width: 20vmin;
-text-align: center;
-transition: color 0.3s, font-size 0.3s;
-}
-
-
-em:hover {
-color: #ff0000;
-font-size: 20vmin;
-}
-
-em.planet {
--webkit-animation: planet-rotate 10s linear infinite;
-animation: planet-rotate 10s linear infinite;
-position: relative;
-}
-
-em.planet::before {
-content: "";
-position: absolute;
-top: -.5vmin;
-left: 3.5vmin;
-z-index: -1;
-width: 13vmin;
-height: 13vmin;
-border-radius: 50%;
-background: black;
-box-shadow: 0 0 10vmin rgba(255, 255, 255, 0.5);
-}
-em.planet.left {
--webkit-transform-origin: 40vmin 5vmin;
-transform-origin: 40vmin 5vmin;
-}
-
-em.planet.right {
--webkit-transform-origin: -20vmin 5vmin;
-transform-origin: -20vmin 5vmin;
-}
-
-@-webkit-keyframes planet-rotate {
-to {
--webkit-transform: rotate(1turn);
-}
-}
-
-@keyframes planet-rotate {
-to {
-transform: rotate(1turn);
-}
-}
-
-.logo-heading {
-font-size: 24px; /* Adjust the font size */
-width: 200px; /* Adjust the width */
-height: auto; /* Keep the height as auto */
-display: flex; /* Use flexbox to center the logo elements */
-align-items: center; /* Center the logo elements vertically */
-justify-content: center; /* Center the logo elements horizontally */
-}
-
-.logo-heading em {
-font-size: 1.5em; /* Adjust the font size of the logo elements */
-}
-
-.logo-heading em.planet {
-font-size: 1.2em; /* Adjust the font size of the planet elements */
-}
-
-
-.logo-heading {
-font-size: 24px; /* Adjust the font size as needed */
-width: 200px; /* Adjust the width as needed */
-height: auto; /* Keep the height as auto */
-display: flex; /* Use flexbox to center the logo elements */
-align-items: center; /* Center the logo elements vertically */
-justify-content: center; /* Center the logo elements horizontally */
-text-align: center; /* Center the text within the logo */
-text-transform: uppercase; /* Make the text uppercase */
-letter-spacing: 2px; /* Add some letter spacing */
-color: #000; /* Adjust the color as needed */
-background-color: #fff; /* Add a background color if needed */
-border-radius: 8px; /* Add a border radius if needed */
-padding: 10px; /* Add some padding if needed */
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a box shadow if needed */
-}
-
-.logo-heading em {
-font-size: 1.5em; /* Adjust the font size of the logo elements as needed */
-color: #000; /* Adjust the color as needed */
-transition: color 0.3s; /* Add a transition effect for hover */
-}
-
-.logo-heading em:hover {
-color: #ff0000; /* Change the color on hover */
-}
-
-.logo-heading em.planet {
-font-size: 1.2em; /* Adjust the font size of the planet elements as needed */
-}
-
-    </style>
-
-
-    <style>
         footer {
-            position: absolute;
-            bottom: 0;
+            background-color: #001f3f;
+            /* Darker Navy Blue */
+            color: white;
+            text-align: center;
+            padding: 20px;
             width: 100%;
         }
+
+        footer a {
+            color: #FFD700;
+            /* Gold */
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-social-buttons .btn {
+            background-color: #001f3f;
+            border: none;
+            color: white;
+        }
+
+        .footer-social-buttons .btn:hover {
+            background-color: #004080;
+        }
     </style>
 
-
-    <style>
-        .container {
-                max-width: 600px;
-                margin: auto auto;
-                padding: 20px;
-                background-color: #fff;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                margin-top: 15px;
-            }
-            h1, h5 {
-                color: #333;
-            }
-            .card {
-                margin-bottom: 20px;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                overflow: hidden;
-            }
-            .card-body {
-                padding: 15px;
-            }
-            .btn {
-                display: inline-block;
-                padding: 10px 20px;
-                margin-top: 10px;
-                border: none;
-                border-radius: 5px;
-                text-decoration: none;
-                color: #fff;
-                background-color: #007bff;
-            }
-            .btn-primary {
-                background-color: #007bff;
-            }
-            .btn-success {
-                background-color: #28a745;
-            }
-            .btn-info {
-                background-color: #17a2b8;
-            }
-            .row {
-                display: flex;
-                flex-wrap: wrap;
-            }
-            .col-12, .col-md-6 {
-                flex: 1 1 100%;
-            }
-            @media (min-width: 768px) {
-                .col-md-6 {
-                    flex: 0 0 50%;
-                }
-            }
-    </style>
 </head>
 
 <body>
 
 
-<!-- navbar start -->
+    <!-- navbar start -->
 
-<div>
-    <nav>
-
-
-        <div class="navbar">
-
+    <div class="container-fluid navbar  ">
+        <div class="logo-container">
             <div class="logo">
-                <h1 class="logo-heading">
-                    <em>B</em>
-                    <em>a</em>
-                    <em>n</em>
-                    <em>k</em>
-                    <em>S</em>
-                    <em>p</em>
-                    <em>h</em>
-                    <em>e</em>
-                    <em>r</em>
-                    <em>e</em>
-                </h1>
-
-
+                SPHEREBANK
             </div>
 
-            <ul class="links">
-                <li><a th:href="@{/}">home</a></li>
-                <li><a th:href="@{/login}">Login</a></li>
-                <li>
-                    <form th:action="@{/logout}" method="post">
-                        <input type="submit" value="Logout">
-                    </form>
-                </li>
-            </ul>
         </div>
-
-
-    </nav>
-
-</div>
-
-<!-- navbar end -->
-
-
-<div class="container">
-    <!-- Authenticated User Section -->
-    <div sec:authorize="isAuthenticated()">
-        <h1 class="mb-3">Hello users <span th:text="${email}"></span></h1>
+        <div class="d-flex gap-3">
+            <a th:href="@{/login}" class="btn-login"> LOGIN </a>
+            <a th:href="@{/register}" class="btn-register mr-3">REGISTER</a>
+        </div>
     </div>
 
-    <!-- Admin Section -->
-    <div sec:authorize="hasRole('ROLE_ADMIN')">
-        <p>This content is only shown to admin.</p>
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Hello Admin</h5>
-                        <a th:href="@{/admin/home}" class="btn btn-primary">Go to admin Dashboard</a>
+    <!-- navbar end -->
+
+<!-- section start -->
+    <div class="container">
+        <!-- Authenticated User Section -->
+        <div sec:authorize="isAuthenticated()">
+            <h1 class="mb-3">Hello users <span th:text="${email}"></span></h1>
+        </div>
+
+        <!-- Admin Section -->
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <p>This content is only shown to admin.</p>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Hello Admin</h5>
+                            <a th:href="@{/admin/home}" class="btn btn-primary">Go to admin Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Section -->
+        <div sec:authorize="hasRole('ROLE_USER')">
+            <p>This content is only shown to users.</p>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Hello User</h5>
+                            <a th:href="@{/user/home}" class="btn btn-success">Go to users Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manager Section -->
+        <div sec:authorize="hasRole('ROLE_MANAGER')">
+            <p>This content is only shown to managers.</p>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Hello Manager</h5>
+                            <a class="btn btn-info" th:href="@{/manager/home}">Go to manager Dashboard</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- User Section -->
-    <div sec:authorize="hasRole('ROLE_USER')">
-        <p>This content is only shown to users.</p>
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Hello User</h5>
-                        <a th:href="@{/user/home}" class="btn btn-success">Go to users Dashboard</a>
-                    </div>
-                </div>
-            </div>
+<!-- section end -->
+
+
+     <!-- Footer start -->
+     <footer>
+        <div class="footer-social-buttons d-flex justify-content-center py-5">
+            <button type="button" class="btn btn-lg btn-floating mx-2">
+                <i class="fa-brands fa-facebook"></i>
+            </button>
+            <button type="button" class="btn btn-lg btn-floating mx-2">
+                <i class="fab fa-youtube"></i>
+            </button>
+            <button type="button" class="btn btn-lg btn-floating mx-2">
+                <i class="fab fa-instagram"></i>
+            </button>
+            <button type="button" class="btn btn-lg btn-floating mx-2">
+                <i class="fab fa-twitter"></i>
+            </button>
         </div>
-    </div>
 
-    <!-- Manager Section -->
-    <div sec:authorize="hasRole('ROLE_MANAGER')">
-        <p>This content is only shown to managers.</p>
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Hello Manager</h5>
-                        <a class="btn btn-info" th:href="@{/manager/home}">Go to manager Dashboard</a>
-                    </div>
-                </div>
-            </div>
+        <div class="text-center p-3" style="background-color: #0e345a;">
+            © 2024 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">@SPHERE BANK</a>
         </div>
-    </div>
-</div>
-
-
-<footer>
-    <p>&copy; 2024 Your Bank Name. All rights reserved.</p>
-    <nav>
-        <a href="#">Privacy Policy</a> |
-        <a href="#">Terms of Service</a> |
-        <a href="#">Contact Us</a>
-    </nav>
-</footer>
+    </footer>
 </body>
 
 </html>

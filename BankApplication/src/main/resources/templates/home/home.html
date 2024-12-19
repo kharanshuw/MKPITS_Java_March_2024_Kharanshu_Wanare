@@ -1,459 +1,306 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en"  xmlns:th="http://www.w3.org/1999/xhtml"   >
 
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"/>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.4.0/esm/ionicons.min.js"
+        integrity="sha512-heZj7rPbZHWyOEhE34vsJkzj2DKK2mZ9D3jjMkXQJ0uMGu/m5iOty+le26NL1eFZ5+qa4XBYcflwYwITwCWufw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,200;1,400&display=swap");
-
-        * {
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
+            font-family: Arial, sans-serif;
+
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        
 
         .navbar {
-            background: #1F3A93;
-            padding: 1rem 4rem;
-            z-index: 1000;
-        }
-
-        .navbar .navbar-brand {
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-
-        .navbar .nav-item {
-            transition: 0.5s ease;
-        }
-
-        .navbar .nav-item .nav-link {
-            color: whitesmoke;
-            font-size: 1.1rem;
-            padding: 0 0.8rem;
-        }
-
-        #Navbar>ul>li:nth-child(n)>a:hover {
-            color: #163a6b;
-        }
-
-        #Navbar>ul>li:nth-child(n)>a:active {
-            color: #163a6b;
-        }
-
-        .mid {
-            height: 100vh;
-            width: 100%;
-            overflow: hidden;
+            width: 99%;
+            color: white;
+            background-color: #004080; /* Navy Blue */
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            flex-direction: row;
+            justify-content: space-between;
+padding: 10px 20px;
+        }
+
+        .btn-login {
+            background-color: #FFFFFF;
+            /* White */
+            color: #004080;
+            /* Navy Blue */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-register {
+            background-color: #FFD700;
+            /* Gold */
+            color: #004080;
+            /* Navy Blue */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        /* Hover effects */
+        .btn-register:hover,
+        .btn-login:hover {
+            opacity: 0.8;
+        }
+
+        /* Container for the logo */
+        .logo-container {
+            display: flex;
             align-items: center;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        /* Styling the logo */
+        .logo {
+            background-color: #004080;
+            /* Navy Blue */
+            color: #FFD700;
+            /* Gold */
+
+            /* Circular shape */
+            width: 100px;
+            height: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
             text-align: center;
         }
 
-        .mid video {
-            height: 100%;
-            width: 100%;
-            pointer-events: none;
-            object-fit: cover;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        /* Optional: Add a shadow effect */
+        .logo {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .navbar .btn {
-            font-weight: 600;
-            background: #1F3A93;
-            padding: 0.4rem 1.4rem;
-            border-radius: 30px;
+        .content-section {
+            padding: 60px 20px;
         }
 
-        .navbar .btn:hover {
-            background: #163a6b;
-        }
-
-        .writeup {
-            position: relative;
-        }
-
-        .writeup p {
-            width: 55%;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-            padding-bottom: 1rem;
-        }
-
-        .writeup a {
-            font-weight: 600;
-            background: #1F3A93;
-            padding: 0.6rem 1.4rem;
-            border-radius: 30px;
-            text-decoration: none;
-        }
-
-        .writeup a:hover {
-            background: #163a6b;
-        }
-
-        .about {
-            background: #1F3A93;
-            color: white;
-        }
-
-        .about .text {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            margin: auto;
-        }
-
-        .about .text h6 {
-            font-weight: 600;
-            color: green;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-        }
-
-        .about .text h2 {
-            font-weight: 600;
-            font-size: 2.7rem;
-        }
-
-        .about .text p {
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-        }
-
-        .about .text a {
-            font-weight: 600;
-            background: green;
-            padding: 0.6rem 1.4rem;
-            border-radius: 30px;
-            text-decoration: none;
-            color: white;
-        }
-
-        .about .text a:hover {
-            background: white;
-            color: green;
-        }
-
-        .saving .text {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            margin: auto;
-        }
-
-        .saving .text h6 {
-            font-weight: 600;
-            color: green;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-        }
-
-        .saving .text h2 {
-            color: #1F3A93;
-            font-weight: 600;
-            font-size: 2.7rem;
-        }
-
-        .saving .text p {
-            color: #1F3A93;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-        }
-
-        .saving .text a {
-            background: #1F3A93;
-            font-weight: 600;
-            padding: 0.6rem 1.4rem;
-            border-radius: 30px;
-            text-decoration: none;
-            color: white;
-        }
-
-        .saving .text a:hover {
-            color: green;
-        }
-
-        .page {
-            background-color: #1F3A93;
-            color: white;
-        }
-
-        .page .first {
-            background: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            padding: 2rem 1.1rem;
-            border-radius: 7px;
-        }
-
-        .page .first h5 {
+        .welcome-section {
+            background-color: #f8f9fa;
+            /* Light Gray */
             text-align: center;
-            font-weight: 600;
-            padding: 0.6rem 3rem;
         }
 
-        .sigin .text {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            margin: auto;
+        .welcome-section h1 {
+            color: #004080;
+            /* Navy Blue */
         }
 
-        .sigin .text h6 {
-            font-weight: 600;
-            color: green;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
+        .services-section,
+        .benefits-section,
+        .get-started-section {
+            background-color: #ffffff;
+            /* White */
+            padding: 40px 20px;
         }
 
-        .sigin .text h2 {
-            color: #1F3A93;
-            font-weight: 600;
-            font-size: 2.7rem;
+        .section-header {
+            color: #004080;
+            /* Navy Blue */
+            margin-bottom: 30px;
         }
 
-        .sigin .text p {
-            color: #1F3A93;
-            font-size: 1.1rem;
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
-        .sigin .text a {
-            background: #1F3A93;
-            font-weight: 600;
-            padding: 0.6rem 1.4rem;
-            border-radius: 30px;
-            text-decoration: none;
-            color: white;
+        .card-body h5 {
+            color: #FFD700;
+            /* Gold */
         }
 
-        .sigin .text a:hover {
-            color: green;
+        .btn-primary {
+            background-color: #004080;
+            /* Navy Blue */
+            border: none;
         }
 
-        .first:hover {
-            transform: translateY(-1rem);
-            transition: 0.5s ease;
-        }
-
-        .bank-name {
-            font-family: "Poppins", sans-serif;
-            font-weight: 500;
-            font-style: normal;
-            color: white;
-        }
-
-        .bg-color {
-            background-color: #1F3A93;
-        }
-
-        .nav-menu-content {
-            color: white;
-        }
-
-        .nav-menu-content:hover {
-            color: #163a6b;
+        .btn-primary:hover {
+            background-color: #002d5f;
         }
     </style>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
-            rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-          integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <title>Bank application</title>
 </head>
 
-<body data-spy="scroll" data-target="#Navbar">
-<header>
-    <nav class="p-3 flex justify-between items-center navbar bg-color">
-        <div class="flex gap-2 items-center">
-            <img src="https://i.ibb.co/GMdjqt6/logo.jpg" alt="Logo"
-                 class="w-[100px] md:w-[150px] lg:w-[200px] h-[50px] object-contain">
-            <span class="text-lg font-medium bank-name">KHARANSHU BANK</span>
-        </div>
-        <div id="nav-menu" class="hidden md:flex gap-12">
-            <a href="#" class="font-medium nav-menu-content">Personal Banking</a>
-            <a href="#" class="font-medium nav-menu-content">Business Banking</a>
-            <a href="#" class="font-medium nav-menu-content">About Us</a>
-            <a th:href="@{/login}" class="font-medium nav-menu-content">Login</a>
-            <a th:href="@{/register}" class="font-medium nav-menu-content">Registration</a>
-        </div>
-        <button aria-label="Welcome customer button" title="Welcome customer button"
-                class="hidden md:flex gap-2 items-center border border-gray-400 px-6 py-2 rounded-lg nav-menu-content">
-            <span>Welcome customer</span>
-            <i class="fa-solid fa-arrow-right ml-auto"></i>
-        </button>
-        <button class="p-2 md:hidden" onclick="handleMenu()">
-            <i class="fa-solid fa-bars text-gray-600"></i>
-        </button>
-    </nav>
 
-    <div class="mid w-full h-screen" style="background-image: url('https://i.ibb.co/ZVWkqCn/one.png');">
-    </div>
-</header>
 
-<section class="about py-5" id="about">
-    <div class="row align-items-center container my-5 mx-auto">
-        <div class="text col-lg-6 col-md-6 col-12 pt-5 pb-5">
-            <h6>KHARANSHU BANK</h6>
-            <h2>Unlimited transactions with zero fees</h2>
-            <p>Experience the best in banking solutions</p>
-            <a href="#">Learn more</a>
-        </div>
-        <div class="image col-lg-6 col-md-6 col-12 pt-5 pb-5">
-            <img class="img-fluid" src="https://i.ibb.co/87PPydw/1.png"/>
-        </div>
-    </div>
-</section>
-<section id="discover" class="saving py-5">
-    <div class="row align-items-center container my-5 mx-auto">
-        <div class="image col-lg-6 col-md-6 col-12 pt-5 pb-5">
-            <img class="img-fluid" src="https://i.ibb.co/rdp1y9r/2.png"/>
-        </div>
-        <div class="text col-lg-6 col-md-6 col-12 pt-5 pb-5">
-            <h6>UNLIMITED ACCESS</h6>
-            <h2>Login to your account anytime</h2>
-            <p>Manage your daily expenses with ease.</p>
-            <a href="#">Login</a>
-        </div>
-    </div>
-</section>
-
-<section id="services" class="page py-5">
-    <div class="heading text-center pt-5 pb-5">
-        <h2 class="font-weight-bold pb-5 text-light">Our Service</h2>
-    </div>
-    <div class="row mx-auto justify-content-center align-items-center text-center container">
-        <div class="first col-lg-3 col-md-8 col-12 m-2">
-            <img class="img-fluid" src="https://i.ibb.co/87PPydw/1.png" alt="1.img"/>
-            <h5 class="font-weight-bold">Digital Banking</h5>
-            <p>Bank anywhere, anytime with our mobile banking app. Experience seamless online banking with our
-                intuitive platform.</p>
-        </div>
-        <div class="first col-lg-3 col-md-8 col-12 m-2">
-            <img class="img-fluid" src="https://i.ibb.co/rdp1y9r/2.png" alt="2.pmg"/>
-            <h5>Customer Support</h5>
-            <p>Get personalized support from our dedicated customer care team. Experience prompt resolution with our
-                24/7 support hotline.</p>
-        </div>
-        <div class="first col-lg-3 col-md-8 col-12 m-2">
-            <img class="img-fluid" src="https://i.ibb.co/bvdJXvd/3.png" alt="3.png"/>
-            <h5>Investments</h5>
-            <p>Get personalized support from our dedicated customer care team. Experience prompt resolution with our
-                24/7 support hotline.</p>
-        </div>
-    </div>
-</section>
-
-<section id="contact" class="sigin py-5">
-    <div class="row align-items-center container my-5 mx-auto">
-        <div class="text col-lg-6 col-md-6 col-12 pt-5 pb-5">
-            <h6>Join our team</h6>
-            <h2>Creating an account is extremely easy</h2>
-            <p>Get started in seconds! Creating an account is incredibly easy. Simply fill out the form, verify your
-                details, and you're all set to explore our services.</p>
-            <a href="#">Register Here</a>
-        </div>
-        <div class="image col-lg-6 col-md-6 col-12 pt-5 pb-5">
-            <img class="img-fluid" src="https://i.ibb.co/qgVMCdZ/4.png" alt="4.png"/>
-        </div>
-    </div>
-</section>
-
-<footer class="page-footer font-small stylish-color-dark pt-4 bg-dark text-light">
-    <div class="container text-center text-md-left">
-        <div class="row">
-            <div class="col-md-4 mx-auto">
-                <h5 class="font-weight-bold text-uppercase mt-3 mb-4 text-light">Kharanshu Bank</h5>
-                <p class="text-light">Experience the best in banking solutions with us. Learn more about our
-                    services and expertise.</p>
+<body>
+    <!-- navbar start -->
+    <div class="container-fluid navbar  ">
+        <div class="logo-container">
+            <div class="logo">
+                SPHEREBANK
             </div>
-            <hr class="clearfix w-100 d-md-none"/>
-            <div class="col-md-2 mx-auto">
-                <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Personal Banking</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" aria-label="Personal Banking Link 1">Accounts</a></li>
-                    <li><a href="#" aria-label="Personal Banking Link 2">Loans</a></li>
-                    <li><a href="#" aria-label="Personal Banking Link 3">Credit Cards</a></li>
-                    <li><a href="#" aria-label="Personal Banking Link 4">Savings</a></li>
-                </ul>
-            </div>
-            <hr class="clearfix w-100 d-md-none"/>
-            <div class="col-md-2 mx-auto">
-                <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Business Banking</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" aria-label="Business Banking Link 1">Business Loans</a></li>
-                    <li><a href="#" aria-label="Business Banking Link 2">Corporate Accounts</a></li>
-                    <li><a href="#" aria-label="Business Banking Link 3">Merchant Services</a></li>
-                    <li><a href="#" aria-label="Business Banking Link 4">Business Credit Cards</a></li>
-                </ul>
-            </div>
-            <hr class="clearfix w-100 d-md-none"/>
-            <div class="col-md-2 mx-auto">
-                <h5 class="font-weight-bold text-uppercase mt-3 mb-4">About Us</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" aria-label="About Us Link 1">Our Team</a></li>
-                    <li><a href="#" aria-label="About Us Link 2">Careers</a></li>
-                    <li><a href="#" aria-label="About Us Link 3">Newsroom</a></li>
-                    <li><a href="#" aria-label="About Us Link 4">Contact Us</a></li>
-                </ul>
-            </div>
+
+        </div>
+        <div class="d-flex gap-3">
+            <a th:href="@{/login}" class="btn-login"> LOGIN </a>
+            <a th:href="@{/register}" class="btn-register mr-3">REGISTER</a>
         </div>
     </div>
 
+    
+    <!-- navbar end -->
 
-    <hr/>
-    <ul class="list-unstyled list-inline text-center py-2">
-        <li class="list-inline-item">
-            <h5 class="mb-1 text-light">Open an account today!</h5>
-        </li>
-        <li class="list-inline-item">
-            <a href="#" class="btn btn-rounded">Sign up!</a>
-        </li>
-    </ul>
-    <hr/>
-    <div class="footer-copyright text-center py-3">
-        &copy; 2024 Copyright:
-        <a href="#">Kharanshu Bank</a>
+
+    <!-- main section start -->
+
+
+    <!-- Main Content Section -->
+    <div class="container">
+        <section id="home" class="content-section welcome-section">
+            <h1>Welcome to BankApp</h1>
+            <p>Your trusted partner in managing your finances.</p>
+        </section>
+
+        <section id="services" class="content-section services-section">
+            <h2 class="section-header">Our Services</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Personal Banking</h5>
+                            <p class="card-text">Enjoy a variety of personal banking services designed to cater to your
+                                individual needs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Business Banking</h5>
+                            <p class="card-text">Our business banking solutions help you manage your company's finances
+                                effectively.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Digital Banking</h5>
+                            <p class="card-text">Experience the convenience of banking from anywhere with our digital
+                                banking services.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="benefits" class="content-section benefits-section">
+            <h2 class="section-header">Why Choose Us</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Security</h5>
+                            <p class="card-text">Your security is our top priority. We ensure the highest level of
+                                protection for your transactions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Support</h5>
+                            <p class="card-text">Our 24/7 customer support is always available to assist you with any
+                                queries or issues.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Convenience</h5>
+                            <p class="card-text">Manage your finances effortlessly with our user-friendly online banking
+                                platform.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="get-started" class="content-section get-started-section">
+            <h2 class="section-header">Get Started</h2>
+            <p>Ready to join BankApp? Click the button below to open an account and take the first step towards a better
+                banking experience.</p>
+            <a href="#" class="btn btn-primary">Open an Account</a>
+        </section>
     </div>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+
+    <!-- main section end -->
+    <!-- footer start -->
+
+    <div class="container-fluid  footer" style="position: relative; bottom: 1px;">
+
+        <footer class="text-center text-lg-start" style="background-color: #001f3f;">
+            <div class="container d-flex justify-content-center py-5">
+                <button type="button" class="btn btn-primary btn-lg btn-floating mx-2"
+                    style="background-color: #001f3f;">
+                    <i class="fa-brands fa-facebook"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-lg btn-floating mx-2"
+                    style="background-color: #001f3f;">
+                    <i class="fab fa-youtube"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-lg btn-floating mx-2"
+                    style="background-color: #001f3f;">
+                    <i class="fab fa-instagram"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-lg btn-floating mx-2"
+                    style="background-color: #001f3f;">
+                    <i class="fab fa-twitter"></i>
+                </button>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center text-white p-3" style="background-color: #0e345a;">
+                © 2024 Copyright:
+                <a class="text-white" href="https://mdbootstrap.com/">@SPHERE BANK</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+        <!-- footer end -->
+    </div>
+    <!-- End of .container -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
-        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
-        crossorigin="anonymous"></script>
-<script>
-    function handleMenu() {
-        console.log("first");
-    }
-</script>
+
 </body>
 
 </html>
