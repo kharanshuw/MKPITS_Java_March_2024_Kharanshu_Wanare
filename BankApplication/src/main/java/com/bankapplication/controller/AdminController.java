@@ -194,8 +194,8 @@ public class AdminController {
             } else {
                 // Add the user list to the model
                 model.addAttribute("users", responseDtoList);
-                logger.info("Data sent from /admin/rolemanagement to manager-role.html");
-                return "home/adminhome/manager-role";
+                logger.info("Data sent from /admin/rolemanagement to manage-role.html");
+                return "home/adminhome/manage-role";
             }
 
         } catch (Exception e) {

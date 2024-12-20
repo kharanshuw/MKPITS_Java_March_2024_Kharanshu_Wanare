@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALL USERS</title>
-
+    <title>Document</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -153,6 +152,30 @@
             /* Adjust the margin value as needed */
         }
     </style>
+    <!-- navbar style end -->
+
+    <!-- go back button  -->
+    <style>
+        .go-back-btn {
+            margin-top: 20px;
+        }
+
+        .go-back-btn .btn {
+            background-color: #004080;
+            /* Navy Blue */
+            color: white;
+            border: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            text-transform: uppercase;
+        }
+
+        .go-back-btn .btn:hover {
+            background-color: #002d5f;
+            /* Darker Navy Blue */
+        }
+    </style>
+    <!-- go back button end -->
 </head>
 
 <body>
@@ -178,48 +201,68 @@
 
 
 
+
     <!-- main container start -->
 
     <div class="container mt-5 ">
-        <div class="fs-1 lead d-flex justify-content-center mb-3  " style="font-weight: 800; font-size: 30px; text-decoration: underline; color: #004080;">
-            ALL USERS DETAILS
+        <div class="fs-1 lead d-flex justify-content-center mb-3 text-uppercase "
+            style="font-weight: 800; font-size: 30px; color: #004080; text-decoration: underline;">
+            Pending Request
         </div>
         <table class="table table-bordered table-hover ">
             <thead class="table-primary">
-                <tr >
+                
 
-                    <th>ID</th>
-                    <th>FNAME</th>
-                    <th>LNAME</th>
-                    <th>GENDER</th>
-                    <th>PHONENO</th>
-                    <th>ROLES</th>
-                    <th>EMAIL</th>
-
-
+                <tr>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
                 </tr>
+
+              
+
+
+
             </thead>
+
+
             <tbody>
 
-                <tr class="align-middle" th:each="u : ${users}" style="height: auto;">
 
-                    <td th:text="${u.getId()}">ID</td>
-                    <td th:text="${u.getFname()}">FNAME</td>
-                    <td th:text="${u.getLname()}">LNAME</td>
-                    <td th:text="${u.getGender()}">GENDER</td>
-                    <td th:text="${u.getPhoneno()}">PHONENO</td>
-                    <td>
-    
-                        <ul>
-                            <li th:each="role : ${u.getrolestring()}" th:text="${role}"  class="list-unstyled mb-0">ADMIN </li>
-                            
-                        </ul>
-    
-                    </td>
-                    <td th:text="${u.getEmail()}">pratik@gmail.com</td>
-                </tr>
+              
+            <tr th:each="u:${users}">
+                <td th:text="${u.getId()}">1</td>
+                <td th:text="${u.getEmail()}">pratik@gmail.com</td>
+                <td>
+
+                    <ul>
+                        <li th:each="ua : ${u.getrolestring()}" th:text="${ua}"  class="list-unstyled ">
+                          
+                        </li>
+                    </ul>
+
+                </td>  
+
+
+                <td class="action d-flex flex-row justify-content-center gap-3 border-0">
+                    <a th:href="@{/admin/addrolepage(a=${'addrole'} , id=${u.id})}" class="btn btn-primary btn-lg text-dark-100">
+                        Add Role
+                    </a>
+                    <a th:href="@{/admin/removerolepage(a=${'remove'} , id=${u.id})}"  class="btn btn-danger btn-lg text-dark-100">
+                        Remove Role
+                    </a>
+                </td>
+
+
+
+            </tr>
+
 
                 
+
+
+
             </tbody>
         </table>
     </div>
@@ -227,12 +270,18 @@
     <!-- main container end -->
 
 
+
+
+
+
     <!-- go back button start -->
 
-    <div class="border-5 d-flex flex-row  justify-content-center ">
-        <a th:href="@{/admin/home}" class="btn btn-primary  text-uppercase "   >GO BACK</a>
+    <div class="border-5 d-flex flex-row  justify-content-center go-back-btn ">
+        <a th:href="@{/admin/home}" class="btn btn-primary btn-lg  text-uppercase ">GO BACK</a>
     </div>
     <!-- go back button end  -->
+
+
 </body>
 
 </html>
