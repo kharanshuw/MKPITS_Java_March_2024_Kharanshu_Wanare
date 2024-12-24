@@ -5,160 +5,321 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank Manager Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+
+    <!-- navbar style -->
     <style>
         body {
-                        display: flex;
-            height: 100vh;
-            overflow: hidden;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            /* Light Gray */
         }
 
-        .sidebar {
-                    height: 100vh;
-                    width: 250px;
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    background-color: #343a40;
-                    color: white;
-                    padding-top: 20px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                }
-
-                .sidebar .nav-links {
-                    flex: 1;
-                }
-
-                .sidebar h2 {
-                    margin-bottom: 30px;
-                }
-
-                .sidebar a {
-                    color: white;
-                    padding: 15px 20px;
-                    text-decoration: none;
-                    display: block;
-                    transition: background 0.3s, padding 0.3s;
-                }
-
-                .sidebar a:hover {
-                    background-color: #575d63;
-                    padding-left: 30px;
-                }
-
-                .sidebar .btn-logout {
-                    margin: 20px;
-                    padding: 10px;
-                    text-align: center;
-                    background-color: #dc3545;
-                    border: none;
-                    color: white;
-                    cursor: pointer;
-                    transition: background 0.3s;
-                }
-
-                .sidebar .btn-logout:hover {
-                    background-color: #c82333;
-                }
 
 
-        .content {
-            margin-left: 250px;
-            padding: 20px;
-            width: calc(100% - 250px);
+        .navbar {
+            color: white;
+            background-color: #004080;
+            /* Navy Blue */
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
         }
 
-        .card {
-            margin-bottom: 20px;
+        .btn-login,
+        .btn-register {
+            color: #004080;
+            /* Navy Blue */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
         }
 
-        .card-title {
+        .btn-login {
+            background-color: #FFFFFF;
+            /* White */
+        }
+
+        .btn-register {
+            background-color: #FFD700;
+            /* Gold */
+        }
+
+        .btn-login:hover,
+        .btn-register:hover {
+            opacity: 0.8;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            background-color: #004080;
+            /* Navy Blue */
+            color: #FFD700;
+            /* Gold */
+            padding: 10px 20px;
+            border-radius: 50%;
+            font-size: 18px;
             font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            margin-top: 20px;
+            flex: 1;
+        }
+
+        /* logout button */
+        .btn-login,
+        .btn-register,
+        .btn-logout {
+            color: #004080;
+            /* Navy Blue */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #FFFFFF;
+            display: inline;
+            vertical-align: middle;
+            /* White for login and logout */
+        }
+
+        .btn-register {
+            background-color: #FFD700;
+            /* Gold */
+        }
+
+        .btn-login:hover,
+        .btn-register:hover,
+        .btn-logout:hover {
+            opacity: 0.8;
+        }
+
+
+        .btn-logout {
+            background-color: #FF0000;
+            /* Red */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-logout:hover {
+            opacity: 0.8;
+        }
+
+        /* logout button end */
+        /* login button  */
+        .btn-login {
+            background-color: #28a745;
+            /* Green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-login:hover {
+            opacity: 0.8;
+        }
+
+        /* Spacing for navbar elements */
+        .d-flex.gap-3>* {
+            margin-left: 10px;
+            /* Adjust the margin value as needed */
         }
     </style>
+    <!-- navbar style end -->
+
+
+    <!-- footer style start  -->
+
+    <style>
+        /* footer style start */
+
+        footer {
+            background-color: #001f3f;
+            /* Darker Navy Blue */
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+
+            bottom: 2px;
+        }
+
+        footer a {
+            color: #FFD700;
+            /* Gold */
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-social-buttons .btn {
+            background-color: #001f3f;
+            border: none;
+            color: white;
+        }
+
+        .footer-social-buttons .btn:hover {
+            background-color: #004080;
+        }
+
+        /* footer style end  */
+    </style>
+    <!-- footer style end  -->
+
+
+
+
+    <!-- main container start -->
+
+    <style>
+        /* main container start */
+        .main-container {
+            display: flex;
+            flex-wrap: wrap;
+            /* Enable flex wrap */
+            margin-top: 20px;
+            flex: 1;
+        }
+
+        .flex-item {
+            flex: 1 1 30%;
+            /* Flex item with basis of 30% */
+            padding: 10px;
+            margin: 10px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* No fixed height */
+        }
+
+
+
+        /* main container end  */
+    </style>
+    <!-- main container end  -->
+
 </head>
 
 <body>
 
-<!-- Sidebar -->
-<div class="sidebar">
-    <div>
-        <h2 class="text-center">Sphere Bank</h2>
-        <div class="nav-links">
-            <a th:href="@{/manager/home}">Dashboard</a>
-            <a th:href="@{/manager/profile}">Profile-Data</a>
-            <a href="#accounts">Accounts</a>
-            <a href="#loans">Loans</a>
-            <a href="#reports">Reports</a>
-            <a href="#settings">Settings</a>
+    <!-- Navbar start -->
+    <div class="container-fluid navbar ">
+        <div class="logo-container">
+            <div class="logo">
+                SPHEREBANK
+            </div>
         </div>
-    </div>
-    <form th:action="@{/logout}" method="post">
-        <button type="submit" class="btn-logout">Logout</button>
-    </form>
-</div>
+        <div class="d-flex gap-3 flex-row   align-items-center  ">
+            <a th:href="@{/login}" class="btn btn-login">LOGIN</a>
+            <a th:href="@{/register}" class="btn btn-register">REGISTER</a>
 
-<!-- Main Content -->
-<div class="content">
-    <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Dashboard</a>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+            <form action="#" th:action="@{/logout}" method="post" class="p-0 ml-2">
+                <input type="submit" value="Logout" class="btn-logout">
             </form>
-        </div>
-    </nav>
 
-    <div class="container mt-4">
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-3">
-                <div class="card text-white bg-primary h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Total Accounts</h5>
-                        <p class="card-text">1,250</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card text-white bg-success h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Active Loans</h5>
-                        <p class="card-text">550</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card text-white bg-warning h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Pending Approvals</h5>
-                        <p class="card-text">75</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card text-white bg-danger h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Overdue Accounts</h5>
-                        <p class="card-text">20</p>
-                    </div>
-                </div>
-            </div>
+
+        </div>
+    </div>
+    <!-- Navbar end -->
+
+
+
+
+    <!-- main content start -->
+
+    <div class="container main-container  ">
+
+        <div class="flex-item text-uppercase fw-bold  fs-6 ">
+            <p>MANAGER HOME</p>
+            <a th:href="@{/manager/home}" class="btn btn-primary">home</a>
         </div>
 
-        <!-- Additional content can go here -->
+        <div class="flex-item  text-uppercase fw-bold  fs-6  ">
+            <p>MANAGER PROFILE DATA</p>
+            <a th:href="@{/manager/profile}" class="btn btn-primary">profile</a>
+        </div>
+
+
+        <div class="flex-item  text-uppercase fw-bold  fs-6   ">
+            <p>HOME</p>
+            <a th:href="@{/}" class="btn btn-primary">home</a>
+        </div>
+
+
 
     </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <!-- main content end -->
+
+
+
+    <!-- Footer start -->
+    <footer class="position-relative bottom-1">
+        <div class="footer-social-buttons d-flex justify-content-center py-5">
+            <button type="button" class="btn btn-lg btn-floating mx-2">
+                <i class="fab fa-facebook"></i>
+            </button>
+            <button type="button" class="btn btn-lg btn-floating mx-2">
+                <i class="fab fa-youtube"></i>
+            </button>
+            <button type="button" class="btn btn-lg btn-floating mx-2">
+                <i class="fab fa-instagram"></i>
+            </button>
+            <button type="button" class="btn btn-lg btn-floating mx-2">
+                <i class="fab fa-twitter"></i>
+            </button>
+        </div>
+
+        <div class="text-center p-3" style="background-color: #0e345a;">
+            © 2024 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">@SPHERE BANK</a>
+        </div>
+    </footer>
+    <!-- Footer end -->
+
+
 </body>
 
 </html>

@@ -6,207 +6,338 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manager Profile Data</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- navbar style -->
     <style>
         body {
             display: flex;
-            height: 100vh;
-            overflow: hidden;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
-        }
-
-        .sidebar {
-            height: 100vh;
-            width: 250px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: #343a40;
-            color: white;
-            padding-top: 20px;
-            display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            /* Light Gray */
         }
 
-        .sidebar .nav-links {
+
+
+        .navbar {
+            color: white;
+            background-color: #004080;
+            /* Navy Blue */
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .btn-login,
+        .btn-register {
+            color: #004080;
+            /* Navy Blue */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-login {
+            background-color: #FFFFFF;
+            /* White */
+        }
+
+        .btn-register {
+            background-color: #FFD700;
+            /* Gold */
+        }
+
+        .btn-login:hover,
+        .btn-register:hover {
+            opacity: 0.8;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            background-color: #004080;
+            /* Navy Blue */
+            color: #FFD700;
+            /* Gold */
+            padding: 10px 20px;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            margin-top: 20px;
             flex: 1;
         }
 
-        .sidebar h2 {
-            margin-bottom: 30px;
-        }
-
-        .sidebar a {
-            color: white;
-            padding: 15px 20px;
-            text-decoration: none;
-            display: block;
-            transition: background 0.3s, padding 0.3s;
-        }
-
-        .sidebar a:hover {
-            background-color: #575d63;
-            padding-left: 30px;
-        }
-
-        .sidebar .btn-logout {
-            margin: 20px;
-            padding: 10px;
-            text-align: center;
-            background-color: #dc3545;
+        /* logout button */
+        .btn-login,
+        .btn-register,
+        .btn-logout {
+            color: #004080;
+            /* Navy Blue */
+            padding: 10px 20px;
             border: none;
-            color: white;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .sidebar .btn-logout:hover {
-            background-color: #c82333;
-        }
-
-        .content {
-            margin-left: 250px;
-            padding: 20px;
-            width: calc(100% - 250px);
-            overflow-y: auto;
-        }
-
-        .card {
-            margin-bottom: 20px;
-        }
-
-        .card-title {
-            font-weight: bold;
-        }
-
-        .profile-info h2 {
-            margin-bottom: 20px;
-            color: #007bff;
-        }
-
-        .profile-info p {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
-
-        .profile-info h1 {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #343a40;
-        }
-
-        .profile-info strong {
-            display: block;
-            margin-bottom: 10px;
-            color: #555;
-        }
-
-        .profile-info ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .profile-info ul li {
-            background-color: #e9ecef;
-            padding: 5px 10px;
             border-radius: 5px;
-            margin-bottom: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #FFFFFF;
+            display: inline;
+            vertical-align: middle;
+            /* White for login and logout */
+        }
+
+        .btn-register {
+            background-color: #FFD700;
+            /* Gold */
+        }
+
+        .btn-login:hover,
+        .btn-register:hover,
+        .btn-logout:hover {
+            opacity: 0.8;
+        }
+
+
+        .btn-logout {
+            background-color: #FF0000;
+            /* Red */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-logout:hover {
+            opacity: 0.8;
+        }
+
+        /* logout button end */
+        /* login button  */
+        .btn-login {
+            background-color: #28a745;
+            /* Green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-login:hover {
+            opacity: 0.8;
+        }
+
+        /* Spacing for navbar elements */
+        .d-flex.gap-3>* {
+            margin-left: 10px;
+            /* Adjust the margin value as needed */
         }
     </style>
+    <!-- navbar style end -->
+
+    <!-- go back button  -->
+    <style>
+        .go-back-btn {
+            margin-top: 20px;
+        }
+
+        .go-back-btn .btn {
+            background-color: #004080;
+            /* Navy Blue */
+            color: white;
+            border: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            text-transform: uppercase;
+        }
+
+        .go-back-btn .btn:hover {
+            background-color: #002d5f;
+            /* Darker Navy Blue */
+        }
+    </style>
+    <!-- go back button end -->
+
+
+
+    <!-- main container style start -->
+    <style>
+        .main-container {
+            padding: 20px;
+        }
+
+        .main-container h1 {
+            font-size: 1.5rem;
+            color: #004080;
+            /* Navy Blue */
+        }
+
+        .main-container span,
+        .main-container li {
+            font-size: 1.2rem;
+            color: #000;
+            /* Black */
+        }
+
+        .main-container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .main-container ul li {
+            padding: 5px 0;
+        }
+    </style>
+    <!-- main container style end -->
+
 </head>
 
 <body>
 
-<!-- Sidebar -->
-<div class="sidebar">
-    <div>
-        <h2 class="text-center">Sphere Bank</h2>
-        <div class="nav-links">
-            <a th:href="@{/manager/home}">Dashboard</a>
-            <a th:href="@{/manager/profile}">Profile-Data</a>
-            <a href="#accounts">Accounts</a>
-            <a href="#loans">Loans</a>
-            <a href="#reports">Reports</a>
-            <a href="#settings">Settings</a>
-        </div>
-    </div>
-    <form th:action="@{/logout}" method="post">
-        <button type="submit" class="btn-logout">Logout</button>
-    </form>
-</div>
 
-<!-- Main Content -->
-<div class="content">
-    <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Dashboard</a>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+
+
+    <!-- Navbar start -->
+    <div class="container-fluid navbar ">
+        <div class="logo-container">
+            <div class="logo">
+                SPHEREBANK
+            </div>
+        </div>
+        <div class="d-flex gap-3 flex-row   align-items-center  ">
+            <a th:href="@{/login}" class="btn btn-login">LOGIN</a>
+            <a th:href="@{/register}" class="btn btn-register">REGISTER</a>
+
+            <form action="#" th:action="@{/logout}" method="post" class="p-0 ml-2">
+                <input type="submit" value="Logout" class="btn-logout">
             </form>
+
+
         </div>
-    </nav>
-
-    <div class="container mt-4 profile-info">
-        <!-- Manager Profile Information -->
-        <h2>Manager Profile Information</h2>
-
-        <p>
-        <h1>Manager ID:</h1>
-        <strong th:text="${user.getId()}"></strong>
-        </p>
-        <p>
-        <h1>Manager Email:</h1>
-        <strong th:text="${user.getEmail()}"></strong>
-        </p>
-        <p>
-        <h1>Manager First Name:</h1>
-        <strong th:text="${user.getFname()}"></strong>
-        </p>
-        <p>
-        <h1>Manager Last Name:</h1>
-        <strong th:text="${user.getLname()}"></strong>
-        </p>
-        <p>
-        <h1>Manager Gender:</h1>
-        <strong th:text="${user.getGender()}"></strong>
-        </p>
-        <p>
-        <h1>List of Roles of Manager:</h1>
-        <ul>
-            <li th:each="ua : ${roles}" th:text="${ua}"></li>
-        </ul>
-        </p>
-        <p>
-        <h1>Manager Phone No:</h1>
-        <strong th:text="${user.getPhoneno()}"></strong>
-        </p>
-        <p>
-        <h1>Manager City Name:</h1>
-        <strong th:text="${user.getCitynameString()}"></strong>
-        </p>
-        <p>
-        <h1>Manager District Name:</h1>
-        <strong th:text="${user.getDistrictnameString()}"></strong>
-        </p>
-        <p>
-        <h1>Manager State Name:</h1>
-        <strong th:text="${user.getStateString()}"></strong>
-        </p>
-        <p>
-        <h1>Manager Country Name:</h1>
-        <strong th:text="${user.getCountryString()}"></strong>
-        </p>
     </div>
-</div>
+    <!-- Navbar end -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+
+
+
+
+
+    <!-- main container start -->
+    <div class="container mt-5 p-4 bg-white shadow-lg   border rounded">
+        <h2 class="text-uppercase text-center fs-1 fw-bold text-primary mb-4">MANAGER Profile Information</h2>
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label fw-bold">User ID:</label>
+            <div class="col-sm-9">
+                <span th:text="${user.getId()}" class="text-uppercase">1</span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label fw-bold">Email:</label>
+            <div class="col-sm-9">
+                <span th:text="${user.getEmail()}" class="text-uppercase">pratik@gmail.com</span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label fw-bold">First Name:</label>
+            <div class="col-sm-9">
+                <span th:text="${user.getFname()}" class="text-uppercase">KHARANSHU</span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label fw-bold">Last Name:</label>
+            <div class="col-sm-9">
+                <span th:text="${user.getLname()}" class="text-uppercase">WANARE</span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label fw-bold">Gender:</label>
+            <div class="col-sm-9">
+                <span th:text="${user.getGender()}" class="text-uppercase">MALE</span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label fw-bold">Roles:</label>
+            <div class="col-sm-9">
+                <ul class="list-unstyled">
+                    <li th:each="ua : ${roles}" th:text="${ua}" class="text-uppercase">ADMIN</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label fw-bold">Phone No:</label>
+            <div class="col-sm-9">
+                <span th:text="${user.getPhoneno()}" class="text-uppercase">9689025233</span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label fw-bold">City:</label>
+            <div class="col-sm-9">
+                <span th:text="${user.getCitynameString()}" class="text-uppercase">NAGPUR</span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label fw-bold">District:</label>
+            <div class="col-sm-9">
+                <span th:text="${user.getDistrictnameString()}" class="text-uppercase">NAGPUR</span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label fw-bold">State:</label>
+            <div class="col-sm-9">
+                <span th:text="${user.getStateString()}" class="text-uppercase">MAHARASHTRA</span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label fw-bold">Country:</label>
+            <div class="col-sm-9">
+                <span th:text="${user.getCountryString()}" class="text-uppercase">INDIA</span>
+            </div>
+        </div>
+
+        <div class="border-5 d-flex flex-row  justify-content-center ">
+            <a th:href="@{/admin/home}" class="btn btn-primary  text-uppercase ">GO BACK</a>
+        </div>
+    </div>
+    <!-- main container end -->
+
+
+
+
+
+
+
 </body>
 
 </html>

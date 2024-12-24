@@ -3,6 +3,7 @@ package com.bankapplication.service;
 import com.bankapplication.dto.ProfileUpdateDto;
 import com.bankapplication.dto.RequestDto;
 import com.bankapplication.dto.ResponseDto;
+import com.bankapplication.exceptionhandler.DuplicateEntryException;
 import com.bankapplication.model.City;
 import com.bankapplication.model.Role;
 import com.bankapplication.model.UserDetails;
@@ -15,6 +16,7 @@ import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -162,9 +164,18 @@ public class UserServiceImpl implements UserService {
             Users savedUser = userRepository.save(users);
             logger.info("user successfully saved in user service " + savedUser.toString());
             logger.info("Successfully registered user in user service.");
-        } catch (Exception e) {
+
+        }
+        //catch duplicate number exception
+        catch (DataIntegrityViolationException e) {
+            logger.info("mobile number alredy exist exception ");
+            throw new DuplicateEntryException("mobile number alredy exist.");
+        }
+        //catch runtime exception 
+        catch (Exception e) {
             // Log any errors in saving the user
             logger.error("Error saving user: " + e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
         // Return the original request DTO
         return requestDto;
@@ -236,8 +247,7 @@ public class UserServiceImpl implements UserService {
 
         responseDto.setGender(users.getUserDetails().getGender());
         logger.debug("Setting Gender: {}", users.getUserDetails().getGender());
-        
-        
+
 
         responseDto.setPhoneno(users.getUserDetails().getPhoneno());
         logger.debug("Setting Phone Number: {}", users.getUserDetails().getPhoneno());

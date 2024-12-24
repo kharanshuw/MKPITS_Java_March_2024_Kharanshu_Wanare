@@ -1,4 +1,8 @@
-use bankmanagement;;
+CREATE DATABASE bankmanagement;
+
+use bankmanagement;
+
+DROP DATABASE bankmanagement;
 
 SELECT * FROM role 
 
@@ -12,13 +16,20 @@ SELECT * from role;
 
 SELECT * from account_type
 
-SELECT * from branch
+SELECT * from branch;
+TRUNCATE TABLE branch;
 
 SELECT * from state;
 
 SELECT * from account_type;
 
 SELECT * from district;
+
+TRUNCATE TABLE district
+
+SELECT * from City
+
+TRUNCATE TABLE City
 
 SELECT * from ACCOUNT;
 
@@ -130,6 +141,7 @@ INSERT INTO state (state_name, country_id,state_code) VALUES ('Andaman & Nicobar
 INSERT INTO state (state_name, country_id,state_code) VALUES ('Ladakh', 1,38);
 
 
+SELECT * from district;
 
 INSERT INTO district (district_name, state_id) VALUES ('Ahmednagar', 14);
 INSERT INTO district (district_name, state_id) VALUES ('Akola', 14);
@@ -169,6 +181,8 @@ INSERT INTO district (district_name, state_id) VALUES ('Washim', 14);
 INSERT INTO district (district_name, state_id) VALUES ('Yavatmal', 14);
 
 
+SELECT * from City;
+
 INSERT INTO City (city_name, district_id) VALUES ('Nagpur', 21);
 INSERT INTO City (city_name, district_id) VALUES ('Ramtek', 21);
 INSERT INTO City (city_name, district_id) VALUES ('Umred', 21);
@@ -191,41 +205,4 @@ INSERT INTO City (city_name, district_id) VALUES ('Yerkheda', 21);
 
 
 EACH district is assigned with Census District Codes
-
-1, 15, Ahmednagar, 522
-2, 15, Akola, 501
-3, 15, Amravati, 503
-4, 15, Aurangabad, 515
-5, 15, Beed, 523
-6, 15, Bhandara, 506
-7, 15, Buldhana, 500
-8, 15, Chandrapur, 509
-9, 15, Dhule, 498
-10, 15, Gadchiroli, 508
-11, 15, Gondia, 507
-12, 15, Hingoli, 512
-13, 15, Jalgaon, 499
-14, 15, Jalna, 514
-15, 15, Kolhapur, 530
-16, 15, Latur, 524
-17, 15, Mumbai City, 518
-19, 15, Nanded, 511
-20, 15, Nandurbar, 497
-21, 15, Nagpur, 505
-22, 15, Nashik, 516
-23, 15, Osmanabad, 525
-24, 15, Palghar, 552
-25, 15, Parbhani, 513
-26, 15, Pune, 521
-27, 15, Raigad, 520
-28, 15, Ratnagiri, 528
-29, 15, Sangli, 531
-30, 15, Satara, 527
-31, 15, Sindhudurg, 529
-32, 15, Solapur, 526
-33, 15, Thane, 517
-34, 15, Wardha, 504
-35, 15, Washim, 502
-36, 15, Yavatmal, 510
-
 

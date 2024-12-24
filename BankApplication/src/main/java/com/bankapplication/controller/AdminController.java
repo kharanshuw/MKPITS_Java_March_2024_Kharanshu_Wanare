@@ -2,6 +2,7 @@ package com.bankapplication.controller;
 
 import com.bankapplication.dto.RequstBranchDto;
 import com.bankapplication.dto.ResponseDto;
+import com.bankapplication.exceptionhandler.DuplicateEntryException;
 import com.bankapplication.getapplicationcontext.UserServiceAppContext;
 import com.bankapplication.model.Country;
 import com.bankapplication.service.AdminService;
@@ -438,7 +439,14 @@ public class AdminController {
                 logger.warn("Branch creation failed for email: {}", requstBranchDto.getEmail());
                 return "branch/error";
             }
-        } catch (Exception e) {
+        } catch (DuplicateEntryException e) {
+            // Log unexpected exceptions
+            logger.error("Error occurred while creating the branch: {}", e.getMessage());
+            model.addAttribute("e", e.getMessage());
+            return "error/error";
+
+        }
+        catch (Exception e) {
             // Log unexpected exceptions
             logger.error("Error occurred while creating the branch: {}", e.getMessage());
             model.addAttribute("e", "Unable to load the form at this moment. Please try again later.");

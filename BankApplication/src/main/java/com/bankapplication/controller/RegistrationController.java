@@ -1,6 +1,7 @@
 package com.bankapplication.controller;
 
 import com.bankapplication.dto.RequestDto;
+import com.bankapplication.exceptionhandler.DuplicateEntryException;
 import com.bankapplication.model.Country;
 import com.bankapplication.service.CountryService;
 import com.bankapplication.service.UserServiceImpl;
@@ -115,6 +116,18 @@ public class RegistrationController {
         return "redirect:/successful";
     }
 
+    /**
+     * This method handles all exceptions that are not explicitly caught elsewhere in the application.
+     * It is annotated with @ExceptionHandler to indicate that it should be invoked when an Exception is thrown.
+     */
+    @ExceptionHandler(DuplicateEntryException.class)
+    public String handleDuplicateException(DuplicateEntryException exception, Model model) {
+        logger.error("exception occured duplicate number found");
+        logger.error(exception.toString());
+        model.addAttribute("e", exception.getMessage());
+        model.addAttribute("r", HttpStatus.BAD_REQUEST);
+        return "error/error";
+    }
 
     /**
      * This method handles all exceptions that are not explicitly caught elsewhere in the application.

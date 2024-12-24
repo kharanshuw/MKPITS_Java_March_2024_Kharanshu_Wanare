@@ -2,6 +2,7 @@ package com.bankapplication.service;
 
 import com.bankapplication.dto.RequstBranchDto;
 import com.bankapplication.dto.ResponseDto;
+import com.bankapplication.exceptionhandler.DuplicateEntryException;
 import com.bankapplication.exceptionhandler.UserNotFoundException;
 import com.bankapplication.exceptionhandler.UserRetrievalException;
 import com.bankapplication.model.Branch;
@@ -14,6 +15,7 @@ import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -436,7 +438,7 @@ public class AdminServiceImpl implements AdminService {
             Branch branch = convertToBranch(requstBranchDto);
 
             // Log the branch details (for debugging purposes)
-            logger.info("requestbranchdto converted to branch object"+branch.toString());
+            logger.info("requestbranchdto converted to branch object" + branch.toString());
 
             String bankCode = "SPHE";
 
@@ -447,6 +449,8 @@ public class AdminServiceImpl implements AdminService {
             Branch branch1 = branchRepository.save(branch);
             logger.info("branch saved successfully is " + branch1.toString());
             result = true;
+        } catch (DataIntegrityViolationException e) {
+            throw new DuplicateEntryException("mobile number alredy exist.");
         } catch (UserNotFoundException e) {
             // Handle case where city is not found
             logger.error(e.getMessage());

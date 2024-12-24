@@ -34,4 +34,11 @@ public class MyExceptionHandler {
         return "error/error";
     }
 
+    @ExceptionHandler(DuplicateEntryException.class)
+    public String handleDuplicateEntryException(DuplicateEntryException duplicateEntryException, Model model) {
+        model.addAttribute("e", duplicateEntryException.getMessage());
+        model.addAttribute("r", "USE UNIQUE MOBILE NO");
+        logger.error("duplication mobile no used exception occured");
+        return "error/error";
+    }
 }
