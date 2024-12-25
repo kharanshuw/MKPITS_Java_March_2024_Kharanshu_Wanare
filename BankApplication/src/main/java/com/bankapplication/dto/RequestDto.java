@@ -42,7 +42,7 @@ public class RequestDto {
     @Past(message = "Date of birth must be in the past")
     @DateTimeFormat(pattern = "YYYY-MM-DD")
     private LocalDate dob;
-
+    private int cityid;
 
     public @Past(message = "Date of birth must be in the past") LocalDate getDob() {
         return dob;
@@ -51,8 +51,6 @@ public class RequestDto {
     public void setDob(@Past(message = "Date of birth must be in the past") LocalDate dob) {
         this.dob = dob;
     }
-
-    private int cityid;
 
     public String getPassword() {
         return password;

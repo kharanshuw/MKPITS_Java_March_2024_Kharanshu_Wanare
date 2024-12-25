@@ -42,6 +42,25 @@ public class Users {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> role;
 
+    // parametarized constructor
+    public Users(int id,
+                 @Size(min = 8, max = 128, message = "password length must be between 0 to 128") @NotEmpty(message = "password should not be empty") @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,128}$", message = "Password must meet requirements (8-128 chars, uppercase, lowercase, digit, special char)") String password,
+                 @NotEmpty(message = "email should not be empty") @NotNull(message = "email should not be empty") String email,
+                 boolean isActive, UserDetails userDetails, Set<Role> role) {
+        super();
+        this.id = id;
+        this.password = password;
+        this.email = email;
+        this.isActive = isActive;
+        this.userDetails = userDetails;
+        this.role = role;
+    }
+
+    public Users() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
     public int getId() {
         return id;
     }
@@ -85,26 +104,6 @@ public class Users {
 
     public void setRole(Set<Role> role) {
         this.role = role;
-    }
-
-
-    // parametarized constructor
-    public Users(int id,
-                 @Size(min = 8, max = 128, message = "password length must be between 0 to 128") @NotEmpty(message = "password should not be empty") @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,128}$", message = "Password must meet requirements (8-128 chars, uppercase, lowercase, digit, special char)") String password,
-                 @NotEmpty(message = "email should not be empty") @NotNull(message = "email should not be empty") String email,
-                 boolean isActive, UserDetails userDetails, Set<Role> role) {
-        super();
-        this.id = id;
-        this.password = password;
-        this.email = email;
-        this.isActive = isActive;
-        this.userDetails = userDetails;
-        this.role = role;
-    }
-
-    public Users() {
-        super();
-        // TODO Auto-generated constructor stub
     }
 
     // this method is used to add new role for user

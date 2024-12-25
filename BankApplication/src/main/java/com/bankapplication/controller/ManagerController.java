@@ -17,11 +17,9 @@ import java.util.ArrayList;
 @RequestMapping("/manager")
 public class ManagerController {
 
-    private UserServiceAppContext userServiceAppContext;
-
-    private UserService userService;
-
     private static final Logger logger = LoggerFactory.getLogger(ManagerController.class);
+    private UserServiceAppContext userServiceAppContext;
+    private UserService userService;
 
     @Autowired
     public ManagerController(UserServiceAppContext userServiceAppContext, UserService userService) {

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Login Bank</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
@@ -272,60 +272,60 @@
 </head>
 
 <body>
-    <div class="login-form">
-        <h1>Bank Login</h1>
-        <div class="container">
-            <div class="main">
-                <div class="content">
-                    <h2>Log In</h2>
-                    <form th:action="@{/authenticatetheuser}" method="post">
-                        <input type="text" name="username" placeholder="User Name" required autofocus="autofocus">
+<div class="login-form">
+    <h1>Bank Login</h1>
+    <div class="container">
+        <div class="main">
+            <div class="content">
+                <h2>Log In</h2>
+                <form method="post" th:action="@{/authenticatetheuser}">
+                    <input autofocus="autofocus" name="username" placeholder="User Name" required type="text">
 
 
-                        <input type="password" name="password" placeholder="User Password" required
-                            autofocus="autofocus">
+                    <input autofocus="autofocus" name="password" placeholder="User Password" required
+                           type="password">
 
 
-                        <button href="#" class="button" style="--clr: #7808d0" type="submit">
+                    <button class="button" href="#" style="--clr: #7808d0" type="submit">
                             <span class="button__icon-wrapper">
-                                <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                    class="button__icon-svg" width="10">
+                                <svg class="button__icon-svg" fill="none" viewBox="0 0 14 15"
+                                     width="10" xmlns="http://www.w3.org/2000/svg">
                                     <path
-                                        d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                                        fill="currentColor"></path>
+                                            d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                                            fill="currentColor"></path>
                                 </svg>
 
-                                <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-                                    class="button__icon-svg button__icon-svg--copy">
+                                <svg class="button__icon-svg button__icon-svg--copy" fill="none" viewBox="0 0 14 15" width="10"
+                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
-                                        d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                                        fill="currentColor"></path>
+                                            d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                                            fill="currentColor"></path>
                                 </svg>
                             </span>
-                            submit
-                        </button>
+                        submit
+                    </button>
 
-                    </form>
-                    <p class="account">
+                </form>
+                <p class="account">
 
-                        Don't Have An Account? <a href="#" th:href="@{/register}">Register</a>
+                    Don't Have An Account? <a href="#" th:href="@{/register}">Register</a>
 
 
-                    </p>
-                    <div th:if="${param.error}" class="login-error">
-                        <i>Sorry you have entered wrong credentials</i>
-                    </div>
-                    <div th:if="${param.logout}" class="logout">
-                        <i>You have been logged out.</i>
-                    </div>
+                </p>
+                <div class="login-error" th:if="${param.error}">
+                    <i>Sorry you have entered wrong credentials</i>
                 </div>
-                <div class="form-img">
-                    <img src="https://img.freepik.com/free-vector/bank-login-concept-illustration_114360-7874.jpg?w=740&t=st=1727177252~exp=1727177852~hmac=093be8d5ac0e109a653965188b00dc620a09b2e4b093483d25255ee2f6d83638"
-                        alt="img">
+                <div class="logout" th:if="${param.logout}">
+                    <i>You have been logged out.</i>
                 </div>
+            </div>
+            <div class="form-img">
+                <img alt="img"
+                     src="https://img.freepik.com/free-vector/bank-login-concept-illustration_114360-7874.jpg?w=740&t=st=1727177252~exp=1727177852~hmac=093be8d5ac0e109a653965188b00dc620a09b2e4b093483d25255ee2f6d83638">
             </div>
         </div>
     </div>
+</div>
 </body>
 
 </html>

@@ -64,8 +64,7 @@ public class City {
         this.userDetailsList = userDetailsList;
     }
 
-    
-    
+
     @Override
     public String toString() {
         return "City{" +

@@ -2,9 +2,11 @@ package com.bankapplication.controller;
 
 import com.bankapplication.dto.ProfileUpdateDto;
 import com.bankapplication.dto.ResponseDto;
+import com.bankapplication.dto.response.ResponseAccountDto;
 import com.bankapplication.getapplicationcontext.UserServiceAppContext;
 import com.bankapplication.model.Country;
 import com.bankapplication.model.Users;
+import com.bankapplication.service.AccountService;
 import com.bankapplication.service.CountryService;
 import com.bankapplication.service.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,13 +21,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
 /*
-* this controller handles all the opration done by user
-* 
-* */
+ * this controller handles all the opration done by user
+ *
+ * */
 @Controller
 public class UserController {
 
@@ -33,16 +36,19 @@ public class UserController {
 
     private UserServiceImpl userService;
 
+    private AccountService accountService;
+
     private UserServiceAppContext userServiceAppContext;
 
     private CountryService countryService;
 
     @Autowired
-    public UserController(UserServiceImpl userService, UserServiceAppContext userServiceAppContext,
+    public UserController(UserServiceImpl userService, UserServiceAppContext userServiceAppContext, AccountService accountService,
                           CountryService countryService) {
         this.userService = userService;
         this.userServiceAppContext = userServiceAppContext;
         this.countryService = countryService;
+        this.accountService = accountService;
     }
 
     /**
@@ -176,18 +182,54 @@ public class UserController {
         return "home/userhome/updateprofile";
     }
 
+
     @PostMapping("/user/processupdate")
     public String processUpdate(@ModelAttribute("profileUpdateDto") ProfileUpdateDto profileUpdateDto) {
         System.out.println(profileUpdateDto.toString());
         return null;
     }
 
+    /**
+     * Handles the request to display the user home page after successful login.
+     *
+     * @return The view name for the user home page.
+     */
     @GetMapping("/user/home")
     public String userHome() {
+        // Log that the user home page is being called after successful login
         logger.info("User home page called after successful login inside UserController");
 
+        // Return the view name for the user home page
         return "home/userhome/userhome";
 
+    }
+
+    /**
+     * Handles the retrieval of user accounts and displays them in the model.
+     *
+     * @param principal The principal object representing the currently authenticated user.
+     * @param model     The model to add attributes to be used in the view.
+     * @return The view name to display the user's accounts.
+     */
+    @GetMapping("/user/accounts")
+    public String getUserAccounts(Principal principal, Model model) {
+        // Retrieve the email of the currently authenticated user
+        String userEmail = principal.getName();
+
+        // Retrieve the user based on their email
+        Users user = accountService.getUserByEmail(userEmail);
+        logger.info("user logged in is " + user.getId());
+
+        // Retrieve the user details ID
+        int userId = user.getUserDetails().getId();
+        logger.info("user details id is " + userId);
+
+        // Retrieve the list of accounts for the user
+        List<ResponseAccountDto> responseAccountDtoList = userService.getListOfAccounts(userId);
+
+        // Add the list of ResponseAccountDto objects to the model
+        model.addAttribute("list", responseAccountDtoList);
+        return "account/account-list";
     }
 
     /**

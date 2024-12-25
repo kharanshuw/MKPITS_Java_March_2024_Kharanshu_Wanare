@@ -3,15 +3,10 @@ package com.bankapplication.service;
 import com.bankapplication.dto.ProfileUpdateDto;
 import com.bankapplication.dto.RequestDto;
 import com.bankapplication.dto.ResponseDto;
+import com.bankapplication.dto.response.ResponseAccountDto;
 import com.bankapplication.exceptionhandler.DuplicateEntryException;
-import com.bankapplication.model.City;
-import com.bankapplication.model.Role;
-import com.bankapplication.model.UserDetails;
-import com.bankapplication.model.Users;
-import com.bankapplication.repository.CityRepository;
-import com.bankapplication.repository.RoleRepository;
-import com.bankapplication.repository.UserDetailsRepository;
-import com.bankapplication.repository.UserRepository;
+import com.bankapplication.model.*;
+import com.bankapplication.repository.*;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 // This class is a Spring Service that implements user-related operations
 
@@ -35,22 +31,26 @@ public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
 
+    private AccountRepository accountRepository;
+
     private UserDetailsRepository userDetailsRepository;
 
     private RoleRepository roleRepository;
 
     private CityRepository cityRepository;
 
+
     // Constructor for dependency injection
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, UserDetailsRepository userDetailsRepository,
-                           RoleRepository repository, CityRepository cityRepository) {
-        super();
+                           RoleRepository repository, CityRepository cityRepository, AccountRepository accountRepository) {
+
         this.userRepository = userRepository;
         this.userDetailsRepository = userDetailsRepository;
         this.roleRepository = repository;
         this.cityRepository = cityRepository;
+        this.accountRepository = accountRepository;
     }
 
     /**
@@ -404,6 +404,70 @@ public class UserServiceImpl implements UserService {
             System.out.println(e.getMessage());
         }
         return users;
+    }
+
+    /**
+     * Retrieves a list of ResponseAccountDto objects for a given user ID.
+     *
+     * @param id The user ID for which to retrieve the accounts.
+     * @return A list of ResponseAccountDto objects representing the user's accounts.
+     */
+    public List<ResponseAccountDto> getListOfAccounts(int id) {
+
+        // Retrieve the list of accounts for the given user ID
+        List<Account> accounts = accountRepository.findByUserId(id);
+
+        // Log if no accounts are found for the user ID
+        if (accounts.isEmpty()) {
+            logger.info("No accounts found for user ID: " + id);
+        }
+
+        List<ResponseAccountDto> responseAccountDtoList = new ArrayList<>();
+
+        // Convert the list of Account entities to ResponseAccountDto objects
+        for (Account account : accounts) {
+            logger.info("account is " + account.toString());
+            ResponseAccountDto responseAccountDto = convertToResponseAccountDto(account);
+            logger.info("responseAccountDto to be added in list is " + responseAccountDto.toString());
+            responseAccountDtoList.add(responseAccountDto);
+        }
+
+        // Return the list of ResponseAccountDto objects
+        return responseAccountDtoList;
+
+    }
+
+    /**
+     * Converts an Account entity to a ResponseAccountDto object.
+     *
+     * @param account The Account entity to convert.
+     * @return The corresponding ResponseAccountDto object.
+     */
+    public ResponseAccountDto convertToResponseAccountDto(Account account) {
+
+        logger.info("convertToResponseAccountDto method invoked ");
+        logger.info("account object recived is " + account.toString());
+
+        // Check if the account object is null and throw an exception if it is
+        if (Objects.isNull(account)) {
+            logger.error("account object is null");
+            throw new NullPointerException("account object is null ");
+        }
+
+        // Create a new ResponseAccountDto object
+        ResponseAccountDto responseAccountDto = new ResponseAccountDto();
+        responseAccountDto.setAccountNo(account.getAccountNumber());
+        responseAccountDto.setBalance(account.getBalance());
+        responseAccountDto.setAccountType(account.getAccountType().getType());
+        responseAccountDto.setBranch(account.getBranch().getBranchName());
+        responseAccountDto.setFname(account.getUserDetails().getFname());
+        responseAccountDto.setLname(account.getUserDetails().getLname());
+        responseAccountDto.setIfscCode(account.getIfscCode());
+
+        logger.info("response entity generated is " + responseAccountDto.toString());
+
+        // Return the ResponseAccountDto object
+        return responseAccountDto;
     }
 
 }

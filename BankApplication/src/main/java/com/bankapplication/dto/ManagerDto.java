@@ -18,6 +18,11 @@ public class ManagerDto {
         this.rolename = rolename;
     }
 
+    public ManagerDto() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
     public int getId() {
         return id;
     }
@@ -53,11 +58,6 @@ public class ManagerDto {
     @Override
     public String toString() {
         return "ManagerDto [id=" + id + ", fname=" + fname + ", lname=" + lname + ", rolename=" + rolename + "]";
-    }
-
-    public ManagerDto() {
-        super();
-        // TODO Auto-generated constructor stub
     }
 
     public String concatName() {

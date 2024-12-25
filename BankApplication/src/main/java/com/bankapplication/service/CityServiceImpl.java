@@ -20,9 +20,8 @@ import java.util.List;
 @Service
 public class CityServiceImpl implements CityService {
 
-    private CityRepository cityRepository;
-
     private static final Logger logger = LoggerFactory.getLogger(CityServiceImpl.class);
+    private CityRepository cityRepository;
 
     @Autowired
     public CityServiceImpl(CityRepository cityRepository) {

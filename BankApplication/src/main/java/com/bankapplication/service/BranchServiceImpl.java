@@ -160,11 +160,12 @@ public class BranchServiceImpl implements BranchService {
         return responseBranchDto;
     }
 
-    /** Converts branch object to ResponseDto class object
-    * this is 2nd method which is reponsible for converting  branch object to ResponseDto class object  *
-    * it takes object of branch class
-    * returns object of ReponseBranchDto class 
-    **/
+    /**
+     * Converts branch object to ResponseDto class object
+     * this is 2nd method which is reponsible for converting  branch object to ResponseDto class object  *
+     * it takes object of branch class
+     * returns object of ReponseBranchDto class
+     **/
     @Override
     public ResponseBranchDto branchToResponseDto2(Branch branch) {
         ResponseBranchDto responseBranchDto = new ResponseBranchDto();
@@ -218,11 +219,11 @@ public class BranchServiceImpl implements BranchService {
             // Extract data from the DTO
             int id = responseBranchDto.getId();
             String managerId = responseBranchDto.getManagerId();
-            logger.info("manager id recived from dto is "+managerId);
-            
-            Integer managerIdInteger   = Integer.parseInt(managerId);
-            logger.info("manager id in integer is "+managerIdInteger.toString());
-            
+            logger.info("manager id recived from dto is " + managerId);
+
+            Integer managerIdInteger = Integer.parseInt(managerId);
+            logger.info("manager id in integer is " + managerIdInteger.toString());
+
             // Retrieve manager details
             Optional<UserDetails> optionalUserDetails = userDetailsRepository.findById(managerIdInteger);
             if (optionalUserDetails.isEmpty()) {

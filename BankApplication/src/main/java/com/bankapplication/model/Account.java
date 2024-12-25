@@ -11,27 +11,22 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "account")
 public class Account {
+    @ManyToOne
+    @JoinColumn(name = "account_type_id")
+    public AccountType accountType;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonManagedReference
     private UserDetails userDetails;
-
     @Column(name = "account_number")
     private String accountNumber;
-
     @Column(name = "balance")
     @NotNull
-    @Min(value = 0,message = "Balance should be positive")
-    private BigDecimal balance ;
-
-    @ManyToOne
-    @JoinColumn(name = "account_type_id")
-    public AccountType accountType;
-
+    @Min(value = 0, message = "Balance should be positive")
+    private BigDecimal balance;
     @Column(nullable = false, name = "ifsc_code", unique = false)
     private String ifscCode;
 
@@ -103,5 +98,20 @@ public class Account {
 
     public void setAccountStatus(Boolean accountStatus) {
         this.accountStatus = accountStatus;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", userDetails=" + userDetails +
+                ", accountNumber='" + accountNumber + '\'' +
+                ", balance=" + balance +
+                ", accountType=" + accountType +
+                ", ifscCode='" + ifscCode + '\'' +
+                ", branch=" + branch +
+                ", accountStatus=" + accountStatus +
+                '}';
     }
 }

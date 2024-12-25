@@ -1,6 +1,7 @@
 package com.bankapplication.service;
 
 import com.bankapplication.dto.request.RequestAccountDto;
+import com.bankapplication.dto.response.ResponseAccountDto;
 import com.bankapplication.exceptionhandler.BranchNotFountException;
 import com.bankapplication.exceptionhandler.UserNotFoundException;
 import com.bankapplication.model.*;
@@ -28,13 +29,16 @@ public class AccountServiceImpl implements AccountService {
 
     private AccountRepository accountRepository;
 
+    private UserServiceImpl userService;
+
     @Autowired
-    public AccountServiceImpl(UserRepository userRepository, AccountTypeRepository accountTypeRepository, BranchRepository branchRepository, UserDetailsRepository userDetailsRepository, AccountRepository accountRepository) {
+    public AccountServiceImpl(UserRepository userRepository, AccountTypeRepository accountTypeRepository, BranchRepository branchRepository, UserDetailsRepository userDetailsRepository, AccountRepository accountRepository, UserServiceImpl userService) {
         this.userRepository = userRepository;
         this.accountTypeRepository = accountTypeRepository;
         this.branchRepository = branchRepository;
         this.userDetailsRepository = userDetailsRepository;
         this.accountRepository = accountRepository;
+        this.userService = userService;
     }
 
 
@@ -128,7 +132,6 @@ public class AccountServiceImpl implements AccountService {
     }
 
 
-    
     /**
      * Save new account details in database
      *
@@ -287,6 +290,26 @@ public class AccountServiceImpl implements AccountService {
         logger.info("Random number generated with given digits {}: {}", digit, no);
 
         return no;
+    }
+
+
+    public ResponseAccountDto getAccountDetailsByAccountNumber(String accountNo) {
+        logger.info("account no is " + accountNo);
+
+        if (accountNo.isEmpty()) {
+            logger.info("account no is empty ");
+            throw new RuntimeException("empty account no passes ");
+        }
+
+        Account account = accountRepository.findByAccountNumber(accountNo);
+
+        logger.info("account findByAccountNumber is " + account.toString());
+
+        ResponseAccountDto responseAccountDto = userService.convertToResponseAccountDto(account);
+
+        logger.info("response account dto " + responseAccountDto.toString());
+
+        return responseAccountDto;
     }
 
 }

@@ -33,6 +33,9 @@ TRUNCATE TABLE City
 
 SELECT * from ACCOUNT;
 
+SELECT * from ACCOUNT WHERE account_number = "2924964580999"
+
+
 INSERT INTO role(id,role_name) VALUES (1,'ROLE_ADMIN');
 
 INSERT INTO role(id,role_name) VALUES (2,'ROLE_MANAGER');

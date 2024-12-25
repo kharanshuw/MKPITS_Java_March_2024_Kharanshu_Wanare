@@ -3,17 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Bank Manager Dashboard</title>
 
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 
     <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
 
 
     <!-- navbar style -->
@@ -204,8 +203,6 @@
     <!-- footer style end  -->
 
 
-
-
     <!-- main container start -->
 
     <style>
@@ -244,80 +241,76 @@
 
 <body>
 
-    <!-- Navbar start -->
-    <div class="container-fluid navbar ">
-        <div class="logo-container">
-            <div class="logo">
-                SPHEREBANK
-            </div>
-        </div>
-        <div class="d-flex gap-3 flex-row   align-items-center  ">
-            <a th:href="@{/login}" class="btn btn-login">LOGIN</a>
-            <a th:href="@{/register}" class="btn btn-register">REGISTER</a>
-
-            <form action="#" th:action="@{/logout}" method="post" class="p-0 ml-2">
-                <input type="submit" value="Logout" class="btn-logout">
-            </form>
-
-
+<!-- Navbar start -->
+<div class="container-fluid navbar ">
+    <div class="logo-container">
+        <div class="logo">
+            SPHEREBANK
         </div>
     </div>
-    <!-- Navbar end -->
+    <div class="d-flex gap-3 flex-row   align-items-center  ">
+        <a class="btn btn-login" th:href="@{/login}">LOGIN</a>
+        <a class="btn btn-register" th:href="@{/register}">REGISTER</a>
 
-
-
-
-    <!-- main content start -->
-
-    <div class="container main-container  ">
-
-        <div class="flex-item text-uppercase fw-bold  fs-6 ">
-            <p>MANAGER HOME</p>
-            <a th:href="@{/manager/home}" class="btn btn-primary">home</a>
-        </div>
-
-        <div class="flex-item  text-uppercase fw-bold  fs-6  ">
-            <p>MANAGER PROFILE DATA</p>
-            <a th:href="@{/manager/profile}" class="btn btn-primary">profile</a>
-        </div>
-
-
-        <div class="flex-item  text-uppercase fw-bold  fs-6   ">
-            <p>HOME</p>
-            <a th:href="@{/}" class="btn btn-primary">home</a>
-        </div>
-
+        <form action="#" class="p-0 ml-2" method="post" th:action="@{/logout}">
+            <input class="btn-logout" type="submit" value="Logout">
+        </form>
 
 
     </div>
+</div>
+<!-- Navbar end -->
 
-    <!-- main content end -->
+
+<!-- main content start -->
+
+<div class="container main-container  ">
+
+    <div class="flex-item text-uppercase fw-bold  fs-6 ">
+        <p>MANAGER HOME</p>
+        <a class="btn btn-primary" th:href="@{/manager/home}">home</a>
+    </div>
+
+    <div class="flex-item  text-uppercase fw-bold  fs-6  ">
+        <p>MANAGER PROFILE DATA</p>
+        <a class="btn btn-primary" th:href="@{/manager/profile}">profile</a>
+    </div>
 
 
+    <div class="flex-item  text-uppercase fw-bold  fs-6   ">
+        <p>HOME</p>
+        <a class="btn btn-primary" th:href="@{/}">home</a>
+    </div>
 
-    <!-- Footer start -->
-    <footer class="position-relative bottom-1">
-        <div class="footer-social-buttons d-flex justify-content-center py-5">
-            <button type="button" class="btn btn-lg btn-floating mx-2">
-                <i class="fab fa-facebook"></i>
-            </button>
-            <button type="button" class="btn btn-lg btn-floating mx-2">
-                <i class="fab fa-youtube"></i>
-            </button>
-            <button type="button" class="btn btn-lg btn-floating mx-2">
-                <i class="fab fa-instagram"></i>
-            </button>
-            <button type="button" class="btn btn-lg btn-floating mx-2">
-                <i class="fab fa-twitter"></i>
-            </button>
-        </div>
 
-        <div class="text-center p-3" style="background-color: #0e345a;">
-            © 2024 Copyright:
-            <a class="text-white" href="https://mdbootstrap.com/">@SPHERE BANK</a>
-        </div>
-    </footer>
-    <!-- Footer end -->
+</div>
+
+<!-- main content end -->
+
+
+<!-- Footer start -->
+<footer class="position-relative bottom-1">
+    <div class="footer-social-buttons d-flex justify-content-center py-5">
+        <button class="btn btn-lg btn-floating mx-2" type="button">
+            <i class="fab fa-facebook"></i>
+        </button>
+        <button class="btn btn-lg btn-floating mx-2" type="button">
+            <i class="fab fa-youtube"></i>
+        </button>
+        <button class="btn btn-lg btn-floating mx-2" type="button">
+            <i class="fab fa-instagram"></i>
+        </button>
+        <button class="btn btn-lg btn-floating mx-2" type="button">
+            <i class="fab fa-twitter"></i>
+        </button>
+    </div>
+
+    <div class="text-center p-3" style="background-color: #0e345a;">
+        © 2024 Copyright:
+        <a class="text-white" href="https://mdbootstrap.com/">@SPHERE BANK</a>
+    </div>
+</footer>
+<!-- Footer end -->
 
 
 </body>

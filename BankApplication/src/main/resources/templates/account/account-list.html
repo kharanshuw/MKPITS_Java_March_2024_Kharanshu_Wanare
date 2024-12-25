@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>ADMIN PROFILE DATA </title>
+    <title>Document</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- navbar style -->
     <style>
@@ -153,42 +154,37 @@
             /* Adjust the margin value as needed */
         }
     </style>
-
     <!-- navbar style end -->
 
-    <!-- main container style start -->
+    <!-- go back button  -->
     <style>
-        .main-container {
-            padding: 20px;
+        .go-back-btn {
+            margin-top: 20px;
         }
 
-        .main-container h1 {
-            font-size: 1.5rem;
-            color: #004080;
+        .go-back-btn .btn {
+            background-color: #004080;
             /* Navy Blue */
+            color: white;
+            border: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            text-transform: uppercase;
         }
 
-        .main-container span,
-        .main-container li {
-            font-size: 1.2rem;
-            color: #000;
-            /* Black */
-        }
-
-        .main-container ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .main-container ul li {
-            padding: 5px 0;
+        .go-back-btn .btn:hover {
+            background-color: #002d5f;
+            /* Darker Navy Blue */
         }
     </style>
-    <!-- main container style end -->
+    <!-- go back button end -->
+
 
 </head>
 
 <body>
+
+
 <!-- Navbar start -->
 <div class="container-fluid navbar ">
     <div class="logo-container">
@@ -209,98 +205,66 @@
 </div>
 <!-- Navbar end -->
 
-<!-- main container start -->
+
+<!-- main container sttart -->
+
+<div class="container">
+    <h2 class="text-center text-wrap  text-uppercase text-decoration-underline fw-bold  fs-6  mb-3 "
+        style="text-decoration: underline;">List of All Accounts</h2>
+    <!--    table start-->
+    <table class="table table-striped table-bordered">
 
 
-<div class="container mt-5 p-4 bg-white shadow-lg   border rounded">
-    <h2 class="text-uppercase fs-1 fw-bold text-primary mb-4">Admin Profile Information</h2>
+        <!--        table head start -->
+        <thead>
+        <tr class="text-wrap text-capitalize  ">
+            <th>accountNo</th>
+            <th>accountType</th>
+            <th>action</th>
+        </tr>
+        </thead>
+        <!--        table head end -->
 
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label fw-bold">User ID:</label>
-        <div class="col-sm-9">
-            <span class="text-uppercase" th:text="${user.getId()}">1</span>
-        </div>
-    </div>
 
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label fw-bold">Email:</label>
-        <div class="col-sm-9">
-            <span class="text-uppercase" th:text="${user.getEmail()}">pratik@gmail.com</span>
-        </div>
-    </div>
+        <!--        table body start -->
+        <tbody>
+        <tr th:each="a : ${list}">
 
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label fw-bold">First Name:</label>
-        <div class="col-sm-9">
-            <span class="text-uppercase" th:text="${user.getFname()}">KHARANSHU</span>
-        </div>
-    </div>
+            <td class="text-center" th:text="${a.getAccountNo()}"></td>
+            <td class="text-center" th:text="${a.getAccountType()}"></td>
+            <td class="d-flex flex-row justify-content-center align-items-center flex-wrap gap-3">
+                <a class="btn btn-success text-center  text-capitalize "
+                   th:href="@{ /account/details(   accountNo=${a.accountNo}  )          }">
+                    more details
+                </a>
+                <a class="btn btn-danger text-center text-capitalize  "
+                   th:href="@{ /account/delete(   accountNo=${a.accountNo}  )          }">
+                    delete account
+                </a>
+            </td>
+        </tr>
+        <!-- Add more rows as needed -->
 
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label fw-bold">Last Name:</label>
-        <div class="col-sm-9">
-            <span class="text-uppercase" th:text="${user.getLname()}">WANARE</span>
-        </div>
-    </div>
 
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label fw-bold">Gender:</label>
-        <div class="col-sm-9">
-            <span class="text-uppercase" th:text="${user.getGender()}">MALE</span>
-        </div>
-    </div>
+        </tbody>
+        <!--        table body end -->
 
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label fw-bold">Roles:</label>
-        <div class="col-sm-9">
-            <ul class="list-unstyled">
-                <li class="text-uppercase" th:each="ua : ${roles}" th:text="${ua}">ADMIN</li>
-            </ul>
-        </div>
-    </div>
 
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label fw-bold">Phone No:</label>
-        <div class="col-sm-9">
-            <span class="text-uppercase" th:text="${user.getPhoneno()}">9689025233</span>
-        </div>
-    </div>
+    </table>
+    <!--    table end -->
 
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label fw-bold">City:</label>
-        <div class="col-sm-9">
-            <span class="text-uppercase" th:text="${user.getCitynameString()}">NAGPUR</span>
-        </div>
-    </div>
 
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label fw-bold">District:</label>
-        <div class="col-sm-9">
-            <span class="text-uppercase" th:text="${user.getDistrictnameString()}">NAGPUR</span>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label fw-bold">State:</label>
-        <div class="col-sm-9">
-            <span class="text-uppercase" th:text="${user.getStateString()}">MAHARASHTRA</span>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label fw-bold">Country:</label>
-        <div class="col-sm-9">
-            <span class="text-uppercase" th:text="${user.getCountryString()}">INDIA</span>
-        </div>
-    </div>
-
-    <div class="border-5 d-flex flex-row  justify-content-center ">
-        <a class="btn btn-primary  text-uppercase " th:href="@{/admin/home}">GO BACK</a>
-    </div>
 </div>
 
-
 <!-- main container end -->
+
+
+<!-- go back button start -->
+
+<div class="border-5 d-flex flex-row  justify-content-center go-back-btn ">
+    <a class="btn btn-primary btn-lg  text-uppercase " th:href="@{/user/home}">GO BACK</a>
+</div>
+<!-- go back button end  -->
 
 
 </body>

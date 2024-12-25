@@ -1,8 +1,6 @@
 package com.bankapplication.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Table(name = "district")
@@ -18,7 +16,7 @@ public class District {
     @JoinColumn(name = "state_id")
     private State state;
 
-    
+
     public int getId() {
         return id;
     }
@@ -43,7 +41,6 @@ public class District {
         this.state = state;
     }
 
-    
 
     @Override
     public String toString() {

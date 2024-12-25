@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- navbar style -->
     <style>
@@ -179,107 +179,94 @@
 </head>
 
 <body>
-    <!-- Navbar start -->
-    <div class="container-fluid navbar ">
-        <div class="logo-container">
-            <div class="logo">
-                SPHEREBANK
-            </div>
-        </div>
-        <div class="d-flex gap-3 flex-row   align-items-center  ">
-            <a th:href="@{/login}" class="btn btn-login">LOGIN</a>
-            <a th:href="@{/register}" class="btn btn-register">REGISTER</a>
-
-            <form action="#" th:action="@{/logout}" method="post" class="p-0 ml-2">
-                <input type="submit" value="Logout" class="btn-logout">
-            </form>
-
-
+<!-- Navbar start -->
+<div class="container-fluid navbar ">
+    <div class="logo-container">
+        <div class="logo">
+            SPHEREBANK
         </div>
     </div>
-    <!-- Navbar end -->
+    <div class="d-flex gap-3 flex-row   align-items-center  ">
+        <a class="btn btn-login" th:href="@{/login}">LOGIN</a>
+        <a class="btn btn-register" th:href="@{/register}">REGISTER</a>
+
+        <form action="#" class="p-0 ml-2" method="post" th:action="@{/logout}">
+            <input class="btn-logout" type="submit" value="Logout">
+        </form>
 
 
-
-
-    <!-- main container start -->
-
-    <div class="container mt-5 ">
-        <div class="fs-1 lead d-flex justify-content-center mb-3 text-uppercase "
-            style="font-weight: 800; font-size: 30px; color: #004080; text-decoration: underline;">
-            Pending Request
-        </div>
-        <table class="table table-bordered table-hover ">
-            <thead class="table-primary">
-                
-
-                <tr>
-                    <th>Id</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Action</th>
-                </tr>
-
-              
-
-
-
-            </thead>
-
-
-            <tbody>
-
-
-              
-            <tr th:each="u:${users}">
-                <td th:text="${u.getId()}">1</td>
-                <td th:text="${u.getEmail()}">pratik@gmail.com</td>
-                <td>
-
-                    <ul>
-                        <li th:each="ua : ${u.getrolestring()}" th:text="${ua}"  class="list-unstyled ">
-                          
-                        </li>
-                    </ul>
-
-                </td>  
-
-
-                <td class="action d-flex flex-row justify-content-center gap-3 border-0">
-                    <a th:href="@{/admin/addrolepage(a=${'addrole'} , id=${u.id})}" class="btn btn-primary btn-lg text-dark-100">
-                        Add Role
-                    </a>
-                    <a th:href="@{/admin/removerolepage(a=${'remove'} , id=${u.id})}"  class="btn btn-danger btn-lg text-dark-100">
-                        Remove Role
-                    </a>
-                </td>
-
-
-
-            </tr>
-
-
-                
-
-
-
-            </tbody>
-        </table>
     </div>
-
-    <!-- main container end -->
-
-
+</div>
+<!-- Navbar end -->
 
 
+<!-- main container start -->
 
-
-    <!-- go back button start -->
-
-    <div class="border-5 d-flex flex-row  justify-content-center go-back-btn ">
-        <a th:href="@{/admin/home}" class="btn btn-primary btn-lg  text-uppercase ">GO BACK</a>
+<div class="container mt-5 ">
+    <div class="fs-1 lead d-flex justify-content-center mb-3 text-uppercase "
+         style="font-weight: 800; font-size: 30px; color: #004080; text-decoration: underline;">
+        Pending Request
     </div>
-    <!-- go back button end  -->
+    <table class="table table-bordered table-hover ">
+        <thead class="table-primary">
+
+
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+
+
+        </thead>
+
+
+        <tbody>
+
+
+        <tr th:each="u:${users}">
+            <td th:text="${u.getId()}">1</td>
+            <td th:text="${u.getEmail()}">pratik@gmail.com</td>
+            <td>
+
+                <ul>
+                    <li class="list-unstyled " th:each="ua : ${u.getrolestring()}" th:text="${ua}">
+
+                    </li>
+                </ul>
+
+            </td>
+
+
+            <td class="action d-flex flex-row justify-content-center gap-3 border-0">
+                <a class="btn btn-primary btn-lg text-dark-100"
+                   th:href="@{/admin/addrolepage(a=${'addrole'} , id=${u.id})}">
+                    Add Role
+                </a>
+                <a class="btn btn-danger btn-lg text-dark-100"
+                   th:href="@{/admin/removerolepage(a=${'remove'} , id=${u.id})}">
+                    Remove Role
+                </a>
+            </td>
+
+
+        </tr>
+
+
+        </tbody>
+    </table>
+</div>
+
+<!-- main container end -->
+
+
+<!-- go back button start -->
+
+<div class="border-5 d-flex flex-row  justify-content-center go-back-btn ">
+    <a class="btn btn-primary btn-lg  text-uppercase " th:href="@{/admin/home}">GO BACK</a>
+</div>
+<!-- go back button end  -->
 
 
 </body>

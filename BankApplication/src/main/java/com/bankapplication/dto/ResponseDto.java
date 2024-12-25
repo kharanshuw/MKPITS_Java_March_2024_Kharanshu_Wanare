@@ -27,6 +27,27 @@ public class ResponseDto {
 
     private String stateString;
 
+    public ResponseDto() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+    public ResponseDto(int id, String email, String fname, String lname, String gender, String phoneno,
+                       Set<Role> roles) {
+        super();
+        this.id = id;
+        this.email = email;
+        this.fname = fname;
+        this.lname = lname;
+        this.gender = gender;
+        this.phoneno = phoneno;
+        this.roles = roles;
+    }
+
+    public static Logger getLogger() {
+        return logger;
+    }
+
     public String getCitynameString() {
         return citynameString;
     }
@@ -57,10 +78,6 @@ public class ResponseDto {
 
     public void setStateString(String stateString) {
         this.stateString = stateString;
-    }
-
-    public static Logger getLogger() {
-        return logger;
     }
 
     public int getId() {
@@ -123,23 +140,6 @@ public class ResponseDto {
     public String toString() {
         return "ResponseDto [id=" + id + ", email=" + email + ", fname=" + fname + ", lname=" + lname + ", gender="
                 + gender + ", phoneno=" + phoneno + ", rolenameString=" + roles + "]";
-    }
-
-    public ResponseDto() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-    public ResponseDto(int id, String email, String fname, String lname, String gender, String phoneno,
-                       Set<Role> roles) {
-        super();
-        this.id = id;
-        this.email = email;
-        this.fname = fname;
-        this.lname = lname;
-        this.gender = gender;
-        this.phoneno = phoneno;
-        this.roles = roles;
     }
 
     public ArrayList<String> getrolestring() {

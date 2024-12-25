@@ -16,9 +16,8 @@ import java.util.List;
 @Service
 public class DistrictServiceImpl implements DistrictService {
 
-    public DistrictRepository districtRepository;
-
     private static final Logger logger = LoggerFactory.getLogger(DistrictServiceImpl.class);
+    public DistrictRepository districtRepository;
 
     @Autowired
     public DistrictServiceImpl(DistrictRepository districtRepository) {

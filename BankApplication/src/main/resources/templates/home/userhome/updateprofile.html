@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Update Profile Data</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script crossorigin="anonymous"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -72,67 +72,67 @@
 <body>
 <div class="container">
     <h1>profile data Update</h1>
-    <form th:action="@{/users/processupdate}" method="post" th:object="${profileUpdateDto}">
-        <label for="email" class="col-form-label text-md-right">Email:</label>
-        <input type="email" id="email" th:field="*{email}" class="form-control" required>
-        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+    <form method="post" th:action="@{/users/processupdate}" th:object="${profileUpdateDto}">
+        <label class="col-form-label text-md-right" for="email">Email:</label>
+        <input class="form-control" id="email" required th:field="*{email}" type="email">
+        <div th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></div>
 
         <label for="fname">First Name:</label>
         <div>
-            <input type="text" id="fname" th:field="*{fname}" required>
-            <span th:if="${#fields.hasErrors('fname')}" th:errors="*{fname}"></span>
+            <input id="fname" required th:field="*{fname}" type="text">
+            <span th:errors="*{fname}" th:if="${#fields.hasErrors('fname')}"></span>
         </div>
 
         <label for="lname">Last Name:</label>
         <div>
-            <input type="text" id="lname" th:field="*{lname}" required>
-            <span th:if="${#fields.hasErrors('lname')}" th:errors="*{lname}"></span>
+            <input id="lname" required th:field="*{lname}" type="text">
+            <span th:errors="*{lname}" th:if="${#fields.hasErrors('lname')}"></span>
         </div>
 
         <label for="password">Password:</label>
         <div class="col-md-6">
-            <input type="password" id="password" th:field="*{password}" required>
-            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
+            <input id="password" required th:field="*{password}" type="password">
+            <span class="text-danger" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></span>
         </div>
 
         <label for="Gender">Choose Gender</label>
-        <select name="Gender" id="Gender" th:field="*{gender}">
+        <select id="Gender" name="Gender" th:field="*{gender}">
             <option th:value="${'MALE'}">MALE</option>
             <option th:value="${'FEMALE'}">FEMALE</option>
         </select>
 
-        <select id="country" class="form-control" name="country" required>
+        <select class="form-control" id="country" name="country" required>
             <option value="">Select Country</option>
             <th:block th:each="country : ${countries}">
-                <option th:value="${country.id}" th:text="${country.name}"></option>
+                <option th:text="${country.name}" th:value="${country.id}"></option>
             </th:block>
         </select>
 
         <div class="form-group">
             <label for="state">State</label>
-            <select id="state" class="form-control" name="state" required>
+            <select class="form-control" id="state" name="state" required>
                 <option value="">Select State</option>
             </select>
         </div>
 
         <div class="form-group">
             <label for="district">District</label>
-            <select id="district" class="form-control" name="district" required>
+            <select class="form-control" id="district" name="district" required>
                 <option value="">Select District</option>
             </select>
         </div>
 
         <div class="form-group">
             <label for="city">City</label>
-            <select id="city" class="form-control" name="cityId" required>
+            <select class="form-control" id="city" name="cityId" required>
                 <option value="">Select City</option>
             </select>
         </div>
 
         <div class="form-group">
             <label for="phoneNumber">Phone Number</label>
-            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Enter phone number"
-                   th:field="*{phoneno}" required>
+            <input class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Enter phone number" required
+                   th:field="*{phoneno}" type="text">
         </div>
 
         <button type="submit" value="save">Update</button>

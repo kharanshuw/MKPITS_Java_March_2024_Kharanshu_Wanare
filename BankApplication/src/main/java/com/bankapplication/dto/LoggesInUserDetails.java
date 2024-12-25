@@ -21,6 +21,11 @@ public class LoggesInUserDetails {
         this.rolename = rolename;
     }
 
+    public LoggesInUserDetails() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
     @Override
     public String toString() {
         return "LoggesInUserDetails{" +
@@ -33,12 +38,6 @@ public class LoggesInUserDetails {
                 ", rolename =" + rolename +
                 '}';
     }
-
-    public LoggesInUserDetails() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
 
     public int getId() {
         return id;

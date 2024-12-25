@@ -372,7 +372,7 @@ public class AdminController {
         model.addAttribute("r", HttpStatus.BAD_REQUEST);
         return "error/error";
     }
-    
+
 
     /**
      * Displays the form for creating a new branch.
@@ -445,8 +445,7 @@ public class AdminController {
             model.addAttribute("e", e.getMessage());
             return "error/error";
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             // Log unexpected exceptions
             logger.error("Error occurred while creating the branch: {}", e.getMessage());
             model.addAttribute("e", "Unable to load the form at this moment. Please try again later.");

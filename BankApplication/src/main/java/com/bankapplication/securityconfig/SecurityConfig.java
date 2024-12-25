@@ -116,8 +116,12 @@ public class SecurityConfig {
                                         .requestMatchers(HttpMethod.GET, "/account/choose-account-type").hasRole("USER")
 
                                         .requestMatchers(HttpMethod.GET, "/account/create-account-form").hasRole("USER")
-                                        
-                                        .requestMatchers(HttpMethod.GET,"/account/create-account").hasRole("USER")
+
+                                        .requestMatchers(HttpMethod.GET, "/account/create-account").hasRole("USER")
+
+                                        .requestMatchers(HttpMethod.GET, "/user/accounts").hasRole("USER")
+
+                                        .requestMatchers(HttpMethod.GET, "/account/details").hasRole("USER")
 
                                         .anyRequest().authenticated()
 
