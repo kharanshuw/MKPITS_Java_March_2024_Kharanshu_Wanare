@@ -83,7 +83,7 @@ public class UserDetails {
     private City city;
 
 
-    @OneToMany(mappedBy = "userDetails")
+    @OneToMany(mappedBy = "userDetails" ,cascade = CascadeType.ALL)
     @JsonBackReference
     private Set<Account> account = null;
 

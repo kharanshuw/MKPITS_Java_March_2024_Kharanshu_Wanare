@@ -2,6 +2,7 @@ package com.bankapplication.service;
 
 import com.bankapplication.dto.request.RequestAccountDto;
 import com.bankapplication.dto.response.ResponseAccountDto;
+import com.bankapplication.exceptionhandler.AccoutNotExist;
 import com.bankapplication.exceptionhandler.BranchNotFountException;
 import com.bankapplication.exceptionhandler.UserNotFoundException;
 import com.bankapplication.model.*;
@@ -134,10 +135,9 @@ public class AccountServiceImpl implements AccountService {
 
     /**
      * Save new account details in database
-     *
      * @param requestAccountDto
-     * @return Account class object which is saved inside database
-     **/
+     * @return Account object 
+     */
     @Transactional
     public Account saveNewAccount(RequestAccountDto requestAccountDto) {
         Account account = new Account();
@@ -312,4 +312,24 @@ public class AccountServiceImpl implements AccountService {
         return responseAccountDto;
     }
 
+    
+    public void deleteAccountByAccountNumber(String accountNumber ){
+        
+        logger.info("account no recived is "+accountNumber);
+        
+       boolean result  = accountRepository.existsByAccountNumber(accountNumber);
+       
+       if (result == false)
+       {
+           logger.info("account with this account no not exist"+accountNumber);
+           throw new AccoutNotExist("account with this account no not exist"+accountNumber);
+       }
+       
+       
+           Account account  = accountRepository.findByAccountNumber(accountNumber);
+       
+           logger.info("account to be deleted is "+account.toString());
+            
+           accountRepository.delete(account);
+    }
 }

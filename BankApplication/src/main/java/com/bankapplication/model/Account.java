@@ -14,19 +14,28 @@ public class Account {
     @ManyToOne
     @JoinColumn(name = "account_type_id")
     public AccountType accountType;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
+    
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonManagedReference
     private UserDetails userDetails;
+    
+    
     @Column(name = "account_number")
     private String accountNumber;
+    
+    
     @Column(name = "balance")
     @NotNull
     @Min(value = 0, message = "Balance should be positive")
     private BigDecimal balance;
+    
+    
     @Column(nullable = false, name = "ifsc_code", unique = false)
     private String ifscCode;
 

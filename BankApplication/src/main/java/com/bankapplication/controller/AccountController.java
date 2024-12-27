@@ -33,11 +33,11 @@ public class AccountController {
 
 
     @Autowired
-    public AccountController(UserServiceAppContext userServiceAppContext, AccountService accountService, BranchService branchService,UserService userService) {
+    public AccountController(UserServiceAppContext userServiceAppContext, AccountService accountService, BranchService branchService, UserService userService) {
         this.userServiceAppContext = userServiceAppContext;
         this.accountService = accountService;
         this.branchService = branchService;
-        this.userService=userService;
+        this.userService = userService;
     }
 
     /**
@@ -158,22 +158,47 @@ public class AccountController {
         return "account/successfull";
     }
 
+    /**
+     * Handles details request for account details
+     *
+     * @param accountNumber
+     * @param model
+     * @return account/account-details view
+     */
     @GetMapping("/details")
     public String getAccountDetails(@RequestParam("accountNo") String accountNumber, Model model) {
-        logger.info("account no is " + accountNumber);
-        System.out.println("account no is " + accountNumber);
 
+        // Log the received account number for debugging
+        logger.info("Received request for account details with account number: {}", accountNumber);
+
+
+        // Retrieve the account details using the account service
         ResponseAccountDto responseAccountDto = accountService.getAccountDetailsByAccountNumber(accountNumber);
 
-        logger.info("response account dto " + responseAccountDto.toString());
-        System.out.println("response account dto " + responseAccountDto);
-        return "";
+        logger.info("Retrieved account details: {}", responseAccountDto);
+
+        model.addAttribute("dto", responseAccountDto);
+
+        return "account/account-details";
+    }
+    
+    
+    @GetMapping("/delete")
+    public String deleteAccount(@RequestParam("accountNo") String accountNumber , Model model)
+    {
+        // Log the received account number for debugging
+        logger.info("Received request for account delete with account number: {}", accountNumber);
+        
+        accountService.deleteAccountByAccountNumber(accountNumber);
+
+        System.out.println("Received request for account delete with account number: "+accountNumber);
+        return "account/account_delete_successfully";
     }
 
 
     @ExceptionHandler(value = RuntimeException.class)
     public String handleRuntimeException(RuntimeException exception, Model model) {
-        logger.error("runtime exception "+exception.getMessage());
+        logger.error("runtime exception " + exception.getMessage());
 
         model.addAttribute("e", exception.toString());
         model.addAttribute("r", exception.getMessage());

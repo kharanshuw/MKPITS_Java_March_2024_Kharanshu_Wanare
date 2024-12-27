@@ -20,4 +20,6 @@ public interface AccountService {
 
     public ResponseAccountDto getAccountDetailsByAccountNumber(String accountNo);
 
+    public void deleteAccountByAccountNumber(String accountNumber );
+
 }
