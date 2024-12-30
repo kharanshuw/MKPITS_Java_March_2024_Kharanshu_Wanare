@@ -259,7 +259,7 @@
     <!-- Confirmation Message Container -->
     <div class="container text-center mt-5">
         <h1>Account Deletion Confirmation</h1>
-        <p class="lead">The bank account with account number <strong>2924964580999</strong> has been successfully
+        <p class="lead">The bank account with account number <strong  th:text="${accno}"></strong> has been successfully
             deleted.</p>
         <div class="go-back-btn">
             <a th:href="@{/user/home}" class="btn btn-lg">GO BACK</a>

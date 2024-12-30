@@ -215,35 +215,35 @@
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label fw-bold text-capitalize">account no </label>
             <div class="col-sm-9">
-                <span class="text-uppercase" th:text="${dto.getAccountNo()}"></span>
+                <span class="text-capitalize" th:text="${dto.getAccountNo()}"></span>
             </div>
         </div>
 
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label fw-bold text-capitalize">accountType </label>
             <div class="col-sm-9">
-                <span class="text-uppercase" th:text="${dto.getAccountType()}"></span>
+                <span class="text-capitalize" th:text="${dto.getAccountType()}"></span>
             </div>
         </div>
 
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label fw-bold text-capitalize">balance </label>
             <div class="col-sm-9">
-                <span class="text-uppercase" th:text="${dto.getBalance()}"></span>
+                <span class="text-capitalize" th:text="${dto.getBalance()}"></span>
             </div>
         </div>
 
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label fw-bold text-capitalize">branch name </label>
             <div class="col-sm-9">
-                <span class="text-uppercase" th:text="${dto.getBranch()}"></span>
+                <span class="text-capitalize" th:text="${dto.getBranch()}"></span>
             </div>
         </div>
 
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label fw-bold text-capitalize">first name </label>
             <div class="col-sm-9">
-                <span class="text-uppercase" th:text="${dto.getFname()}"></span>
+                <span class="text-capitalize" th:text="${dto.getFname()}"></span>
             </div>
         </div>
 
@@ -251,7 +251,7 @@
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label fw-bold text-capitalize">last name </label>
             <div class="col-sm-9">
-                <span class="text-uppercase" th:text="${dto.getLname()}"></span>
+                <span class="text-capitalize" th:text="${dto.getLname()}"></span>
             </div>
         </div>
 
@@ -259,14 +259,41 @@
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label fw-bold text-capitalize">Ifsc no </label>
             <div class="col-sm-9">
-                <span class="text-uppercase" th:text="${dto.getIfscCode()}"></span>
+                <span class="text-capitalize" th:text="${dto.getIfscCode()}"></span>
             </div>
         </div>
 
 
-        <div class="border-5 d-flex flex-row  justify-content-center ">
-            <a class="btn btn-primary  text-uppercase " th:href="@{/user/home}">GO BACK</a>
+        <div class="d-flex gap-10 bg-light p-3 text-capitalize justify-content-center ">
+
+
+             <!-- Deposit Money Button -->
+        <div >
+            <div class="col-sm-12 text-center">
+                <a class="btn btn-primary text-wrap text-capitalize" th:href="@{/user/deposit  ( accountNo=${ dto.accountNo }   )  }">Deposit Money</a>
+            </div>
         </div>
+        <!-- Deposit Money Button end -->
+
+        <!-- Deposit Money Button -->
+        <div >
+            <div class="col-sm-12 text-center">
+                <a class="btn btn-primary text-wrap text-capitalize " th:href="@{/user/withdrawal  ( accountNo=${ dto.accountNo }  ) }">withdrawal money</a>
+            </div>
+        </div>
+        <!-- Deposit Money Button end -->
+
+
+        <div >
+            <a class="btn btn-primary  text-wrap  " th:href="@{/user/home}"       style="height: 40px; width: 100px;">Go Back</a>
+        </div>
+
+
+
+        </div>
+
+        
+       
     </div>
 
 

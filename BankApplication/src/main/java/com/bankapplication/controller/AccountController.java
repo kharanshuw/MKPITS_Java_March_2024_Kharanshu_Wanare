@@ -181,21 +181,43 @@ public class AccountController {
 
         return "account/account-details";
     }
-    
-    
+
+    /**
+     * Handles the request to delete a bank account by account number.
+     *
+     * @param accountNumber the account number of the account to be deleted
+     * @param model the model to pass data to the view
+     * @return the view name for the account deletion status
+     */
     @GetMapping("/delete")
     public String deleteAccount(@RequestParam("accountNo") String accountNumber , Model model)
     {
         // Log the received account number for debugging
         logger.info("Received request for account delete with account number: {}", accountNumber);
         
+        
+        // Forward the request to the service layer for processing
         accountService.deleteAccountByAccountNumber(accountNumber);
 
-        System.out.println("Received request for account delete with account number: "+accountNumber);
+        // Log successful deletion request forwarding
+        logger.info("Successfully deleted account with account number: {}", accountNumber);
+        
+        model.addAttribute("accno",accountNumber);
+        
         return "account/account_delete_successfully";
     }
+    
+    
 
 
+
+    /**
+     * Handles RuntimeExceptions thrown in the application.
+     *
+     * @param exception the RuntimeException that was thrown
+     * @param model the model to pass data to the view
+     * @return the view name for error handling
+     */
     @ExceptionHandler(value = RuntimeException.class)
     public String handleRuntimeException(RuntimeException exception, Model model) {
         logger.error("runtime exception " + exception.getMessage());
