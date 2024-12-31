@@ -4,12 +4,15 @@ import com.bankapplication.dto.request.RequestAccountDto;
 import com.bankapplication.dto.response.ResponseAccountDto;
 import com.bankapplication.exceptionhandler.AccoutNotExist;
 import com.bankapplication.exceptionhandler.BranchNotFountException;
+import com.bankapplication.exceptionhandler.InsufficientBalanceException;
 import com.bankapplication.exceptionhandler.UserNotFoundException;
 import com.bankapplication.model.*;
 import com.bankapplication.repository.*;
+import org.hibernate.service.spi.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -135,8 +138,9 @@ public class AccountServiceImpl implements AccountService {
 
     /**
      * Save new account details in database
+     *
      * @param requestAccountDto
-     * @return Account object 
+     * @return Account object
      */
     @Transactional
     public Account saveNewAccount(RequestAccountDto requestAccountDto) {
@@ -293,43 +297,190 @@ public class AccountServiceImpl implements AccountService {
     }
 
 
+    /**
+     * Retrieves account details by account number.
+     *
+     * @param accountNo the account number to search for
+     * @return the account details as a ResponseAccountDto
+     */
     public ResponseAccountDto getAccountDetailsByAccountNumber(String accountNo) {
-        logger.info("account no is " + accountNo);
 
-        if (accountNo.isEmpty()) {
-            logger.info("account no is empty ");
-            throw new RuntimeException("empty account no passes ");
+
+        try {
+
+            logger.info("Retrieving account details for account number: {}", accountNo);
+
+            // Check if the account number is empty and throw an exception if it is
+            if (accountNo == null || accountNo.isEmpty()) {
+                throw new RuntimeException("Account number is required");
+            }
+
+            logger.debug("Searching for account by account number: {}", accountNo);
+
+            // Use the account repository to find the account by account number
+            Account account = accountRepository.findByAccountNumber(accountNo);
+
+            // If account is not found, throw an exception
+            if (account == null) {
+                logger.error("Account not found for account number: {}", accountNo);
+
+                throw new RuntimeException("Account not found");
+            }
+            logger.debug("Account found: {}", account);
+
+
+            logger.debug("Converting account to ResponseAccountDto");
+
+            // Convert the account to a ResponseAccountDto using the user service
+            return userService.convertToResponseAccountDto(account);
+        } catch (RuntimeException e) {
+            // Log the exception and rethrow it
+            logger.error("Error retrieving account details", e);
+            throw e;
+        } catch (Exception e) {
+            // Log the exception and throw a RuntimeException
+            logger.error("Unexpected error retrieving account details", e);
+            throw new RuntimeException("Unexpected error", e);
+        }
+    }
+
+
+    /**
+     * Deposits money into an account.
+     *
+     * @param accountNo the account number to deposit money into
+     * @param amount    the amount to deposit
+     */
+    @Transactional
+    public void depositMoney(String accountNo, BigDecimal amount) {
+
+        try {
+            // Log the incoming account number and amount
+            logger.info("Depositing {} into account number: {}", amount, accountNo);
+
+            // Find the account by account number
+            logger.debug("Searching for account by account number: {}", accountNo);
+            Account account = accountRepository.findByAccountNumber(accountNo);
+
+            // If account is not found, throw an exception
+            if (account == null) {
+                logger.error("Account not found for account number: {}", accountNo);
+                throw new RuntimeException("Account not found");
+            }
+
+            // Log the found account
+            logger.debug("Found account: {}", account);
+
+            // Add the amount to the account balance
+            logger.debug("Adding {} to account balance", amount);
+            account.setBalance(account.getBalance().add(amount));
+
+            // Save the updated account
+            logger.debug("Saving updated account");
+            accountRepository.save(account);
+
+            // Log the successful deposit
+            logger.info("Successfully deposited {} into account number: {}", amount, accountNo);
+        } catch (RuntimeException e) {
+            // Log the exception and rethrow it
+            logger.error("Error depositing money", e);
+            throw e;
+        } catch (Exception e) {
+            // Log the exception and throw a RuntimeException
+            logger.error("Unexpected error depositing money", e);
+            throw new RuntimeException("Unexpected error", e);
         }
 
-        Account account = accountRepository.findByAccountNumber(accountNo);
 
-        logger.info("account findByAccountNumber is " + account.toString());
-
-        ResponseAccountDto responseAccountDto = userService.convertToResponseAccountDto(account);
-
-        logger.info("response account dto " + responseAccountDto.toString());
-
-        return responseAccountDto;
     }
 
+    /**
+     * Deletes an account by its account number.
+     *
+     * @param accountNumber the account number of the account to be deleted
+     */
+    public void deleteAccountByAccountNumber(String accountNumber) {
+
+        try {
+            // Log the received account number
+            logger.info("Deleting account with account number: " + accountNumber);
+
+            boolean result = accountRepository.existsByAccountNumber(accountNumber);
+
+            if (result == false) {
+                logger.error("Account with this account number does not exist: " + accountNumber);
+                throw new AccoutNotExist("Account with this account number does not exist: " + accountNumber);
+            }
+
+            Account account = accountRepository.findByAccountNumber(accountNumber);
+
+            // Delete the account from the repository
+            accountRepository.delete(account);
+            logger.info("Account deleted successfully: " + accountNumber);
+        } catch (AccoutNotExist e) {
+            logger.error("Account not found: " + accountNumber, e);
+            throw e;
+        } catch (DataAccessException e) {
+            logger.error("Error deleting account: " + accountNumber, e);
+            throw new ServiceException("Error deleting account: " + accountNumber, e);
+        } catch (Exception e) {
+            logger.error("Unexpected error while deleting account: " + accountNumber, e);
+            throw new ServiceException("Unexpected error while deleting account: " + accountNumber, e);
+        }
+    }
+
+
+    /**
+     * Withdraws money from a specific account.
+     *
+     * @param accountNo the account number of the account to withdraw from
+     * @param amount the amount to withdraw
+     */
+    public void withdrawMoney(String accountNo, BigDecimal amount) {
+
+        try {
+            // Log the incoming account number and amount
+            logger.info("Withdrawing {} from account number: {}", amount, accountNo);
+
+            // Find the account by account number
+            logger.debug("Searching for account by account number: {}", accountNo);
+            Account account = accountRepository.findByAccountNumber(accountNo);
+
+            // If account is not found, throw an exception
+            if (account == null) {
+                logger.error("Account not found for account number: {}", accountNo);
+                throw new AccoutNotExist("Account not found");
+            }
+
+            // Log the found account
+            logger.debug("Found account: {}", account);
+
+            // Check if the account balance is sufficient
+            if (account.getBalance().compareTo(amount) < 0) {
+                logger.error("Insufficient balance for account number: {}", accountNo);
+                throw new InsufficientBalanceException("Insufficient balance for account number: " + accountNo);
+            }
+
+            // Subtract the amount from the account balance
+            logger.debug("Subtracting {} from account balance", amount);
+            account.setBalance(account.getBalance().subtract(amount));
+
+            // Save the updated account
+            logger.debug("Saving updated account");
+            accountRepository.save(account);
+
+            // Log the successful withdrawal
+            logger.info("Successfully withdrew {} from account number: {}", amount, accountNo);
+        } catch (RuntimeException e) {
+            // Log the exception and rethrow it
+            logger.error("Error withdrawing money", e);
+            throw e;
+        } catch (Exception e) {
+            // Log the exception and throw a RuntimeException
+            logger.error("Unexpected error withdrawing money", e);
+            throw new RuntimeException("Unexpected error", e);
+        }
+    }
     
-    public void deleteAccountByAccountNumber(String accountNumber ){
-        
-        logger.info("account no recived is "+accountNumber);
-        
-       boolean result  = accountRepository.existsByAccountNumber(accountNumber);
-       
-       if (result == false)
-       {
-           logger.info("account with this account no not exist"+accountNumber);
-           throw new AccoutNotExist("account with this account no not exist"+accountNumber);
-       }
-       
-       
-           Account account  = accountRepository.findByAccountNumber(accountNumber);
-       
-           logger.info("account to be deleted is "+account.toString());
-            
-           accountRepository.delete(account);
-    }
+    
 }

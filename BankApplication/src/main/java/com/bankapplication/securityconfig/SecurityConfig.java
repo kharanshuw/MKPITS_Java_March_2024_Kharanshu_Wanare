@@ -122,8 +122,18 @@ public class SecurityConfig {
                                         .requestMatchers(HttpMethod.GET, "/user/accounts").hasRole("USER")
 
                                         .requestMatchers(HttpMethod.GET, "/account/details").hasRole("USER")
+
+                                        .requestMatchers(HttpMethod.GET, "/account/delete").hasRole("USER")
+
+                                        .requestMatchers(HttpMethod.GET, "/account/depositform").hasRole("USER")
+
+                                        .requestMatchers(HttpMethod.GET, "/account/withdrawalform").hasRole("USER")
+
+                                        .requestMatchers(HttpMethod.POST, "/account/deposit").hasRole("USER")
                                         
-                                        .requestMatchers(HttpMethod.GET,"/account/delete").hasRole("USER")
+                                        .requestMatchers(HttpMethod.POST, "/account/withdraw").hasRole("USER")
+                                        
+                                        
 
                                         .anyRequest().authenticated()
 

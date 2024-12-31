@@ -1,91 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Account Deletion Confirmation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>withdrawl</title>
 
 
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Bootstrap CSS -->
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            /* Light Gray */
-        }
-
-        .navbar {
-            color: white;
-            background-color: #004080;
-            /* Navy Blue */
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 20px;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo {
-            background-color: #004080;
-            /* Navy Blue */
-            color: #FFD700;
-            /* Gold */
-            padding: 10px 20px;
-            border-radius: 50%;
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .container {
-            margin-top: 20px;
-            flex: 1;
-        }
-
-        .btn-primary {
-            background-color: #004080;
-            /* Navy Blue */
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #002d5f;
-            /* Darker Navy Blue */
-        }
-
-        .go-back-btn {
-            margin-top: 20px;
-        }
-
-        .go-back-btn .btn {
-            background-color: #004080;
-            /* Navy Blue */
-            color: white;
-            border: none;
-            font-size: 18px;
-            padding: 10px 20px;
-            text-transform: uppercase;
-        }
-
-        .go-back-btn .btn:hover {
-            background-color: #002d5f;
-            /* Darker Navy Blue */
-        }
-    </style>
-
+      
     <!-- navbar style -->
     <style>
         body {
@@ -231,10 +156,37 @@
         }
     </style>
     <!-- navbar style end -->
+
+    <!-- go back button  -->
+    <style>
+        .go-back-btn {
+            margin-top: 20px;
+        }
+
+        .go-back-btn .btn {
+            background-color: #004080;
+            /* Navy Blue */
+            color: white;
+            border: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            text-transform: uppercase;
+        }
+
+        .go-back-btn .btn:hover {
+            background-color: #002d5f;
+            /* Darker Navy Blue */
+        }
+    </style>
+    <!-- go back button end -->
+
+
+
 </head>
 
-<body>
 
+<body>
+    
 <!-- Navbar start -->
 <div class="container-fluid navbar ">
     <div class="logo-container">
@@ -256,18 +208,20 @@
 <!-- Navbar end -->
 
 
-<!-- Confirmation Message Container -->
-<div class="container text-center mt-5">
-    <h1>Account Deletion Confirmation</h1>
-    <p class="lead">The bank account with account number <strong th:text="${accno}"></strong> has been successfully
-        deleted.</p>
-    <div class="go-back-btn">
-        <a class="btn btn-lg" th:href="@{/user/home}">GO BACK</a>
-    </div>
+
+<div class="container mt-4 text-center">
+    <h1 class="text-success">Success!</h1>
+    
+    <p class="lead">The <span th:text="${balance}"></span> RS has been successfully withdran from your <span th:text="${accountNo}"></span> Account no </p>
+    
+    
+    <div class="go-back-btn"><a class="btn" th:href="@{/user/home}">USER HOME</a></div>
 </div>
-<!-- Confirmation Message Container end -->
+
+
 
 
 </body>
+
 
 </html>

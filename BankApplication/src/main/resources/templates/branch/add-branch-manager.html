@@ -127,14 +127,16 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="branchLocation">Branch Location</label>
-                    <input class="form-control" id="branchLocation" placeholder="Enter Branch Location" th:field="*{cityName}"
+                    <input class="form-control" id="branchLocation" placeholder="Enter Branch Location"
+                           th:field="*{cityName}"
                            type="text">
                     <span class="text-danger" th:errors="*{cityName}" th:if="${#fields.hasErrors('cityName')}"></span>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="contactno">Branch Location</label>
-                    <input class="form-control" id="contactno" placeholder="Enter Branch contactno" th:field="*{contactNo}"
+                    <input class="form-control" id="contactno" placeholder="Enter Branch contactno"
+                           th:field="*{contactNo}"
                            type="text">
                     <span class="text-danger" th:errors="*{contactNo}" th:if="${#fields.hasErrors('contactNo')}"></span>
                 </div>

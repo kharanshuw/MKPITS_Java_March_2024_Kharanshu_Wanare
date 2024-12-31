@@ -3,13 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
 
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
 
 
     <!-- navbar style -->
@@ -185,121 +184,120 @@
 
 <body>
 
-    <!-- Navbar start -->
-    <div class="container-fluid navbar ">
-        <div class="logo-container">
-            <div class="logo">
-                SPHEREBANK
-            </div>
-        </div>
-        <div class="d-flex gap-3 flex-row   align-items-center  ">
-            <a class="btn btn-login" th:href="@{/login}">LOGIN</a>
-            <a class="btn btn-register" th:href="@{/register}">REGISTER</a>
-
-            <form action="#" class="p-0 ml-2" method="post" th:action="@{/logout}">
-                <input class="btn-logout" type="submit" value="Logout">
-            </form>
-
-
+<!-- Navbar start -->
+<div class="container-fluid navbar ">
+    <div class="logo-container">
+        <div class="logo">
+            SPHEREBANK
         </div>
     </div>
-    <!-- Navbar end -->
+    <div class="d-flex gap-3 flex-row   align-items-center  ">
+        <a class="btn btn-login" th:href="@{/login}">LOGIN</a>
+        <a class="btn btn-register" th:href="@{/register}">REGISTER</a>
+
+        <form action="#" class="p-0 ml-2" method="post" th:action="@{/logout}">
+            <input class="btn-logout" type="submit" value="Logout">
+        </form>
 
 
-    <!-- main container start -->
+    </div>
+</div>
+<!-- Navbar end -->
 
 
-    <div class="container mt-5 p-4 bg-white shadow-lg   border rounded">
-        <h2 class="text-uppercase fs-1 fw-bold text-primary mb-4">USER Profile Information</h2>
+<!-- main container start -->
 
-        <div class="row mb-3">
-            <label class="col-sm-3 col-form-label fw-bold text-capitalize">account no </label>
-            <div class="col-sm-9">
-                <span class="text-capitalize" th:text="${dto.getAccountNo()}"></span>
-            </div>
+
+<div class="container mt-5 p-4 bg-white shadow-lg   border rounded">
+    <h2 class="text-uppercase fs-1 fw-bold text-primary mb-4">USER Profile Information</h2>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label fw-bold text-capitalize">account no </label>
+        <div class="col-sm-9">
+            <span class="text-capitalize" th:text="${dto.getAccountNo()}"></span>
         </div>
+    </div>
 
-        <div class="row mb-3">
-            <label class="col-sm-3 col-form-label fw-bold text-capitalize">accountType </label>
-            <div class="col-sm-9">
-                <span class="text-capitalize" th:text="${dto.getAccountType()}"></span>
-            </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label fw-bold text-capitalize">accountType </label>
+        <div class="col-sm-9">
+            <span class="text-capitalize" th:text="${dto.getAccountType()}"></span>
         </div>
+    </div>
 
-        <div class="row mb-3">
-            <label class="col-sm-3 col-form-label fw-bold text-capitalize">balance </label>
-            <div class="col-sm-9">
-                <span class="text-capitalize" th:text="${dto.getBalance()}"></span>
-            </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label fw-bold text-capitalize">balance </label>
+        <div class="col-sm-9">
+            <span class="text-capitalize" th:text="${dto.getBalance()}"></span>
         </div>
+    </div>
 
-        <div class="row mb-3">
-            <label class="col-sm-3 col-form-label fw-bold text-capitalize">branch name </label>
-            <div class="col-sm-9">
-                <span class="text-capitalize" th:text="${dto.getBranch()}"></span>
-            </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label fw-bold text-capitalize">branch name </label>
+        <div class="col-sm-9">
+            <span class="text-capitalize" th:text="${dto.getBranch()}"></span>
         </div>
+    </div>
 
-        <div class="row mb-3">
-            <label class="col-sm-3 col-form-label fw-bold text-capitalize">first name </label>
-            <div class="col-sm-9">
-                <span class="text-capitalize" th:text="${dto.getFname()}"></span>
-            </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label fw-bold text-capitalize">first name </label>
+        <div class="col-sm-9">
+            <span class="text-capitalize" th:text="${dto.getFname()}"></span>
         </div>
+    </div>
 
 
-        <div class="row mb-3">
-            <label class="col-sm-3 col-form-label fw-bold text-capitalize">last name </label>
-            <div class="col-sm-9">
-                <span class="text-capitalize" th:text="${dto.getLname()}"></span>
-            </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label fw-bold text-capitalize">last name </label>
+        <div class="col-sm-9">
+            <span class="text-capitalize" th:text="${dto.getLname()}"></span>
         </div>
+    </div>
 
 
-        <div class="row mb-3">
-            <label class="col-sm-3 col-form-label fw-bold text-capitalize">Ifsc no </label>
-            <div class="col-sm-9">
-                <span class="text-capitalize" th:text="${dto.getIfscCode()}"></span>
-            </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label fw-bold text-capitalize">Ifsc no </label>
+        <div class="col-sm-9">
+            <span class="text-capitalize" th:text="${dto.getIfscCode()}"></span>
         </div>
+    </div>
 
 
-        <div class="d-flex gap-10 bg-light p-3 text-capitalize justify-content-center ">
+    <div class="d-flex gap-10 bg-light p-3 text-capitalize justify-content-center ">
 
-
-             <!-- Deposit Money Button -->
-        <div >
-            <div class="col-sm-12 text-center">
-                <a class="btn btn-primary text-wrap text-capitalize" th:href="@{/user/deposit  ( accountNo=${ dto.accountNo }   )  }">Deposit Money</a>
-            </div>
-        </div>
-        <!-- Deposit Money Button end -->
 
         <!-- Deposit Money Button -->
-        <div >
+        <div>
             <div class="col-sm-12 text-center">
-                <a class="btn btn-primary text-wrap text-capitalize " th:href="@{/user/withdrawal  ( accountNo=${ dto.accountNo }  ) }">withdrawal money</a>
+                <a class="btn btn-primary text-wrap text-capitalize"
+                   th:href="@{ /account/depositform  ( accountNo=${ dto.accountNo }   )  }">Deposit Money</a>
             </div>
         </div>
         <!-- Deposit Money Button end -->
 
+        <!-- withdraw Money Button -->
+        <div>
+            <div class="col-sm-12 text-center">
+                <a class="btn btn-primary text-wrap text-capitalize "
+                   th:href="@{ /account/withdrawalform  ( accountNo=${ dto.accountNo }  ) }">withdrawal money</a>
+            </div>
+        </div>
+        <!-- withdrawl Money Button end -->
 
-        <div >
-            <a class="btn btn-primary  text-wrap  " th:href="@{/user/home}"       style="height: 40px; width: 100px;">Go Back</a>
+
+        <div>
+            <a class="btn btn-primary  text-wrap  " style="height: 40px; width: 100px;" th:href="@{/user/home}">Go
+                Back</a>
         </div>
 
 
-
-        </div>
-
-        
-       
     </div>
 
 
-    <!-- main container end -->
+</div>
 
 
+<!-- main container end -->
 
 
 </body>

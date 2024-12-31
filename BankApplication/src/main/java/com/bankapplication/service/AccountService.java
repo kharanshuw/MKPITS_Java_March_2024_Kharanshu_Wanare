@@ -6,6 +6,7 @@ import com.bankapplication.model.Account;
 import com.bankapplication.model.Users;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -20,6 +21,10 @@ public interface AccountService {
 
     public ResponseAccountDto getAccountDetailsByAccountNumber(String accountNo);
 
-    public void deleteAccountByAccountNumber(String accountNumber );
+    public void deleteAccountByAccountNumber(String accountNumber);
+
+    public void depositMoney(String accountNo, BigDecimal amount);
+
+    public void withdrawMoney(String accountNo, BigDecimal amount);
 
 }

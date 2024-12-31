@@ -1,12 +1,19 @@
 package com.bankapplication.dto.response;
 
+import jakarta.validation.constraints.Digits;
+
 import java.math.BigDecimal;
 
 public class ResponseAccountDto {
 
     public String accountType;
+
     private String accountNo;
+
+
+    @Digits(integer = 10, fraction = 2, message = "only digit allows for balance")
     private BigDecimal balance;
+
     private String branch;
 
     private String fname;

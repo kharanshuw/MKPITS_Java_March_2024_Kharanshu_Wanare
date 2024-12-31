@@ -186,36 +186,173 @@ public class AccountController {
      * Handles the request to delete a bank account by account number.
      *
      * @param accountNumber the account number of the account to be deleted
-     * @param model the model to pass data to the view
+     * @param model         the model to pass data to the view
      * @return the view name for the account deletion status
      */
     @GetMapping("/delete")
-    public String deleteAccount(@RequestParam("accountNo") String accountNumber , Model model)
-    {
+    public String deleteAccount(@RequestParam("accountNo") String accountNumber, Model model) {
         // Log the received account number for debugging
         logger.info("Received request for account delete with account number: {}", accountNumber);
-        
-        
+
+
         // Forward the request to the service layer for processing
         accountService.deleteAccountByAccountNumber(accountNumber);
 
         // Log successful deletion request forwarding
         logger.info("Successfully deleted account with account number: {}", accountNumber);
-        
-        model.addAttribute("accno",accountNumber);
-        
+
+        model.addAttribute("accno", accountNumber);
+
         return "account/account_delete_successfully";
+    }
+
+    /**
+     * Controller method to display the deposit form for a specific account.
+     * This method retrieves account details based on the provided account number
+     * and adds them to the model for rendering in the deposit form view.
+     *
+     * @param accountNumber the account number used to fetch account details
+     * @param model         the model to which the account details will be added
+     * @return the name of the view template for the deposit form
+     */
+    @GetMapping("/depositform")
+    public String getDepositForm(@RequestParam("accountNo") String accountNumber, Model model) {
+        logger.info("account number is " + accountNumber);
+
+
+        // Retrieve account details using the account number
+        ResponseAccountDto responseAccountDto = accountService.getAccountDetailsByAccountNumber(accountNumber);
+
+        model.addAttribute("responseAccountDto", responseAccountDto);
+
+        return "account/deposit-form";
+    }
+
+
+    /**
+     * Handles the deposit request by validating the request data and calling the account service to deposit money.
+     *
+     * @param responseAccountDto the request data containing the account number and deposit amount
+     * @param model              the Spring MVC model object
+     * @param bindingResult      the binding result object containing any validation errors
+     * @return the view name to render after processing the request
+     */
+    @PostMapping("/deposit")
+    public String depositMoney(@Valid @ModelAttribute("responseAccountDto") ResponseAccountDto responseAccountDto, Model model, BindingResult bindingResult) {
+
+        // Log the incoming request data
+        logger.info("Received deposit request: {}", responseAccountDto.toString());
+
+        // Check for validation errors in the request data
+        if (bindingResult.hasErrors()) {
+            logger.error("Validation errors found in deposit request:");
+
+
+            // Log each field error for detailed debugging
+            bindingResult.getFieldErrors().forEach(error -> {
+                logger.error(
+                        "field" + error.getField() + ",error:" + error.getDefaultMessage()
+                );
+            });
+            // Return the deposit page if there are errors
+            return "account/deposit-form";
+        }
+
+        logger.info("requestaccountdto is " + responseAccountDto.toString());
+
+
+        // Call the account service to deposit money
+        logger.debug("Depositing money into account: {}", responseAccountDto.getAccountNo());
+        accountService.depositMoney(responseAccountDto.getAccountNo(), responseAccountDto.getBalance());
+
+        logger.info("Account balance successfully updated");
+
+        model.addAttribute("accountNo", responseAccountDto.getAccountNo());
+
+        model.addAttribute("balance", responseAccountDto.getBalance());
+
+
+        return "account/deposit-successful";
+    }
+
+    /**
+     * Handles GET request to retrieve the withdrawal form for a specific account.
+     *
+     * @param accountNumber the account number of the account to retrieve
+     * @param model         the model to add attributes to
+     * @return the withdrawal form page
+     */
+    @GetMapping("/withdrawalform")
+    public String getWithdrawForm(@RequestParam("accountNo") String accountNumber, Model model) {
+
+        // Log the received account number for debugging purposes
+        logger.info("Received account number: {}", accountNumber);
+
+        // Retrieve account details using the account number
+        // This method call may throw AccountNotFoundException if the account is not found
+        ResponseAccountDto responseAccountDto = accountService.getAccountDetailsByAccountNumber(accountNumber);
+
+
+        // Log the retrieved account details for debugging purposes
+        logger.info("Retrieved account details: {}", responseAccountDto);
+
+
+        model.addAttribute("responseAccountDto", responseAccountDto);
+
+        return "account/withdraw-form";
     }
     
     
+    /**
+     * Handles the withdrawal request by validating the request data and calling the account service to withdraw money.
+     *
+     * @param responseAccountDto the request data containing the account number and withdrawal amount
+     * @param model              the Spring MVC model object
+     * @param bindingResult      the binding result object containing any validation errors
+     * @return the view name to render after processing the request
+     */
+    @PostMapping("/withdraw")
+    public String withdrawMoney(@Valid @ModelAttribute("responseAccountDto") ResponseAccountDto responseAccountDto, Model model, BindingResult bindingResult) {
 
+        // Log the incoming request data            
+        logger.info("Received withdrawal request: {}", responseAccountDto.toString());
+        
+        // Check for validation errors in the request data
+        if (bindingResult.hasErrors()) {
+            logger.error("Validation errors found in withdrawal request:");
+            
+            // Log each field error for detailed debugging
+            bindingResult.getFieldErrors().forEach(error -> {
+                logger.error(
+                        "field" + error.getField() + ",error:" + error.getDefaultMessage()
+                );
+            });
+            // Return the withdrawal page if there are errors
+            return "account/withdraw-form";
+        }
+        
+        logger.info("requestaccountdto is " + responseAccountDto.toString());
+        
+        // Call the account service to withdraw money
+        logger.debug("Withdrawing money from account: {}", responseAccountDto.getAccountNo());  
+        
+        accountService.withdrawMoney(responseAccountDto.getAccountNo(), responseAccountDto.getBalance());
+        
+        logger.info("Account balance successfully updated");
+        
+        model.addAttribute("accountNo", responseAccountDto.getAccountNo());
+        
+        model.addAttribute("balance", responseAccountDto.getBalance());
+        
+        return "account/withdrawl-successfull";
+    }
 
 
     /**
      * Handles RuntimeExceptions thrown in the application.
      *
      * @param exception the RuntimeException that was thrown
-     * @param model the model to pass data to the view
+     * @param model     the model to pass data to the view
      * @return the view name for error handling
      */
     @ExceptionHandler(value = RuntimeException.class)

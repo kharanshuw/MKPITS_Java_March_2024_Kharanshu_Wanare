@@ -134,7 +134,8 @@
     <h1 class="heading">Hello user <span th:text="${fname}"></span> <span th:text="${lname}"></span></h1>
     <h1 class="heading">Please select one of the following account types:</h1>
     <ul>
-        <a class="account-type" th:each="account:${nonExistingAccount}" th:href="@{/account/create-account-form(type=${account})}"
+        <a class="account-type" th:each="account:${nonExistingAccount}"
+           th:href="@{/account/create-account-form(type=${account})}"
            th:text="${account}">
             hello
         </a>
