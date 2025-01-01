@@ -3,102 +3,275 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
+
     <title>Account Form</title>
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- navbar style -->
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            display: flex ;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             margin: 0;
-        }
-        h2 {
-            color: #333;
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        form {
-            background-color: #f9f9f9;
-            padding: 80px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 60%;
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        input[type="number"] {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 20px;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            /* Light Gray */
         }
 
-        select {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 20px;
+
+
+        .navbar {
+            color: white;
+            background-color: #004080;
+            /* Navy Blue */
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
         }
-        button[type="submit"] {
-            background-color: #4CAF50;
-            color: #fff;
+
+        .btn-login,
+        .btn-register {
+            color: #004080;
+            /* Navy Blue */
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
             cursor: pointer;
         }
-        button[type="submit"]:hover {
-            background-color: #45a049;
-        }
-        .text-danger{
-        color : red;
+
+        .btn-login {
+            background-color: #FFFFFF;
+            /* White */
         }
 
+        .btn-register {
+            background-color: #FFD700;
+            /* Gold */
+        }
+
+        .btn-login:hover,
+        .btn-register:hover {
+            opacity: 0.8;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            background-color: #004080;
+            /* Navy Blue */
+            color: #FFD700;
+            /* Gold */
+            padding: 10px 20px;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            margin-top: 20px;
+            flex: 1;
+        }
+
+        /* logout button */
+        .btn-login,
+        .btn-register,
+        .btn-logout {
+            color: #004080;
+            /* Navy Blue */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #FFFFFF;
+            display: inline;
+            vertical-align: middle;
+            /* White for login and logout */
+        }
+
+        .btn-register {
+            background-color: #FFD700;
+            /* Gold */
+        }
+
+        .btn-login:hover,
+        .btn-register:hover,
+        .btn-logout:hover {
+            opacity: 0.8;
+        }
+
+
+        .btn-logout {
+            background-color: #FF0000;
+            /* Red */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-logout:hover {
+            opacity: 0.8;
+        }
+
+        /* logout button end */
+        /* login button  */
+        .btn-login {
+            background-color: #28a745;
+            /* Green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-login:hover {
+            opacity: 0.8;
+        }
+
+        /* Spacing for navbar elements */
+        .d-flex.gap-3>* {
+            margin-left: 10px;
+            /* Adjust the margin value as needed */
+        }
     </style>
+    <!-- navbar style end -->
+
+    <!-- go back button  -->
+    <style>
+        .go-back-btn {
+            margin-top: 20px;
+        }
+
+        .go-back-btn .btn {
+            background-color: #004080;
+            /* Navy Blue */
+            color: white;
+            border: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            text-transform: uppercase;
+        }
+
+        .go-back-btn .btn:hover {
+            background-color: #002d5f;
+            /* Darker Navy Blue */
+        }
+    </style>
+    <!-- go back button end -->
+
+
+    <!-- select tag start-->
+
+    <style>
+        .select-container{
+            display: flex;
+            justify-content: start;
+            position: relative;
+            min-width: 250px;
+            height: 50px;
+        }
+
+        .select-box{
+            border: none;
+            appearance: none;
+            padding: 0 30px 0 15px;
+            width: 100%;
+            color: black;
+           
+            margin-left: 10px;
+            font-size: 20px;
+        }
+    </style>
+
+    <!-- select tag end -->
+
 </head>
 <body>
-<form id="create-account-form" method="post" th:action="@{/account/create-account}" th:object="${requestAccountForm}">
-    <h2>Create Bank Account</h2>
 
+<!-- Navbar start -->
+<div class="container-fluid navbar ">
+    <div class="logo-container">
+        <div class="logo">
+            SPHEREBANK
+        </div>
+    </div>
+    <div class="d-flex gap-3 flex-row   align-items-center  ">
+        <a class="btn btn-login" th:href="@{/login}">LOGIN</a>
+        <a class="btn btn-register" th:href="@{/register}">REGISTER</a>
 
-    <label for="user" id="user">User ID:</label>
-    <input id="user" required th:field="*{userId}" type="text">
-    <br>
-    <br>
+        <form action="#" class="p-0 ml-2" method="post" th:action="@{/logout}">
+            <input class="btn-logout" type="submit" value="Logout">
+        </form>
 
-
-    <label for="account-type">Account Type:</label>
-    <input id="account-type" required th:field="*{accountType}" type="text">
-    <br><br>
-
-    <label for="branch">Branch:</label>
-    <select id="branch" name="branchId" required>
-        <option value="">Select Branch</option>
-        <th:block th:each="branch : ${branchlist}">
-            <option th:text="${branch.branchName}" th:value="${branch.id}"></option>
-        </th:block>
-    </select>
-
-    <label for="initial-deposit">Initial Deposit:</label>
-    <input id="initial-deposit" required th:field="*{initialBalance}" type="number">
-    <div class="text-danger" th:errors="*{initialBalance}" th:if="${#fields.hasErrors('initialBalance')}">
 
     </div>
-    <br><br>
-    <button type="submit">Create Account</button>
-</form>
+</div>
+<!-- Navbar end -->
+
+
+<!-- form div start -->
+<div class="container mt-4">
+
+    <form id="create-account-form" method="post" th:action="@{/account/create-account}"
+          th:object="${requestAccountForm}">
+        <h2>Create Bank Account</h2>
+        <div class="mb-3 d-flex">
+            <label for="user" id="user" class="form-label">User ID:</label>
+            <input id="user" required th:field="*{userId}" type="text" class="form-control">
+        </div>
+        <div class="mb-3 d-flex">
+            <label for="account-type" class="form-label">Account Type:</label>
+            <input id="account-type" required th:field="*{accountType}" type="text" class="form-control">
+        </div>
+
+
+        <div class="mb-3 select-container ">
+            <label for="branch" class="form-label">Branch:</label>
+            <select id="branch" name="branchId" required class="select-box mb-3 border">
+                <option value="">Select Branch</option>
+                <th:block th:each="branch : ${branchlist}">
+                    <option th:text="${branch.branchName}" th:value="${branch.id}"></option>
+                </th:block>
+            </select>
+
+
+        </div>
+
+        <div class="mb-3 d-flex">
+            <label for="initial-deposit" class="form-label">Initial Deposit:</label>
+            <input id="initial-deposit" required th:field="*{initialBalance}" type="number" class="form-control">
+            <div class="text-danger" th:errors="*{initialBalance}" th:if="${#fields.hasErrors('initialBalance')}"></div>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Account</button>
+    </form>
+</div>
+<!-- form div end -->
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+
 </body>
 </html>

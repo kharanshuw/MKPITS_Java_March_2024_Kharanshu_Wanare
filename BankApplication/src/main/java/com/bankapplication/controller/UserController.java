@@ -231,6 +231,8 @@ public class UserController {
         model.addAttribute("list", responseAccountDtoList);
         return "account/account-list";
     }
+        
+    
 
     /**
      * This method handles all exceptions that are not explicitly caught elsewhere

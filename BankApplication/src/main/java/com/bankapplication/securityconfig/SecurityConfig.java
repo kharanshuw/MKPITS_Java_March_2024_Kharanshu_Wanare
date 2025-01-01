@@ -133,6 +133,8 @@ public class SecurityConfig {
                                         
                                         .requestMatchers(HttpMethod.POST, "/account/withdraw").hasRole("USER")
                                         
+                                        .requestMatchers(HttpMethod.GET, "/account/transactions").hasRole("USER")
+                                        
                                         
 
                                         .anyRequest().authenticated()

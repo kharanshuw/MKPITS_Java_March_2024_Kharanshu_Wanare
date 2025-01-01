@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en"   xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Account Creation Success</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
 
     <!-- navbar style -->
     <style>
@@ -157,29 +158,6 @@
 
 
 
-    <!-- go back button  -->
-    <style>
-        .go-back-btn {
-            margin-top: 20px;
-        }
-
-        .go-back-btn .btn {
-            background-color: #004080;
-            /* Navy Blue */
-            color: white;
-            border: none;
-            font-size: 18px;
-            padding: 10px 20px;
-            text-transform: uppercase;
-        }
-
-        .go-back-btn .btn:hover {
-            background-color: #002d5f;
-            /* Darker Navy Blue */
-        }
-    </style>
-    <!-- go back button end -->
-
 
 </head>
 
@@ -206,15 +184,61 @@
     <!-- Navbar end -->
 
 
+    <!-- main content start -->
+    <div class="container">
+
+        <h2 class="text-center text-wrap  text-uppercase text-decoration-underline fw-bold  fs-6  mb-3 "
+            style="text-decoration: underline;">Transaction of <span th:text="${accountNo}"></span></h2>
+
+        <!-- table start -->
+        <table class="table table-bordered">
 
 
-    <div class="success-message   container   mt-5 p-5 border-0 border-success rounded">
-        <h1>Account Successfully Created!</h1>
-        <p>Your branch account has been created successfully. You can now start using the account.</p>
-        <div class="go-back-btn">
-            <a href="/user/home" class="btn">Return to Home</a>
+            <!--        table head start -->
+            <thead>
+                <tr class="text-wrap text-capitalize  ">
+                    <th>transaction date</th>
+                    <th>amount</th>
+                    <th>transaction type</th>
+                </tr>
+            </thead>
+            <!--        table head end -->
+
+
+            <!--        table body start -->
+            <tbody>
+                <tr th:each="a : ${list}">
+
+                    <td class="text-center" th:text="${a.getDate()}"></td>
+                    <td class="text-center" th:text="${a.getAmount()}"></td>
+                    <td class="text-center" th:text="${a.getTransactionType()}"></td>
+                    
+                </tr>
+                <!-- Add more rows as needed -->
+
+
+            </tbody>
+            <!--        table body end -->
+
+
+
+        </table>
+
+        <!-- table end -->
+    </div>
+
+    <!-- main content end -->
+
+
+    <!-- go back button start -->
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-primary btn-lg  text-uppercase " th:href="@{/user/home}">GO BACK</a>
         </div>
     </div>
+    <!-- go back button end -->
+
+
 </body>
 
 </html>

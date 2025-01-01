@@ -35,6 +35,8 @@ SELECT * from ACCOUNT;
 
 SELECT * from ACCOUNT WHERE account_number = "2924964580999"
 
+SELECT * from TRANSACTION;
+
 
 INSERT INTO role(id,role_name) VALUES (1,'ROLE_ADMIN');
 
@@ -71,6 +73,9 @@ ADD INDEX (id)
 
 ALTER TABLE account_type
 ADD INDEX (id)
+
+ALTER TABLE TRANSACTION DROP COLUMN created_at;
+
 
 @Query("SELECT new com.bankapplication.dto.LoggesInUserDetails(u.id, u.email, ud.fname, ud.lname, ud.gender, ud.phoneno, r.rolename) " +
 "FROM User u " + "INNER JOIN u.userDetails ud " +"JOIN u.role r " +"WHERE u.email = :email")

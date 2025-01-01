@@ -2,12 +2,14 @@ package com.bankapplication.controller;
 
 import com.bankapplication.dto.request.RequestAccountDto;
 import com.bankapplication.dto.response.ResponseAccountDto;
+import com.bankapplication.dto.response.ResponseTransactionDto;
 import com.bankapplication.getapplicationcontext.UserServiceAppContext;
 import com.bankapplication.model.Account;
 import com.bankapplication.model.Branch;
 import com.bankapplication.model.Users;
 import com.bankapplication.service.AccountService;
 import com.bankapplication.service.BranchService;
+import com.bankapplication.service.TransactionService;
 import com.bankapplication.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,13 +33,16 @@ public class AccountController {
     private BranchService branchService;
     private UserService userService;
 
+    private TransactionService transactionService;
+
 
     @Autowired
-    public AccountController(UserServiceAppContext userServiceAppContext, AccountService accountService, BranchService branchService, UserService userService) {
+    public AccountController(UserServiceAppContext userServiceAppContext, AccountService accountService, BranchService branchService, UserService userService, TransactionService transactionService) {
         this.userServiceAppContext = userServiceAppContext;
         this.accountService = accountService;
         this.branchService = branchService;
         this.userService = userService;
+        this.transactionService = transactionService;
     }
 
     /**
@@ -238,7 +243,7 @@ public class AccountController {
      * @return the view name to render after processing the request
      */
     @PostMapping("/deposit")
-    public String depositMoney(@Valid @ModelAttribute("responseAccountDto") ResponseAccountDto responseAccountDto, Model model, BindingResult bindingResult) {
+    public String getDepositMoney(@Valid @ModelAttribute("responseAccountDto") ResponseAccountDto responseAccountDto, Model model, BindingResult bindingResult) {
 
         // Log the incoming request data
         logger.info("Received deposit request: {}", responseAccountDto.toString());
@@ -301,8 +306,8 @@ public class AccountController {
 
         return "account/withdraw-form";
     }
-    
-    
+
+
     /**
      * Handles the withdrawal request by validating the request data and calling the account service to withdraw money.
      *
@@ -312,15 +317,15 @@ public class AccountController {
      * @return the view name to render after processing the request
      */
     @PostMapping("/withdraw")
-    public String withdrawMoney(@Valid @ModelAttribute("responseAccountDto") ResponseAccountDto responseAccountDto, Model model, BindingResult bindingResult) {
+    public String getwithdrawMoney(@Valid @ModelAttribute("responseAccountDto") ResponseAccountDto responseAccountDto, Model model, BindingResult bindingResult) {
 
         // Log the incoming request data            
         logger.info("Received withdrawal request: {}", responseAccountDto.toString());
-        
+
         // Check for validation errors in the request data
         if (bindingResult.hasErrors()) {
             logger.error("Validation errors found in withdrawal request:");
-            
+
             // Log each field error for detailed debugging
             bindingResult.getFieldErrors().forEach(error -> {
                 logger.error(
@@ -330,21 +335,48 @@ public class AccountController {
             // Return the withdrawal page if there are errors
             return "account/withdraw-form";
         }
-        
+
         logger.info("requestaccountdto is " + responseAccountDto.toString());
-        
+
         // Call the account service to withdraw money
-        logger.debug("Withdrawing money from account: {}", responseAccountDto.getAccountNo());  
-        
+        logger.debug("Withdrawing money from account: {}", responseAccountDto.getAccountNo());
+
         accountService.withdrawMoney(responseAccountDto.getAccountNo(), responseAccountDto.getBalance());
-        
+
         logger.info("Account balance successfully updated");
-        
+
         model.addAttribute("accountNo", responseAccountDto.getAccountNo());
-        
+
         model.addAttribute("balance", responseAccountDto.getBalance());
-        
+
         return "account/withdrawl-successfull";
+    }
+
+
+    /**
+     * Handles GET requests to retrieve transaction history for a specific account.
+     * Adds the transaction history to the model to be displayed on the transactions page.
+     *
+     * @param accountNo the account number for which to retrieve the transaction history
+     * @param model the model to which the transaction history will be added
+     * @return the name of the view template for displaying the transaction history
+     */
+    @GetMapping("/transactions")
+    public String getTransaction(@RequestParam("accountNo") String accountNo, Model model) {
+        logger.info("Received account number: {}", accountNo);
+
+
+        // Retrieve transaction history for the given account number
+        List<ResponseTransactionDto> responseTransactionDtos = transactionService.getTransactionHistory(accountNo);
+
+        // Add the transaction history to the model
+        model.addAttribute("list", responseTransactionDtos);
+
+        logger.info("Transaction history retrieved successfully for account number: {}", accountNo);
+
+        model.addAttribute("accountNo", accountNo);
+        
+        return "account/transactions";
     }
 
 
