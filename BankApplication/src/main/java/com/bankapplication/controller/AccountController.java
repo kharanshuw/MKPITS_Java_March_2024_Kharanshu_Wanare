@@ -14,6 +14,7 @@ import com.bankapplication.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -358,24 +359,42 @@ public class AccountController {
      * Adds the transaction history to the model to be displayed on the transactions page.
      *
      * @param accountNo the account number for which to retrieve the transaction history
-     * @param model the model to which the transaction history will be added
+     * @param model     the model to which the transaction history will be added
+     * @param pageNumber the page number for pagination (default: 0)
+     * @param pageSize   the number of transactions per page (default: 1)
      * @return the name of the view template for displaying the transaction history
      */
     @GetMapping("/transactions")
-    public String getTransaction(@RequestParam("accountNo") String accountNo, Model model) {
+    public String getTransaction(@RequestParam("accountNo") String accountNo, Model model, @RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "1") int pageSize) {
         logger.info("Received account number: {}", accountNo);
+
+        // Log the received page number and page size for debugging purposes
+        logger.info("Received page number: {}", pageNumber);
+        logger.info("Received page size: {}", pageSize);
 
 
         // Retrieve transaction history for the given account number
-        List<ResponseTransactionDto> responseTransactionDtos = transactionService.getTransactionHistory(accountNo);
+        Page<ResponseTransactionDto> responseTransactionDtos = transactionService.getTransactionHistory(accountNo, pageNumber, pageSize);
 
         // Add the transaction history to the model
         model.addAttribute("list", responseTransactionDtos);
+        
+       
 
         logger.info("Transaction history retrieved successfully for account number: {}", accountNo);
-
-        model.addAttribute("accountNo", accountNo);
         
+        model.addAttribute("hasContent", responseTransactionDtos.hasContent());
+        System.out.println("hascontent :"+responseTransactionDtos.hasContent());
+        model.addAttribute("hasNext", responseTransactionDtos.hasNext());
+        System.out.println("hasnext"+responseTransactionDtos.hasNext());
+        model.addAttribute("hasPrevious", responseTransactionDtos.hasPrevious());
+        System.out.println(responseTransactionDtos.hasPrevious());
+        
+        model.addAttribute("accountNo",accountNo);
+        
+        model.addAttribute("size", responseTransactionDtos.getSize());
+        model.addAttribute("totalPages", responseTransactionDtos.getTotalPages());
+
         return "account/transactions";
     }
 

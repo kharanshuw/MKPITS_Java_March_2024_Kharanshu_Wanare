@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en"   xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
 
     <!-- Bootstrap CSS -->
@@ -156,87 +156,115 @@
     <!-- navbar style end -->
 
 
-
-
-
 </head>
 
 <body>
 
-    <!-- Navbar start -->
-    <div class="container-fluid navbar ">
-        <div class="logo-container">
-            <div class="logo">
-                SPHEREBANK
-            </div>
-        </div>
-        <div class="d-flex gap-3 flex-row   align-items-center  ">
-            <a class="btn btn-login" th:href="@{/login}">LOGIN</a>
-            <a class="btn btn-register" th:href="@{/register}">REGISTER</a>
-
-            <form action="#" class="p-0 ml-2" method="post" th:action="@{/logout}">
-                <input class="btn-logout" type="submit" value="Logout">
-            </form>
-
-
+<!-- Navbar start -->
+<div class="container-fluid navbar ">
+    <div class="logo-container">
+        <div class="logo">
+            SPHEREBANK
         </div>
     </div>
-    <!-- Navbar end -->
+    <div class="d-flex gap-3 flex-row   align-items-center  ">
+        <a class="btn btn-login" th:href="@{/login}">LOGIN</a>
+        <a class="btn btn-register" th:href="@{/register}">REGISTER</a>
+
+        <form action="#" class="p-0 ml-2" method="post" th:action="@{/logout}">
+            <input class="btn-logout" type="submit" value="Logout">
+        </form>
 
 
-    <!-- main content start -->
-    <div class="container">
-
-        <h2 class="text-center text-wrap  text-uppercase text-decoration-underline fw-bold  fs-6  mb-3 "
-            style="text-decoration: underline;">Transaction of <span th:text="${accountNo}"></span></h2>
-
-        <!-- table start -->
-        <table class="table table-bordered">
+    </div>
+</div>
+<!-- Navbar end -->
 
 
-            <!--        table head start -->
-            <thead>
-                <tr class="text-wrap text-capitalize  ">
-                    <th>transaction date</th>
-                    <th>amount</th>
-                    <th>transaction type</th>
-                </tr>
-            </thead>
-            <!--        table head end -->
+<!-- main content start -->
+<div class="container">
+
+    <h2 class="text-center text-wrap  text-uppercase text-decoration-underline fw-bold  fs-6  mb-3 "
+        style="text-decoration: underline;">Transaction of <span th:text="${accountNo}"></span></h2>
+
+    <!-- table start -->
+    <table class="table table-bordered">
 
 
-            <!--        table body start -->
-            <tbody>
-                <tr th:each="a : ${list}">
-
-                    <td class="text-center" th:text="${a.getDate()}"></td>
-                    <td class="text-center" th:text="${a.getAmount()}"></td>
-                    <td class="text-center" th:text="${a.getTransactionType()}"></td>
-                    
-                </tr>
-                <!-- Add more rows as needed -->
-
-
-            </tbody>
-            <!--        table body end -->
+        <!--        table head start -->
+        <thead>
+        <tr class="text-wrap text-capitalize  ">
+            <th>transaction date</th>
+            <th>amount</th>
+            <th>transaction type</th>
+        </tr>
+        </thead>
+        <!--        table head end -->
 
 
+        <!--        table body start -->
+        <tbody>
+        <tr th:each="a : ${list.content}">
 
-        </table>
+            <td class="text-center" th:text="${a.getDate()}"></td>
+            <td class="text-center" th:text="${a.getAmount()}"></td>
+            <td class="text-center" th:text="${a.getTransactionType()}"></td>
 
-        <!-- table end -->
+        </tr>
+        <!-- Add more rows as needed -->
+
+
+        </tbody>
+        <!--        table body end -->
+
+
+    </table>
+
+    <!-- table end -->
+    
+   
+    
+</div>
+
+<!-- main content end -->
+
+<!--next and previous button start-->
+<div th:if="${hasContent}" class="container  d-flex flex-row justify-content-between align-items-start  flex-wrap gap-3" >
+
+
+
+    <div th:if="${hasPrevious}" class="d-flex flex-row justify-content-center align-items-center flex-wrap gap-3">
+
+
+            
+            <a th:href="@{/account/transactions  (          pageNumber=${list.number-1} ,  accountNo=${accountNo}   ) }"   class="btn  btn-block"    style="background-color: #004080;  color: white;"    >
+            Previous
+        </a>
+
+
     </div>
 
-    <!-- main content end -->
 
 
-    <!-- go back button start -->
-    <div class="container">
-        <div class="d-flex justify-content-center">
-            <a class="btn btn-primary btn-lg  text-uppercase " th:href="@{/user/home}">GO BACK</a>
-        </div>
+    <div th:if="${hasNext}" class="d-flex flex-row justify-content-center align-items-center flex-wrap gap-3">
+
+
+        <a th:href="@{/account/transactions  (     pageNumber=${list.number+1} ,  accountNo=${accountNo}  ) }"   class="btn btn-block "  style="background-color: #004080;  color: white;" >
+            Next
+        </a>
+
+
     </div>
-    <!-- go back button end -->
+</div>
+<!--next and previous button end-->
+
+<!-- go back button start -->
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-primary btn-lg  text-uppercase " th:href="@{/user/home}">GO BACK</a>
+    </div>
+</div>
+<!-- go back button end -->
 
 
 </body>

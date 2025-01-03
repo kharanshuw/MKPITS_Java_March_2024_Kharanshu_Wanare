@@ -155,8 +155,6 @@
     <!-- navbar style end -->
 
 
-
-
     <!-- go back button  -->
     <style>
         .go-back-btn {
@@ -185,36 +183,34 @@
 
 <body>
 
-    <!-- Navbar start -->
-    <div class="container-fluid navbar ">
-        <div class="logo-container">
-            <div class="logo">
-                SPHEREBANK
-            </div>
-        </div>
-        <div class="d-flex gap-3 flex-row   align-items-center  ">
-            <a class="btn btn-login" th:href="@{/login}">LOGIN</a>
-            <a class="btn btn-register" th:href="@{/register}">REGISTER</a>
-
-            <form action="#" class="p-0 ml-2" method="post" th:action="@{/logout}">
-                <input class="btn-logout" type="submit" value="Logout">
-            </form>
-
-
+<!-- Navbar start -->
+<div class="container-fluid navbar ">
+    <div class="logo-container">
+        <div class="logo">
+            SPHEREBANK
         </div>
     </div>
-    <!-- Navbar end -->
+    <div class="d-flex gap-3 flex-row   align-items-center  ">
+        <a class="btn btn-login" th:href="@{/login}">LOGIN</a>
+        <a class="btn btn-register" th:href="@{/register}">REGISTER</a>
+
+        <form action="#" class="p-0 ml-2" method="post" th:action="@{/logout}">
+            <input class="btn-logout" type="submit" value="Logout">
+        </form>
 
 
-
-
-    <div class="success-message   container   mt-5 p-5 border-0 border-success rounded">
-        <h1>Account Successfully Created!</h1>
-        <p>Your branch account has been created successfully. You can now start using the account.</p>
-        <div class="go-back-btn">
-            <a href="/user/home" class="btn">Return to Home</a>
-        </div>
     </div>
+</div>
+<!-- Navbar end -->
+
+
+<div class="success-message   container   mt-5 p-5 border-0 border-success rounded">
+    <h1>Account Successfully Created!</h1>
+    <p>Your branch account has been created successfully. You can now start using the account.</p>
+    <div class="go-back-btn">
+        <a class="btn" href="/user/home">Return to Home</a>
+    </div>
+</div>
 </body>
 
 </html>

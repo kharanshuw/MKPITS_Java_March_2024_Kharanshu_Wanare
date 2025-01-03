@@ -237,18 +237,18 @@
           th:object="${requestAccountForm}">
         <h2>Create Bank Account</h2>
         <div class="mb-3 d-flex">
-            <label for="user" id="user" class="form-label">User ID:</label>
-            <input id="user" required th:field="*{userId}" type="text" class="form-control">
+            <label class="form-label" for="user" id="user">User ID:</label>
+            <input class="form-control" id="user" required th:field="*{userId}" type="text">
         </div>
         <div class="mb-3 d-flex">
-            <label for="account-type" class="form-label">Account Type:</label>
-            <input id="account-type" required th:field="*{accountType}" type="text" class="form-control">
+            <label class="form-label" for="account-type">Account Type:</label>
+            <input class="form-control" id="account-type" required th:field="*{accountType}" type="text">
         </div>
 
 
         <div class="mb-3 select-container ">
-            <label for="branch" class="form-label">Branch:</label>
-            <select id="branch" name="branchId" required class="select-box mb-3 border">
+            <label class="form-label" for="branch">Branch:</label>
+            <select class="select-box mb-3 border" id="branch" name="branchId" required>
                 <option value="">Select Branch</option>
                 <th:block th:each="branch : ${branchlist}">
                     <option th:text="${branch.branchName}" th:value="${branch.id}"></option>
@@ -259,11 +259,11 @@
         </div>
 
         <div class="mb-3 d-flex">
-            <label for="initial-deposit" class="form-label">Initial Deposit:</label>
-            <input id="initial-deposit" required th:field="*{initialBalance}" type="number" class="form-control">
+            <label class="form-label" for="initial-deposit">Initial Deposit:</label>
+            <input class="form-control" id="initial-deposit" required th:field="*{initialBalance}" type="number">
             <div class="text-danger" th:errors="*{initialBalance}" th:if="${#fields.hasErrors('initialBalance')}"></div>
         </div>
-        <button type="submit" class="btn btn-primary">Create Account</button>
+        <button class="btn btn-primary" type="submit">Create Account</button>
     </form>
 </div>
 <!-- form div end -->

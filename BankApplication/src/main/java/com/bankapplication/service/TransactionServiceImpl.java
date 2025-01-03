@@ -8,6 +8,10 @@ import com.bankapplication.repository.TransactionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -61,12 +65,19 @@ public class TransactionServiceImpl implements TransactionService {
      * Retrieves the transaction history for a specific account and converts the transactions
      * to ResponseTransactionDto objects.
      *
-     * @param accountNo the account number for which to retrieve the transaction history
-     * @return a list of ResponseTransactionDto objects representing the transaction history
+     * @param accountNo  the account number for which to retrieve the transaction history
+     * @param pageNumber the page number for pagination
+     * @param pageSize   the number of transactions per page
+     * @return a Page of ResponseTransactionDto objects representing the transaction history
      */
-    public List<ResponseTransactionDto> getTransactionHistory(String accountNo) {
+    public Page<ResponseTransactionDto> getTransactionHistory(String accountNo, int pageNumber, int pageSize) {
+
+
         // List to hold the response transaction DTOs
         List<ResponseTransactionDto> responseTransactionDtos = new ArrayList<>();
+
+        Page<Transactions> transactions = null;
+
 
         try {
             // Retrieve transactions for the given account number from the repository
@@ -74,7 +85,13 @@ public class TransactionServiceImpl implements TransactionService {
 
             Account account = accountRepository.findByAccountNumber(accountNo);
 
-            List<Transactions> transactions = transactionRepository.findTransactionsByAccountNumber(accountNo);
+
+            // Create a pageable object for pagination
+            Pageable pageable = PageRequest.of(pageNumber, pageSize);
+
+            // Retrieve transactions for the given account number from the repository
+            logger.debug("Fetching transactions for account number: {}", accountNo);
+             transactions = transactionRepository.findTransactionsByAccountNumber(accountNo, pageable);
 
             // Convert each transaction to a ResponseTransactionDto and add to the list
             for (Transactions t : transactions) {
@@ -89,8 +106,11 @@ public class TransactionServiceImpl implements TransactionService {
             logger.error("Error retrieving transaction history for account number: {}", accountNo, e);
         }
 
-        // Return the list of response transaction DTOs
-        return responseTransactionDtos;
+        // Create a new Page object with the response transaction DTOs
+        Page<ResponseTransactionDto> responseTransactionDtoPage = new PageImpl<>(responseTransactionDtos, PageRequest.of(pageNumber, pageSize),transactions.getTotalElements() );
+
+
+        return responseTransactionDtoPage;
     }
 
 

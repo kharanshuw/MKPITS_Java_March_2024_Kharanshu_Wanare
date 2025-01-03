@@ -34,18 +34,18 @@ public class AccountServiceImpl implements AccountService {
     private AccountRepository accountRepository;
 
     private UserServiceImpl userService;
-    
+
     private TransactionService transactionService;
 
     @Autowired
-    public AccountServiceImpl(UserRepository userRepository, AccountTypeRepository accountTypeRepository, BranchRepository branchRepository, UserDetailsRepository userDetailsRepository, AccountRepository accountRepository, UserServiceImpl userService, TransactionService transactionService ) {
+    public AccountServiceImpl(UserRepository userRepository, AccountTypeRepository accountTypeRepository, BranchRepository branchRepository, UserDetailsRepository userDetailsRepository, AccountRepository accountRepository, UserServiceImpl userService, TransactionService transactionService) {
         this.userRepository = userRepository;
         this.accountTypeRepository = accountTypeRepository;
         this.branchRepository = branchRepository;
         this.userDetailsRepository = userDetailsRepository;
         this.accountRepository = accountRepository;
         this.userService = userService;
-        this.transactionService=transactionService;
+        this.transactionService = transactionService;
     }
 
 
@@ -388,7 +388,6 @@ public class AccountServiceImpl implements AccountService {
             transactionService.createNewTransaction(transactions);
 
 
-
             // Save the updated account
             logger.debug("Saving updated account");
             accountRepository.save(account);
@@ -408,7 +407,7 @@ public class AccountServiceImpl implements AccountService {
 
     }
 
-   
+
     /**
      * Deletes an account by its account number.
      *
@@ -444,12 +443,13 @@ public class AccountServiceImpl implements AccountService {
             throw new ServiceException("Unexpected error while deleting account: " + accountNumber, e);
         }
     }
-    
-    
+
+
     /**
      * Withdraws money from a specific account.
+     *
      * @param accountNo the account number of the account to withdraw from
-     * @param amount the amount to withdraw
+     * @param amount    the amount to withdraw
      */
     @Transactional
     public void withdrawMoney(String accountNo, BigDecimal amount) {
@@ -480,13 +480,13 @@ public class AccountServiceImpl implements AccountService {
             // Subtract the amount from the account balance
             logger.debug("Subtracting {} from account balance", amount);
             account.setBalance(account.getBalance().subtract(amount));
-            
+
             // Create a new transaction
             Transactions transactions = new Transactions();
             transactions.setAccount(account);
             transactions.setAmount(amount);
             transactions.setTransactionType("Withdrawal");
-            
+
             // Save the new transaction
             transactionService.createNewTransaction(transactions);
 
@@ -506,6 +506,6 @@ public class AccountServiceImpl implements AccountService {
             throw new RuntimeException("Unexpected error", e);
         }
     }
-    
-    
+
+
 }

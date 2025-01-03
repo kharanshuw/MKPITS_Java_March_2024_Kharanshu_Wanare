@@ -38,14 +38,11 @@ public class Transactions {
     @NotEmpty(message = "Transaction type cannot be empty")
     @Size(min = 1, max = 50, message = "Transaction type must be between 1 and 50 characters")
     private String transactionType;
-    
+
     @ManyToOne
     @JoinColumn(name = "account_id", nullable = false)
     private Account account;
-    
 
-    
-    
 
     public int getId() {
         return id;
