@@ -25,10 +25,14 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
      * @param id
      * @return
      */
-    @Query("select a from Account a where a.userDetails.id = :id")
+    @Query("select a from Account a where a.userDetails.id = :id AND a.accountStatus = true ")
     public List<Account> findByUserId(@Param("id") int id);
 
     @Query("select a from Account a where a.accountNumber = :accountno ")
     public Account findByAccountNumber(@Param("accountno") String accountno);
+
+
+    @Query("SELECT a FROM Account a WHERE a.accountStatus = :status")
+    public List<Account> findAccountByStatusDisabled(@Param("status") Boolean status);
 
 }

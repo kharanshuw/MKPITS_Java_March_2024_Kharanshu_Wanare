@@ -37,6 +37,10 @@ SELECT * from ACCOUNT WHERE account_number = "2924964580999"
 
 SELECT * from TRANSACTION;
 
+SELECT * from ACCOUNT WHERE user_id = 1 and account_status = "true"
+
+SELECT * from ACCOUNT WHERE user_id = 4 and account_status = 1
+
 
 INSERT INTO role(id,role_name) VALUES (1,'ROLE_ADMIN');
 
@@ -93,6 +97,12 @@ ALTER TABLE TRANSACTION DROP COLUMN created_at;
 "JOIN u.role r")
 
 @Query("SELECT a FROM AccountType a WHERE a.type = :type")
+
+public interface AccountRepository extends JpaRepository<Account, Integer> {
+    
+    @Query("SELECT a FROM Account a WHERE a.userDetails.id = :userId AND a.accountStatus = true")
+    List<Account> findAccountsByUserIdAndStatus(@Param("userId") int userId);
+}
 
 //endpoint to call location for testing
 http://localhost:9191/api/countries

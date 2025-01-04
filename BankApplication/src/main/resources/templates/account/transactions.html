@@ -221,23 +221,22 @@
     </table>
 
     <!-- table end -->
-    
-   
-    
+
+
 </div>
 
 <!-- main content end -->
 
 <!--next and previous button start-->
-<div th:if="${hasContent}" class="container  d-flex flex-row justify-content-between align-items-start  flex-wrap gap-3" >
+<div class="container  d-flex flex-row justify-content-between align-items-start  flex-wrap gap-3"
+     th:if="${hasContent}">
 
 
+    <div class="d-flex flex-row justify-content-center align-items-center flex-wrap gap-3" th:if="${hasPrevious}">
 
-    <div th:if="${hasPrevious}" class="d-flex flex-row justify-content-center align-items-center flex-wrap gap-3">
 
-
-            
-            <a th:href="@{/account/transactions  (          pageNumber=${list.number-1} ,  accountNo=${accountNo}   ) }"   class="btn  btn-block"    style="background-color: #004080;  color: white;"    >
+        <a class="btn  btn-block"
+           style="background-color: #004080;  color: white;" th:href="@{/account/transactions  (          pageNumber=${list.number-1} ,  accountNo=${accountNo}   ) }">
             Previous
         </a>
 
@@ -245,11 +244,11 @@
     </div>
 
 
+    <div class="d-flex flex-row justify-content-center align-items-center flex-wrap gap-3" th:if="${hasNext}">
 
-    <div th:if="${hasNext}" class="d-flex flex-row justify-content-center align-items-center flex-wrap gap-3">
 
-
-        <a th:href="@{/account/transactions  (     pageNumber=${list.number+1} ,  accountNo=${accountNo}  ) }"   class="btn btn-block "  style="background-color: #004080;  color: white;" >
+        <a class="btn btn-block "
+           style="background-color: #004080;  color: white;" th:href="@{/account/transactions  (     pageNumber=${list.number+1} ,  accountNo=${accountNo}  ) }">
             Next
         </a>
 

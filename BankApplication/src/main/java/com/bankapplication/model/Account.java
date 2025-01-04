@@ -45,7 +45,7 @@ public class Account {
     @JoinColumn(name = "branch_id")
     private Branch branch;
 
-    private Boolean accountStatus = true;
+    private Boolean accountStatus = false;
 
     public int getId() {
         return id;

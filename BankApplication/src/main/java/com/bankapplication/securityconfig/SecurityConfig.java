@@ -20,25 +20,44 @@ import javax.sql.DataSource;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig {
 
-    // Bean to manage user details using JDBC
+    /**
+     * This method is used to create a UserDetailsManager instance that can be used to authenticate users.
+     * It configures the JDBC-based user details manager to manage user details using the provided data source.
+     *
+     * @param dataSource the data source to use for managing user details
+     * @return a UserDetailsManager instance
+     */
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
+
+        // Create a new instance of JdbcUserDetailsManager, which is a built-in Spring Security class
+        // that provides a JDBC-based implementation of the UserDetailsManager interface.
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
-        // Custom query to fetch user details
 
+        // Set a custom query to fetch user details from the database. This query is used to retrieve
+        // the user's email, password, and enabled status.
         jdbcUserDetailsManager.setUsersByUsernameQuery("select email,password,enable from users where email=? ");
 
-        // Custom query to fetch user authorities/roles
-
+        // Set a custom query to fetch user authorities/roles from the database. This query is used to
+        // retrieve the user's roles, which are used to determine their permissions.
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
                 "select u.email as username, a.role_name as authority from users u join user_role ua on u.id=ua.user_id join role a on a.id=ua.role_id where u.email=?");
 
+
+        // Return the configured JdbcUserDetailsManager instance.
         return jdbcUserDetailsManager;
     }
 
-    // Bean to configure the security filter chain
 
+    /**
+     * This method is used to define the security filter chain for the application.
+     * It configures the authorization rules for accessing different URLs in the application.
+     *
+     * @param httpSecurity the HttpSecurity instance to configure
+     * @return a SecurityFilterChain instance
+     * @throws Exception if an error occurs during configuration
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(c ->
@@ -135,6 +154,10 @@ public class SecurityConfig {
 
                                         .requestMatchers(HttpMethod.GET, "/account/transactions").hasRole("USER")
 
+                                        .requestMatchers(HttpMethod.GET, "/manager/reject").hasRole("MANAGER")
+
+                                        .requestMatchers(HttpMethod.GET, "/manager/approve").hasRole("MANAGER")
+
 
                                         .anyRequest().authenticated()
 
@@ -168,4 +191,6 @@ public class SecurityConfig {
 
         return httpSecurity.build();
     }
+
+
 }

@@ -91,7 +91,7 @@ public class TransactionServiceImpl implements TransactionService {
 
             // Retrieve transactions for the given account number from the repository
             logger.debug("Fetching transactions for account number: {}", accountNo);
-             transactions = transactionRepository.findTransactionsByAccountNumber(accountNo, pageable);
+            transactions = transactionRepository.findTransactionsByAccountNumber(accountNo, pageable);
 
             // Convert each transaction to a ResponseTransactionDto and add to the list
             for (Transactions t : transactions) {
@@ -107,7 +107,7 @@ public class TransactionServiceImpl implements TransactionService {
         }
 
         // Create a new Page object with the response transaction DTOs
-        Page<ResponseTransactionDto> responseTransactionDtoPage = new PageImpl<>(responseTransactionDtos, PageRequest.of(pageNumber, pageSize),transactions.getTotalElements() );
+        Page<ResponseTransactionDto> responseTransactionDtoPage = new PageImpl<>(responseTransactionDtos, PageRequest.of(pageNumber, pageSize), transactions.getTotalElements());
 
 
         return responseTransactionDtoPage;

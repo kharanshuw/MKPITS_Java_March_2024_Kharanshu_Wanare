@@ -2,10 +2,7 @@ package com.bankapplication.service;
 
 import com.bankapplication.dto.request.RequestAccountDto;
 import com.bankapplication.dto.response.ResponseAccountDto;
-import com.bankapplication.exceptionhandler.AccoutNotExist;
-import com.bankapplication.exceptionhandler.BranchNotFountException;
-import com.bankapplication.exceptionhandler.InsufficientBalanceException;
-import com.bankapplication.exceptionhandler.UserNotFoundException;
+import com.bankapplication.exceptionhandler.*;
 import com.bankapplication.model.*;
 import com.bankapplication.repository.*;
 import org.hibernate.service.spi.ServiceException;
@@ -507,5 +504,122 @@ public class AccountServiceImpl implements AccountService {
         }
     }
 
+
+    /**
+     * Retrieves a list of accounts with a disabled status.
+     *
+     * @return a list of accounts with a disabled status
+     */
+    public List<ResponseAccountDto> getAccountsWithDisablesStatus() {
+        // Log the start of the method
+        logger.info("Retrieving accounts with disabled status...");
+
+        List<ResponseAccountDto> responseAccountDtoList = new ArrayList<>();
+
+        try {
+            // Use the repository to find accounts with a disabled status
+            List<Account> accountList = accountRepository.findAccountByStatusDisabled(false);
+
+            for (Account account : accountList) {
+                // Convert each account to a ResponseAccountDto and add it to the list
+                responseAccountDtoList.add(getResponseDtoByAccount(account));
+            }
+
+            // Log the result
+            logger.info("Retrieved {} accounts with disabled status", accountList.size());
+
+            // Return the list of accounts
+            return responseAccountDtoList;
+        } catch (Exception e) {
+            // Log the exception
+            logger.error("Error retrieving accounts with disabled status", e);
+
+            // Throw a custom exception
+            throw new AccountRetrievalException("Error retrieving accounts with disabled status");
+        }
+
+    }
+
+    /**
+     * Converts an Account object to a ResponseAccountDto object.
+     *
+     * @param account the Account object to convert
+     * @return the converted ResponseAccountDto object
+     */
+    public ResponseAccountDto getResponseDtoByAccount(Account account) {
+        ResponseAccountDto responseAccountDto = new ResponseAccountDto();
+
+
+        try {
+            // Log the start of the conversion
+            logger.debug("Converting Account object to ResponseAccountDto");
+
+            // Populate the ResponseAccountDto with data from the Account object
+            responseAccountDto.setAccountNo(account.getAccountNumber());
+            responseAccountDto.setBalance(account.getBalance());
+            responseAccountDto.setAccountType(account.getAccountType().getType());
+            responseAccountDto.setBranch(account.getBranch().getBranchName());
+            responseAccountDto.setFname(account.getUserDetails().getFname());
+            responseAccountDto.setLname(account.getUserDetails().getLname());
+            responseAccountDto.setIfscCode(account.getIfscCode());
+            responseAccountDto.setStatus(account.getAccountStatus());
+
+            // Log the values set in the ResponseAccountDto
+            logger.debug("Set account number: {}", responseAccountDto.getAccountNo());
+            logger.debug("Set balance: {}", responseAccountDto.getBalance());
+            logger.debug("Set account type: {}", responseAccountDto.getAccountType());
+            logger.debug("Set branch: {}", responseAccountDto.getBranch());
+            logger.debug("Set first name: {}", responseAccountDto.getFname());
+            logger.debug("Set last name: {}", responseAccountDto.getLname());
+            logger.debug("Set IFSC code: {}", responseAccountDto.getIfscCode());
+            logger.debug("Set account status: {}", responseAccountDto.isStatus());
+
+        } catch (Exception e) {
+            // Log an error message if an exception occurs
+            logger.error("Error converting Account object to ResponseAccountDto: {}", e.getMessage());
+        }
+
+        // Log the end of the conversion
+        logger.debug("Conversion completed successfully");
+
+        return responseAccountDto;
+
+    }
+
+    /**
+     * Enables an account by setting its status to true based on the account number.
+     *
+     * @param accountNo the account number of the account to enable
+     */
+    public void enableAccount(String accountNo) {
+        try {
+            // Log the start of the method
+            logger.info("Enabling account with account number: {}", accountNo);
+
+            // Retrieve the account from the repository
+            Account account = accountRepository.findByAccountNumber(accountNo);
+
+            if (account != null) {
+                // Set the account status to true (enabled)
+                account.setAccountStatus(true);
+
+                // Save the updated account to the repository
+                accountRepository.save(account);
+
+                // Log the successful update
+                logger.info("Successfully enabled account with account number: {}", accountNo);
+            } else {
+                // Log that the account was not found
+                logger.warn("Account with account number {} not found", accountNo);
+                throw new AccoutNotExist("Account no " + accountNo + " not exist");
+            }
+        } catch (Exception e) {
+            // Log the exception
+            logger.error("Error enabling account with account number: {}", accountNo, e);
+
+            // You might want to rethrow the exception or handle it accordingly
+            throw new AccountUpdateException("Error enabling account with account number: " + accountNo);
+        }
+    }
 
 }

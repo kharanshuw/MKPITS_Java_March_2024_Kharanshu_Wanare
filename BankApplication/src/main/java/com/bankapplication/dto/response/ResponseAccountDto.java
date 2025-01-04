@@ -22,6 +22,8 @@ public class ResponseAccountDto {
 
     private String ifscCode;
 
+    private boolean status;
+
     public ResponseAccountDto(String accountNo, BigDecimal balance, String accountType, String branch, String fname, String lname, String ifscCode) {
         this.accountNo = accountNo;
         this.balance = balance;
@@ -94,6 +96,16 @@ public class ResponseAccountDto {
     public void setLname(String lname) {
         this.lname = lname;
     }
+
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
 
     @Override
     public String toString() {

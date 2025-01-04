@@ -17,4 +17,6 @@ public interface ManagerRepository extends JpaRepository<Users, Integer> {
             "JOIN u.role r " +
             "WHERE r.rolename = 'ROLE_MANAGER'")
     public List<ManagerDto> findAllManagers();
+
+
 }

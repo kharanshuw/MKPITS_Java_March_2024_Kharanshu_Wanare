@@ -33,7 +33,6 @@ public class AccountController {
     private AccountService accountService;
     private BranchService branchService;
     private UserService userService;
-
     private TransactionService transactionService;
 
 
@@ -358,19 +357,17 @@ public class AccountController {
      * Handles GET requests to retrieve transaction history for a specific account.
      * Adds the transaction history to the model to be displayed on the transactions page.
      *
-     * @param accountNo the account number for which to retrieve the transaction history
-     * @param model     the model to which the transaction history will be added
+     * @param accountNo  the account number for which to retrieve the transaction history
+     * @param model      the model to which the transaction history will be added
      * @param pageNumber the page number for pagination (default: 0)
      * @param pageSize   the number of transactions per page (default: 1)
      * @return the name of the view template for displaying the transaction history
      */
     @GetMapping("/transactions")
     public String getTransaction(@RequestParam("accountNo") String accountNo, Model model, @RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "1") int pageSize) {
-        logger.info("Received account number: {}", accountNo);
 
-        // Log the received page number and page size for debugging purposes
-        logger.info("Received page number: {}", pageNumber);
-        logger.info("Received page size: {}", pageSize);
+        // Log the received account number, page number, and page size for debugging purposes
+        logger.info("Received account number: {}, page number: {}, page size: {}", accountNo, pageNumber, pageSize);
 
 
         // Retrieve transaction history for the given account number
@@ -378,22 +375,36 @@ public class AccountController {
 
         // Add the transaction history to the model
         model.addAttribute("list", responseTransactionDtos);
-        
-       
+
+        // Check if the transaction history is empty
+        if (responseTransactionDtos.isEmpty()) {
+            logger.info("No transaction history found for account number: {}", accountNo);
+            model.addAttribute("accoutno", accountNo);
+            return "account/no-transaction-history";
+        }
 
         logger.info("Transaction history retrieved successfully for account number: {}", accountNo);
-        
+
         model.addAttribute("hasContent", responseTransactionDtos.hasContent());
-        System.out.println("hascontent :"+responseTransactionDtos.hasContent());
+        logger.info("Has content: {}", responseTransactionDtos.hasContent());
+
         model.addAttribute("hasNext", responseTransactionDtos.hasNext());
-        System.out.println("hasnext"+responseTransactionDtos.hasNext());
+        logger.info("Has next: {}", responseTransactionDtos.hasNext());
+
         model.addAttribute("hasPrevious", responseTransactionDtos.hasPrevious());
-        System.out.println(responseTransactionDtos.hasPrevious());
-        
-        model.addAttribute("accountNo",accountNo);
-        
+        logger.info("Has previous: {}", responseTransactionDtos.hasPrevious());
+
+        model.addAttribute("accountNo", accountNo);
+
         model.addAttribute("size", responseTransactionDtos.getSize());
+        logger.info("Size: {}", responseTransactionDtos.getSize());
+
+
         model.addAttribute("totalPages", responseTransactionDtos.getTotalPages());
+        logger.info("Total pages: {}", responseTransactionDtos.getTotalPages());
+
+        // Log the transaction history retrieval success
+        logger.info("Transaction history retrieved successfully for account number: {}", accountNo);
 
         return "account/transactions";
     }
