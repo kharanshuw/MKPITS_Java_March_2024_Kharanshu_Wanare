@@ -269,6 +269,7 @@
             transform: translate(0);
         }
     </style>
+
 </head>
 
 <body>
@@ -279,11 +280,11 @@
             <div class="content">
                 <h2>Log In</h2>
                 <form method="post" th:action="@{/authenticatetheuser}">
-                    <input autofocus="autofocus" name="username" placeholder="User Name" required type="text">
+                    <input  name="username" placeholder="User Name" required type="text"  style="color: #000;">
 
 
-                    <input autofocus="autofocus" name="password" placeholder="User Password" required
-                           type="password">
+                    <input  name="password" placeholder="User Password" required
+                           type="password"  style="color: #000;">
 
 
                     <button class="button" href="#" style="--clr: #7808d0" type="submit">

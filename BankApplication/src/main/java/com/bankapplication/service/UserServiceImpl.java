@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Objects;
 
 // This class is a Spring Service that implements user-related operations
-
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -28,7 +27,6 @@ public class UserServiceImpl implements UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     // Repositories for database operations
-
     private UserRepository userRepository;
 
     private AccountRepository accountRepository;
@@ -41,7 +39,6 @@ public class UserServiceImpl implements UserService {
 
 
     // Constructor for dependency injection
-
     @Autowired
     public UserServiceImpl(UserRepository userRepository, UserDetailsRepository userDetailsRepository,
                            RoleRepository repository, CityRepository cityRepository, AccountRepository accountRepository) {
@@ -161,6 +158,7 @@ public class UserServiceImpl implements UserService {
         users.addrole(role);
         try {
             // Save the user to the database
+            userDetailsRepository.save(userDetails);
             Users savedUser = userRepository.save(users);
             logger.info("user successfully saved in user service " + savedUser.toString());
             logger.info("Successfully registered user in user service.");
@@ -169,7 +167,7 @@ public class UserServiceImpl implements UserService {
         //catch duplicate number exception
         catch (DataIntegrityViolationException e) {
             logger.info("mobile number alredy exist exception ");
-            throw new DuplicateEntryException("mobile number alredy exist.");
+            throw new DuplicateEntryException("mobile number  or email alredy exist.");
         }
         //catch runtime exception 
         catch (Exception e) {

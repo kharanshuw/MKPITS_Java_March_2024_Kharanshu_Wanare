@@ -41,11 +41,15 @@ SELECT * from ACCOUNT WHERE user_id = 1 and account_status = "true"
 
 SELECT * from ACCOUNT WHERE user_id = 4 and account_status = 1
 
+SELECT a from Account as a JOIN branch on Account.branch_id = branch.id WHERE branch.id = 1 and branch.manager_id=4
+
+SELECT a.id from Account as a JOIN branch on a.branch_id = branch.id WHERE branch.manager_id=4 and a.account_status = 1
+
+SELECT a.id from Account as a JOIN branch on a.branch_id = branch.id WHERE branch.manager_id=2 and a.account_status = "false"
+
 
 INSERT INTO role(id,role_name) VALUES (1,'ROLE_ADMIN');
-
 INSERT INTO role(id,role_name) VALUES (2,'ROLE_MANAGER');
-
 INSERT INTO role(id,role_name) VALUES (3,'ROLE_USER');
 
 INSERT INTO user_role(role_id,user_id) VALUES(1,1)
@@ -68,6 +72,13 @@ UPDATE district
 set state_id=15
 WHERE state_id = 14
 
+
+delete from users where id = 1
+
+delete from user_role where user_id = 3
+
+delete from userdetails where id = 1
+
 ALTER TABLE branch 
 MODIFY COLUMN contact_no VARCHAR(10) NOT NULL,
 ADD UNIQUE (contact_no);
@@ -79,6 +90,11 @@ ALTER TABLE account_type
 ADD INDEX (id)
 
 ALTER TABLE TRANSACTION DROP COLUMN created_at;
+
+ALTER TABLE userdetails DROP COLUMN create_by;
+
+ALTER TABLE userdetails DROP COLUMN lastmodified_by;
+
 
 
 @Query("SELECT new com.bankapplication.dto.LoggesInUserDetails(u.id, u.email, ud.fname, ud.lname, ud.gender, ud.phoneno, r.rolename) " +
@@ -103,6 +119,22 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     @Query("SELECT a FROM Account a WHERE a.userDetails.id = :userId AND a.accountStatus = true")
     List<Account> findAccountsByUserIdAndStatus(@Param("userId") int userId);
 }
+
+public interface AccountRepository extends JpaRepository<Account, Integer> {
+
+    @Query("SELECT a FROM Account a JOIN a.branch b WHERE b.id = :branchId AND b.managerId.id = :managerId")
+    List<Account> findAccountsByBranchIdAndManagerId(@Param("branchId") int branchId, @Param("managerId") int managerId);
+}
+
+
+
+public interface AccountRepository extends JpaRepository<Account, Integer> {
+
+    @Query("SELECT a.id FROM Account a JOIN a.branch b WHERE b.managerId.id = :managerId AND a.accountStatus = false")
+    List<Integer> findAccountIdsByManagerIdAndStatus(@Param("managerId") int managerId);
+}
+
+
 
 //endpoint to call location for testing
 http://localhost:9191/api/countries

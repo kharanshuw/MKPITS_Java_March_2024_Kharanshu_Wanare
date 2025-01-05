@@ -28,7 +28,7 @@ public interface AccountService {
     public void withdrawMoney(String accountNo, BigDecimal amount);
 
 
-    public List<ResponseAccountDto> getAccountsWithDisablesStatus();
+    public List<ResponseAccountDto> getAccountsWithDisablesStatus(int managerid);
 
     public void enableAccount(String accountNo);
 

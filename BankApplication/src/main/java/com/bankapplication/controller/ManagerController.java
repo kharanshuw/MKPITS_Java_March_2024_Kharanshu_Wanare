@@ -1,9 +1,12 @@
 package com.bankapplication.controller;
 
+import com.bankapplication.dto.ResponseBranchDto;
 import com.bankapplication.dto.ResponseDto;
 import com.bankapplication.dto.response.ResponseAccountDto;
 import com.bankapplication.getapplicationcontext.UserServiceAppContext;
+import com.bankapplication.model.Users;
 import com.bankapplication.service.AccountService;
+import com.bankapplication.service.ManagerService;
 import com.bankapplication.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,13 +30,15 @@ public class ManagerController {
     private UserServiceAppContext userServiceAppContext;
     private UserService userService;
     private AccountService accountService;
+    private ManagerService managerService;
 
     @Autowired
-    public ManagerController(UserServiceAppContext userServiceAppContext, UserService userService, AccountService accountService) {
+    public ManagerController(UserServiceAppContext userServiceAppContext, UserService userService, AccountService accountService, ManagerService managerService) {
         super();
         this.userServiceAppContext = userServiceAppContext;
         this.userService = userService;
         this.accountService = accountService;
+        this.managerService = managerService;
     }
 
     /**
@@ -42,11 +48,23 @@ public class ManagerController {
      * @return the view name of the manager home page
      */
     @GetMapping("/home")
-    public String getManagerHome(Model model) {
+    public String getManagerHome(Model model, Principal principal) {
         logger.info("getManagerHome method from ManagerController called successfully");
+        String email = principal.getName();
+        logger.info("Logged-in user's email: {}", email);
+
+        // Retrieve the user by email
+        Users user = accountService.getUserByEmail(email);
+
+        int managerid = user.getUserDetails().getId();
+
         try {
+
+            model.addAttribute("managerid", managerid);
+
             // Return the view name for the manager home page
             return "home/manager/manager-home";
+
         } catch (Exception e) {
             logger.error("Exception occurred in getManagerHome method of ManagerController: {}", e.getMessage());
 
@@ -101,18 +119,27 @@ public class ManagerController {
      * @return the name of the view template for displaying the inactive accounts
      */
     @GetMapping("/pending_request")
-    public String getAccountsWaitingForManagerApproval(Model model) {
+    public String getAccountsWaitingForManagerApproval(Model model, Principal principal) {
 
         // Log the start of the method
         logger.info("Executing getAccountsWaitingForManagerApproval...");
 
-        // Retrieve the list of accounts with disabled status
-        List<ResponseAccountDto> accounts = accountService.getAccountsWithDisablesStatus();
+        String email = principal.getName();
 
-        // Log the successful retrieval of accounts
+        logger.info("Logged-in user's email: {}", email);
+
+        Users user = accountService.getUserByEmail(email);
+        
+        int managerid = user.getUserDetails().getId();
+
+
+//         Retrieve the list of accounts with disabled status
+        List<ResponseAccountDto> accounts = accountService.getAccountsWithDisablesStatus(managerid);
+
+//         Log the successful retrieval of accounts
         logger.info("Successfully retrieved {} accounts waiting for manager approval", accounts.size());
 
-        // Add the accounts to the model
+//         Add the accounts to the model
         model.addAttribute("accounts", accounts);
 
         return "account/inactive_accounts";
@@ -143,6 +170,47 @@ public class ManagerController {
         logger.info("Successfully enabled account with account number: {}", accountNumber);
 
         return "account/account-enabled-successfully";
+    }
+
+
+    /**
+     * Handles the request to get branch details for the logged-in manager.
+     *
+     * @param principal the Principal object representing the logged-in user
+     * @param model     the Model object to which attributes will be added
+     * @return the name of the view template for displaying the branch details
+     */
+    @GetMapping("/branch_details")
+    public String getBranchDetails(Principal principal, Model model) {
+
+        // Log the start of the method
+        logger.info("getBranchDetails method called");
+
+        // Retrieve the email of the logged-in user
+        String email = principal.getName();
+
+        logger.info("Logged-in user's email: {}", email);
+
+        // Retrieve the user by email
+        Users user = accountService.getUserByEmail(email);
+
+        // Retrieve the branch details by manager ID
+        ResponseBranchDto responseBranchDto = managerService.getBranchByManagerId(user);
+
+        if (responseBranchDto == null) {
+            logger.error("Branch details not found for user with email: {}", email);
+            return "branch/branch_not_allotted";
+        }
+
+        // Log the retrieved branch details
+        logger.info("Retrieved branch details: {}", responseBranchDto.toString());
+
+        // Add the branch details to the model
+        model.addAttribute("b", responseBranchDto);
+
+        // Return the view template name for displaying the branch details
+        return "branch/branch-details";
+
     }
 
 

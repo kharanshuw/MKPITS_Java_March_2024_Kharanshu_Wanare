@@ -306,4 +306,42 @@ public class BranchServiceImpl implements BranchService {
 
     }
 
+
+    /**
+     * Retrieves a Branch by the manager's ID.
+     *
+     * @param managerId the ID of the manager
+     * @return the Branch managed by the given manager ID, or null if no such Branch exists
+     */
+    public Branch getBranchByManagerId(int managerId)
+    {
+        logger.info("getBranchByManagerId method called with managerId: {}", managerId);
+
+        Branch branch = null;
+
+        try {
+            // Retrieve the Branch by manager ID
+            branch = branchRepository.findByCustomManagerId(managerId);
+
+            if (branch == null) {
+                // Log that no branch was found
+                logger.error("No branch found for managerId: {}", managerId);
+            } else {
+                // Log the successful retrieval
+                logger.info("Branch found for managerId: {}", managerId);
+            }
+        } catch (Exception e) {
+            // Log the exception
+            logger.error("Error retrieving branch for managerId: {}", managerId, e);
+
+            // Optionally, you could rethrow the exception or handle it as needed
+            throw new RuntimeException("Error retrieving branch for managerId: ");
+        }
+
+        return branch;
+
+    }
+    
+    
+
 }

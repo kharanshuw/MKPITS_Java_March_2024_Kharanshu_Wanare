@@ -45,16 +45,22 @@ public class AccountServiceImpl implements AccountService {
         this.transactionService = transactionService;
     }
 
-
+    /**
+     * Retrieves a user by their email address.
+     *
+     * @param email the email address to search for
+     * @return the Users entity with the specified email address, or null if not found
+     */
     @Override
     public Users getUserByEmail(String email) {
         Users users = null;
         try {
+            // Attempt to find the user by email
             users = userRepository.findUserByEmail(email);
             logger.info("User found with email: {}", email);
         } catch (Exception e) {
             logger.error("Error retrieving user by email: {}", email, e);
-            System.out.println(e.getMessage());
+            throw new UserRetrievalException("Error retrieving user by email: " + email, e);
         }
         return users;
     }
@@ -510,7 +516,7 @@ public class AccountServiceImpl implements AccountService {
      *
      * @return a list of accounts with a disabled status
      */
-    public List<ResponseAccountDto> getAccountsWithDisablesStatus() {
+    public List<ResponseAccountDto> getAccountsWithDisablesStatus(int managerid) {
         // Log the start of the method
         logger.info("Retrieving accounts with disabled status...");
 
@@ -518,10 +524,11 @@ public class AccountServiceImpl implements AccountService {
 
         try {
             // Use the repository to find accounts with a disabled status
-            List<Account> accountList = accountRepository.findAccountByStatusDisabled(false);
+            List<Account> accountList = accountRepository.findAccountIdsByManagerIdAndStatus(managerid);
 
             for (Account account : accountList) {
                 // Convert each account to a ResponseAccountDto and add it to the list
+                System.out.println("account which is disabled " + account.toString());
                 responseAccountDtoList.add(getResponseDtoByAccount(account));
             }
 
@@ -622,4 +629,5 @@ public class AccountServiceImpl implements AccountService {
         }
     }
 
+    
 }

@@ -18,4 +18,13 @@ public interface BranchRepository extends JpaRepository<Branch, Integer> {
     @Query("select case when count(b) > 0 then true else false end from Branch b where b.ifscCode = :ifscCode")
     boolean existsByIfscCode(@Param("ifscCode") String ifscCode);
 
+    /**
+     * Finds a Branch by the custom manager's ID.
+     *
+     * @param managerId the ID of the manager
+     * @return the Branch managed by the given manager ID
+     */
+    @Query("select b from Branch b where b.managerId.id = :managerId")
+    Branch findByCustomManagerId(@Param("managerId") int managerId);
+
 }

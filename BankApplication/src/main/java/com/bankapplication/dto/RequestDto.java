@@ -17,16 +17,19 @@ public class RequestDto {
     @Column(name = "email")
     @NotEmpty(message = "email should not be empty")
     @NotNull(message = "email should not be empty")
+    @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Email should be valid")
     private String email;
 
     @Column(name = "fname")
     @NotEmpty(message = "First name cannot be empty")
     @Size(min = 2, max = 50, message = "First name must be between 2 to 50 characters")
+    @Pattern(regexp = "^[A-Z][a-z]{1,49}$", message = "Invalid first name")
     private String fname;
 
     @Column(name = "lname")
     @NotEmpty(message = "Last name cannot be empty")
     @Size(min = 2, max = 50, message = "Last name must be between 2 to 50 characters")
+    @Pattern(regexp = "^[A-Z][a-z]{1,49}$", message = "Invalid last name")
     private String lname;
 
     @Column(name = "phoneno")

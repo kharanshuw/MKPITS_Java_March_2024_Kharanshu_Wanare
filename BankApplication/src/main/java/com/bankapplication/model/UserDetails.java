@@ -7,9 +7,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -28,12 +26,14 @@ public class UserDetails {
 
     @Column(name = "first_name")
     @NotEmpty(message = "First name cannot be empty")
-    @Size(min = 2, max = 50, message = "First name must be between 2 to 50 characters")
+    @Size(min = 2, max = 20, message = "First name must be between 2 to 50 characters")
+    @Pattern(regexp = "^[A-Z][a-z]{1,20}$", message = "Invalid first name First letter should always be capital")
     private String fname;
 
     @Column(name = "last_name")
     @NotEmpty(message = "Last name cannot be empty")
-    @Size(min = 2, max = 50, message = "Last name must be between 2 to 50 characters")
+    @Size(min = 2, max = 20, message = "Last name must be between 2 to 50 characters")
+    @Pattern(regexp = "^[A-Z][a-z]{1,20}$", message = "Invalid last name  First letter should always be capital ")
     private String lname;
 
     @Column(name = "phoneno", unique = true)
@@ -63,18 +63,18 @@ public class UserDetails {
     private LocalDateTime lastmodified;
 
     // created by should be inserted 1st time only
-    // update not
-    @CreatedBy
-    @Column(name = "create_by", nullable = false, updatable = false)
-    private Integer createBy;
+    // update not allowed
+//    @CreatedBy
+//    @Column(name = "create_by", nullable = false, updatable = false)
+//    private Integer createBy;
 
-    // modifiability should be updated only
-    // insert not
-    @LastModifiedBy
-    @Column(name = "lastmodified_by", insertable = false)
-    private Integer lastmodifiedby;
+    // lastmodifiability should be updated only
+    // insert date not allowd
+//    @LastModifiedBy
+//    @Column(name = "lastmodified_by", insertable = false)
+//    private Integer lastmodifiedby;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userDetails")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userDetails", orphanRemoval = true)
     private Users users;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -87,17 +87,17 @@ public class UserDetails {
     @JsonBackReference
     private Set<Account> account = null;
 
-
-    @PrePersist
-    public void prepersist() {
-        this.createBy = getcurrentuserid();
-        this.createdate = LocalDateTime.now();
-    }
-
-    public Integer getcurrentuserid() {
-        Integer idInteger = users.getId();
-        return idInteger;
-    }
+//
+//    @PrePersist
+//    public void prepersist() {
+//        this.createBy = getcurrentuserid();
+//        this.createdate = LocalDateTime.now();
+//    }
+//
+//    public Integer getcurrentuserid() {
+//        Integer idInteger = users.getId();
+//        return idInteger;
+//    }
 
     public int getId() {
         return id;
@@ -163,21 +163,21 @@ public class UserDetails {
         this.lastmodified = lastmodified;
     }
 
-    public Integer getCreateBy() {
-        return createBy;
-    }
-
-    public void setCreateBy(Integer createBy) {
-        this.createBy = createBy;
-    }
-
-    public Integer getLastmodifiedby() {
-        return lastmodifiedby;
-    }
-
-    public void setLastmodifiedby(Integer lastmodifiedby) {
-        this.lastmodifiedby = lastmodifiedby;
-    }
+//    public Integer getCreateBy() {
+//        return createBy;
+//    }
+//
+//    public void setCreateBy(Integer createBy) {
+//        this.createBy = createBy;
+//    }
+//
+//    public Integer getLastmodifiedby() {
+//        return lastmodifiedby;
+//    }
+//
+//    public void setLastmodifiedby(Integer lastmodifiedby) {
+//        this.lastmodifiedby = lastmodifiedby;
+//    }
 
 
     public @Past(message = "Date of birth must be in the past") LocalDate getDob() {

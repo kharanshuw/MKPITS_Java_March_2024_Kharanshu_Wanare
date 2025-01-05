@@ -21,7 +21,7 @@ public class Account {
     private int id;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     @JsonManagedReference
     private UserDetails userDetails;

@@ -10,6 +10,8 @@ public class ManagerDto {
 
     private String rolename;
 
+    private String branchName;
+
     public ManagerDto(int id, String rolename, String fname, String lname) {
         super();
         this.id = id;
@@ -53,6 +55,14 @@ public class ManagerDto {
 
     public void setRolename(String rolename) {
         this.rolename = rolename;
+    }
+
+    public String getBranchName() {
+        return branchName;
+    }
+
+    public void setBranchName(String branchName) {
+        this.branchName = branchName;
     }
 
     @Override

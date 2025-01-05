@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Inactive Accounts</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Not Allotted</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
 
     <!-- navbar style -->
     <style>
@@ -163,77 +161,38 @@
 <body>
 
 
-<!-- Navbar start -->
-<div class="container-fluid navbar ">
-    <div class="logo-container">
-        <div class="logo">
-            SPHEREBANK
+
+
+    <!-- Navbar start -->
+    <div class="container-fluid navbar ">
+        <div class="logo-container">
+            <div class="logo">
+                SPHEREBANK
+            </div>
+        </div>
+        <div class="d-flex gap-3 flex-row   align-items-center  ">
+            <a class="btn btn-login" th:href="@{/login}">LOGIN</a>
+            <a class="btn btn-register" th:href="@{/register}">REGISTER</a>
+
+            <form action="#" class="p-0 ml-2" method="post" th:action="@{/logout}">
+                <input class="btn-logout" type="submit" value="Logout">
+            </form>
+
+
         </div>
     </div>
-    <div class="d-flex gap-3 flex-row   align-items-center  ">
-        <a class="btn btn-login" th:href="@{/login}">LOGIN</a>
-        <a class="btn btn-register" th:href="@{/register}">REGISTER</a>
-
-        <form action="#" class="p-0 ml-2" method="post" th:action="@{/logout}">
-            <input class="btn-logout" type="submit" value="Logout">
-        </form>
+    <!-- Navbar end -->
 
 
+
+    <div class="container mt-5 p-5 ">
+        <h2 class="text-center ">Branch Not Allotted</h2>
+        <p class="text-center ">This manager has not been allotted to any branch of the bank. Please
+            contact the administration for further assistance.</p>
+        <div class="text-center">
+            <a href="/manager/home" class="btn "  style="color: white; background-color: #004080;">Return to Home</a>
+        </div>
     </div>
-</div>
-<!-- Navbar end -->
-
-<!-- main container start -->
-
-<div class="container mt-5 ">
-    <div class="fs-1 lead d-flex justify-content-center mb-3 text-uppercase "
-         style="font-weight: 800; font-size: 30px; color: #004080; text-decoration: underline;">
-        Pending Request
-    </div>
-    <table class="table table-bordered table-hover ">
-        <thead class="table-primary">
-        <tr class="text-capitalize fw-bold text-center ">
-
-            <th>account no</th>
-            <th> account type</th>
-            <th> account status</th>
-            <th>action</th>
-
-        </tr>
-        </thead>
-        <tbody>
-
-        <tr th:each="a : ${accounts}">
-            <td class=" text-center  fw-bold  fs-3" th:text="${a.getAccountNo}"></td>
-            <td class=" text-center fw-bold fs-3" th:text="${a.accountType}"></td>
-            <td class=" text-center fw-bold fs-3" th:text="${a.status}"></td>
-            <td class="action d-flex flex-row justify-content-center gap-3">
-                <!-- Approve link -->
-                <a class="btn btn-primary btn  "
-                   th:href="@{/manager/approve   (  request=${'accept'} , accountno=${a.accountNo  })}">approve</a>
-                <!-- Reject link -->
-                <!--                <a class="btn btn-danger btn "-->
-                <!--                   th:href="@{/manager/reject   (  request=${'reject'} ,  accountno=${a.accountNo  })}">reject</a>-->
-            </td>
-        </tr>
-
-
-        </tbody>
-    </table>
-</div>
-
-<!-- main container end -->
-
-
-<!-- go back button start -->
-
-<div class=" d-flex flex-row  justify-content-center go-back-btn ">
-    <a class="btn  text-uppercase text-light " style="background-color: #004080;" th:href="@{/manager/home}">GO
-        BACK</a>
-</div>
-<!-- go back button end  -->
-
-
 </body>
 
 </html>

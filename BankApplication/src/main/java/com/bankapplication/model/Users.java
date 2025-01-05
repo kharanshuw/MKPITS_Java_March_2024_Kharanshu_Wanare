@@ -34,7 +34,7 @@ public class Users {
     @Column(name = "enable")
     private boolean isActive = false;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name = "user_details_id", referencedColumnName = "id")
     private UserDetails userDetails;
 

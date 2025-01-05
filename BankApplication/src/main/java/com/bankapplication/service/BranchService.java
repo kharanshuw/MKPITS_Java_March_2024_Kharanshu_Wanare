@@ -21,4 +21,6 @@ public interface BranchService {
 
     public boolean removeManagerFromBranch(String branchId);
 
+    public Branch getBranchByManagerId(int managerId);
+
 }
