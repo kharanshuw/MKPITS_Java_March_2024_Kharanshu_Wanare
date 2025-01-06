@@ -159,6 +159,8 @@ public class SecurityConfig {
                                         .requestMatchers(HttpMethod.GET, "/manager/approve").hasRole("MANAGER")
                                         
                                         .requestMatchers(HttpMethod.GET,"/manager/branch_details").hasRole("MANAGER")
+                                        
+                                        .requestMatchers(HttpMethod.GET,"/branch/removebranch").hasRole("ADMIN")
 
 
                                         .anyRequest().authenticated()

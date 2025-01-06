@@ -23,4 +23,6 @@ public interface BranchService {
 
     public Branch getBranchByManagerId(int managerId);
 
+    public boolean removeBranch(int id);
+
 }

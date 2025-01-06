@@ -7,9 +7,10 @@ import jakarta.validation.constraints.*;
 public class RequstBranchDto {
 
     @NotNull(message = "branch name should not be empty")
-    @Column(name = "branch_name", unique = true)
+    @Column(name = "branch_name", unique = true, nullable = false)
     @NotEmpty(message = "branch name should not be empty")
-    @Size(min = 2, max = 50, message = "branch name must be between 2 to 50 characters")
+    @Size(min = 1, max = 30, message = "branch name must be between 2 to 50 characters")
+    @Pattern(regexp = "^[A-Z][a-zA-Z]+$", message = "invalid branch name format")
     private String branchName;
 
     @NotNull(message = "contact number should not be empty")

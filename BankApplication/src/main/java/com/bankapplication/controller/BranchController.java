@@ -19,7 +19,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping(method = RequestMethod.GET, value = "/branch")
+@RequestMapping(value = "/branch")
 public class BranchController {
     private static final Logger logger = LoggerFactory.getLogger(BranchController.class);
     private UserService userService;
@@ -219,7 +219,7 @@ public class BranchController {
      * @return the name of the view to be rendered
      */
     @GetMapping("/remove-manager")
-    public String processRemoveManager(@RequestParam String id) {
+    public String processRemoveManager(@RequestParam("id") String id) {
         logger.info("Received branch ID: {}", id);
 
         boolean result = branchService.removeManagerFromBranch(id);
@@ -227,6 +227,24 @@ public class BranchController {
         return "branch/branch-manager-removed-successfully";
 
 
+    }
+
+    @GetMapping("/removebranch")
+    public String removeBranch(@RequestParam("id") String id, Model model) {
+        logger.info("Received branch ID: {}", id);
+
+        int branchId = Integer.parseInt(id);
+
+        // Retrieve the branch by ID
+        Branch branch = branchService.getBranchById(branchId);
+
+        model.addAttribute("name", branch.getBranchName());
+
+        boolean result = branchService.removeBranch(branchId);
+        logger.info("result is " + result);
+        
+        
+        return "branch/branch-delete-successfull";
     }
 
     /**

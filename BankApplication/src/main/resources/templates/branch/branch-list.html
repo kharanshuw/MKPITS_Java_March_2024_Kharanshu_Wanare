@@ -183,80 +183,85 @@
 
 <body>
 
-<!-- Navbar start -->
-<div class="container-fluid navbar ">
-    <div class="logo-container">
-        <div class="logo">
-            SPHEREBANK
+    <!-- Navbar start -->
+    <div class="container-fluid navbar ">
+        <div class="logo-container">
+            <div class="logo">
+                SPHEREBANK
+            </div>
+        </div>
+        <div class="d-flex gap-3 flex-row   align-items-center  ">
+            <a class="btn btn-login" th:href="@{/login}">LOGIN</a>
+            <a class="btn btn-register" th:href="@{/register}">REGISTER</a>
+
+            <form action="#" class="p-0 ml-2" method="post" th:action="@{/logout}">
+                <input class="btn-logout" type="submit" value="Logout">
+            </form>
+
+
         </div>
     </div>
-    <div class="d-flex gap-3 flex-row   align-items-center  ">
-        <a class="btn btn-login" th:href="@{/login}">LOGIN</a>
-        <a class="btn btn-register" th:href="@{/register}">REGISTER</a>
-
-        <form action="#" class="p-0 ml-2" method="post" th:action="@{/logout}">
-            <input class="btn-logout" type="submit" value="Logout">
-        </form>
+    <!-- Navbar end -->
 
 
+    <div class="container">
+        <h2 class="text-center text-wrap  text-uppercase text-decoration-underline fw-bold  fs-6  mb-3 "
+            style="text-decoration: underline; color: #004080;">List of All Branches</h2>
+        <!--    table start-->
+        <table class="table table-striped table-bordered">
+            <!--        table head start -->
+            <thead>
+                <tr class="text-center text-capitalize "  >
+                    <th>ID</th>
+                    <th>BranchName</th>
+                    <th>ContactNo</th>
+                    <th>CityName</th>
+                    <th>email</th>
+                    <th>Manager id</th>
+                    <th >Action</th>
+                </tr>
+            </thead>
+            <!--        table head end -->
+            <!--        table body start -->
+            <tbody>
+                <tr th:each="b : ${branches}">
+
+                    <td class="text-centertext-capitalize  " th:text="${b.getId()}"></td>
+                    <td class="text-center text-capitalize " th:text="${b.getBranchName()}"></td>
+                    <td class="text-center  text-capitalize " th:text="${b.getContactNo()}"></td>
+                    <td class="text-center  text-capitalize " th:text="${b.getCityName()}"></td>
+                    <td class="text-center   " th:text="${b.getEmail()}"></td>
+                    <td class="text-center  text-capitalize " th:text="${b.getManagerNameString()}"></td>
+                    <td class="d-flex flex-row justify-content-center align-items-center flex-nowrap gap-3">
+                        <a class="btn btn-success text-center  btn-sm "
+                            th:href="@{/branch/addmanager(a=${'addmanager'} , id=${b.id})}">
+                            Add Manager
+                        </a>
+                        <a class="btn btn-danger text-center btn-sm "
+                            th:href="@{/branch/removemanager(a=${'removemanager'} , id=${b.id})}">
+                            Remove Manager
+                        </a>
+
+                        <a class="btn btn-danger text-center  btn-sm "
+                            th:href="@{/branch/removebranch(id=${b.id})}">
+                            Remove Branch
+                        </a>
+                    </td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+            <!--        table body end -->
+        </table>
+        <!--    table end -->
     </div>
-</div>
-<!-- Navbar end -->
 
 
-<div class="container">
-    <h2 class="text-center text-wrap  text-uppercase text-decoration-underline fw-bold  fs-6  mb-3 "
-        style="text-decoration: underline;">List of All Branches</h2>
-    <!--    table start-->
-    <table class="table table-striped table-bordered">
-        <!--        table head start -->
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>BranchName</th>
-            <th>ContactNo</th>
-            <th>CityName</th>
-            <th>email</th>
-            <th>Manager id</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <!--        table head end -->
-        <!--        table body start -->
-        <tbody>
-        <tr th:each="b : ${branches}">
+    <!-- go back button start -->
 
-            <td class="text-center" th:text="${b.getId()}"></td>
-            <td class="text-center" th:text="${b.getBranchName()}"></td>
-            <td class="text-center" th:text="${b.getContactNo()}"></td>
-            <td class="text-center" th:text="${b.getCityName()}"></td>
-            <td class="text-center" th:text="${b.getEmail()}"></td>
-            <td class="text-center" th:text="${b.getManagerNameString()}"></td>
-            <td class="d-flex flex-row justify-content-center align-items-center flex-wrap gap-3">
-                <a class="btn btn-success text-center   "
-                   th:href="@{/branch/addmanager(a=${'addmanager'} , id=${b.id})}">
-                    Add Manager
-                </a>
-                <a class="btn btn-danger text-center  "
-                   th:href="@{/branch/removemanager(a=${'removemanager'} , id=${b.id})}">
-                    Remove Manager
-                </a>
-            </td>
-        </tr>
-        <!-- Add more rows as needed -->
-        </tbody>
-        <!--        table body end -->
-    </table>
-    <!--    table end -->
-</div>
-
-
-<!-- go back button start -->
-
-<div class="border-5 d-flex flex-row  justify-content-center go-back-btn ">
-    <a class="btn btn-primary btn-lg  text-uppercase " th:href="@{/admin/home}">GO BACK</a>
-</div>
-<!-- go back button end  -->
+    <div class="border-5 d-flex flex-row  justify-content-center go-back-btn ">
+        <a class="btn btn-primary btn-lg  text-uppercase " th:href="@{/admin/home}">GO BACK</a>
+    </div>
+    <!-- go back button end  -->
 
 
 </body>

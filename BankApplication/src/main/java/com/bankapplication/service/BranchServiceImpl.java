@@ -2,6 +2,7 @@ package com.bankapplication.service;
 
 import com.bankapplication.dto.RequstBranchDto;
 import com.bankapplication.dto.ResponseBranchDto;
+import com.bankapplication.exceptionhandler.BranchNotFoundException;
 import com.bankapplication.model.Branch;
 import com.bankapplication.model.UserDetails;
 import com.bankapplication.repository.BranchRepository;
@@ -12,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -56,26 +56,28 @@ public class BranchServiceImpl implements BranchService {
 
     }
 
+
     /**
      * Retrieves a branch by its ID.
      *
      * @param id the ID of the branch
      * @return the branch if found
-     * @throws NoSuchElementException if no branch is found with the given ID
+     * @throws BranchNotFoundException if no branch is found with the given ID
      */
     public Branch getBranchById(int id) {
+
         logger.info("getBranchById method called with ID: {}", id);
 
         // Find branch by ID using the repository
-        Optional<Branch> branch = branchRepository.findById(id);
-// Check if the branch is present
-        if (branch.isPresent()) {
-            logger.info("Branch with ID: {} found.", id);
-            return branch.get();
-        } else {
+        Branch branch = branchRepository.findById(id).orElseThrow(() -> {
             logger.error("Branch with ID: {} not found.", id);
-            throw new NoSuchElementException("Branch with ID " + id + " not found.");
-        }
+            return new BranchNotFoundException("Branch with ID " + id + " not found.");
+        });
+
+        logger.info("Branch with ID: {} found.", id);
+        return branch;
+
+
     }
 
     /**
@@ -313,8 +315,7 @@ public class BranchServiceImpl implements BranchService {
      * @param managerId the ID of the manager
      * @return the Branch managed by the given manager ID, or null if no such Branch exists
      */
-    public Branch getBranchByManagerId(int managerId)
-    {
+    public Branch getBranchByManagerId(int managerId) {
         logger.info("getBranchByManagerId method called with managerId: {}", managerId);
 
         Branch branch = null;
@@ -341,7 +342,40 @@ public class BranchServiceImpl implements BranchService {
         return branch;
 
     }
-    
-    
+
+
+    /**
+     * Removes a branch by its ID.
+     *
+     * @param id the ID of the branch to be removed
+     * @return true if the branch was successfully removed, false otherwise
+     */
+    public boolean removeBranch(int id) {
+        logger.info("removeBranch method called with id: {}", id);
+
+        // Check if branch exists
+        Optional<Branch> optionalBranch = branchRepository.findById(id);
+
+        if (!optionalBranch.isPresent()) {
+            logger.error("Branch with ID {} not found", id);
+            throw new BranchNotFoundException("Branch not found with ID " + id);
+        }
+
+        try {
+            // Attempt to delete the branch by ID
+            branchRepository.deleteById(id);
+
+            // Log successful deletion
+            logger.info("Branch with ID {} deleted successfully", id);
+            return true;
+        } catch (Exception e) {
+            // Log the error
+            logger.error("Error deleting branch with ID {}: {}", id, e.getMessage());
+
+            // Throw a runtime exception with a custom message
+            throw new RuntimeException("Error deleting branch with ID " + id, e);
+        }
+    }
+
 
 }
