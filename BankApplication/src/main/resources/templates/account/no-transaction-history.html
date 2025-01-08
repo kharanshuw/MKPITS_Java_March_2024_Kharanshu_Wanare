@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -155,6 +156,12 @@
     </style>
     <!-- navbar style end -->
 
+
+
+</head>
+
+<body>
+
     <!-- Navbar start -->
     <div class="container-fluid navbar ">
         <div class="logo-container">
@@ -175,19 +182,17 @@
     </div>
     <!-- Navbar end -->
 
-</head>
-<body>
 
-
-<div class="container mt-5 p-5 ">
-    <h2 class="text-center text-secondary">No Transaction History</h2>
-    <p class="text-center text-secondary">Sorry, there is no transaction history available for <span
-            th:text="${accoutno}"></span> account number.</p>
-    <div class="text-center">
-        <a class="btn btn-secondary" th:href="@{/user/home}">Return to Home</a>
+    <div class="container mt-5 p-5 ">
+        <h2 class="text-center mb-4" style="color: #004080; text-decoration: underline;">No Transaction History</h2>
+        <p class="text-center ">Sorry, there is no transaction history available for <span
+                th:text="${accoutno}"></span> account number.</p>
+        <div class="text-center">
+            <a class="btn " th:href="@{/user/home}" style="color: white; background-color: #004080;">Return to Home</a>
+        </div>
     </div>
-</div>
 
 
 </body>
+
 </html>

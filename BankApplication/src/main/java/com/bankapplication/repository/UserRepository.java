@@ -3,6 +3,7 @@ package com.bankapplication.repository;
 import com.bankapplication.dto.LoggesInUserDetails;
 import com.bankapplication.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -37,6 +38,14 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
 
     @Query("SELECT u.id FROM Users u WHERE u.email = :email")
     public int findIdByEmail(@Param("email") String email);
+    
+    @Modifying
+    @Query(value = "delete from user_role ur where ur.user_id = :id" , nativeQuery = true)
+     public void deleteUserRole(@Param("id") int id);
+    
+   
+    
+   
 
 
 }

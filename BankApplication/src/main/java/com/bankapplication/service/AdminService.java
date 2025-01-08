@@ -26,4 +26,8 @@ public interface AdminService {
     public Users getUserById(int id);
 
     public boolean processBranchCreation(RequstBranchDto requstBranchDto);
+
+    public Users getUserByEmail(String email);
+
+    public boolean deleteAccount(int id);
 }

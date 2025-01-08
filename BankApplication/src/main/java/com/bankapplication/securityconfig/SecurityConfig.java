@@ -157,10 +157,16 @@ public class SecurityConfig {
                                         .requestMatchers(HttpMethod.GET, "/manager/reject").hasRole("MANAGER")
 
                                         .requestMatchers(HttpMethod.GET, "/manager/approve").hasRole("MANAGER")
+
+                                        .requestMatchers(HttpMethod.GET, "/manager/branch_details").hasRole("MANAGER")
+
+                                        .requestMatchers(HttpMethod.GET, "/branch/removebranch").hasRole("ADMIN")
+
+                                        .requestMatchers(HttpMethod.GET, "/admin/delete").hasRole("ADMIN")
                                         
-                                        .requestMatchers(HttpMethod.GET,"/manager/branch_details").hasRole("MANAGER")
+                                        .requestMatchers(HttpMethod.GET, "/manager/delete").hasRole("MANAGER")
                                         
-                                        .requestMatchers(HttpMethod.GET,"/branch/removebranch").hasRole("ADMIN")
+                                        .requestMatchers(HttpMethod.GET, "/user/delete").hasRole("USER")
 
 
                                         .anyRequest().authenticated()

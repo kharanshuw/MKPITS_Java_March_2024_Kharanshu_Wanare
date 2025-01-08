@@ -14,7 +14,7 @@ public class Role {
     @Column(name = "role_name")
     private String rolename;
 
-    @ManyToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "role", fetch = FetchType.LAZY , cascade = CascadeType.REMOVE)
     private Set<Users> users;
 
 
@@ -25,10 +25,18 @@ public class Role {
         this.users = users;
     }
 
+   
+    
+    
     public Role() {
-    }
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-    public int getId() {
+
+
+
+	public int getId() {
         return id;
     }
 

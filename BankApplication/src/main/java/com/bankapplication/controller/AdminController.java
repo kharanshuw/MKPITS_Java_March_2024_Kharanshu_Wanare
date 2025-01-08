@@ -5,6 +5,7 @@ import com.bankapplication.dto.ResponseDto;
 import com.bankapplication.exceptionhandler.DuplicateEntryException;
 import com.bankapplication.getapplicationcontext.UserServiceAppContext;
 import com.bankapplication.model.Country;
+import com.bankapplication.model.Users;
 import com.bankapplication.service.AdminService;
 import com.bankapplication.service.CountryService;
 import com.bankapplication.service.UserService;
@@ -20,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -373,7 +375,6 @@ public class AdminController {
         return "error/error";
     }
 
-
     /**
      * Displays the form for creating a new branch.
      *
@@ -455,5 +456,32 @@ public class AdminController {
 
     }
 
+
+    /**
+     * Handles the request to delete an account.
+     *
+     * @param principal the currently authenticated principal
+     * @return the view name for the account deletion result
+     * @throws RuntimeException if the account deletion fails
+     */
+    @GetMapping("/admin/delete")
+    public String removeAccount(Principal principal) {
+        logger.info("Admin requested to delete account: {}", principal.getName());
+
+        // Retrieve the user by their email (from principal)
+        Users user = adminService.getUserByEmail(principal.getName());
+
+        // Attempt to delete the user's account
+        boolean result = adminService.deleteAccount(user.getId());
+
+        if (result) {
+            logger.info("Account for user {} deleted successfully", principal.getName());
+            return "home/adminhome/user_account_delete_successful";
+        } else {
+            logger.error("Failed to delete account for user {}", principal.getName());
+            throw new RuntimeException("Unable to delete account");
+        }
+
+    }
 
 }

@@ -7,6 +7,7 @@ import com.bankapplication.getapplicationcontext.UserServiceAppContext;
 import com.bankapplication.model.Country;
 import com.bankapplication.model.Users;
 import com.bankapplication.service.AccountService;
+import com.bankapplication.service.AdminService;
 import com.bankapplication.service.CountryService;
 import com.bankapplication.service.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,10 +26,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
- * this controller handles all the opration done by user
- *
- * */
+
 @Controller
 public class UserController {
 
@@ -42,13 +40,16 @@ public class UserController {
 
     private CountryService countryService;
 
+    private AdminService adminService;
+
     @Autowired
-    public UserController(UserServiceImpl userService, UserServiceAppContext userServiceAppContext, AccountService accountService,
-                          CountryService countryService) {
+    public UserController(UserServiceImpl userService, UserServiceAppContext userServiceAppContext, AdminService adminService,
+                          AccountService accountService, CountryService countryService) {
         this.userService = userService;
         this.userServiceAppContext = userServiceAppContext;
         this.countryService = countryService;
         this.accountService = accountService;
+        this.adminService = adminService;
     }
 
     /**
@@ -147,7 +148,6 @@ public class UserController {
 
     }
 
-
     /**
      * Handles HTTP GET requests to the /user/update endpoint.
      * <p>
@@ -182,7 +182,6 @@ public class UserController {
         return "home/userhome/updateprofile";
     }
 
-
     @PostMapping("/user/processupdate")
     public String processUpdate(@ModelAttribute("profileUpdateDto") ProfileUpdateDto profileUpdateDto) {
         System.out.println(profileUpdateDto.toString());
@@ -207,7 +206,8 @@ public class UserController {
     /**
      * Handles the retrieval of user accounts and displays them in the model.
      *
-     * @param principal The principal object representing the currently authenticated user.
+     * @param principal The principal object representing the currently
+     *                  authenticated user.
      * @param model     The model to add attributes to be used in the view.
      * @return The view name to display the user's accounts.
      */
@@ -232,6 +232,41 @@ public class UserController {
         return "account/account-list";
     }
 
+
+    /**
+     * Handles the request to delete a user's account.
+     *
+     * @param principal the currently authenticated principal
+     * @return the view name for the account deletion result
+     * @throws RuntimeException if the account deletion fails
+     */
+    @GetMapping("/user/delete")
+    public String removeAccount(Principal principal) {
+
+        logger.info("removeAccount method called for user: {}", principal.getName());
+
+        // Log the start of the account deletion process
+        logger.info("User name is {}", principal.getName());
+
+        // Retrieve the user's email from the principal
+        String email = principal.getName();
+
+        // Retrieve the user entity using their email
+        Users user = adminService.getUserByEmail(email);
+
+        // Attempt to delete the user's account
+        boolean result = adminService.deleteAccount(user.getId());
+
+        // Check the result of the deletion process
+        if (result) {
+            logger.info("Account for user {} deleted successfully", principal.getName());
+            return "home/userhome/user_account_delete_successful";
+        } else {
+            logger.error("Failed to delete account for user {}", principal.getName());
+            throw new RuntimeException("Unable to delete account");
+        }
+
+    }
 
     /**
      * This method handles all exceptions that are not explicitly caught elsewhere

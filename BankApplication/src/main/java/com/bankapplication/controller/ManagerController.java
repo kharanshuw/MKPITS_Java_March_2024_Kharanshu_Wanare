@@ -6,6 +6,7 @@ import com.bankapplication.dto.response.ResponseAccountDto;
 import com.bankapplication.getapplicationcontext.UserServiceAppContext;
 import com.bankapplication.model.Users;
 import com.bankapplication.service.AccountService;
+import com.bankapplication.service.AdminService;
 import com.bankapplication.service.ManagerService;
 import com.bankapplication.service.UserService;
 import org.slf4j.Logger;
@@ -31,6 +32,7 @@ public class ManagerController {
     private UserService userService;
     private AccountService accountService;
     private ManagerService managerService;
+    private AdminService adminService;
 
     @Autowired
     public ManagerController(UserServiceAppContext userServiceAppContext, UserService userService, AccountService accountService, ManagerService managerService) {
@@ -129,7 +131,7 @@ public class ManagerController {
         logger.info("Logged-in user's email: {}", email);
 
         Users user = accountService.getUserByEmail(email);
-        
+
         int managerid = user.getUserDetails().getId();
 
 
@@ -210,6 +212,34 @@ public class ManagerController {
 
         // Return the view template name for displaying the branch details
         return "branch/branch-details";
+
+    }
+
+
+    @GetMapping("/delete")
+    public String deleteAccount(Principal principal) {
+        logger.info("removeAccount method called for user: {}", principal.getName());
+
+        // Log the start of the account deletion process
+        logger.info("User name is {}", principal.getName());
+
+        // Retrieve the user's email from the principal
+        String email = principal.getName();
+
+        // Retrieve the user entity using their email
+        Users user = adminService.getUserByEmail(email);
+
+        // Attempt to delete the user's account
+        boolean result = adminService.deleteAccount(user.getId());
+
+        // Check the result of the deletion process
+        if (result) {
+            logger.info("Account for user {} deleted successfully", principal.getName());
+            return "home/userhome/user_account_delete_successful";
+        } else {
+            logger.error("Failed to delete account for user {}", principal.getName());
+            throw new RuntimeException("Unable to delete account");
+        }
 
     }
 
