@@ -553,7 +553,8 @@ public class AccountServiceImpl implements AccountService {
      * @param account the Account object to convert
      * @return the converted ResponseAccountDto object
      */
-    public ResponseAccountDto getResponseDtoByAccount(Account account) {
+    public ResponseAccountDto getResponseDtoByAccount(Account account)
+    {
         ResponseAccountDto responseAccountDto = new ResponseAccountDto();
 
 
@@ -584,6 +585,7 @@ public class AccountServiceImpl implements AccountService {
         } catch (Exception e) {
             // Log an error message if an exception occurs
             logger.error("Error converting Account object to ResponseAccountDto: {}", e.getMessage());
+            throw new RuntimeException("Error converting Account object to ResponseAccountDto : " + e.getMessage());
         }
 
         // Log the end of the conversion
@@ -629,5 +631,5 @@ public class AccountServiceImpl implements AccountService {
         }
     }
 
-    
+
 }

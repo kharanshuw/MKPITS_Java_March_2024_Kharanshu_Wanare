@@ -32,4 +32,6 @@ public interface AccountService {
 
     public void enableAccount(String accountNo);
 
+    public ResponseAccountDto getResponseDtoByAccount(Account account);
+
 }

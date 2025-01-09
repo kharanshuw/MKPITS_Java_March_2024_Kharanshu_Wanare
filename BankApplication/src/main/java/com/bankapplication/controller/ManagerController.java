@@ -35,12 +35,13 @@ public class ManagerController {
     private AdminService adminService;
 
     @Autowired
-    public ManagerController(UserServiceAppContext userServiceAppContext, UserService userService, AccountService accountService, ManagerService managerService) {
+    public ManagerController(UserServiceAppContext userServiceAppContext, UserService userService, AccountService accountService, ManagerService managerService, AdminService adminService) {
         super();
         this.userServiceAppContext = userServiceAppContext;
         this.userService = userService;
         this.accountService = accountService;
         this.managerService = managerService;
+        this.adminService = adminService;
     }
 
     /**
@@ -241,6 +242,39 @@ public class ManagerController {
             throw new RuntimeException("Unable to delete account");
         }
 
+    }
+
+    /**
+     * Retrieves a list of all accounts managed by the authenticated user and renders a table.
+     *
+     * @param principal the authenticated user
+     * @param model     the model object
+     * @return the name of the HTML template to render
+     */
+    @GetMapping("/accounts")
+    public String getListOfAccounts(Principal principal, Model model) {
+        // Log the start of the method
+        logger.info("getListOfAccounts method called for manager email {}", principal.getName());
+        // Retrieve the user's email from the principal
+        String email = principal.getName();
+
+        // Retrieve the user entity using their email
+        Users user = adminService.getUserByEmail(email);
+
+        // Retrieve the manager ID from the user's user details
+        int managerid = user.getUserDetails().getId();
+
+        // Retrieve a list of all accounts managed by the manager
+        List<ResponseAccountDto> accounts = managerService.getAllAccounts(managerid);
+
+        // Add the list of accounts to the model
+        model.addAttribute("accounts", accounts);
+
+        // Log the successful completion of the method
+        logger.info("getListOfAccounts method completed successfully");
+
+        // Return the name of the HTML template to render
+        return "home/manager/accounts";
     }
 
 

@@ -1,11 +1,14 @@
 package com.bankapplication.dto.response;
 
 import jakarta.validation.constraints.Digits;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 
 public class ResponseAccountDto {
 
+    private static final Logger log = LoggerFactory.getLogger(ResponseAccountDto.class);
     public String accountType;
 
     private String accountNo;
@@ -101,9 +104,19 @@ public class ResponseAccountDto {
     public boolean isStatus() {
         return status;
     }
+    
+    public boolean getStatus()
+    {
+        return  status;
+    }
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String userName() {
+        String name = fname + " " + lname;
+        return name;
     }
 
 

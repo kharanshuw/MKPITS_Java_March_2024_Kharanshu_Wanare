@@ -167,6 +167,8 @@ public class SecurityConfig {
                                         .requestMatchers(HttpMethod.GET, "/manager/delete").hasRole("MANAGER")
                                         
                                         .requestMatchers(HttpMethod.GET, "/user/delete").hasRole("USER")
+                                        
+                                        .requestMatchers(HttpMethod.GET, "/manager/accounts").hasRole("MANAGER")
 
 
                                         .anyRequest().authenticated()

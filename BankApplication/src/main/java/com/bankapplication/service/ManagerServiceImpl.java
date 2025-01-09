@@ -2,6 +2,8 @@ package com.bankapplication.service;
 
 import com.bankapplication.dto.ManagerDto;
 import com.bankapplication.dto.ResponseBranchDto;
+import com.bankapplication.dto.response.ResponseAccountDto;
+import com.bankapplication.model.Account;
 import com.bankapplication.model.Branch;
 import com.bankapplication.model.Users;
 import com.bankapplication.repository.ManagerRepository;
@@ -10,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,10 +24,13 @@ public class ManagerServiceImpl implements ManagerService {
 
     private BranchService branchService;
 
+    private AccountService accountService;
+
     @Autowired
-    public ManagerServiceImpl(ManagerRepository managerRepository, BranchService branchService) {
+    public ManagerServiceImpl(ManagerRepository managerRepository, BranchService branchService, AccountService accountService) {
         this.managerRepository = managerRepository;
         this.branchService = branchService;
+        this.accountService = accountService;
     }
 
     /**
@@ -83,8 +89,7 @@ public class ManagerServiceImpl implements ManagerService {
                 responseBranchDto.setManagerName(branch.getManagerNameString());
                 responseBranchDto.setIfsc(branch.getIfscCode());
                 responseBranchDto.setEstablishDate(branch.getEstablishDate().toString());
-                
-                
+
 
                 // Log the successful retrieval
                 logger.info("Successfully retrieved branch with manager ID: {}", managerId);
@@ -104,5 +109,43 @@ public class ManagerServiceImpl implements ManagerService {
 
         return responseBranchDto;
 
+    }
+
+
+    /**
+     * Retrieves a list of all accounts managed by the specified manager ID.
+     *
+     * @param managerid the ID of the manager
+     * @return a list of ResponseAccountDto objects representing the accounts
+     */
+    public List<ResponseAccountDto> getAllAccounts(int managerid) {
+        // Log the start of the method
+        logger.info("getAllAccounts method called for manager ID: {}", managerid);
+
+        try {
+            // Retrieve accounts from the repository
+            List<Account> accounts = managerRepository.findAccountIdsByManagerIdAndStatus(managerid);
+            logger.info("Successfully retrieved {} accounts", accounts.size());
+
+            // Initialize an empty list to store ResponseAccountDto objects
+            List<ResponseAccountDto> responseAccountDtoList = new ArrayList<>();
+
+            // Iterate over the accounts and convert each to a ResponseAccountDto
+            for (Account account : accounts) {
+                // Log the account being processed
+                logger.debug("Processing account: {}", account.getAccountNumber());
+                ResponseAccountDto responseAccountDto = accountService.getResponseDtoByAccount(account);
+                responseAccountDtoList.add(responseAccountDto);
+            }
+
+            // Log the successful completion of the method
+            logger.info("getAllAccounts method completed successfully");
+
+            return responseAccountDtoList;
+        } catch (Exception e) {
+            // Log the exception and rethrow it
+            logger.error("Error retrieving accounts for manager ID: {}", managerid, e);
+            throw new RuntimeException("Error retrieving accounts", e);
+        }
     }
 }
